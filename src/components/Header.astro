@@ -29,7 +29,12 @@
           href="mailto:mundanzas.andy@gmail.com" 
           class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
         >
-          <span class="text-lg">✉️</span>
+          <!-- Use an inline SVG so the icon inherits the link color (currentColor) instead of a colored emoji -->
+          <span class="text-lg" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+          </span>
           <span class="hidden sm:inline">mundanzas.andy@gmail.com</span>
           <span class="sm:hidden">Email</span>
         </a>
