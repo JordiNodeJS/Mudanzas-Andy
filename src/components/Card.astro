@@ -1,0 +1,155 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"article"> {
+  title?: string;
+  description?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  href?: string;
+  buttonText?: string;
+  variant?: "default" | "elevated" | "bordered";
+}
+
+const {
+  title = "",
+  description = "",
+  imageSrc = "",
+  imageAlt = "",
+  href = "#",
+  buttonText = "Ver más",
+  variant = "default",
+  ...attrs
+} = Astro.props as Props;
+---
+
+<article class={`card card-${variant}`} {...attrs}>
+  {
+    imageSrc && (
+      <div class="card-image">
+        <img src={imageSrc} alt={imageAlt} loading="lazy" />
+      </div>
+    )
+  }
+
+  <div class="card-content">
+    <h3 class="card-title">{title}</h3>
+    {description && <p class="card-description">{description}</p>}
+
+    <div class="card-actions">
+      <a href={href} class="card-button">
+        {buttonText}
+        <svg class="arrow-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path
+            fill-rule="evenodd"
+            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .card-default {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-elevated {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-bordered {
+    border: 2px solid #e5e7eb;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover .card-image img {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+  }
+
+  .card-description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+  }
+
+  .card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .card-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #4f6bff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .card-button:hover {
+    background: #3a5ce6;
+    transform: translateY(-1px);
+  }
+
+  .arrow-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  .card-button:hover .arrow-icon {
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 768px) {
+    .card-content {
+      padding: 16px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+    }
+  }
+</style>

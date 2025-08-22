@@ -1,11 +1,193 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+	<main class="main-content">
+		<header class="hero">
+			<h1>Mudanzas Andy</h1>
+			<p class="hero-subtitle">Tu empresa de confianza para mudanzas profesionales</p>
+		</header>
+
+		<section class="services-grid">
+			<article class="service-card">
+				<h3>Mudanzas Residenciales</h3>
+				<p>Servicio completo de mudanza para hogares, desde apartamentos hasta casas grandes. Incluye embalaje, transporte y desembalaje.</p>
+				<a href="/servicios/residenciales" class="service-btn">Más información</a>
+			</article>
+
+			<article class="service-card">
+				<h3>Mudanzas Comerciales</h3>
+				<p>Mudanzas para oficinas, tiendas y empresas. Traslado seguro de mobiliario, equipos y documentos importantes.</p>
+				<a href="/servicios/comerciales" class="service-btn">Consultar</a>
+			</article>
+
+			<article class="service-card">
+				<h3>Embalaje Profesional</h3>
+				<p>Servicio especializado de embalaje con materiales de alta calidad. Protección garantizada para todos tus objetos valiosos.</p>
+				<a href="/servicios/embalaje" class="service-btn">Cotizar</a>
+			</article>
+
+			<article class="service-card">
+				<h3>Almacenamiento Seguro</h3>
+				<p>Almacenes climatizados y seguros para guardar tus pertenencias temporalmente durante el proceso de mudanza.</p>
+				<a href="/servicios/almacenamiento" class="service-btn">Ver opciones</a>
+			</article>
+
+			<article class="service-card">
+				<h3>Mudanzas Internacionales</h3>
+				<p>Servicio completo de mudanza internacional con gestión de aduanas y transporte multimodal especializado.</p>
+				<a href="/servicios/internacionales" class="service-btn">Información</a>
+			</article>
+
+			<article class="service-card">
+				<h3>Mudanzas Express</h3>
+				<p>Servicio de urgencia para mudanzas en 24-48 horas. Ideal para traslados urgentes o cambios de residencia inesperados.</p>
+				<a href="/servicios/express" class="service-btn">Solicitar</a>
+			</article>
+		</section>
+
+		<section class="cta-section">
+			<h2>¿Necesitas una mudanza?</h2>
+			<p>Contáctanos para obtener una cotización personalizada y sin compromiso</p>
+			<a href="/contacto" class="cta-button">Solicitar Presupuesto</a>
+		</section>
+	</main>
 </Layout>
+
+<style>
+	.main-content {
+		min-height: 100vh;
+		padding: 2rem;
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	}
+
+	.hero {
+		text-align: center;
+		margin-bottom: 3rem;
+		color: white;
+	}
+
+	.hero h1 {
+		font-size: 3rem;
+		font-weight: 700;
+		margin: 0 0 1rem 0;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		margin: 0;
+		opacity: 0.9;
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 2rem;
+		margin-bottom: 3rem;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.service-card {
+		background: white;
+		padding: 20px;
+		border-radius: 12px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		border: 1px solid #e5e7eb;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.service-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+	}
+
+	.service-card h3 {
+		color: #1f2937;
+		margin: 0 0 10px 0;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+
+	.service-card p {
+		color: #6b7280;
+		margin: 0 0 15px 0;
+		line-height: 1.5;
+	}
+
+	.service-btn {
+		background: #4f6bff;
+		color: white;
+		padding: 8px 16px;
+		border-radius: 6px;
+		text-decoration: none;
+		display: inline-block;
+		font-weight: 500;
+		transition: background-color 0.2s ease;
+	}
+
+	.service-btn:hover {
+		background: #3a5ce6;
+	}
+
+	.cta-section {
+		text-align: center;
+		color: white;
+		margin-top: 2rem;
+	}
+
+	.cta-section h2 {
+		font-size: 2rem;
+		margin: 0 0 1rem 0;
+	}
+
+	.cta-section p {
+		font-size: 1.1rem;
+		margin: 0 0 2rem 0;
+		opacity: 0.9;
+	}
+
+	.cta-button {
+		display: inline-block;
+		background: linear-gradient(90deg, #ff6b6b, #ee5a24);
+		color: white;
+		padding: 1rem 2rem;
+		border-radius: 50px;
+		text-decoration: none;
+		font-weight: 600;
+		font-size: 1.1rem;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	}
+
+	.cta-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+	}
+
+	@media (max-width: 768px) {
+		.main-content {
+			padding: 1rem;
+		}
+
+		.hero h1 {
+			font-size: 2rem;
+		}
+
+		.hero-subtitle {
+			font-size: 1rem;
+		}
+
+		.services-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.cta-section h2 {
+			font-size: 1.5rem;
+		}
+	}
+</style>
