@@ -4,6 +4,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ContactForm from "../components/ContactForm.astro";
 import SmartPopup from "../components/SmartPopup.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
+import LazyImage from "../components/LazyImage.astro";
 ---
 
 <Layout>
@@ -12,13 +14,25 @@ import SmartPopup from "../components/SmartPopup.astro";
   
   <main class="pt-20 pb-20 lg:pb-24">
     <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-16 lg:py-20 flow-root relative">
-      <div class="container mx-auto px-4 text-center">
+  <section class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-16 lg:py-20 flow-root relative overflow-hidden">
+      <!-- Imagen de fondo con filtro para mejor contraste -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/camion/estacionado-lateral.jpg" 
+          alt="Camión de mudanzas profesional" 
+          class="w-full h-full object-cover opacity-15"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-[#f9b4ab]/70 via-[#fdebd3]/80 to-[#bbd4ce]/70"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 text-center relative z-10">
         <div class="max-w-4xl mx-auto">
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#264e70] mb-4 lg:mb-6 leading-tight">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#264e70] mb-4 lg:mb-6 leading-tight drop-shadow-sm">
             Mudanzas profesionales en Barcelona y España
           </h1>
-          <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#679186] mb-6 lg:mb-8">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#679186] mb-6 lg:mb-8 drop-shadow-sm">
             ¡Presupuesto GRATIS en 5 minutos por WhatsApp!
           </h2>
           
@@ -141,9 +155,133 @@ import SmartPopup from "../components/SmartPopup.astro";
       </div>
 		</section>
 
+    <!-- Sección de Galería de Nuestro Equipo -->
+    <section class="py-16 lg:py-20 bg-gradient-to-br from-[#264e70]/5 via-white to-[#bbd4ce]/10 relative overflow-hidden">
+      <!-- Imagen de fondo con filtro -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/camion/promocional-collage.jpg" 
+          alt="Collage promocional mudanzas" 
+          class="w-full h-full object-cover opacity-10"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/60 to-white/80"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-12 lg:mb-16">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#264e70] mb-4">
+            🚛 Nuestro Equipo Profesional
+          </h2>
+          <p class="text-lg lg:text-xl text-[#679186] max-w-3xl mx-auto">
+            Flota moderna y profesionales experimentados para garantizar una mudanza segura y eficiente
+          </p>
+        </div>
+
+        <!-- Galería de imágenes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-12">
+          <!-- Imagen 1: Camión frontal -->
+          <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300">
+            <LazyImage
+              src="/camion/camion-frontal.jpg"
+              alt="Camión de mudanzas frontal - Mudanzas ANDY"
+              class="aspect-video"
+              loading="lazy"
+            />
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-[#264e70] text-sm lg:text-base mb-2">Camión Profesional</h3>
+              <p class="text-[#679186] text-xs lg:text-sm">Vehículos modernos y perfectamente equipados para cualquier tipo de mudanza.</p>
+            </div>
+          </div>
+
+          <!-- Imagen 2: Cargando flete -->
+          <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300">
+            <LazyImage
+              src="/camion/cargando-flete.jpg"
+              alt="Equipo cargando mudanza profesionalmente"
+              class="aspect-video"
+              loading="lazy"
+            />
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-[#264e70] text-sm lg:text-base mb-2">Carga Profesional</h3>
+              <p class="text-[#679186] text-xs lg:text-sm">Técnicas especializadas de carga para proteger tus pertenencias durante el transporte.</p>
+            </div>
+          </div>
+
+          <!-- Imagen 3: Interior de la caja -->
+          <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300">
+            <LazyImage
+              src="/camion/interior-caja.jpg"
+              alt="Interior espacioso del camión de mudanzas"
+              class="aspect-video"
+              loading="lazy"
+            />
+            <div class="p-4 lg:p-6">
+              <h3 class="font-bold text-[#264e70] text-sm lg:text-base mb-2">Espacio Optimizado</h3>
+              <p class="text-[#679186] text-xs lg:text-sm">Cajas de carga amplias y organizadas para maximizar el espacio y la seguridad.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA con imagen de fondo -->
+        <div class="relative bg-gradient-to-r from-[#679186] to-[#264e70] rounded-2xl p-8 lg:p-12 text-center overflow-hidden">
+          <!-- Imagen de fondo con filtro -->
+          <div class="absolute inset-0">
+            <img 
+              src="/camion/camion-evening.jpg" 
+              alt="Camión en servicio nocturno" 
+              class="w-full h-full object-cover opacity-20"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-[#679186]/80 to-[#264e70]/80"></div>
+          </div>
+          
+          <div class="relative z-10">
+            <h3 class="text-2xl lg:text-3xl font-bold text-white mb-4">
+              ¿Listo para tu mudanza? ¡Empezamos HOY!
+            </h3>
+            <p class="text-[#bbd4ce] mb-6 lg:mb-8 text-lg max-w-2xl mx-auto">
+              Más de 5.000 mudanzas exitosas nos respaldan. Tu tranquilidad es nuestra prioridad.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a 
+                href="https://wa.me/34640506084?text=¡Hola! He visto vuestra galería y me interesa contratar una mudanza. Por favor contactenme cuanto antes."
+                target="_blank"
+                rel="noopener noreferrer" 
+                class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-base lg:text-lg w-full sm:w-auto max-w-sm"
+              >
+                <span class="text-2xl">📱</span>
+                <span>¡Contacta por WhatsApp!</span>
+              </a>
+              
+              <a 
+                href="tel:+34933539792" 
+                class="bg-transparent border-2 border-white hover:bg-white hover:text-[#264e70] text-white font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-base lg:text-lg w-full sm:w-auto max-w-sm"
+              >
+                <span class="text-2xl">📞</span>
+                <span>Llama: 933 53 97 92</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Sección de Precios -->
-    <section class="py-16 lg:py-20 bg-gradient-to-r from-[#f9b4ab]/20 via-[#fdebd3]/30 to-[#bbd4ce]/20">
-      <div class="container mx-auto px-4 text-center">
+    <section class="py-16 lg:py-20 bg-gradient-to-r from-[#f9b4ab]/20 via-[#fdebd3]/30 to-[#bbd4ce]/20 relative overflow-hidden">
+      <!-- Imagen de fondo sutil -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/camion/camion-trasera.jpg" 
+          alt="Vista trasera del camión de mudanzas" 
+          class="w-full h-full object-cover opacity-5"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/95 to-white/90"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 text-center relative z-10">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#264e70] mb-4 lg:mb-6">
             💰 Precio cerrado SIN sorpresas
@@ -200,6 +338,86 @@ import SmartPopup from "../components/SmartPopup.astro";
         </div>
       </div>
 		</section>
+
+    <!-- Sección de Testimonios con imagen de fondo -->
+    <section class="py-16 lg:py-20 relative overflow-hidden">
+      <!-- Imagen de fondo con filtro -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/camion/promocional-collage-2.jpg" 
+          alt="Collage de servicios de mudanza" 
+          class="w-full h-full object-cover opacity-20"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-[#264e70]/90 via-[#679186]/85 to-[#264e70]/90"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12">
+            ⭐ Más de 5.000 clientes satisfechos
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+            <!-- Testimonio 1 -->
+            <div class="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/20">
+              <div class="text-4xl mb-4">🏆</div>
+              <h3 class="font-bold text-[#264e70] mb-3">Servicio Excelente</h3>
+              <p class="text-[#679186] text-sm mb-4 italic">"Profesionales, puntuales y muy cuidadosos. Mi mudanza fue perfecta y sin estrés."</p>
+              <div class="text-[#FAE360] text-xl">⭐⭐⭐⭐⭐</div>
+              <p class="text-xs text-[#264e70] font-semibold mt-2">- María García, Barcelona</p>
+            </div>
+
+            <!-- Testimonio 2 -->
+            <div class="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/20">
+              <div class="text-4xl mb-4">💼</div>
+              <h3 class="font-bold text-[#264e70] mb-3">Mudanza de Oficina</h3>
+              <p class="text-[#679186] text-sm mb-4 italic">"Trasladaron toda nuestra oficina en un fin de semana. El lunes ya estábamos trabajando normalmente."</p>
+              <div class="text-[#FAE360] text-xl">⭐⭐⭐⭐⭐</div>
+              <p class="text-xs text-[#264e70] font-semibold mt-2">- Carlos Ruiz, Madrid</p>
+            </div>
+
+            <!-- Testimonio 3 -->
+            <div class="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/20">
+              <div class="text-4xl mb-4">🚀</div>
+              <h3 class="font-bold text-[#264e70] mb-3">Rapidez Increíble</h3>
+              <p class="text-[#679186] text-sm mb-4 italic">"En menos de 4 horas habían terminado. Todo perfectamente organizado y sin un solo rasguño."</p>
+              <div class="text-[#FAE360] text-xl">⭐⭐⭐⭐⭐</div>
+              <p class="text-xs text-[#264e70] font-semibold mt-2">- Ana López, Valencia</p>
+            </div>
+          </div>
+
+          <!-- CTA final -->
+          <div class="bg-[#FAE360] rounded-2xl p-6 lg:p-8 text-center shadow-xl">
+            <h3 class="text-xl lg:text-2xl font-bold text-[#264e70] mb-4">
+              ¡Únete a miles de clientes satisfechos!
+            </h3>
+            <p class="text-[#264e70] mb-6 text-base lg:text-lg">
+              Tu mudanza está a solo una llamada de distancia
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="https://wa.me/34640506084?text=¡Hola! He leído las reseñas y me gustaría solicitar presupuesto para mi mudanza."
+                target="_blank"
+                rel="noopener noreferrer" 
+                class="bg-[#264e70] hover:bg-[#1a3550] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-3 text-base w-full sm:w-auto"
+              >
+                <span class="text-2xl">💬</span>
+                <span>WhatsApp: 640 50 60 84</span>
+              </a>
+              
+              <a 
+                href="tel:+34933539792" 
+                class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-3 text-base w-full sm:w-auto"
+              >
+                <span class="text-2xl">📞</span>
+                <span>Llama: 933 53 97 92</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 	</main>
 
   <!-- Footer -->
