@@ -3,40 +3,53 @@
 ---
 
 <!-- Formulario sticky en footer -->
-<div class="fixed bottom-0 left-0 right-0 bg-[#679186] text-white shadow-lg z-30 transform transition-transform duration-300" id="contactForm">
+<div
+  class="fixed bottom-0 left-0 right-0 bg-[#679186] text-white shadow-lg z-30 transform transition-transform duration-300"
+  id="contactForm"
+>
   <div class="container mx-auto px-4 py-3 lg:py-4">
-    <div class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6">
-      
+    <div
+      class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6"
+    >
       <!-- Texto del formulario -->
       <div class="text-center lg:text-left flex-shrink-0">
-        <p class="font-bold text-[#FAE360] text-sm lg:text-base">¡Presupuesto GRATIS en 10 minutos!</p>
-        <p class="text-xs text-[#bbd4ce]">Te contactaremos por WhatsApp inmediatamente</p>
+        <p class="font-bold text-[#FAE360] text-sm lg:text-base">
+          ¡Presupuesto GRATIS en 10 minutos!
+        </p>
+        <p class="text-xs text-[#bbd4ce]">
+          Te contactaremos por WhatsApp inmediatamente
+        </p>
       </div>
-      
+
       <!-- Formulario -->
-      <form class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl" id="budgetForm">
-        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-          <input 
-            type="email" 
+      <form
+        class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl"
+        id="budgetForm"
+      >
+        <div
+          class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 flex-1 min-w-0"
+        >
+          <input
+            type="email"
             id="email"
             name="email"
-            placeholder="tu@email.com" 
+            placeholder="tu@email.com"
             required
             class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
-          >
-          <input 
-            type="tel" 
+          />
+          <input
+            type="tel"
             id="phone"
             name="phone"
-            placeholder="640 50 60 84" 
+            placeholder="640 50 60 84"
             pattern="[0-9]{3} [0-9]{2} [0-9]{2} [0-9]{2}"
             class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
-          >
+          />
         </div>
-        
-        <button 
+
+        <button
           type="submit"
-          class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-2 px-4 lg:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0 whitespace-nowrap"
+          class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-2 px-4 lg:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0"
         >
           <span>✅</span>
           <span class="hidden sm:inline">¡Recibe presupuesto en 10 min!</span>
@@ -45,9 +58,9 @@
       </form>
     </div>
   </div>
-  
+
   <!-- Botón para minimizar/maximizar -->
-  <button 
+  <button
     class="absolute top-0 right-4 transform -translate-y-full bg-[#679186] text-white px-3 py-1 rounded-t-lg text-sm hover:bg-[#5a7a6f] transition-colors duration-300"
     id="toggleForm"
   >
@@ -57,25 +70,31 @@
 
 <script>
   // Validación y envío del formulario
-  document.getElementById('budgetForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const email = (document.getElementById('email') as HTMLInputElement)?.value;
-    const phone = (document.getElementById('phone') as HTMLInputElement)?.value;
-    
-    if (!email) {
-      alert('Por favor, ingresa tu email para que podamos enviarte el presupuesto.');
-      return;
-    }
-    
-    // Mensaje personalizado para WhatsApp
-    const message = `¡Hola! Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ''}. ¡Por favor contactenme cuanto antes!`;
-    const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
-    
-    // Mensaje de éxito
-    const formContainer = document.getElementById('contactForm');
-    if (formContainer) {
-      formContainer.innerHTML = `
+  document
+    .getElementById("budgetForm")
+    ?.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = (document.getElementById("email") as HTMLInputElement)
+        ?.value;
+      const phone = (document.getElementById("phone") as HTMLInputElement)
+        ?.value;
+
+      if (!email) {
+        alert(
+          "Por favor, ingresa tu email para que podamos enviarte el presupuesto."
+        );
+        return;
+      }
+
+      // Mensaje personalizado para WhatsApp
+      const message = `¡Hola! Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
+      const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
+
+      // Mensaje de éxito
+      const formContainer = document.getElementById("contactForm");
+      if (formContainer) {
+        formContainer.innerHTML = `
         <div class="container mx-auto px-4 py-4 text-center">
           <div class="bg-green-500 text-white p-4 rounded-lg">
             <p class="font-bold">¡Listo! Te contactaremos en menos de 10 minutos por WhatsApp al 640 50 60 84.</p>
@@ -86,23 +105,23 @@
           </div>
         </div>
       `;
-    }
-    
-    // Abrir WhatsApp automáticamente
-    window.open(whatsappUrl, '_blank');
-  });
-  
+      }
+
+      // Abrir WhatsApp automáticamente
+      window.open(whatsappUrl, "_blank");
+    });
+
   // Funcionalidad para minimizar/maximizar formulario
-  document.getElementById('toggleForm')?.addEventListener('click', function() {
-    const form = document.getElementById('contactForm');
+  document.getElementById("toggleForm")?.addEventListener("click", function () {
+    const form = document.getElementById("contactForm");
     const button = this;
-    
-    if (form?.classList.contains('translate-y-full')) {
-      form.classList.remove('translate-y-full');
-      button.textContent = '↓';
+
+    if (form?.classList.contains("translate-y-full")) {
+      form.classList.remove("translate-y-full");
+      button.textContent = "↓";
     } else {
-      form?.classList.add('translate-y-full');
-      button.textContent = '↑';
+      form?.classList.add("translate-y-full");
+      button.textContent = "↑";
     }
   });
 </script>
