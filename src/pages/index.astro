@@ -10,25 +10,25 @@ import SmartPopup from "../components/SmartPopup.astro";
   <!-- Header fijo -->
   <Header />
   
-  <main class="pt-20 pb-20">
+  <main class="pt-20 pb-20 lg:pb-24">
     <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-20 flow-root relative">
+  <section class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-16 lg:py-20 flow-root relative">
       <div class="container mx-auto px-4 text-center">
         <div class="max-w-4xl mx-auto">
-          <h1 class="text-4xl md:text-6xl font-bold text-[#264e70] mb-6 leading-tight">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#264e70] mb-4 lg:mb-6 leading-tight">
             Mudanzas profesionales en Barcelona y España
           </h1>
-          <h2 class="text-2xl md:text-3xl font-semibold text-[#679186] mb-8">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-semibold text-[#679186] mb-6 lg:mb-8">
             ¡Presupuesto GRATIS en 5 minutos por WhatsApp!
           </h2>
           
           <!-- CTAs principales -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center mb-10 lg:mb-12">
             <a 
               href="https://wa.me/34640506084?text=¡Hola! Necesito presupuesto para una mudanza. Por favor contactenme cuanto antes."
               target="_blank"
               rel="noopener noreferrer" 
-              class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-lg"
+              class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-base lg:text-lg w-full sm:w-auto max-w-sm"
             >
               <span class="text-2xl">💬</span>
               <span>¡WhatsApp GRATIS! 640 50 60 84</span>
@@ -36,7 +36,7 @@ import SmartPopup from "../components/SmartPopup.astro";
             
             <a 
               href="tel:+34933539792" 
-              class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-lg"
+              class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-base lg:text-lg w-full sm:w-auto max-w-sm"
             >
               <span class="text-2xl">📞</span>
               <span>Llama: 933 53 97 92</span>
@@ -44,21 +44,21 @@ import SmartPopup from "../components/SmartPopup.astro";
           </div>
           
           <!-- Destacados -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 max-w-3xl mx-auto">
+            <div class="bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl shadow-md">
               <div class="text-2xl mb-2">⚡</div>
-              <h3 class="font-bold text-[#264e70]">Respuesta en 5 min</h3>
-              <p class="text-[#679186] text-sm">Presupuesto inmediato</p>
+              <h3 class="font-bold text-[#264e70] text-sm lg:text-base">Respuesta en 5 min</h3>
+              <p class="text-[#679186] text-xs lg:text-sm">Presupuesto inmediato</p>
             </div>
-            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+            <div class="bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl shadow-md">
               <div class="text-2xl mb-2">🛡️</div>
-              <h3 class="font-bold text-[#264e70]">Precio cerrado</h3>
-              <p class="text-[#679186] text-sm">Sin sorpresas</p>
+              <h3 class="font-bold text-[#264e70] text-sm lg:text-base">Precio cerrado</h3>
+              <p class="text-[#679186] text-xs lg:text-sm">Sin sorpresas</p>
             </div>
-            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+            <div class="bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl shadow-md">
               <div class="text-2xl mb-2">🕐</div>
-              <h3 class="font-bold text-[#264e70]">24/7 disponible</h3>
-              <p class="text-[#679186] text-sm">Todos los días</p>
+              <h3 class="font-bold text-[#264e70] text-sm lg:text-base">24/7 disponible</h3>
+              <p class="text-[#679186] text-xs lg:text-sm">Todos los días</p>
             </div>
           </div>
         </div>
@@ -66,74 +66,74 @@ import SmartPopup from "../components/SmartPopup.astro";
     </section>
 
     <!-- Sección de Servicios -->
-    <section class="py-20 bg-white">
+    <section class="py-16 lg:py-20 bg-white">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-[#264e70] mb-4">
+        <div class="text-center mb-12 lg:mb-16">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#264e70] mb-4">
             Nuestros Servicios de Mudanza
           </h2>
-          <p class="text-xl text-[#679186] max-w-2xl mx-auto">
+          <p class="text-lg lg:text-xl text-[#679186] max-w-2xl mx-auto">
             Especialistas en mudanzas profesionales con más de 14 años de experiencia
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           <!-- Servicio 1 -->
-          <div class="bg-gradient-to-br from-[#f9b4ab]/20 to-[#fdebd3]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#f9b4ab]/30">
-            <div class="text-4xl mb-4">🏠</div>
-            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas Residenciales</h3>
-            <p class="text-[#679186] mb-4">Mudanza completa de tu hogar con embalaje profesional y cajas incluidas. Servicio puerta a puerta.</p>
-            <div class="text-sm text-[#264e70] font-semibold">
+          <div class="bg-gradient-to-br from-[#f9b4ab]/20 to-[#fdebd3]/20 p-4 lg:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#f9b4ab]/30">
+            <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">🏠</div>
+            <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">Mudanzas Residenciales</h3>
+            <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">Mudanza completa de tu hogar con embalaje profesional y cajas incluidas. Servicio puerta a puerta.</p>
+            <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
               ¿Necesitas ayuda HOY? <a href="tel:+34933539792" class="text-[#f9b4ab] hover:underline">933 53 97 92</a>
             </div>
           </div>
 
           <!-- Servicio 2 -->
-          <div class="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#679186]/30">
-            <div class="text-4xl mb-4">🏢</div>
-            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas de Oficinas</h3>
-            <p class="text-[#679186] mb-4">Traslado de empresas y oficinas con mínima interrupción de la actividad laboral. Planificación detallada.</p>
-            <div class="text-sm text-[#264e70] font-semibold">
+          <div class="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/20 p-4 lg:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#679186]/30">
+            <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">🏢</div>
+            <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">Mudanzas de Oficinas</h3>
+            <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">Traslado de empresas y oficinas con mínima interrupción de la actividad laboral. Planificación detallada.</p>
+            <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
               ¿Necesitas ayuda HOY? <a href="https://wa.me/34640506084" class="text-[#679186] hover:underline">WhatsApp 640 50 60 84</a>
             </div>
           </div>
 
           <!-- Servicio 3 -->
-          <div class="bg-gradient-to-br from-[#fdebd3]/30 to-[#f9b4ab]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#fdebd3]/50">
-            <div class="text-4xl mb-4">📦</div>
-            <h3 class="text-xl font-bold text-[#264e70] mb-3">Embalaje Profesional</h3>
-            <p class="text-[#679186] mb-4">Servicio especializado de embalaje con materiales de alta calidad. Protegemos todos tus objetos valiosos.</p>
-            <div class="text-sm text-[#264e70] font-semibold">
+          <div class="bg-gradient-to-br from-[#fdebd3]/30 to-[#f9b4ab]/20 p-4 lg:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#fdebd3]/50">
+            <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">📦</div>
+            <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">Embalaje Profesional</h3>
+            <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">Servicio especializado de embalaje con materiales de alta calidad. Protegemos todos tus objetos valiosos.</p>
+            <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
               ¿Necesitas ayuda HOY? <a href="tel:+34933539792" class="text-[#f9b4ab] hover:underline">933 53 97 92</a>
             </div>
           </div>
 
           <!-- Servicio 4 -->
-          <div class="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#bbd4ce]/40">
-            <div class="text-4xl mb-4">⚡</div>
-            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas Express</h3>
-            <p class="text-[#679186] mb-4">Servicio urgente 24-48 horas. Ideal para traslados inesperados o mudanzas de última hora.</p>
-            <div class="text-sm text-[#264e70] font-semibold">
+          <div class="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 p-4 lg:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#bbd4ce]/40">
+            <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">⚡</div>
+            <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">Mudanzas Express</h3>
+            <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">Servicio urgente 24-48 horas. Ideal para traslados inesperados o mudanzas de última hora.</p>
+            <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
               ¿Necesitas ayuda HOY? <a href="https://wa.me/34640506084" class="text-[#679186] hover:underline">WhatsApp 640 50 60 84</a>
             </div>
           </div>
 
           <!-- Servicio 5 -->
-          <div class="bg-gradient-to-br from-[#f9b4ab]/20 to-[#679186]/10 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#f9b4ab]/30">
-            <div class="text-4xl mb-4">🗄️</div>
-            <h3 class="text-xl font-bold text-[#264e70] mb-3">Almacenamiento</h3>
-            <p class="text-[#679186] mb-4">Almacenes seguros y climatizados para guardar tus pertenencias temporalmente durante la mudanza.</p>
-            <div class="text-sm text-[#264e70] font-semibold">
+          <div class="bg-gradient-to-br from-[#f9b4ab]/20 to-[#679186]/10 p-4 lg:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#f9b4ab]/30">
+            <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">🗄️</div>
+            <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">Almacenamiento</h3>
+            <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">Almacenes seguros y climatizados para guardar tus pertenencias temporalmente durante la mudanza.</p>
+            <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
               ¿Necesitas ayuda HOY? <a href="tel:+34933539792" class="text-[#f9b4ab] hover:underline">933 53 97 92</a>
             </div>
           </div>
 
           <!-- Servicio 6 -->
-          <div class="bg-gradient-to-br from-[#264e70]/10 to-[#bbd4ce]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#264e70]/20">
-            <div class="text-4xl mb-4">🌍</div>
-            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas Internacionales</h3>
-            <p class="text-[#679186] mb-4">Mudanzas a cualquier parte de Europa con gestión completa de documentación y aduanas.</p>
-            <div class="text-sm text-[#264e70] font-semibold">
+          <div class="bg-gradient-to-br from-[#264e70]/10 to-[#bbd4ce]/20 p-4 lg:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#264e70]/20">
+            <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">🌍</div>
+            <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">Mudanzas Internacionales</h3>
+            <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">Mudanzas a cualquier parte de Europa con gestión completa de documentación y aduanas.</p>
+            <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
               ¿Necesitas ayuda HOY? <a href="https://wa.me/34640506084" class="text-[#679186] hover:underline">WhatsApp 640 50 60 84</a>
             </div>
           </div>
@@ -142,58 +142,59 @@ import SmartPopup from "../components/SmartPopup.astro";
 		</section>
 
     <!-- Sección de Precios -->
-    <section class="py-20 bg-gradient-to-r from-[#f9b4ab]/20 via-[#fdebd3]/30 to-[#bbd4ce]/20">
+    <section class="py-16 lg:py-20 bg-gradient-to-r from-[#f9b4ab]/20 via-[#fdebd3]/30 to-[#bbd4ce]/20">
       <div class="container mx-auto px-4 text-center">
         <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-bold text-[#264e70] mb-6">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#264e70] mb-4 lg:mb-6">
             💰 Precio cerrado SIN sorpresas
           </h2>
-          <p class="text-xl text-[#679186] mb-8">
+          <p class="text-lg lg:text-xl text-[#679186] mb-6 lg:mb-8">
             Consulta sin compromiso y presupuesto gratuito en menos de 5 minutos
           </p>
           
-          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-[#f9b4ab]/30 mb-8">
-            <div class="text-5xl mb-4">🎯</div>
-            <h3 class="text-2xl font-bold text-[#264e70] mb-4">¿Por qué elegir Mudanzas ANDY?</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+          <div class="bg-white/80 backdrop-blur-sm p-6 lg:p-8 rounded-2xl shadow-xl border border-[#f9b4ab]/30 mb-6 lg:mb-8">
+            <div class="text-4xl lg:text-5xl mb-3 lg:mb-4">🎯</div>
+            <h3 class="text-xl lg:text-2xl font-bold text-[#264e70] mb-3 lg:mb-4">¿Por qué elegir Mudanzas ANDY?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 text-left">
               <div class="flex items-start space-x-3">
-                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <span class="text-[#f9b4ab] text-lg lg:text-xl">✓</span>
                 <div>
-                  <h4 class="font-semibold text-[#264e70]">Experiencia desde 2010</h4>
-                  <p class="text-[#679186] text-sm">Más de 14 años en el sector</p>
+                  <h4 class="font-semibold text-[#264e70] text-sm lg:text-base">Experiencia desde 2010</h4>
+                  <p class="text-[#679186] text-xs lg:text-sm">Más de 14 años en el sector</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
-                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <span class="text-[#f9b4ab] text-lg lg:text-xl">✓</span>
                 <div>
-                  <h4 class="font-semibold text-[#264e70]">Atención 24/7</h4>
-                  <p class="text-[#679186] text-sm">Disponibles todos los días</p>
+                  <h4 class="font-semibold text-[#264e70] text-sm lg:text-base">Atención 24/7</h4>
+                  <p class="text-[#679186] text-xs lg:text-sm">Disponibles todos los días</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
-                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <span class="text-[#f9b4ab] text-lg lg:text-xl">✓</span>
                 <div>
-                  <h4 class="font-semibold text-[#264e70]">Material incluido</h4>
-                  <p class="text-[#679186] text-sm">Cajas, plástico burbuja, mantas</p>
+                  <h4 class="font-semibold text-[#264e70] text-sm lg:text-base">Material incluido</h4>
+                  <p class="text-[#679186] text-xs lg:text-sm">Cajas, plástico burbuja, mantas</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
-                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <span class="text-[#f9b4ab] text-lg lg:text-xl">✓</span>
                 <div>
-                  <h4 class="font-semibold text-[#264e70]">Presupuesto fijo</h4>
-                  <p class="text-[#679186] text-sm">Sin gastos ocultos ni sorpresas</p>
+                  <h4 class="font-semibold text-[#264e70] text-sm lg:text-base">Presupuesto fijo</h4>
+                  <p class="text-[#679186] text-xs lg:text-sm">Sin gastos ocultos ni sorpresas</p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
             <a 
               href="tel:+34933539792" 
-              class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-3 text-lg"
+              class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-3 text-base lg:text-lg w-full sm:w-auto max-w-md mx-auto"
             >
               <span class="text-2xl">📞</span>
-              <span>Consulta sin compromiso: 933 53 97 92</span>
+              <span class="hidden sm:inline">Consulta sin compromiso: 933 53 97 92</span>
+              <span class="sm:hidden">Llama: 933 53 97 92</span>
             </a>
           </div>
         </div>

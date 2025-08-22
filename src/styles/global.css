@@ -13,3 +13,59 @@ main > *:first-child {
 section.flow-root {
   display: flow-root;
 }
+
+/* Responsive typography improvements */
+@media (max-width: 640px) {
+  /* Better text scaling on small screens */
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+  
+  /* Ensure buttons don't get too small */
+  button, .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for form elements on mobile */
+  input[type="email"], 
+  input[type="tel"] {
+    min-height: 44px;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Optimize for tablet landscape */
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1025px) {
+  /* Better use of large screens */
+  .hero-content {
+    max-width: 1200px;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  /* Ensure good contrast in high contrast mode */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r {
+    background-image: none;
+    background-color: #ffffff;
+  }
+}

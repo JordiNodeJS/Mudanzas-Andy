@@ -8,21 +8,21 @@
       <!-- Logo y nombre -->
       <div class="flex items-center space-x-3">
   <!-- Replace `/public/logos/logo-camion-transparent.png` with the attached transparent truck image -->
-  <img src="/logos/logo-camion-transparent.png" alt="Mudanzas ANDY Logo" class="w-14 h-10 object-contain bg-transparent drop-shadow-sm self-center" onerror="this.onerror=null;this.src='/logos/logo-camion-mudanzas.png';">
+  <img src="/logos/logo-camion-transparent.png" alt="Mudanzas ANDY Logo" class="w-12 h-8 lg:w-14 lg:h-10 object-contain bg-transparent drop-shadow-sm self-center" onerror="this.onerror=null;this.src='/logos/logo-camion-mudanzas.png';">
         <div>
-          <h1 class="text-xl font-bold text-[#FAE360]">Mudanzas ANDY</h1>
-          <p class="text-xs text-[#bbd4ce]">Tu mudanza, nuestra prioridad desde 2010</p>
+          <h1 class="text-lg lg:text-xl font-bold text-[#FAE360]">Mudanzas ANDY</h1>
+          <p class="text-xs text-[#bbd4ce] hidden sm:block">Tu mudanza, nuestra prioridad desde 2010</p>
         </div>
       </div>
       
       <!-- Información de contacto -->
-      <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
+      <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6">
         <a 
           href="tel:+34933539792" 
           class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
         >
           <span class="text-lg">📞</span>
-          <span class="font-semibold">933 53 97 92</span>
+          <span class="font-semibold text-sm lg:text-base">933 53 97 92</span>
         </a>
         
         <a 
@@ -31,19 +31,19 @@
         >
           <!-- Use an inline SVG so the icon inherits the link color (currentColor) instead of a colored emoji -->
           <span class="text-lg" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor" aria-hidden="true" focusable="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4 lg:w-5 lg:h-5" fill="currentColor" aria-hidden="true" focusable="false">
               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
             </svg>
           </span>
-          <span class="hidden sm:inline">mundanzas.andy@gmail.com</span>
-          <span class="sm:hidden">Email</span>
+          <span class="hidden lg:inline text-sm">mundanzas.andy@gmail.com</span>
+          <span class="lg:hidden text-sm">Email</span>
         </a>
       </div>
     </div>
     
     <!-- Badge de atención 24/7 -->
     <div class="mt-2 text-center">
-      <span class="inline-block bg-[#f9b4ab] text-[#264e70] px-4 py-1 rounded-full text-sm font-bold animate-bounce">
+      <span class="inline-block bg-[#f9b4ab] text-[#264e70] px-3 lg:px-4 py-1 rounded-full text-xs lg:text-sm font-bold animate-bounce">
         ¡Atención 24/7! Llámanos o escríbenos cuando quieras
       </span>
     </div>

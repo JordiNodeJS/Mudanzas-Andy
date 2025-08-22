@@ -4,17 +4,17 @@
 
 <!-- Formulario sticky en footer -->
 <div class="fixed bottom-0 left-0 right-0 bg-[#679186] text-white shadow-lg z-30 transform transition-transform duration-300" id="contactForm">
-  <div class="container mx-auto px-4 py-4">
-    <div class="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0 sm:space-x-4">
+  <div class="container mx-auto px-4 py-3 lg:py-4">
+    <div class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6">
       
       <!-- Texto del formulario -->
-      <div class="text-center sm:text-left">
-        <p class="font-bold text-[#FAE360]">¡Presupuesto GRATIS en 10 minutos!</p>
+      <div class="text-center lg:text-left flex-shrink-0">
+        <p class="font-bold text-[#FAE360] text-sm lg:text-base">¡Presupuesto GRATIS en 10 minutos!</p>
         <p class="text-xs text-[#bbd4ce]">Te contactaremos por WhatsApp inmediatamente</p>
       </div>
       
       <!-- Formulario -->
-      <form class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full sm:w-auto" id="budgetForm">
+      <form class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl" id="budgetForm">
         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
           <input 
             type="email" 
@@ -22,7 +22,7 @@
             name="email"
             placeholder="tu@email.com" 
             required
-            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none text-gray-800 placeholder-gray-500"
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
           >
           <input 
             type="tel" 
@@ -30,16 +30,17 @@
             name="phone"
             placeholder="640 50 60 84" 
             pattern="[0-9]{3} [0-9]{2} [0-9]{2} [0-9]{2}"
-            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none text-gray-800 placeholder-gray-500"
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
           >
         </div>
         
         <button 
           type="submit"
-          class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+          class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-2 px-4 lg:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0 whitespace-nowrap"
         >
           <span>✅</span>
-          <span>¡Recibe presupuesto en 10 min!</span>
+          <span class="hidden sm:inline">¡Recibe presupuesto en 10 min!</span>
+          <span class="sm:hidden">¡Presupuesto!</span>
         </button>
       </form>
     </div>
