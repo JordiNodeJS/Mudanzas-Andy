@@ -2,14 +2,14 @@
 
 /* Prevent margin-collapsing between a fixed header and the first section */
 html {
-	scroll-padding-top: 5rem; /* helps anchor links land below the fixed header */
+  scroll-padding-top: 5rem; /* helps anchor links land below the fixed header */
 }
 
 main > *:first-child {
-	margin-top: 0; /* ensure the first element inside main doesn't collapse under the fixed header */
+  margin-top: 0; /* ensure the first element inside main doesn't collapse under the fixed header */
 }
 
 /* small utility in case some section still collapses */
 section.flow-root {
-	display: flow-root;
+  display: flow-root;
 }
