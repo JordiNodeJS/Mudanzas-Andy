@@ -1,14 +1,82 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+
+const { 
+	title = "Mudanzas profesionales en Barcelona y España | Mudanzas ANDY",
+	description = "Mudanzas profesionales en Barcelona y toda España. Presupuesto GRATIS en 5 minutos por WhatsApp. Atención 24/7. ¡Tu mudanza, nuestra prioridad!",
+	image = "/og-image.jpg"
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		
+		<!-- Schema.org markup -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "LocalBusiness",
+			"name": "Mudanzas ANDY",
+			"description": "Empresa de mudanzas profesionales en Barcelona y España",
+			"telephone": "+34 933 53 97 92",
+			"email": "mundanzas.andy@gmail.com",
+			"url": Astro.url,
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Barcelona",
+				"addressCountry": "España"
+			},
+			"openingHours": "Mo-Su 00:00-23:59",
+			"priceRange": "€€",
+			"serviceArea": {
+				"@type": "Country",
+				"name": "España"
+			}
+		})} />
 	</head>
-	<body>
+	<body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
 		<slot />
+		
+		<!-- WhatsApp Floating Button -->
+		<a 
+			href="https://wa.me/34640506084" 
+			target="_blank"
+			rel="noopener noreferrer"
+			class="fixed bottom-4 right-4 z-50 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 animate-pulse hover:animate-none"
+			aria-label="Contactar por WhatsApp"
+		>
+			<span class="text-2xl">💬</span>
+			<span class="hidden sm:inline">¡Reserva YA!</span>
+			<span class="text-sm font-normal">640 50 60 84</span>
+		</a>
 	</body>
 </html>
 

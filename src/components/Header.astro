@@ -1,0 +1,45 @@
+---
+// No props needed for header
+---
+
+<header class="fixed top-0 w-full bg-[#264e70] text-white z-40 shadow-lg">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex flex-wrap items-center justify-between">
+      <!-- Logo y nombre -->
+      <div class="flex items-center space-x-3">
+        <img src="/logo-mudanzas-andy.svg" alt="Mudanzas ANDY Logo" class="w-12 h-8">
+        <div>
+          <h1 class="text-xl font-bold text-[#FAE360]">Mudanzas ANDY</h1>
+          <p class="text-xs text-[#bbd4ce]">Tu mudanza, nuestra prioridad desde 2010</p>
+        </div>
+      </div>
+      
+      <!-- Información de contacto -->
+      <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
+        <a 
+          href="tel:+34933539792" 
+          class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+        >
+          <span class="text-lg">📞</span>
+          <span class="font-semibold">933 53 97 92</span>
+        </a>
+        
+        <a 
+          href="mailto:mundanzas.andy@gmail.com" 
+          class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+        >
+          <span class="text-lg">✉️</span>
+          <span class="hidden sm:inline">mundanzas.andy@gmail.com</span>
+          <span class="sm:hidden">Email</span>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Badge de atención 24/7 -->
+    <div class="mt-2 text-center">
+      <span class="inline-block bg-[#f9b4ab] text-[#264e70] px-4 py-1 rounded-full text-sm font-bold animate-bounce">
+        ¡Atención 24/7! Llámanos o escríbenos cuando quieras
+      </span>
+    </div>
+  </div>
+</header>

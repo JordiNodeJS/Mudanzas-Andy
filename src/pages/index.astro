@@ -1,193 +1,212 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ContactForm from "../components/ContactForm.astro";
+import SmartPopup from "../components/SmartPopup.astro";
 ---
 
 <Layout>
-	<main class="main-content">
-		<header class="hero">
-			<h1>Mudanzas Andy</h1>
-			<p class="hero-subtitle">Tu empresa de confianza para mudanzas profesionales</p>
-		</header>
+  <!-- Header fijo -->
+  <Header />
+  
+  <main class="pt-32 pb-20">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-20">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-4xl md:text-6xl font-bold text-[#264e70] mb-6 leading-tight">
+            Mudanzas profesionales en Barcelona y España
+          </h1>
+          <h2 class="text-2xl md:text-3xl font-semibold text-[#679186] mb-8">
+            ¡Presupuesto GRATIS en 5 minutos por WhatsApp!
+          </h2>
+          
+          <!-- CTAs principales -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <a 
+              href="https://wa.me/34640506084?text=¡Hola! Necesito presupuesto para una mudanza. Por favor contactenme cuanto antes."
+              target="_blank"
+              rel="noopener noreferrer" 
+              class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-lg"
+            >
+              <span class="text-2xl">💬</span>
+              <span>¡WhatsApp GRATIS! 640 50 60 84</span>
+            </a>
+            
+            <a 
+              href="tel:+34933539792" 
+              class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-3 text-lg"
+            >
+              <span class="text-2xl">📞</span>
+              <span>Llama: 933 53 97 92</span>
+            </a>
+          </div>
+          
+          <!-- Destacados -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+              <div class="text-2xl mb-2">⚡</div>
+              <h3 class="font-bold text-[#264e70]">Respuesta en 5 min</h3>
+              <p class="text-[#679186] text-sm">Presupuesto inmediato</p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+              <div class="text-2xl mb-2">🛡️</div>
+              <h3 class="font-bold text-[#264e70]">Precio cerrado</h3>
+              <p class="text-[#679186] text-sm">Sin sorpresas</p>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md">
+              <div class="text-2xl mb-2">🕐</div>
+              <h3 class="font-bold text-[#264e70]">24/7 disponible</h3>
+              <p class="text-[#679186] text-sm">Todos los días</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<section class="services-grid">
-			<article class="service-card">
-				<h3>Mudanzas Residenciales</h3>
-				<p>Servicio completo de mudanza para hogares, desde apartamentos hasta casas grandes. Incluye embalaje, transporte y desembalaje.</p>
-				<a href="/servicios/residenciales" class="service-btn">Más información</a>
-			</article>
+    <!-- Sección de Servicios -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#264e70] mb-4">
+            Nuestros Servicios de Mudanza
+          </h2>
+          <p class="text-xl text-[#679186] max-w-2xl mx-auto">
+            Especialistas en mudanzas profesionales con más de 14 años de experiencia
+          </p>
+        </div>
 
-			<article class="service-card">
-				<h3>Mudanzas Comerciales</h3>
-				<p>Mudanzas para oficinas, tiendas y empresas. Traslado seguro de mobiliario, equipos y documentos importantes.</p>
-				<a href="/servicios/comerciales" class="service-btn">Consultar</a>
-			</article>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Servicio 1 -->
+          <div class="bg-gradient-to-br from-[#f9b4ab]/20 to-[#fdebd3]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#f9b4ab]/30">
+            <div class="text-4xl mb-4">🏠</div>
+            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas Residenciales</h3>
+            <p class="text-[#679186] mb-4">Mudanza completa de tu hogar con embalaje profesional y cajas incluidas. Servicio puerta a puerta.</p>
+            <div class="text-sm text-[#264e70] font-semibold">
+              ¿Necesitas ayuda HOY? <a href="tel:+34933539792" class="text-[#f9b4ab] hover:underline">933 53 97 92</a>
+            </div>
+          </div>
 
-			<article class="service-card">
-				<h3>Embalaje Profesional</h3>
-				<p>Servicio especializado de embalaje con materiales de alta calidad. Protección garantizada para todos tus objetos valiosos.</p>
-				<a href="/servicios/embalaje" class="service-btn">Cotizar</a>
-			</article>
+          <!-- Servicio 2 -->
+          <div class="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#679186]/30">
+            <div class="text-4xl mb-4">🏢</div>
+            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas de Oficinas</h3>
+            <p class="text-[#679186] mb-4">Traslado de empresas y oficinas con mínima interrupción de la actividad laboral. Planificación detallada.</p>
+            <div class="text-sm text-[#264e70] font-semibold">
+              ¿Necesitas ayuda HOY? <a href="https://wa.me/34640506084" class="text-[#679186] hover:underline">WhatsApp 640 50 60 84</a>
+            </div>
+          </div>
 
-			<article class="service-card">
-				<h3>Almacenamiento Seguro</h3>
-				<p>Almacenes climatizados y seguros para guardar tus pertenencias temporalmente durante el proceso de mudanza.</p>
-				<a href="/servicios/almacenamiento" class="service-btn">Ver opciones</a>
-			</article>
+          <!-- Servicio 3 -->
+          <div class="bg-gradient-to-br from-[#fdebd3]/30 to-[#f9b4ab]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#fdebd3]/50">
+            <div class="text-4xl mb-4">📦</div>
+            <h3 class="text-xl font-bold text-[#264e70] mb-3">Embalaje Profesional</h3>
+            <p class="text-[#679186] mb-4">Servicio especializado de embalaje con materiales de alta calidad. Protegemos todos tus objetos valiosos.</p>
+            <div class="text-sm text-[#264e70] font-semibold">
+              ¿Necesitas ayuda HOY? <a href="tel:+34933539792" class="text-[#f9b4ab] hover:underline">933 53 97 92</a>
+            </div>
+          </div>
 
-			<article class="service-card">
-				<h3>Mudanzas Internacionales</h3>
-				<p>Servicio completo de mudanza internacional con gestión de aduanas y transporte multimodal especializado.</p>
-				<a href="/servicios/internacionales" class="service-btn">Información</a>
-			</article>
+          <!-- Servicio 4 -->
+          <div class="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#bbd4ce]/40">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas Express</h3>
+            <p class="text-[#679186] mb-4">Servicio urgente 24-48 horas. Ideal para traslados inesperados o mudanzas de última hora.</p>
+            <div class="text-sm text-[#264e70] font-semibold">
+              ¿Necesitas ayuda HOY? <a href="https://wa.me/34640506084" class="text-[#679186] hover:underline">WhatsApp 640 50 60 84</a>
+            </div>
+          </div>
 
-			<article class="service-card">
-				<h3>Mudanzas Express</h3>
-				<p>Servicio de urgencia para mudanzas en 24-48 horas. Ideal para traslados urgentes o cambios de residencia inesperados.</p>
-				<a href="/servicios/express" class="service-btn">Solicitar</a>
-			</article>
+          <!-- Servicio 5 -->
+          <div class="bg-gradient-to-br from-[#f9b4ab]/20 to-[#679186]/10 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#f9b4ab]/30">
+            <div class="text-4xl mb-4">🗄️</div>
+            <h3 class="text-xl font-bold text-[#264e70] mb-3">Almacenamiento</h3>
+            <p class="text-[#679186] mb-4">Almacenes seguros y climatizados para guardar tus pertenencias temporalmente durante la mudanza.</p>
+            <div class="text-sm text-[#264e70] font-semibold">
+              ¿Necesitas ayuda HOY? <a href="tel:+34933539792" class="text-[#f9b4ab] hover:underline">933 53 97 92</a>
+            </div>
+          </div>
+
+          <!-- Servicio 6 -->
+          <div class="bg-gradient-to-br from-[#264e70]/10 to-[#bbd4ce]/20 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-[#264e70]/20">
+            <div class="text-4xl mb-4">🌍</div>
+            <h3 class="text-xl font-bold text-[#264e70] mb-3">Mudanzas Internacionales</h3>
+            <p class="text-[#679186] mb-4">Mudanzas a cualquier parte de Europa con gestión completa de documentación y aduanas.</p>
+            <div class="text-sm text-[#264e70] font-semibold">
+              ¿Necesitas ayuda HOY? <a href="https://wa.me/34640506084" class="text-[#679186] hover:underline">WhatsApp 640 50 60 84</a>
+            </div>
+          </div>
+        </div>
+      </div>
 		</section>
 
-		<section class="cta-section">
-			<h2>¿Necesitas una mudanza?</h2>
-			<p>Contáctanos para obtener una cotización personalizada y sin compromiso</p>
-			<a href="/contacto" class="cta-button">Solicitar Presupuesto</a>
+    <!-- Sección de Precios -->
+    <section class="py-20 bg-gradient-to-r from-[#f9b4ab]/20 via-[#fdebd3]/30 to-[#bbd4ce]/20">
+      <div class="container mx-auto px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold text-[#264e70] mb-6">
+            💰 Precio cerrado SIN sorpresas
+          </h2>
+          <p class="text-xl text-[#679186] mb-8">
+            Consulta sin compromiso y presupuesto gratuito en menos de 5 minutos
+          </p>
+          
+          <div class="bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-[#f9b4ab]/30 mb-8">
+            <div class="text-5xl mb-4">🎯</div>
+            <h3 class="text-2xl font-bold text-[#264e70] mb-4">¿Por qué elegir Mudanzas ANDY?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+              <div class="flex items-start space-x-3">
+                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <div>
+                  <h4 class="font-semibold text-[#264e70]">Experiencia desde 2010</h4>
+                  <p class="text-[#679186] text-sm">Más de 14 años en el sector</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <div>
+                  <h4 class="font-semibold text-[#264e70]">Atención 24/7</h4>
+                  <p class="text-[#679186] text-sm">Disponibles todos los días</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <div>
+                  <h4 class="font-semibold text-[#264e70]">Material incluido</h4>
+                  <p class="text-[#679186] text-sm">Cajas, plástico burbuja, mantas</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <span class="text-[#f9b4ab] text-xl">✓</span>
+                <div>
+                  <h4 class="font-semibold text-[#264e70]">Presupuesto fijo</h4>
+                  <p class="text-[#679186] text-sm">Sin gastos ocultos ni sorpresas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:+34933539792" 
+              class="bg-[#679186] hover:bg-[#5a7a6f] text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-3 text-lg"
+            >
+              <span class="text-2xl">📞</span>
+              <span>Consulta sin compromiso: 933 53 97 92</span>
+            </a>
+          </div>
+        </div>
+      </div>
 		</section>
 	</main>
+
+  <!-- Footer -->
+  <Footer />
+  
+  <!-- Formulario de contacto sticky -->
+  <ContactForm />
+  
+  <!-- Pop-up inteligente -->
+  <SmartPopup />
 </Layout>
-
-<style>
-	.main-content {
-		min-height: 100vh;
-		padding: 2rem;
-		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	}
-
-	.hero {
-		text-align: center;
-		margin-bottom: 3rem;
-		color: white;
-	}
-
-	.hero h1 {
-		font-size: 3rem;
-		font-weight: 700;
-		margin: 0 0 1rem 0;
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-	}
-
-	.hero-subtitle {
-		font-size: 1.25rem;
-		margin: 0;
-		opacity: 0.9;
-	}
-
-	.services-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-		gap: 2rem;
-		margin-bottom: 3rem;
-		max-width: 1200px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	.service-card {
-		background: white;
-		padding: 20px;
-		border-radius: 12px;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		border: 1px solid #e5e7eb;
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
-
-	.service-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-	}
-
-	.service-card h3 {
-		color: #1f2937;
-		margin: 0 0 10px 0;
-		font-size: 1.25rem;
-		font-weight: 600;
-	}
-
-	.service-card p {
-		color: #6b7280;
-		margin: 0 0 15px 0;
-		line-height: 1.5;
-	}
-
-	.service-btn {
-		background: #4f6bff;
-		color: white;
-		padding: 8px 16px;
-		border-radius: 6px;
-		text-decoration: none;
-		display: inline-block;
-		font-weight: 500;
-		transition: background-color 0.2s ease;
-	}
-
-	.service-btn:hover {
-		background: #3a5ce6;
-	}
-
-	.cta-section {
-		text-align: center;
-		color: white;
-		margin-top: 2rem;
-	}
-
-	.cta-section h2 {
-		font-size: 2rem;
-		margin: 0 0 1rem 0;
-	}
-
-	.cta-section p {
-		font-size: 1.1rem;
-		margin: 0 0 2rem 0;
-		opacity: 0.9;
-	}
-
-	.cta-button {
-		display: inline-block;
-		background: linear-gradient(90deg, #ff6b6b, #ee5a24);
-		color: white;
-		padding: 1rem 2rem;
-		border-radius: 50px;
-		text-decoration: none;
-		font-weight: 600;
-		font-size: 1.1rem;
-		transition: all 0.3s ease;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-	}
-
-	.cta-button:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-	}
-
-	@media (max-width: 768px) {
-		.main-content {
-			padding: 1rem;
-		}
-
-		.hero h1 {
-			font-size: 2rem;
-		}
-
-		.hero-subtitle {
-			font-size: 1rem;
-		}
-
-		.services-grid {
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
-		}
-
-		.cta-section h2 {
-			font-size: 1.5rem;
-		}
-	}
-</style>
