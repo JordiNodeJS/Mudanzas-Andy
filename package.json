@@ -1,7 +1,8 @@
 {
-  "name": "mudanzas-astro",
+  "name": "mudanzas-andy",
   "type": "module",
   "version": "0.0.1",
+  "author": "Jorge Orcajo <jordi.nodej@gmail.com>",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
