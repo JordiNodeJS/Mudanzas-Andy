@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const baseClasses =
-  "font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 whitespace-nowrap";
+  "font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 md:whitespace-nowrap";
 
 const variantClasses = {
   primary: "bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70]",
@@ -31,7 +31,7 @@ const sizeClasses = {
   lg: "py-4 px-8 text-lg",
 };
 
-const widthClasses = fullWidth ? "w-full sm:w-auto max-w-sm" : "w-auto";
+const widthClasses = fullWidth ? "w-full md:w-auto md:max-w-sm" : "w-auto";
 
 const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClasses}`;
 
