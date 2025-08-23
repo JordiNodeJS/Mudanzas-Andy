@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 
 // Definir el contenido del card como variables que luego reutilizaré
-const cardClass = `${gradient} p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-slate-200/50 relative overflow-hidden group h-full flex flex-col justify-between`;
+const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-200/50 hover:border-[#679186]/30 relative overflow-hidden group contact-card-enhanced h-full flex flex-col justify-between`;
 ---
 
 {
@@ -33,57 +33,58 @@ const cardClass = `${gradient} p-6 rounded-xl shadow-sm hover:shadow-lg transiti
       href={href}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      class="block h-full"
+      class="block h-full mb-6 lg:mb-0"
     >
       <div class={cardClass}>
-        {/* Badge */}
+        {/* Badge - Mejorado */}
         {badge && (
-          <div class="absolute top-3 right-3 bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-2 py-1 rounded-full text-xs font-semibold">
+          <div class="absolute top-6 right-6 z-20 pointer-events-none bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-3 py-2 rounded-full text-xs font-bold shadow-lg lg:hidden">
             {badge}
           </div>
         )}
 
-        {/* Background decoration */}
-        <div class="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity">
-          <div class="absolute bottom-0 right-0 w-20 h-20 transform translate-x-6 translate-y-6">
-            <Icon name={iconName} class="w-full h-full text-[#679186]" />
+        {/* Background decoration - Más sutil pero visible */}
+        <div class="absolute inset-0 opacity-8 group-hover:opacity-15 transition-opacity">
+          <div class="absolute bottom-0 right-0 w-24 h-24 transform translate-x-8 translate-y-8">
+            <Icon name={iconName} class="w-full h-full text-[#679186]/30" />
           </div>
         </div>
 
         <div class="relative z-10">
-          {/* Icon and Title */}
-          <div class="flex items-start gap-4 mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+          {/* Icon and Title - Mejorado */}
+          <div class="flex items-start gap-5 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
               <Icon
                 name={iconName}
                 class="text-[#679186] group-hover:text-[#264e70] transition-colors"
-                size={24}
+                size={28}
               />
             </div>
 
             <div class="flex-1">
-              <h3 class="text-lg font-bold text-[#264e70] mb-1 group-hover:text-[#679186] transition-colors">
+              <h3 class="text-xl font-bold text-[#264e70] mb-2 group-hover:text-[#679186] transition-colors">
                 {title}
               </h3>
-              <p class="text-[#679186] font-semibold text-lg break-all">
-                {value}
-              </p>
+              <p class="text-[#679186] font-bold text-xl break-all">{value}</p>
               {description && (
-                <p class="text-gray-600 text-sm mt-2">{description}</p>
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                  {description}
+                </p>
               )}
             </div>
+            {/* badge handled absolutely to avoid layout shifts */}
           </div>
 
-          {/* Hover indicator */}
+          {/* Hover indicator - Más prominente */}
           <div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-            <div class="w-6 h-6 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors">
+            <div class="w-8 h-8 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors shadow-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                stroke-width="2.5"
                 stroke="currentColor"
-                class="w-3 h-3 text-[#679186] group-hover:text-white transition-colors"
+                class="w-4 h-4 text-[#679186] group-hover:text-white transition-colors"
               >
                 <path
                   stroke-linecap="round"
@@ -97,10 +98,10 @@ const cardClass = `${gradient} p-6 rounded-xl shadow-sm hover:shadow-lg transiti
       </div>
     </a>
   ) : (
-    <div class={cardClass}>
+    <div class={cardClass + " mb-6 lg:mb-0"}>
       {/* Badge */}
       {badge && (
-        <div class="absolute top-3 right-3 bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-2 py-1 rounded-full text-xs font-semibold">
+        <div class="absolute top-6 right-6 z-20 pointer-events-none bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-2 py-1 rounded-full text-xs font-semibold lg:hidden">
           {badge}
         </div>
       )}
@@ -134,6 +135,7 @@ const cardClass = `${gradient} p-6 rounded-xl shadow-sm hover:shadow-lg transiti
               <p class="text-gray-600 text-sm mt-2">{description}</p>
             )}
           </div>
+          {/* badge handled absolutely to avoid layout shifts */}
         </div>
 
         {/* Hover indicator */}

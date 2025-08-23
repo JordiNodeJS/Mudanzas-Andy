@@ -296,9 +296,73 @@
   content: "";
   @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full transition-transform duration-700;
 }
++
+*** End Patch
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full transition-transform duration-700;
+}
 
 .contact-enhanced .cta-urgent:hover::before {
   @apply translate-x-full;
+}
+
+/*
+  [REGLA] Grid de tarjetas en la página de contacto.
+  - Mobile-first: cards en una columna con separación mejorada.
+  - md: dos columnas (tablets y pantallas medianas).
+  - lg: tres columnas para desktop amplio.
+  - xl: cuatro columnas para pantallas ultraanchas.
+  [ACCESIBILIDAD] Usar gap suficiente para separar targets táctiles y evitar colisiones.
+*/
+.contact-grid-desktop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem; /* 20px */
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .contact-grid-desktop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem; /* 28px */
+    align-items: start;
+    /* Alineación consistente con container padding */
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-grid-desktop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem; /* 40px */
+  }
+}
+
+@media (min-width: 1400px) {
+  /* [REGLA] Ultra-wide screens: 4 columns for very large viewports */
+  .contact-grid-desktop {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3rem; /* 48px */
+  }
+}
+
+/* Dark mode variant: mejora contraste y legibilidad en modo oscuro */
+@media (prefers-color-scheme: dark) {
+  /* [ACCESIBILIDAD] Asegurar contraste suficiente en tarjetas */
+  .contact-card-enhanced {
+    @apply bg-slate-800/60 border-slate-700/40 text-slate-100;
+  }
+
+  .contact-grid-desktop {
+    gap: 1.5rem;
+  }
+}
+
+/* Ensure each card fills its grid cell and has an accessible focus order */
+.contact-grid-desktop > * {
+  display: block;
+  height: 100%;
 }
 
 /* [UI/UX] Enhanced mobile responsiveness */

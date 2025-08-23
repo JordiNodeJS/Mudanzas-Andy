@@ -18,7 +18,7 @@ const description =
     <HeroSection />
 
     <!-- Navigation Cards Section -->
-    <section class="py-16 lg:py-20 relative overflow-hidden">
+    <section class="section-spacing relative overflow-hidden">
       <!-- Background with enhanced gradients -->
       <div
         class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-[#f9b4ab]/5"
@@ -38,7 +38,7 @@ const description =
       </div>
 
       <div class="container relative z-10">
-        <div class="row justify-center text-center mb-12 lg:mb-16">
+        <div class="row justify-center text-center mb-16 lg:mb-20">
           <div class="lg:col-10">
             <div
               class="inline-flex items-center gap-2 bg-gradient-to-r from-[#f9b4ab]/20 to-[#679186]/20 px-4 py-2 rounded-full mb-6"
@@ -64,72 +64,85 @@ const description =
           </div>
         </div>
 
-        <div class="row">
+        <!-- Enhanced navigation grid with perfect centering -->
+        <div class="nav-grid-center max-w-6xl mx-auto">
           <!-- Services Card -->
-          <div class="lg:col-4 col-6 mb-8">
+          <div
+            class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          >
             <NavigationCard
               iconName="package"
               title="Servicios"
               description="Mudanzas locales, nacionales, internacionales y más"
               href="/servicios"
-              gradient="bg-gradient-to-br from-[#f9b4ab]/10 to-[#fdebd3]/20"
+              gradient="bg-gradient-to-br from-[#f9b4ab]/15 to-[#fdebd3]/25"
               badge="⭐ POPULAR"
             />
           </div>
 
           <!-- Team Card -->
-          <div class="lg:col-4 col-6 mb-8">
+          <div
+            class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          >
             <NavigationCard
               iconName="truck"
               title="Nuestro Equipo"
               description="Profesionales experimentados y comprometidos"
               href="/equipo"
-              gradient="bg-gradient-to-br from-[#679186]/10 to-[#bbd4ce]/20"
+              gradient="bg-gradient-to-br from-[#679186]/15 to-[#bbd4ce]/25"
             />
           </div>
 
           <!-- Pricing Card -->
-          <div class="lg:col-4 col-6 mb-8">
+          <div
+            class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          >
             <NavigationCard
               iconName="archive"
               title="Precios"
               description="Tarifas transparentes y presupuesto gratuito"
               href="/precios"
-              gradient="bg-gradient-to-br from-[#fdebd3]/20 to-[#f9b4ab]/10"
+              gradient="bg-gradient-to-br from-[#fdebd3]/25 to-[#f9b4ab]/15"
             />
           </div>
 
           <!-- Testimonials Card -->
-          <div class="lg:col-4 col-6 mb-8">
+          <div
+            class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          >
             <NavigationCard
               iconName="check"
               title="Testimonios"
               description="Experiencias reales de clientes satisfechos"
               href="/testimonios"
-              gradient="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/10"
+              gradient="bg-gradient-to-br from-[#bbd4ce]/25 to-[#679186]/15"
             />
           </div>
 
           <!-- Contact Card -->
-          <div class="lg:col-4 col-6 mb-8">
+          <div
+            class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          >
             <NavigationCard
               iconName="phone"
               title="Contacto"
               description="Hablemos de tu mudanza. Atención 24/7"
               href="/contacto"
-              gradient="bg-gradient-to-br from-[#264e70]/10 to-[#679186]/15"
+              gradient="bg-gradient-to-br from-[#264e70]/15 to-[#679186]/20"
             />
           </div>
 
           <!-- WhatsApp Direct Card -->
-          <div class="lg:col-4 col-6 mb-8">
+          <div
+            class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          >
             <NavigationCard
               iconName="whatsapp"
               title="WhatsApp Directo"
               description="Presupuesto gratuito en 5 minutos"
               href="https://wa.me/34640506084"
               external={true}
-              gradient="bg-gradient-to-br from-[#25D366]/10 to-[#128C7E]/5"
+              gradient="bg-gradient-to-br from-[#25D366]/15 to-[#128C7E]/10"
               badge="🚨 GRATIS"
             />
           </div>
@@ -139,33 +152,43 @@ const description =
 
     <!-- Quick Stats Section -->
     <section
-      class="py-16 bg-gradient-to-r from-[#679186] to-[#264e70] text-white"
+      class="section-spacing-loose bg-gradient-to-r from-[#679186] to-[#264e70] text-white relative overflow-hidden"
     >
-      <div class="container">
-        <div class="row text-center">
-          <div class="lg:col-3 col-6 mb-8">
-            <div class="text-center">
-              <div class="text-4xl font-bold mb-2">500+</div>
-              <div class="text-white/80">Mudanzas Realizadas</div>
+      <!-- Enhanced background patterns -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 left-0 w-full h-full"
+          style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;"
+        >
+        </div>
+      </div>
+
+      <div class="container relative z-10">
+        <!-- Enhanced stats grid with perfect centering -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-bold mb-3 text-white">
+              500+
             </div>
+            <div class="text-white/90 font-medium">Mudanzas Realizadas</div>
           </div>
-          <div class="lg:col-3 col-6 mb-8">
-            <div class="text-center">
-              <div class="text-4xl font-bold mb-2">10+</div>
-              <div class="text-white/80">Años de Experiencia</div>
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-bold mb-3 text-white">
+              10+
             </div>
+            <div class="text-white/90 font-medium">Años de Experiencia</div>
           </div>
-          <div class="lg:col-3 col-6 mb-8">
-            <div class="text-center">
-              <div class="text-4xl font-bold mb-2">24/7</div>
-              <div class="text-white/80">Atención al Cliente</div>
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-bold mb-3 text-white">
+              24/7
             </div>
+            <div class="text-white/90 font-medium">Atención al Cliente</div>
           </div>
-          <div class="lg:col-3 col-6 mb-8">
-            <div class="text-center">
-              <div class="text-4xl font-bold mb-2">98%</div>
-              <div class="text-white/80">Clientes Satisfechos</div>
+          <div class="text-center">
+            <div class="text-4xl lg:text-5xl font-bold mb-3 text-white">
+              98%
             </div>
+            <div class="text-white/90 font-medium">Clientes Satisfechos</div>
           </div>
         </div>
       </div>

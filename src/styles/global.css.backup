@@ -275,30 +275,33 @@
 
 /* [ACCESIBILIDAD] Mejoras específicas para contacto page */
 /* [REGLA] Better focus states y visibility para desktop */
-.contact-enhanced .contact-card-enhanced {
-  @apply transition-all duration-300 transform backdrop-blur-sm border-2 border-white/20;
-}
+.contact-enhanced {
+  /* Mejoras para contraste en desktop */
+  .contact-card-enhanced {
+    @apply transition-all duration-300 transform backdrop-blur-sm border-2 border-white/20;
+  }
 
-.contact-enhanced .contact-card-enhanced:hover {
-  @apply scale-[1.02] shadow-2xl border-white/30;
-}
+  .contact-card-enhanced:hover {
+    @apply scale-[1.02] shadow-2xl border-white/30;
+  }
 
-.contact-enhanced .contact-card-enhanced:focus-within {
-  @apply ring-4 ring-blue-500/30 outline-none;
-}
+  .contact-card-enhanced:focus-within {
+    @apply ring-4 ring-blue-500/30 outline-none;
+  }
 
-/* Mejor visibilidad para CTAs */
-.contact-enhanced .cta-urgent {
-  @apply relative overflow-hidden;
-}
+  /* Mejor visibilidad para CTAs */
+  .cta-urgent {
+    @apply relative overflow-hidden;
+  }
 
-.contact-enhanced .cta-urgent::before {
-  content: "";
-  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full transition-transform duration-700;
-}
+  .cta-urgent::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full transition-transform duration-700;
+  }
 
-.contact-enhanced .cta-urgent:hover::before {
-  @apply translate-x-full;
+  .cta-urgent:hover::before {
+    @apply translate-x-full;
+  }
 }
 
 /* [UI/UX] Enhanced mobile responsiveness */
@@ -307,15 +310,15 @@
     width: 100% !important;
     margin-bottom: 1.5rem;
   }
-
+  
   .nav-grid-center {
     gap: 1rem;
   }
-
+  
   .section-spacing {
     @apply py-12;
   }
-
+  
   .section-spacing-loose {
     @apply py-16;
   }
@@ -326,18 +329,29 @@
   .card-enhanced {
     @apply min-h-[140px];
   }
-
+  
   .card-enhanced a,
   .card-enhanced button {
     @apply min-h-[44px];
   }
 }
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+}
 
-/* View Transitions */
+/* View Transitions Styles - Astro 5.13.3+ */
+/* Compatibilidad: Astro 5.13.3+ (ViewTransitions estables) */
+/* Implementación: View Transitions optimizadas */
+/* Fuente: https://docs.astro.build/en/guides/view-transitions/ | Recuperado: 2025-08-23 */
+/* Prioridad: Crítico para SPA behavior */
 html {
   view-transition-name: root;
 }
 
+/* Implementación: Smooth page transitions con performance optimizada */
 @view-transition {
   navigation: auto;
 }
@@ -380,26 +394,109 @@ html {
   }
 }
 
-/* Persistent elements */
+/* Implementación: Persistent header/footer durante transitions */
+/* Fuente: Astro View Transitions API docs | Recuperado: 2025-08-23 */
+/* Prioridad: Recomendado para UX consistente */
 .header-persistent {
   view-transition-name: header;
+}
+
+::view-transition-old(header),
+::view-transition-new(header) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 .footer-persistent {
   view-transition-name: footer;
 }
 
-/* Base styles */
-* {
-  box-sizing: border-box;
+::view-transition-old(footer),
+::view-transition-new(footer) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
+/* Implementación: Fixed header scroll behavior mejorado */
+/* Compatibilidad: Astro 5.13.3+ con View Transitions */
+/* Fuente: https://docs.astro.build/en/guides/view-transitions/#scroll-behavior | Recuperado: 2025-08-23 */
+/* Prioridad: Crítico para evitar header overlap */
+/* Use a CSS variable as the single source of truth for header height. JS updates this variable on load/resize. */
+:root {
+  --header-height: 6rem; /* fallback */
+}
 html {
-  font-family: system-ui, sans-serif;
+  /* Prefer the runtime-measured header height, fallback to 6rem */
+  scroll-padding-top: var(--header-height, 6rem);
   scroll-behavior: smooth;
 }
 
-/* Accessibility */
+/* Reserve space for fixed header globally so navigations never hide content */
+body {
+  padding-top: var(--header-height, 6rem);
+}
+
+/* Implementación: Prevenir margin collapse con header fijo */
+main {
+  padding-top: 0; /* Removido para evitar doble spacing */
+}
+
+/* Ensure the first visible section sits below the header for normal flow (not just anchor scrolling) */
+main > section:first-child {
+  margin-top: 0;
+  padding-top: 0; /* removed header-height dependent padding; body padding handles it */
+}
+
+/* Ensure hero sections that need extra breathing room can opt-in to a small extra offset. */
+.hero-offset {
+  padding-top: 1rem !important; /* small extra breathing room beyond body padding */
+}
+
+@media (min-width: 992px) {
+  .hero-offset {
+    padding-top: 1.5rem !important;
+  }
+}
+
+/* Responsive typography improvements */
+@media (max-width: 640px) {
+  /* Better text scaling on small screens */
+  .text-responsive {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  /* Ensure buttons don't get too small */
+  button,
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better spacing for form elements on mobile */
+  input[type="email"],
+  input[type="tel"] {
+    min-height: 44px;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Optimize for tablet landscape */
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1025px) {
+  /* Better use of large screens */
+  .hero-content {
+    max-width: 1200px;
+  }
+}
+
+/* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -412,6 +509,7 @@ html {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+  /* Ensure good contrast in high contrast mode */
   .bg-gradient-to-br,
   .bg-gradient-to-r {
     background-image: none;
@@ -419,27 +517,96 @@ html {
   }
 }
 
-/* Image optimization */
+/* Image optimization and performance */
 img {
   max-width: 100%;
   height: auto;
 }
 
+/* Prevent layout shift during image loading */
 .aspect-video {
   aspect-ratio: 16 / 9;
 }
+
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
+
 .aspect-wide {
   aspect-ratio: 21 / 9;
 }
 
-/* Hero offset for fixed header */
+/* Improve image rendering quality */
+img[loading="lazy"] {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Smooth transitions for background images */
+.bg-image-smooth {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  /* Disable background attachment on mobile for better performance */
+  .bg-image-smooth {
+    background-attachment: scroll;
+  }
+}
+
+/* Loading states for images */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize font loading */
+@font-face {
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
+    local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
+    local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+  font-display: swap;
+}
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  contain: layout style paint;
+}
+
+/* Intersection Observer fallback */
+.no-js img[data-src] {
+  opacity: 1 !important;
+}
+
+.no-js img[data-src]::before {
+  content: attr(data-src);
+  display: none;
+}
+
+/* Ensure hero sections that need to sit below the fixed header can opt-in to a runtime-managed offset. */
 .hero-offset {
+  /* Use important to override utility classes like pt-24/lg:pt-28 if they conflict */
   padding-top: calc(var(--header-height, 6rem) + 1rem) !important;
 }
 
+/* Desktop-specific tweak when header is taller on large screens */
 @media (min-width: 992px) {
   .hero-offset {
     padding-top: calc(var(--header-height, 6rem) + 1.5rem) !important;
