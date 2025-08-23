@@ -68,7 +68,7 @@ const {
   <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
     <slot />
 
-    <!-- WhatsApp Floating Button (will be moved into footer when user reaches end) -->
+    <!-- WhatsApp Floating Button (visible during scroll; script will toggle visibility when footer is in view) -->
     <a
       href="https://wa.me/34640506084"
       target="_blank"
@@ -82,7 +82,7 @@ const {
       <span class="text-sm font-normal">640 50 60 84</span>
     </a>
 
-    <!-- External script moves the Reserva button into the footer when user reaches the end -->
+    <!-- External script toggles floating/footer Reserva button visibility -->
     <script src="/js/move-reserva.js" defer></script>
   </body>
 </html>
