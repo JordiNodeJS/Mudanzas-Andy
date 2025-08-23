@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 
 // Definir el contenido del card como variables que luego reutilizaré
-const cardClass = `${gradient} p-6 lg:pt-10 pb-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-200/50 hover:border-[#679186]/30 relative overflow-hidden group contact-card-enhanced h-full flex flex-col justify-between`;
+const cardClass = `${gradient} p-5 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-200/50 hover:border-[#679186]/30 relative overflow-hidden group contact-card-enhanced`;
 ---
 
 {
@@ -52,43 +52,42 @@ const cardClass = `${gradient} p-6 lg:pt-10 pb-6 rounded-2xl shadow-lg hover:sha
 
         <div class="relative z-10">
           {/* Icon and Title - Mejorado */}
-          <div class="flex items-start gap-5 mb-6">
-            <div class="w-16 h-16 bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-14 h-14 bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
               <Icon
                 name={iconName}
                 class="text-[#679186] group-hover:text-[#264e70] transition-colors"
-                size={28}
+                size={24}
               />
             </div>
 
             <div class="flex-1 min-w-0">
-              <h3 class="text-xl lg:text-lg font-bold text-[#264e70] mb-2 leading-tight group-hover:text-[#679186] transition-colors">
+              <h3 class="text-lg lg:text-base font-bold text-[#264e70] mb-1 leading-tight group-hover:text-[#679186] transition-colors">
                 {title}
               </h3>
               <div class="min-w-0">
-                <p class="text-[#679186] font-bold text-lg whitespace-nowrap truncate">
+                <p class="text-[#679186] font-bold text-base whitespace-nowrap truncate">
                   {value}
                 </p>
               </div>
               {description && (
-                <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                <p class="text-gray-600 text-sm mt-2 leading-relaxed">
                   {description}
                 </p>
               )}
             </div>
-            {/* badge handled absolutely to avoid layout shifts */}
           </div>
 
-          {/* Hover indicator - Más prominente */}
-          <div class="mt-auto flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-            <div class="w-8 h-8 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors shadow-lg">
+          {/* Hover indicator - Más compacto y contextual */}
+          <div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity mt-2">
+            <div class="w-7 h-7 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors shadow-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="2.5"
                 stroke="currentColor"
-                class="w-4 h-4 text-[#679186] group-hover:text-white transition-colors"
+                class="w-3.5 h-3.5 text-[#679186] group-hover:text-white transition-colors"
               >
                 <path
                   stroke-linecap="round"
@@ -124,16 +123,16 @@ const cardClass = `${gradient} p-6 lg:pt-10 pb-6 rounded-2xl shadow-lg hover:sha
             <Icon
               name={iconName}
               class="text-[#679186] group-hover:text-[#264e70] transition-colors"
-              size={24}
+              size={20}
             />
           </div>
 
           <div class="flex-1 min-w-0">
-            <h3 class="text-lg font-bold text-[#264e70] mb-1 group-hover:text-[#679186] transition-colors">
+            <h3 class="text-base font-bold text-[#264e70] mb-1 group-hover:text-[#679186] transition-colors">
               {title}
             </h3>
             <div class="min-w-0">
-              <p class="text-[#679186] font-semibold text-lg whitespace-nowrap truncate">
+              <p class="text-[#679186] font-semibold text-base whitespace-nowrap truncate">
                 {value}
               </p>
             </div>
@@ -141,11 +140,10 @@ const cardClass = `${gradient} p-6 lg:pt-10 pb-6 rounded-2xl shadow-lg hover:sha
               <p class="text-gray-600 text-sm mt-2">{description}</p>
             )}
           </div>
-          {/* badge handled absolutely to avoid layout shifts */}
         </div>
 
         {/* Hover indicator */}
-        <div class="mt-auto flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+        <div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity mt-2">
           <div class="w-6 h-6 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors">
             <svg
               xmlns="http://www.w3.org/2000/svg"
