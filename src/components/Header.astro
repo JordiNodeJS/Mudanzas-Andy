@@ -202,14 +202,20 @@
 
   <!-- Script para el menú móvil -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    // Función para inicializar el menú móvil
+    function initializeMobileMenu() {
       const menuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
       const menuLinks = document.querySelectorAll(".mobile-menu-link");
 
+      // Limpiar eventos previos si existen
+      if (menuButton && (menuButton as any)._mobileMenuInitialized) {
+        return;
+      }
+
       // Toggle del menú móvil
       if (menuButton && mobileMenu) {
-        menuButton.addEventListener("click", function () {
+        const handleMenuToggle = function () {
           mobileMenu.classList.toggle("hidden");
 
           // Cambiar icono del botón
@@ -227,49 +233,71 @@
               currentPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
             }
           }
-        });
+        };
+
+        menuButton.addEventListener("click", handleMenuToggle);
+        (menuButton as any)._mobileMenuInitialized = true;
       }
 
       // Cerrar menú al hacer click en un enlace
       menuLinks.forEach((link) => {
-        link.addEventListener("click", function () {
-          if (mobileMenu) {
-            mobileMenu.classList.add("hidden");
-            // Restaurar icono de hamburguesa
-            const svg = menuButton?.querySelector("svg");
-            const currentPath = svg?.querySelector("path");
-            if (currentPath) {
-              currentPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+        if (!(link as any)._menuLinkInitialized) {
+          const handleLinkClick = function () {
+            if (mobileMenu) {
+              mobileMenu.classList.add("hidden");
+              // Restaurar icono de hamburguesa
+              const svg = menuButton?.querySelector("svg");
+              const currentPath = svg?.querySelector("path");
+              if (currentPath) {
+                currentPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+              }
             }
-          }
-        });
-      });
+          };
 
+          link.addEventListener("click", handleLinkClick);
+          (link as any)._menuLinkInitialized = true;
+        }
+      });
+    }
+
+    // Inicializar en carga inicial
+    initializeMobileMenu();
+
+    // Reinicializar después de cada navegación con View Transitions
+    document.addEventListener("astro:page-load", initializeMobileMenu);
+
+    // Función para highlight y smooth scroll (funcionalidad separada)
+    function initializeScrollBehavior() {
       // Smooth scroll para todos los enlaces de navegación
       const allNavLinks = document.querySelectorAll('a[href^="#"]');
       allNavLinks.forEach((link) => {
-        link.addEventListener("click", function (e: Event) {
-          e.preventDefault();
-          const anchor = e.currentTarget as HTMLAnchorElement;
-          const targetId = anchor.getAttribute("href");
-          const targetElement = targetId
-            ? document.querySelector(targetId)
-            : null;
+        if (!(link as any)._navLinkInitialized) {
+          const handleNavClick = function (e: Event) {
+            e.preventDefault();
+            const anchor = e.currentTarget as HTMLAnchorElement;
+            const targetId = anchor.getAttribute("href");
+            const targetElement = targetId
+              ? document.querySelector(targetId)
+              : null;
 
-          if (targetElement) {
-            const headerElement = document.querySelector(
-              "header"
-            ) as HTMLElement;
-            const headerHeight = headerElement?.offsetHeight || 80;
-            const targetPosition =
-              (targetElement as HTMLElement).offsetTop - headerHeight;
+            if (targetElement) {
+              const headerElement = document.querySelector(
+                "header"
+              ) as HTMLElement;
+              const headerHeight = headerElement?.offsetHeight || 80;
+              const targetPosition =
+                (targetElement as HTMLElement).offsetTop - headerHeight;
 
-            window.scrollTo({
-              top: targetPosition,
-              behavior: "smooth",
-            });
-          }
-        });
+              window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+              });
+            }
+          };
+
+          link.addEventListener("click", handleNavClick);
+          (link as any)._navLinkInitialized = true;
+        }
       });
 
       // Destacar enlace activo en scroll
@@ -384,7 +412,13 @@
       } catch (e) {
         // ignore mutation observer errors
       }
-    });
+    }
+
+    // Inicializar comportamiento de scroll
+    initializeScrollBehavior();
+
+    // Reinicializar después de cada navegación con View Transitions
+    document.addEventListener("astro:page-load", initializeScrollBehavior);
   </script>
 
   <style>
