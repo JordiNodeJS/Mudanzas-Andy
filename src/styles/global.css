@@ -228,12 +228,124 @@
   @apply py-16 lg:py-24;
 }
 
+/* Asegurar separación mínima debajo de cada sección para evitar que queden
+   visualmente pegadas aunque no haya otra sección con la clase adyacente. */
+.section-spacing {
+  @apply mb-8; /* mobile default */
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    @apply mb-16;
+  }
+}
+
+@media (min-width: 992px) {
+  .section-spacing {
+    @apply mb-24;
+  }
+}
+
+/* Reglas más agresivas para la página de contacto */
+.contact-enhanced .section-spacing {
+  @apply mb-12; /* increased from mb-10 to be more visible */
+}
+
+@media (min-width: 768px) {
+  .contact-enhanced .section-spacing {
+    @apply mb-24; /* increased from mb-20 */
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-enhanced .section-spacing {
+    @apply mb-40; /* increased from mb-32 for desktop */
+  }
+}
+
 .section-spacing-tight {
   @apply py-12 lg:py-16;
 }
 
 .section-spacing-loose {
   @apply py-20 lg:py-32;
+}
+
+/* [ACCESIBILIDAD] Mantener foco visible y altura táctil OK */
+/* [REGLA] Breakpoint personalizado para tablets estrechas _/ */
+/* Añade espacio extra cuando una sección `section-spacing` sigue a `section-spacing-loose` (mobile-first). */
+.section-spacing-loose + .section-spacing {
+  /* mobile: separación adicional para evitar choque con decorativos */
+  @apply pt-8; /* 2rem */
+}
+
+@media (min-width: 768px) {
+  .section-spacing-loose + .section-spacing {
+    /* [REGLA] tablet+: añadir más separación vertical para mejorar lectura */
+    @apply pt-16; /* 4rem */
+  }
+}
+
+@media (min-width: 992px) {
+  .section-spacing-loose + .section-spacing {
+    /* desktop grande: espacio aún mayor */
+    /* [REGLA] Desktop amplio: aumentar respiración visual entre secciones */
+    @apply pt-32; /* 8rem */
+  }
+}
+/* [REGLA GENERAL] Asegurar separación consistente cuando dos secciones con
+     `section-spacing` aparecen consecutivamente. Esto evita que se queden
+     "pegadas" en páginas como contacto. */
+.section-spacing + .section-spacing {
+  @apply mt-8; /* 2rem */
+}
+
+@media (min-width: 768px) {
+  .section-spacing + .section-spacing {
+    @apply mt-16; /* 4rem */
+  }
+}
+
+@media (min-width: 992px) {
+  .section-spacing + .section-spacing {
+    @apply mt-24; /* 6rem */
+  }
+}
+
+/* [CONTACT PAGE] Más separación específica para la página de contacto
+     donde los contenedores y tarjetas tienden a quedar demasiado juntos. */
+.contact-enhanced .section-spacing + .section-spacing {
+  @apply mt-16; /* 4rem - more breathing room */
+}
+
+@media (min-width: 768px) {
+  .contact-enhanced .section-spacing + .section-spacing {
+    @apply mt-28; /* 7rem */
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-enhanced .section-spacing + .section-spacing {
+    @apply mt-48; /* 12rem - larger desktop gap */
+  }
+}
+
+/* [DESKTOP CRITICAL FIX] Para resoluciones grandes donde las secciones se superponen */
+@media (min-width: 1200px) {
+  .contact-enhanced .section-spacing {
+    margin-bottom: clamp(4rem, 6vw, 8rem) !important;
+    padding-bottom: clamp(2rem, 4vw, 6rem);
+    position: relative;
+    z-index: 1;
+    clear: both;
+  }
+  
+  .contact-enhanced .section-spacing + .section-spacing {
+    margin-top: clamp(6rem, 8vw, 12rem) !important;
+    clear: both;
+    position: relative;
+    z-index: 2;
+  }
 }
 
 /* [ACCESIBILIDAD] Perfect centering for navigation grids */
@@ -287,7 +399,6 @@
   @apply ring-4 ring-blue-500/30 outline-none;
 }
 
-/* Mejor visibilidad para CTAs */
 .contact-enhanced .cta-urgent {
   @apply relative overflow-hidden;
 }
@@ -301,7 +412,81 @@
   @apply translate-x-full;
 }
 
-/* [UI/UX] Enhanced mobile responsiveness */
+/*
+  [REGLA] Grid de tarjetas en la página de contacto.
+  - Mobile-first: cards en una columna con separación mejorada.
+  - md: dos columnas (tablets y pantallas medianas).
+  - lg: tres columnas para desktop amplio.
+  - xl: cuatro columnas para pantallas ultraanchas.
+  [ACCESIBILIDAD] Usar gap suficiente para separar targets táctiles y evitar colisiones.
+*/
+.contact-grid-desktop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem; /* 20px */
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .contact-grid-desktop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem; /* 28px */
+    align-items: start;
+    /* Alineación consistente con container padding */
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-grid-desktop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem; /* 40px */
+  }
+}
+
+@media (min-width: 1400px) {
+  /* [REGLA] Ultra-wide screens: 4 columns for very large viewports */
+  .contact-grid-desktop {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3rem; /* 48px */
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .contact-card-enhanced {
+    @apply bg-slate-800/60 border-slate-700/40 text-slate-100;
+  }
+
+  .contact-grid-desktop {
+    gap: 1.5rem;
+  }
+}
+
+.contact-grid-desktop > * {
+  display: block;
+  height: 100%;
+}
+
+/* Increase internal padding and external margin for the contact card to avoid
+   the form and surrounding content appearing "pegados". Mobile-first then
+   ramp up at breakpoints. */
+.contact-card-enhanced {
+  @apply p-6 mb-6; /* mobile: padding and bottom margin */
+}
+
+@media (min-width: 768px) {
+  .contact-card-enhanced {
+    @apply p-8 mb-8;
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-card-enhanced {
+    @apply p-10 mb-12;
+  }
+}
+
 @media (max-width: 576px) {
   .nav-grid-center > * {
     width: 100% !important;
@@ -321,7 +506,6 @@
   }
 }
 
-/* [ACCESIBILIDAD] Enhanced touch targets for mobile */
 @media (max-width: 768px) {
   .card-enhanced {
     @apply min-h-[140px];
@@ -333,7 +517,6 @@
   }
 }
 
-/* View Transitions */
 html {
   view-transition-name: root;
 }
@@ -380,7 +563,6 @@ html {
   }
 }
 
-/* Persistent elements */
 .header-persistent {
   view-transition-name: header;
 }
@@ -389,7 +571,6 @@ html {
   view-transition-name: footer;
 }
 
-/* Base styles */
 * {
   box-sizing: border-box;
 }
@@ -399,7 +580,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -410,7 +590,6 @@ html {
   }
 }
 
-/* High contrast mode support */
 @media (prefers-contrast: high) {
   .bg-gradient-to-br,
   .bg-gradient-to-r {
@@ -419,7 +598,6 @@ html {
   }
 }
 
-/* Image optimization */
 img {
   max-width: 100%;
   height: auto;
@@ -435,7 +613,6 @@ img {
   aspect-ratio: 21 / 9;
 }
 
-/* Hero offset for fixed header */
 .hero-offset {
   padding-top: calc(var(--header-height, 6rem) + 1rem) !important;
 }

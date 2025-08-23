@@ -236,6 +236,28 @@
   @apply py-20 lg:py-32;
 }
 
+/* [ACCESIBILIDAD] Mantener foco visible y altura táctil OK */
+/* [REGLA] Breakpoint personalizado para tablets estrechas _/ */
+/* Añade espacio extra cuando una sección `section-spacing` sigue a `section-spacing-loose` (mobile-first). */
+.section-spacing-loose + .section-spacing {
+  /* mobile: separación adicional para evitar choque con decorativos */
+  @apply pt-8; /* 2rem */
+}
+
+@media (min-width: 768px) {
+  .section-spacing-loose + .section-spacing {
+    /* [REGLA] tablet+: añadir más separación vertical para mejorar lectura */
+    @apply pt-16; /* 4rem */
+  }
+}
+
+@media (min-width: 992px) {
+  .section-spacing-loose + .section-spacing {
+    /* desktop grande: espacio aún mayor */
+    @apply pt-24; /* 6rem */
+  }
+}
+
 /* [ACCESIBILIDAD] Perfect centering for navigation grids */
 .nav-grid-center {
   display: flex;
