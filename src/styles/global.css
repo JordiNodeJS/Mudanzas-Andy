@@ -246,20 +246,20 @@
   }
 }
 
-/* Reglas más agresivas para la página de contacto */
+/* Reglas optimizadas para la página de contacto - fix gap problema */
 .contact-enhanced .section-spacing {
-  @apply mb-12; /* increased from mb-10 to be more visible */
+  @apply mb-8; /* reducido para evitar gaps excesivos */
 }
 
 @media (min-width: 768px) {
   .contact-enhanced .section-spacing {
-    @apply mb-24; /* increased from mb-20 */
+    @apply mb-12; /* reducido desde mb-24 */
   }
 }
 
 @media (min-width: 992px) {
   .contact-enhanced .section-spacing {
-    @apply mb-40; /* increased from mb-32 for desktop */
+    @apply mb-16; /* reducido desde mb-40 para eliminar gap */
   }
 }
 
@@ -339,7 +339,7 @@
     z-index: 1;
     clear: both;
   }
-  
+
   .contact-enhanced .section-spacing + .section-spacing {
     margin-top: clamp(6rem, 8vw, 12rem) !important;
     clear: both;

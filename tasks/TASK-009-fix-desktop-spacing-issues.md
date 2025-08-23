@@ -8,7 +8,8 @@
 ✅ SOLUCIONADO: En la página de contacto (`/contacto`) se ha corregido el problema crítico de espaciado en resoluciones desktop donde las secciones "Información de Contacto" y "Solicita tu Presupuesto GRATIS" aparecían completamente pegadas (gap: 0px).
 
 **Mediciones Finales:**
-- **Viewport:** 1400x900px (desktop)  
+
+- **Viewport:** 1400x900px (desktop)
 - **Gap conseguido:** 112px (7rem) ✅ SUPERA OBJETIVO de 96px
 - **Posición contactBottom:** 1157px
 - **Posición formTop:** 1269px
@@ -17,14 +18,17 @@
 ## Solución Implementada
 
 ### Root Cause Identificado
+
 El problema NO era CSS sino **estructura HTML incorrecta**: el formulario "Solicita tu Presupuesto GRATIS" estaba dentro de la misma `<section>` que "Información de Contacto", causando superposición.
 
 ### Fix Aplicado
+
 1. **Separación estructural**: Movido el formulario a su propia `<section>` independiente
 2. **CSS enhancements**: Mantenidas las reglas de espaciado existentes que ahora funcionan correctamente
 3. **Layout mejorado**: Centrado el formulario y mejorado el diseño visual
 
 ### Archivos Modificados
+
 - `src/pages/contacto.astro` - Estructura HTML separada para formulario
 - `src/styles/global.css` - Reglas CSS desktop específicas (ya existían)
 
