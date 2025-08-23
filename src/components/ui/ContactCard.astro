@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 
 // Definir el contenido del card como variables que luego reutilizaré
-const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-200/50 hover:border-[#679186]/30 relative overflow-hidden group contact-card-enhanced h-full flex flex-col justify-between`;
+const cardClass = `${gradient} p-6 lg:pt-10 pb-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-200/50 hover:border-[#679186]/30 relative overflow-hidden group contact-card-enhanced h-full flex flex-col justify-between`;
 ---
 
 {
@@ -33,7 +33,7 @@ const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-x
       href={href}
       target={target}
       rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      class="block h-full mb-6 lg:mb-0"
+      class="block h-full"
     >
       <div class={cardClass}>
         {/* Badge - Mejorado */}
@@ -61,11 +61,15 @@ const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-x
               />
             </div>
 
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-[#264e70] mb-2 group-hover:text-[#679186] transition-colors">
+            <div class="flex-1 min-w-0">
+              <h3 class="text-xl lg:text-lg font-bold text-[#264e70] mb-2 leading-tight group-hover:text-[#679186] transition-colors">
                 {title}
               </h3>
-              <p class="text-[#679186] font-bold text-xl break-all">{value}</p>
+              <div class="min-w-0">
+                <p class="text-[#679186] font-bold text-lg whitespace-nowrap truncate">
+                  {value}
+                </p>
+              </div>
               {description && (
                 <p class="text-gray-600 text-sm mt-3 leading-relaxed">
                   {description}
@@ -76,7 +80,7 @@ const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-x
           </div>
 
           {/* Hover indicator - Más prominente */}
-          <div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+          <div class="mt-auto flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
             <div class="w-8 h-8 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors shadow-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +102,7 @@ const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-x
       </div>
     </a>
   ) : (
-    <div class={cardClass + " mb-6 lg:mb-0"}>
+    <div class={cardClass}>
       {/* Badge */}
       {badge && (
         <div class="absolute top-6 right-6 z-20 pointer-events-none bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-2 py-1 rounded-full text-xs font-semibold lg:hidden">
@@ -124,13 +128,15 @@ const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-x
             />
           </div>
 
-          <div class="flex-1">
+          <div class="flex-1 min-w-0">
             <h3 class="text-lg font-bold text-[#264e70] mb-1 group-hover:text-[#679186] transition-colors">
               {title}
             </h3>
-            <p class="text-[#679186] font-semibold text-lg break-all">
-              {value}
-            </p>
+            <div class="min-w-0">
+              <p class="text-[#679186] font-semibold text-lg whitespace-nowrap truncate">
+                {value}
+              </p>
+            </div>
             {description && (
               <p class="text-gray-600 text-sm mt-2">{description}</p>
             )}
@@ -139,7 +145,7 @@ const cardClass = `${gradient} p-8 lg:pt-12 rounded-2xl shadow-lg hover:shadow-x
         </div>
 
         {/* Hover indicator */}
-        <div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+        <div class="mt-auto flex justify-end opacity-0 group-hover:opacity-100 transition-opacity">
           <div class="w-6 h-6 bg-[#679186]/10 rounded-full flex items-center justify-center group-hover:bg-[#679186] transition-colors">
             <svg
               xmlns="http://www.w3.org/2000/svg"
