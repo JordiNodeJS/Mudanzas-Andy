@@ -1,0 +1,85 @@
+---
+import TestimonialCard from "../ui/TestimonialCard.astro";
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import PhoneButton from "../ui/PhoneButton.astro";
+---
+
+<section id="testimonios" class="py-16 lg:py-20 relative overflow-hidden">
+  <!-- Imagen de fondo con filtro -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/camion/hero-fondo.jpg"
+      alt="Fondo: Testimonios (variación)"
+      class="w-full h-full object-cover opacity-20"
+      style="transform: rotate(-9deg) scale(1.06); transform-origin:center;"
+      loading="lazy"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-[#264e70]/90 via-[#679186]/85 to-[#264e70]/90"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 lg:mb-12"
+      >
+        ⭐ Más de 5.000 clientes satisfechos
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+        <TestimonialCard
+          name="María González"
+          location="Barcelona"
+          text="Excelente servicio, muy profesionales y cuidadosos con mis muebles. El precio exacto como acordamos, sin sorpresas."
+          rating={5}
+        />
+
+        <TestimonialCard
+          name="Carlos Rodríguez"
+          location="Madrid"
+          text="Mudanza perfecta en tiempo récord. El equipo muy eficiente y el trato al cliente excepcional. Los recomiendo totalmente."
+          rating={5}
+        />
+
+        <TestimonialCard
+          name="Ana López"
+          location="Valencia"
+          text="Después de 3 presupuestos, elegí Mudanzas Andy y fue la mejor decisión. Calidad-precio imbatible y cero problemas."
+          rating={5}
+        />
+      </div>
+
+      <!-- CTA final -->
+      <div class="bg-[#FAE360] rounded-2xl p-6 lg:p-8 text-center shadow-xl">
+        <h3
+          class="text-xl sm:text-2xl lg:text-3xl font-bold text-[#264e70] mb-4"
+        >
+          ¡Únete a nuestros clientes satisfechos!
+        </h3>
+        <p class="text-[#264e70]/80 mb-6 text-base lg:text-lg">
+          Más de 14 años de experiencia nos avalan. Tu mudanza en las mejores
+          manos.
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <WhatsAppButton
+            phone="640506084"
+            text="¡Presupuesto GRATIS ya!"
+            variant="secondary"
+            fullWidth={true}
+          />
+          <PhoneButton
+            phone="933 53 97 92"
+            text="Llama: 933 53 97 92"
+            variant="primary"
+            fullWidth={true}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

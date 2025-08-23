@@ -1,0 +1,97 @@
+---
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import PhoneButton from "../ui/PhoneButton.astro";
+---
+
+<section
+  id="inicio"
+  class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-16 lg:py-20 flow-root relative overflow-hidden"
+>
+  <!-- Imagen de fondo con filtro para mejor contraste -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/camion/hero-fondo.jpg"
+      alt="Fondo: Camión de mudanzas profesional"
+      class="w-full h-full object-cover opacity-15"
+      loading="eager"
+      decoding="async"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-[#f9b4ab]/70 via-[#fdebd3]/80 to-[#bbd4ce]/70"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 text-center relative z-10">
+    <div class="max-w-4xl mx-auto">
+      <h1
+        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#264e70] mb-4 lg:mb-6 leading-tight drop-shadow-sm break-words hyphens-auto"
+      >
+        Mudanzas profesionales en Barcelona y España
+      </h1>
+      <h2
+        class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-[#679186] mb-6 lg:mb-8 drop-shadow-sm break-words hyphens-auto"
+      >
+        ¡Presupuesto GRATIS en 5 minutos por WhatsApp!
+      </h2>
+
+      <!-- CTAs principales -->
+      <div
+        class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-center mb-10 lg:mb-12"
+      >
+        <WhatsAppButton
+          phone="640506084"
+          text="¡WhatsApp GRATIS!"
+          variant="primary"
+          fullWidth={true}
+        />
+
+        <PhoneButton
+          phone="933 53 97 92"
+          text="Llama: 933 53 97 92"
+          variant="secondary"
+          fullWidth={true}
+        />
+      </div>
+
+      <!-- Destacados -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 max-w-3xl mx-auto"
+      >
+        <div
+          class="bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl shadow-md"
+        >
+          <div class="text-2xl lg:text-3xl mb-2">⚡</div>
+          <h3 class="text-sm lg:text-base font-bold text-[#264e70] mb-2">
+            Respuesta Inmediata
+          </h3>
+          <p class="text-xs lg:text-sm text-[#679186]">
+            Te respondemos en menos de 5 minutos
+          </p>
+        </div>
+        <div
+          class="bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl shadow-md"
+        >
+          <div class="text-2xl lg:text-3xl mb-2">💰</div>
+          <h3 class="text-sm lg:text-base font-bold text-[#264e70] mb-2">
+            Precio Cerrado
+          </h3>
+          <p class="text-xs lg:text-sm text-[#679186]">
+            Sin sorpresas, precio final garantizado
+          </p>
+        </div>
+        <div
+          class="bg-white/80 backdrop-blur-sm p-4 lg:p-6 rounded-xl shadow-md"
+        >
+          <div class="text-2xl lg:text-3xl mb-2">🚛</div>
+          <h3 class="text-sm lg:text-base font-bold text-[#264e70] mb-2">
+            +14 años experiencia
+          </h3>
+          <p class="text-xs lg:text-sm text-[#679186]">
+            Miles de mudanzas exitosas
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

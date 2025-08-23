@@ -1,0 +1,95 @@
+---
+import ServiceCard from "../ui/ServiceCard.astro";
+---
+
+<section id="servicios" class="py-16 lg:py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#264e70] mb-4"
+      >
+        Nuestros Servicios de Mudanza
+      </h2>
+      <p class="text-lg lg:text-xl text-[#679186] max-w-2xl mx-auto">
+        Especialistas en mudanzas profesionales con más de 14 años de
+        experiencia
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto"
+    >
+      <ServiceCard
+        icon="🏠"
+        title="Mudanzas Particulares"
+        description="Mudanzas de viviendas completas con máximo cuidado de tus pertenencias"
+        features={[
+          "Embalaje profesional incluido",
+          "Desmontaje y montaje de muebles",
+          "Seguro de responsabilidad civil",
+        ]}
+        gradient="bg-gradient-to-br from-[#f9b4ab]/20 to-[#fdebd3]/20 border-[#f9b4ab]/30"
+      />
+
+      <ServiceCard
+        icon="🏢"
+        title="Mudanzas de Oficinas"
+        description="Traslados empresariales eficientes con mínima interrupción de tu negocio"
+        features={[
+          "Planificación estratégica",
+          "Horarios flexibles (fines de semana)",
+          "Manejo especializado de equipos",
+        ]}
+        gradient="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/20 border-[#679186]/30"
+      />
+
+      <ServiceCard
+        icon="📦"
+        title="Embalaje Profesional"
+        description="Servicio completo de embalaje con materiales de alta calidad"
+        features={[
+          "Cajas especializadas por tipo",
+          "Protección para objetos frágiles",
+          "Etiquetado y inventario",
+        ]}
+        gradient="bg-gradient-to-br from-[#fdebd3]/30 to-[#f9b4ab]/20 border-[#fdebd3]/50"
+      />
+
+      <ServiceCard
+        icon="⚡"
+        title="Mudanzas Express"
+        description="Mudanzas urgentes realizadas en el mismo día"
+        features={[
+          "Disponibilidad 24/7",
+          "Servicio de emergencia",
+          "Máxima rapidez garantizada",
+        ]}
+        gradient="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 border-[#bbd4ce]/40"
+      />
+
+      <ServiceCard
+        icon="🗄️"
+        title="Guardamuebles"
+        description="Almacenamiento seguro temporal de tus pertenencias"
+        features={[
+          "Instalaciones vigiladas 24h",
+          "Control de humedad y temperatura",
+          "Acceso flexible cuando lo necesites",
+        ]}
+        gradient="bg-gradient-to-br from-[#f9b4ab]/20 to-[#679186]/10 border-[#f9b4ab]/30"
+      />
+
+      <ServiceCard
+        icon="🌍"
+        title="Mudanzas Nacionales"
+        description="Mudanzas por toda España con seguimiento en tiempo real"
+        features={[
+          "Cobertura nacional completa",
+          "Seguimiento GPS del envío",
+          "Entrega en fecha confirmada",
+        ]}
+        gradient="bg-gradient-to-br from-[#264e70]/10 to-[#bbd4ce]/20 border-[#264e70]/20"
+      />
+    </div>
+  </div>
+</section>

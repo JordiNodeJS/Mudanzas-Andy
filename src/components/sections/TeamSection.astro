@@ -1,0 +1,154 @@
+---
+import LazyImage from "../LazyImage.astro";
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+import PhoneButton from "../ui/PhoneButton.astro";
+---
+
+<section
+  id="equipo"
+  class="py-16 lg:py-20 bg-gradient-to-br from-[#264e70]/5 via-white to-[#bbd4ce]/10 relative overflow-hidden"
+>
+  <!-- Imagen de fondo con filtro -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="/camion/hero-fondo.jpg"
+      alt="Fondo: Nuestro equipo profesional (variación)"
+      class="w-full h-full object-cover opacity-10"
+      style="transform: rotate(3deg) scale(1.08); transform-origin:center;"
+      loading="lazy"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/60 to-white/80"
+    >
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#264e70] mb-4"
+      >
+        🚛 Nuestro Equipo Profesional
+      </h2>
+      <p class="text-lg lg:text-xl text-[#679186] max-w-3xl mx-auto">
+        Flota moderna y profesionales experimentados para garantizar una mudanza
+        segura y eficiente
+      </p>
+    </div>
+
+    <!-- Galería de imágenes -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto mb-12"
+    >
+      <!-- Imagen 1: Camión frontal -->
+      <div
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300"
+      >
+        <LazyImage
+          src="/camion/camion-frontal.jpg"
+          alt="Camión de mudanzas profesional - Vista frontal"
+          class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+        <div class="p-4 lg:p-6">
+          <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
+            Flota Moderna
+          </h3>
+          <p class="text-sm lg:text-base text-[#679186]">
+            Camiones equipados con sistemas de seguridad y protección
+          </p>
+        </div>
+      </div>
+
+      <!-- Imagen 2: Cargando flete -->
+      <div
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300"
+      >
+        <LazyImage
+          src="/camion/cargando-flete.jpg"
+          alt="Equipo profesional cargando mudanza con cuidado"
+          class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+        <div class="p-4 lg:p-6">
+          <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
+            Equipo Experimentado
+          </h3>
+          <p class="text-sm lg:text-base text-[#679186]">
+            Más de 14 años de experiencia en mudanzas profesionales
+          </p>
+        </div>
+      </div>
+
+      <!-- Imagen 3: Interior de la caja -->
+      <div
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300"
+      >
+        <LazyImage
+          src="/camion/interior-caja.jpg"
+          alt="Interior del camión - Espacio seguro y organizado"
+          class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+          loading="lazy"
+        />
+        <div class="p-4 lg:p-6">
+          <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
+            Seguridad Garantizada
+          </h3>
+          <p class="text-sm lg:text-base text-[#679186]">
+            Interior acondicionado para máxima protección de tus pertenencias
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA con imagen de fondo -->
+    <div
+      class="relative bg-gradient-to-r from-[#679186] to-[#264e70] rounded-2xl p-8 lg:p-12 text-center overflow-hidden"
+    >
+      <!-- Imagen de fondo con filtro -->
+      <div class="absolute inset-0">
+        <img
+          src="/camion/promocional-collage.jpg"
+          alt="Collage promocional de nuestros servicios"
+          class="w-full h-full object-cover opacity-20"
+          loading="lazy"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-[#679186]/80 to-[#264e70]/80"
+        >
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <h3
+          class="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 break-words hyphens-auto"
+        >
+          ¿Listo para tu mudanza? ¡Contáctanos ahora!
+        </h3>
+        <p
+          class="text-[#bbd4ce] mb-6 lg:mb-8 text-base lg:text-lg max-w-2xl mx-auto"
+        >
+          Nuestro equipo está preparado para hacer tu mudanza de forma rápida,
+          segura y al mejor precio. ¡Presupuesto gratis sin compromiso!
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <WhatsAppButton
+            phone="640506084"
+            text="WhatsApp Inmediato"
+            variant="primary"
+            fullWidth={true}
+          />
+          <PhoneButton
+            phone="933 53 97 92"
+            text="Llamar Ahora"
+            variant="secondary"
+            fullWidth={true}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
