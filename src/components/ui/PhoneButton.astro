@@ -18,10 +18,12 @@ const {
 } = Astro.props;
 
 const baseClasses =
-  "font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 md:whitespace-nowrap";
+  "font-bold rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-4 md:whitespace-nowrap focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2";
 
 const variantClasses = {
-  primary: "bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70]",
+  // primary: brighter warm gradient, stronger contrast and subtle hover change
+  primary:
+    "bg-gradient-to-r from-[#FFE66B] to-[#F9D74B] hover:from-[#fff08f] hover:to-[#f0d84a] text-[#153745] shadow-[0_10px_30px_rgba(21,55,69,0.18)] hover:shadow-[0_14px_44px_rgba(21,55,69,0.22)]",
   secondary: "bg-[#679186] hover:bg-[#5a7a6f] text-white",
 };
 
@@ -48,6 +50,9 @@ const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} 
   class={classes}
   aria-label={`Llamar al ${phone}`}
 >
-  <span class="text-lg lg:text-xl">{icon}</span>
+  <span
+    class="flex items-center justify-center bg-white/20 backdrop-blur-sm p-2 rounded-full text-xl lg:text-2xl shadow-sm"
+    >{icon}</span
+  >
   <span class="break-words hyphens-auto">{text}</span>
 </a>
