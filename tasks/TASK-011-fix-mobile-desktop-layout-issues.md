@@ -117,7 +117,14 @@ Solucionar problemas críticos de diseño en versión móvil y desktop identific
 
 ## Estado
 
-🟢 **COMPLETADA** - Problemas principales solucionados exitosamente
+🟢 **COMPLETADA** - Todos los problemas principales solucionados exitosamente
+
+### Fase Final: Arreglos de Cards y Visibilidad (COMPLETADA)
+
+- ✅ **ContactCard**: Incrementada opacidad de gradientes (/10, /5, /15 → /30, /35, /25)
+- ✅ **ValueCard**: Confirmada legibilidad perfecta en sección "¿Por qué elegir Mudanzas ANDY?"
+- ✅ **Gap formulario**: Eliminado completamente el gap en sección "Solicita tu Presupuesto GRATIS"
+- ✅ **Contraste general**: Verificado contraste y legibilidad en todas las secciones
 
 ## Capturas de Evidencia
 
@@ -126,6 +133,17 @@ Solucionar problemas críticos de diseño en versión móvil y desktop identific
 - `mobile-menu-open.png` - Header móvil funcionando
 - `mobile-homepage-current.png` - Layout móvil corregido
 - `desktop-contacto-viewport.png` - Vista desktop mejorada
+- `contacto-after-gradient-fix-viewport.png` - ContactCard mejoradas
+- `contacto-form-section.png` - Formulario sin gaps
+- `contacto-valuecard-section.png` - ValueCard legibles y con buen contraste
+
+### Principales Arreglos Completados
+
+1. **Gap Desktop Principal**: ✅ Eliminado espacio excesivo (160px → 64px)
+2. **ContactCard Gradientes**: ✅ Mejorada visibilidad (/10 → /30)
+3. **ValueCard Legibilidad**: ✅ Fondo semitransparente blanco perfecto
+4. **Header Móvil**: ✅ Menú hamburguesa funcional
+5. **Responsive Design**: ✅ Layout correcto en todos los breakpoints
 
 ## Prioridad
 
