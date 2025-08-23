@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PricingSection from "../components/sections/PricingSection.astro";
+import Breadcrumb from "../components/ui/Breadcrumb.astro";
+
+const title = "Precios y Tarifas Transparentes | Mudanzas ANDY";
+const description =
+  "Consulta nuestras tarifas transparentes para mudanzas. Presupuesto gratuito en 5 minutos. Sin sorpresas, precios justos y honestos.";
+
+const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Precios" }];
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main>
+    <!-- Breadcrumb -->
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-b from-[#679186] to-[#264e70] py-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Precios y Tarifas
+            </h1>
+            <p class="text-white/90 text-lg max-w-2xl">
+              Tarifas transparentes y justas. Sin sorpresas ni costos ocultos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Content -->
+    <PricingSection />
+
+    <!-- Call to Action -->
+    <section class="bg-gradient-to-r from-[#679186] to-[#264e70] py-16">
+      <div class="container">
+        <div class="row justify-center text-center">
+          <div class="lg:col-8">
+            <h2 class="text-3xl font-bold text-white mb-4">
+              ¿Listo para tu mudanza?
+            </h2>
+            <p class="text-white/90 text-lg mb-8">
+              Solicita tu presupuesto gratuito ahora y te respondemos en menos
+              de 5 minutos
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/34640506084?text=Hola! Me gustaría solicitar un presupuesto para mi mudanza"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <span class="text-xl">💬</span>
+                WhatsApp GRATIS
+              </a>
+
+              <a
+                href="tel:+34933539792"
+                class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#264e70] font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <span class="text-xl">📞</span>
+                Llamar: 933 53 97 92
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

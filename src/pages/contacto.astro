@@ -1,0 +1,186 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Breadcrumb from "../components/ui/Breadcrumb.astro";
+
+const title = "Contacto | Mudanzas ANDY Barcelona";
+const description =
+  "Contacta con Mudanzas ANDY para tu presupuesto gratuito. Whatsapp, teléfono y formulario online. Respuesta inmediata para mudanzas en Barcelona y España.";
+
+const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Contacto" }];
+---
+
+<Layout title={title} description={description}>
+  <Header />
+
+  <main>
+    <!-- Breadcrumb -->
+    <Breadcrumb items={breadcrumbItems} />
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-b from-[#679186] to-[#264e70] py-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Contacto
+            </h1>
+            <p class="text-white/90 text-lg max-w-2xl">
+              Ponte en contacto con nosotros. Presupuesto gratuito sin
+              compromiso.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-16">
+      <div class="container">
+        <div class="row">
+          <div class="lg:col-6 mb-8 lg:mb-0">
+            <h2 class="text-2xl font-bold text-[#264e70] mb-6">
+              Información de Contacto
+            </h2>
+
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-[#679186] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-white text-xl">📞</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-[#264e70] mb-2">Teléfono</h3>
+                  <p class="text-gray-600">
+                    <a
+                      href="tel:+34933539792"
+                      class="hover:text-[#679186] transition-colors"
+                    >
+                      933 53 97 92
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-[#679186] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-white text-xl">💬</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-[#264e70] mb-2">WhatsApp</h3>
+                  <p class="text-gray-600">
+                    <a
+                      href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="hover:text-[#679186] transition-colors"
+                    >
+                      640 50 60 84
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-[#679186] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-white text-xl">📧</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-[#264e70] mb-2">Email</h3>
+                  <p class="text-gray-600">
+                    <a
+                      href="mailto:info@mudanzasandy.com"
+                      class="hover:text-[#679186] transition-colors"
+                    >
+                      info@mudanzasandy.com
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-[#679186] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-white text-xl">📍</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-[#264e70] mb-2">Ubicación</h3>
+                  <p class="text-gray-600">
+                    Barcelona y toda España<br />
+                    Servicio 24/7
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-[#679186] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-white text-xl">⏰</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-[#264e70] mb-2">Horarios</h3>
+                  <p class="text-gray-600">
+                    Lunes a Domingo: 24 horas<br />
+                    Atención telefónica inmediata
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-6">
+            <h2 class="text-2xl font-bold text-[#264e70] mb-6">
+              Solicita tu Presupuesto
+            </h2>
+            <ContactForm />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="bg-gradient-to-r from-[#679186] to-[#264e70] py-16">
+      <div class="container">
+        <div class="row justify-center text-center">
+          <div class="lg:col-8">
+            <h2 class="text-3xl font-bold text-white mb-4">¡Contacta Ahora!</h2>
+            <p class="text-white/90 text-lg mb-8">
+              Respuesta inmediata para tu mudanza
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <span class="text-xl">💬</span>
+                WhatsApp GRATIS
+              </a>
+
+              <a
+                href="tel:+34933539792"
+                class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#264e70] font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <span class="text-xl">📞</span>
+                Llamar: 933 53 97 92
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
