@@ -2,97 +2,210 @@
 import ServiceCard from "../ui/ServiceCard.astro";
 ---
 
-<section
-  id="servicios"
-  class="py-16 lg:py-20 bg-gradient-to-b from-white to-slate-50"
->
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12 lg:mb-16">
+<section id="servicios" class="py-16 lg:py-24 relative overflow-hidden">
+  <!-- Background with patterns and gradients -->
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-[#f9b4ab]/5"
+  >
+  </div>
+
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 opacity-10">
+    <!-- Geometric shapes for visual interest -->
+    <div
+      class="absolute top-20 right-10 w-32 h-32 bg-gradient-to-br from-[#f9b4ab] to-[#679186] rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute bottom-20 left-10 w-48 h-48 bg-gradient-to-br from-[#679186] to-[#264e70] rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-[#fdebd3] to-[#bbd4ce] rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <!-- Pattern overlay -->
+  <div
+    class="absolute inset-0 opacity-5"
+    style="background-image: radial-gradient(circle at 1px 1px, #679186 1px, transparent 0); background-size: 20px 20px;"
+  >
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Enhanced header section -->
+    <div class="text-center mb-16 lg:mb-20">
+      <div
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#f9b4ab]/20 to-[#679186]/20 px-4 py-2 rounded-full mb-6"
+      >
+        <span class="w-2 h-2 bg-[#679186] rounded-full animate-pulse"></span>
+        <span
+          class="text-[#679186] font-semibold text-sm uppercase tracking-wide"
+          >Servicios Profesionales</span
+        >
+      </div>
+
       <h2
-        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4"
+        class="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-[#264e70] to-[#679186] bg-clip-text text-transparent mb-6"
       >
         Nuestros Servicios de Mudanza
       </h2>
-      <p class="text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto">
-        Especialistas en mudanzas profesionales con más de 14 años de
-        experiencia
+      <p
+        class="text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+      >
+        Especialistas en mudanzas profesionales con más de <strong
+          class="text-[#679186]">14 años de experiencia</strong
+        >. Tu tranquilidad es nuestra prioridad.
       </p>
     </div>
 
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto"
-    >
-      <ServiceCard
-        icon="🏠"
-        title="Mudanzas Particulares"
-        description="Mudanzas de viviendas completas con máximo cuidado de tus pertenencias"
-        features={[
-          "Embalaje profesional incluido",
-          "Desmontaje y montaje de muebles",
-          "Seguro de responsabilidad civil",
-        ]}
-        gradient="bg-gradient-to-br from-[#f9b4ab]/20 to-[#fdebd3]/20 border-[#f9b4ab]/30"
-      />
+    <!-- Services grid with featured service -->
+    <div class="max-w-7xl mx-auto">
+      <!-- Featured service (Mudanzas Particulares) -->
+      <div class="mb-12 lg:mb-16">
+        <ServiceCard
+          iconName="home"
+          title="Mudanzas Particulares"
+          description="Nuestro servicio estrella. Mudanzas de viviendas completas con máximo cuidado de tus pertenencias y atención personalizada."
+          features={[
+            "Embalaje profesional incluido con materiales de alta calidad",
+            "Desmontaje y montaje completo de todos tus muebles",
+            "Seguro de responsabilidad civil hasta 30.000€",
+            "Equipo especializado en objetos frágiles y obras de arte",
+            "Coordinador personal asignado para tu mudanza",
+          ]}
+          gradient="bg-gradient-to-br from-[#f9b4ab]/30 to-[#fdebd3]/40 border-[#f9b4ab]/50"
+          featured={true}
+          ctaText="¡Solicitar Presupuesto GRATIS!"
+          badge="⭐ MÁS POPULAR"
+        />
+      </div>
 
-      <ServiceCard
-        icon="🏢"
-        title="Mudanzas de Oficinas"
-        description="Traslados empresariales eficientes con mínima interrupción de tu negocio"
-        features={[
-          "Planificación estratégica",
-          "Horarios flexibles (fines de semana)",
-          "Manejo especializado de equipos",
-        ]}
-        gradient="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/20 border-[#679186]/30"
-      />
+      <!-- Regular services grid -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+      >
+        <ServiceCard
+          iconName="building"
+          title="Mudanzas de Oficinas"
+          description="Traslados empresariales eficientes con mínima interrupción de tu negocio"
+          features={[
+            "Planificación estratégica detallada",
+            "Horarios flexibles (fines de semana)",
+            "Manejo especializado de equipos IT",
+            "Documentación y seguimiento completo",
+          ]}
+          gradient="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/30 border-[#679186]/40"
+          ctaText="Consultar para Empresas"
+        />
 
-      <ServiceCard
-        icon="📦"
-        title="Embalaje Profesional"
-        description="Servicio completo de embalaje con materiales de alta calidad"
-        features={[
-          "Cajas especializadas por tipo",
-          "Protección para objetos frágiles",
-          "Etiquetado y inventario",
-        ]}
-        gradient="bg-gradient-to-br from-[#fdebd3]/30 to-[#f9b4ab]/20 border-[#fdebd3]/50"
-      />
+        <ServiceCard
+          iconName="package"
+          title="Embalaje Profesional"
+          description="Servicio completo de embalaje con materiales de alta calidad"
+          features={[
+            "Cajas especializadas por tipo",
+            "Protección para objetos frágiles",
+            "Etiquetado y inventario digital",
+            "Desembalaje en destino incluido",
+          ]}
+          gradient="bg-gradient-to-br from-[#fdebd3]/40 to-[#f9b4ab]/20 border-[#fdebd3]/60"
+          ctaText="Solicitar Embalaje"
+        />
 
-      <ServiceCard
-        icon="⚡"
-        title="Mudanzas Express"
-        description="Mudanzas urgentes realizadas en el mismo día"
-        features={[
-          "Disponibilidad 24/7",
-          "Servicio de emergencia",
-          "Máxima rapidez garantizada",
-        ]}
-        gradient="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 border-[#bbd4ce]/40"
-      />
+        <ServiceCard
+          iconName="bolt"
+          title="Mudanzas Express"
+          description="Mudanzas urgentes realizadas en el mismo día"
+          features={[
+            "Disponibilidad 24/7",
+            "Respuesta en menos de 2 horas",
+            "Equipo de emergencia dedicado",
+            "Máxima rapidez garantizada",
+          ]}
+          gradient="bg-gradient-to-br from-[#bbd4ce]/30 to-[#679186]/20 border-[#bbd4ce]/50"
+          ctaText="¡Emergencia Ya!"
+          badge="🚨 URGENTE"
+        />
 
-      <ServiceCard
-        icon="🗄️"
-        title="Guardamuebles"
-        description="Almacenamiento seguro temporal de tus pertenencias"
-        features={[
-          "Instalaciones vigiladas 24h",
-          "Control de humedad y temperatura",
-          "Acceso flexible cuando lo necesites",
-        ]}
-        gradient="bg-gradient-to-br from-[#f9b4ab]/20 to-[#679186]/10 border-[#f9b4ab]/30"
-      />
+        <ServiceCard
+          iconName="archive"
+          title="Guardamuebles Seguro"
+          description="Almacenamiento seguro temporal de tus pertenencias"
+          features={[
+            "Instalaciones vigiladas 24h",
+            "Control de humedad y temperatura",
+            "Acceso flexible cuando lo necesites",
+            "Inventario digital con fotos",
+          ]}
+          gradient="bg-gradient-to-br from-[#f9b4ab]/15 to-[#679186]/10 border-[#f9b4ab]/40"
+          ctaText="Ver Almacenamiento"
+        />
 
-      <ServiceCard
-        icon="🌍"
-        title="Mudanzas Nacionales"
-        description="Mudanzas por toda España con seguimiento en tiempo real"
-        features={[
-          "Cobertura nacional completa",
-          "Seguimiento GPS del envío",
-          "Entrega en fecha confirmada",
-        ]}
-        gradient="bg-gradient-to-br from-[#264e70]/10 to-[#bbd4ce]/20 border-[#264e70]/20"
-      />
+        <ServiceCard
+          iconName="globe"
+          title="Mudanzas Nacionales"
+          description="Mudanzas por toda España con seguimiento en tiempo real"
+          features={[
+            "Cobertura nacional completa",
+            "Seguimiento GPS en tiempo real",
+            "Coordinación entre ciudades",
+            "Entrega en fecha confirmada",
+          ]}
+          gradient="bg-gradient-to-br from-[#264e70]/15 to-[#bbd4ce]/25 border-[#264e70]/30"
+          ctaText="Cotizar Nacional"
+        />
+
+        <!-- New international service -->
+        <ServiceCard
+          iconName="truck"
+          title="Mudanzas Internacionales"
+          description="Traslados internacionales con gestión completa de documentación"
+          features={[
+            "Gestión aduanal incluida",
+            "Red de partners internacionales",
+            "Coordinación puerta a puerta",
+            "Seguros internacionales",
+          ]}
+          gradient="bg-gradient-to-br from-[#679186]/20 to-[#264e70]/15 border-[#679186]/40"
+          ctaText="Consultar Internacional"
+          badge="🌍 GLOBAL"
+        />
+      </div>
+
+      <!-- Bottom CTA section -->
+      <div class="mt-16 lg:mt-20 text-center">
+        <div
+          class="bg-gradient-to-r from-[#f9b4ab]/10 to-[#679186]/10 backdrop-blur-sm border border-[#679186]/20 rounded-2xl p-8 lg:p-12"
+        >
+          <h3 class="text-2xl lg:text-3xl font-bold text-[#264e70] mb-4">
+            ¿Necesitas un servicio personalizado?
+          </h3>
+          <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+            Cada mudanza es única. Contactanos para crear una solución a medida
+            para tus necesidades específicas.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <a
+              href="https://wa.me/34640506084"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-[#679186] hover:to-[#f9b4ab] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              💬 WhatsApp: Consulta Personalizada
+            </a>
+            <a
+              href="tel:+34933539792"
+              class="bg-white border-2 border-[#679186] text-[#679186] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#679186] hover:text-white transition-all duration-300 transform hover:scale-105"
+            >
+              📞 Llamar: 933 53 97 92
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

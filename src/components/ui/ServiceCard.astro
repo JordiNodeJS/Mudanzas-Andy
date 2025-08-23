@@ -1,56 +1,137 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
-  icon: string;
+  iconName: string;
   title: string;
   description: string;
   features: string[];
   gradient: string;
+  featured?: boolean;
+  ctaText?: string;
+  ctaLink?: string;
+  badge?: string;
 }
 
-const { icon, title, description, features, gradient } = Astro.props;
+const {
+  iconName,
+  title,
+  description,
+  features,
+  gradient,
+  featured = false,
+  ctaText = "Solicitar Presupuesto",
+  ctaLink = "https://wa.me/34640506084",
+  badge,
+} = Astro.props;
 ---
 
 <div
-  class={`${gradient} p-5 lg:p-6 rounded-2xl shadow-sm hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-1 border border-opacity-30 bg-white/5 backdrop-blur-sm`}
+  class={`${gradient} relative overflow-hidden ${
+    featured
+      ? "p-6 lg:p-8 rounded-3xl shadow-lg hover:shadow-2xl border-2 border-[#f9b4ab] transform hover:scale-[1.02]"
+      : "p-5 lg:p-6 rounded-2xl shadow-sm hover:shadow-lg border border-opacity-30 transform hover:-translate-y-1"
+  } transition-all duration-300 bg-white/90 backdrop-blur-sm group`}
 >
-  <div class="flex items-start gap-4">
-    <div
-      class="w-16 h-16 rounded-lg flex items-center justify-center text-3xl lg:text-4xl"
-    >
-      {icon}
-    </div>
+  <!-- Badge para servicios destacados -->
+  {
+    badge && (
+      <div class="absolute top-4 right-4 bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-3 py-1 rounded-full text-xs font-semibold">
+        {badge}
+      </div>
+    )
+  }
 
-    <div class="flex-1">
-      <h3 class="text-lg lg:text-xl font-bold text-slate-900 mb-1">{title}</h3>
-      <p class="text-slate-600 mb-3 text-sm lg:text-base">{description}</p>
+  <!-- Decorative background pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div
+      class="absolute top-0 right-0 w-32 h-32 transform rotate-45 translate-x-16 -translate-y-16"
+    >
+      <Icon name={iconName} class="w-full h-full text-[#264e70]" />
     </div>
   </div>
 
-  <div class="mt-3 text-sm lg:text-sm text-slate-800 font-medium">
-    <ul class="space-y-2">
+  <div class="relative z-10">
+    <!-- Header con icono y título -->
+    <div class="flex items-start gap-4 mb-4">
+      <div
+        class={`${
+          featured
+            ? "w-20 h-20 bg-gradient-to-br from-[#f9b4ab] to-[#679186] shadow-lg"
+            : "w-16 h-16 bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20"
+        } rounded-xl flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-110`}
+      >
+        <Icon
+          name={iconName}
+          class={`${featured ? "text-white" : "text-[#679186]"}`}
+          size={featured ? 32 : 28}
+        />
+      </div>
+
+      <div class="flex-1">
+        <h3
+          class={`${
+            featured ? "text-xl lg:text-2xl" : "text-lg lg:text-xl"
+          } font-bold text-[#264e70] mb-2 group-hover:text-[#679186] transition-colors`}
+        >
+          {title}
+        </h3>
+        <p
+          class={`text-slate-600 ${
+            featured ? "text-base lg:text-lg" : "text-sm lg:text-base"
+          }`}
+        >
+          {description}
+        </p>
+      </div>
+    </div>
+
+    <!-- Features list -->
+    <div
+      class={`${featured ? "text-base" : "text-sm lg:text-sm"} text-slate-800 font-medium mb-6`}
+    >
+      <ul class="space-y-3">
+        {
+          features.map((feature) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-green-600 inline-flex items-center flex-shrink-0">
+                <Icon name="check" class="text-green-600" size={16} />
+              </span>
+              <span class="break-words hyphens-auto text-slate-700 leading-relaxed">
+                {feature}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="flex gap-3">
+      <a
+        href={ctaLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={`${
+          featured
+            ? "flex-1 bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white hover:from-[#679186] hover:to-[#f9b4ab] shadow-lg hover:shadow-xl"
+            : "flex-1 bg-[#679186] text-white hover:bg-[#264e70]"
+        } px-4 py-3 rounded-lg font-semibold text-center transition-all duration-300 transform hover:scale-105 text-sm lg:text-base`}
+      >
+        <Icon name="whatsapp" class="inline w-4 h-4 mr-2" />
+        {ctaText}
+      </a>
+
       {
-        features.map((feature) => (
-          <li class="flex items-start gap-3">
-            <span class="mt-0.5 text-green-600 inline-flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M16.704 5.29a1 1 0 01.083 1.32l-7 9a1 1 0 01-1.497.083l-3.5-3.5a1 1 0 011.414-1.414l2.793 2.793 6.293-8.087a1 1 0 011.12-.195z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-            <span class="break-words hyphens-auto text-slate-700">
-              {feature}
-            </span>
-          </li>
-        ))
+        featured && (
+          <a
+            href="tel:+34933539792"
+            class="px-4 py-3 bg-white border-2 border-[#679186] text-[#679186] hover:bg-[#679186] hover:text-white rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+          >
+            <Icon name="phone" class="w-4 h-4" />
+          </a>
+        )
       }
-    </ul>
+    </div>
   </div>
 </div>

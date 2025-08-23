@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
+import NavigationCard from "../components/ui/NavigationCard.astro";
 
 const title = "Mudanzas profesionales en Barcelona y España | Mudanzas ANDY";
 const description =
@@ -17,16 +18,48 @@ const description =
     <HeroSection />
 
     <!-- Navigation Cards Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="container">
-        <div class="row justify-center text-center mb-12">
-          <div class="lg:col-8">
-            <h2 class="text-3xl font-bold text-[#264e70] mb-4">
+    <section class="py-16 lg:py-20 relative overflow-hidden">
+      <!-- Background with enhanced gradients -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-[#f9b4ab]/5"
+      >
+      </div>
+
+      <!-- Decorative elements -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-10 right-20 w-24 h-24 bg-gradient-to-br from-[#679186] to-[#f9b4ab] rounded-full blur-2xl"
+        >
+        </div>
+        <div
+          class="absolute bottom-10 left-20 w-32 h-32 bg-gradient-to-br from-[#fdebd3] to-[#bbd4ce] rounded-full blur-2xl"
+        >
+        </div>
+      </div>
+
+      <div class="container relative z-10">
+        <div class="row justify-center text-center mb-12 lg:mb-16">
+          <div class="lg:col-10">
+            <div
+              class="inline-flex items-center gap-2 bg-gradient-to-r from-[#f9b4ab]/20 to-[#679186]/20 px-4 py-2 rounded-full mb-6"
+            >
+              <span class="w-2 h-2 bg-[#679186] rounded-full animate-pulse"
+              ></span>
+              <span
+                class="text-[#679186] font-semibold text-sm uppercase tracking-wide"
+                >Navega por Nuestros Servicios</span
+              >
+            </div>
+
+            <h2
+              class="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#264e70] to-[#679186] bg-clip-text text-transparent mb-4"
+            >
               Descubre Nuestros Servicios
             </h2>
-            <p class="text-gray-600 text-lg">
+            <p class="text-gray-600 text-lg lg:text-xl max-w-3xl mx-auto">
               Explora todo lo que ofrecemos para hacer de tu mudanza una
-              experiencia perfecta
+              <strong class="text-[#679186]">experiencia perfecta</strong> y sin
+              preocupaciones
             </p>
           </div>
         </div>
@@ -34,134 +67,71 @@ const description =
         <div class="row">
           <!-- Services Card -->
           <div class="lg:col-4 col-6 mb-8">
-            <a
+            <NavigationCard
+              iconName="package"
+              title="Servicios"
+              description="Mudanzas locales, nacionales, internacionales y más"
               href="/servicios"
-              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
-            >
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-4"
-                >
-                  <span class="text-3xl text-[#679186]">📦</span>
-                </div>
-                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
-                  Servicios
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Mudanzas locales, nacionales, internacionales y más
-                </p>
-              </div>
-            </a>
+              gradient="bg-gradient-to-br from-[#f9b4ab]/10 to-[#fdebd3]/20"
+              badge="⭐ POPULAR"
+            />
           </div>
 
           <!-- Team Card -->
           <div class="lg:col-4 col-6 mb-8">
-            <a
+            <NavigationCard
+              iconName="truck"
+              title="Nuestro Equipo"
+              description="Profesionales experimentados y comprometidos"
               href="/equipo"
-              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
-            >
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-4"
-                >
-                  <span class="text-3xl text-[#679186]">🚛</span>
-                </div>
-                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
-                  Nuestro Equipo
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Profesionales experimentados y comprometidos
-                </p>
-              </div>
-            </a>
+              gradient="bg-gradient-to-br from-[#679186]/10 to-[#bbd4ce]/20"
+            />
           </div>
 
           <!-- Pricing Card -->
           <div class="lg:col-4 col-6 mb-8">
-            <a
+            <NavigationCard
+              iconName="archive"
+              title="Precios"
+              description="Tarifas transparentes y presupuesto gratuito"
               href="/precios"
-              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
-            >
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-4"
-                >
-                  <span class="text-3xl text-[#679186]">💰</span>
-                </div>
-                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
-                  Precios
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Tarifas transparentes y presupuesto gratuito
-                </p>
-              </div>
-            </a>
+              gradient="bg-gradient-to-br from-[#fdebd3]/20 to-[#f9b4ab]/10"
+            />
           </div>
 
           <!-- Testimonials Card -->
           <div class="lg:col-4 col-6 mb-8">
-            <a
+            <NavigationCard
+              iconName="check"
+              title="Testimonios"
+              description="Experiencias reales de clientes satisfechos"
               href="/testimonios"
-              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
-            >
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-4"
-                >
-                  <span class="text-3xl text-[#679186]">⭐</span>
-                </div>
-                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
-                  Testimonios
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Experiencias reales de clientes satisfechos
-                </p>
-              </div>
-            </a>
+              gradient="bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/10"
+            />
           </div>
 
           <!-- Contact Card -->
           <div class="lg:col-4 col-6 mb-8">
-            <a
+            <NavigationCard
+              iconName="phone"
+              title="Contacto"
+              description="Hablemos de tu mudanza. Atención 24/7"
               href="/contacto"
-              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
-            >
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 flex items-center justify-center mx-auto mb-4"
-                >
-                  <span class="text-3xl text-[#679186]">📞</span>
-                </div>
-                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
-                  Contacto
-                </h3>
-                <p class="text-gray-600 text-sm">
-                  Hablemos de tu mudanza. Atención 24/7
-                </p>
-              </div>
-            </a>
+              gradient="bg-gradient-to-br from-[#264e70]/10 to-[#679186]/15"
+            />
           </div>
 
-          <!-- Emergency Card -->
+          <!-- WhatsApp Direct Card -->
           <div class="lg:col-4 col-6 mb-8">
-            <a
-              href="https://wa.me/34123456789"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="block bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group text-white"
-            >
-              <div class="text-center">
-                <div
-                  class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors"
-                >
-                  <span class="text-2xl">💬</span>
-                </div>
-                <h3 class="text-xl font-semibold mb-3">WhatsApp Directo</h3>
-                <p class="text-white/90 text-sm">
-                  Presupuesto gratuito en 5 minutos
-                </p>
-              </div>
-            </a>
+            <NavigationCard
+              iconName="whatsapp"
+              title="WhatsApp Directo"
+              description="Presupuesto gratuito en 5 minutos"
+              href="https://wa.me/34640506084"
+              external={true}
+              gradient="bg-gradient-to-br from-[#25D366]/10 to-[#128C7E]/5"
+              badge="🚨 GRATIS"
+            />
           </div>
         </div>
       </div>
