@@ -1,0 +1,204 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  iconName: string;
+  title: string;
+  description: string;
+  gradient?: string;
+  featured?: boolean;
+  size?: "small" | "medium" | "large";
+  stats?: string;
+  badge?: string;
+  highlight?: string;
+  animationDelay?: number;
+}
+
+const {
+  iconName,
+  title,
+  description,
+  gradient = "bg-gradient-to-br from-white to-slate-50",
+  featured = false,
+  size = "medium",
+  stats,
+  badge,
+  highlight,
+  animationDelay = 0,
+} = Astro.props;
+
+// Define size-specific classes
+const sizeClasses = {
+  small: {
+    container: "p-4 rounded-lg",
+    icon: "w-12 h-12",
+    iconSize: 20,
+    title: "text-base font-semibold",
+    description: "text-xs",
+  },
+  medium: {
+    container: "p-6 rounded-xl",
+    icon: "w-16 h-16",
+    iconSize: 24,
+    title: "text-lg lg:text-xl font-bold",
+    description: "text-sm lg:text-base",
+  },
+  large: {
+    container: "p-8 lg:p-10 rounded-2xl",
+    icon: "w-20 h-20 lg:w-24 lg:h-24",
+    iconSize: 32,
+    title: "text-xl lg:text-2xl xl:text-3xl font-bold",
+    description: "text-base lg:text-lg",
+  },
+};
+
+const currentSize = sizeClasses[size];
+---
+
+<div
+  class={`${gradient} ${currentSize.container} ${
+    featured
+      ? "shadow-lg hover:shadow-2xl border-2 border-[#f9b4ab]/50 transform hover:scale-[1.02]"
+      : "shadow-sm hover:shadow-xl border border-slate-200/50 transform hover:-translate-y-2"
+  } transition-all duration-500 relative overflow-hidden group cursor-pointer`}
+  style={`animation-delay: ${animationDelay}ms;`}
+>
+  {/* Badge */}
+  {
+    badge && (
+      <div class="absolute top-4 right-4 z-20">
+        <div class="bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg transform rotate-12 group-hover:rotate-0 transition-transform duration-300">
+          {badge}
+        </div>
+      </div>
+    )
+  }
+
+  {/* Background decorations */}
+  <div
+    class="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
+  >
+    <div
+      class="absolute top-0 right-0 w-32 h-32 transform rotate-12 translate-x-12 -translate-y-12 group-hover:rotate-45 group-hover:scale-110 transition-all duration-700"
+    >
+      <Icon name={iconName} class="w-full h-full text-[#679186]" />
+    </div>
+
+    {/* Floating elements */}
+    <div
+      class="absolute bottom-4 left-4 w-8 h-8 bg-[#f9b4ab]/20 rounded-full transform -translate-x-8 group-hover:translate-x-0 transition-transform duration-500"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 left-8 w-4 h-4 bg-[#679186]/20 rounded-full transform -translate-x-8 group-hover:translate-x-0 transition-transform duration-700"
+      style="animation-delay: 100ms;"
+    >
+    </div>
+  </div>
+
+  {/* Gradient overlay on hover */}
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-[#679186]/0 to-[#f9b4ab]/0 group-hover:from-[#679186]/5 group-hover:to-[#f9b4ab]/5 transition-all duration-500 rounded-xl"
+  >
+  </div>
+
+  <div
+    class={`${size === "large" ? "text-center" : "text-left"} relative z-10`}
+  >
+    {/* Stats section for large cards */}
+    {
+      stats && size === "large" && (
+        <div class="mb-6">
+          <div class="text-4xl lg:text-5xl font-black bg-gradient-to-r from-[#264e70] to-[#679186] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+            {stats}
+          </div>
+          {highlight && (
+            <div class="text-[#679186] font-semibold text-sm uppercase tracking-wider">
+              {highlight}
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    {/* Icon and title section */}
+    <div
+      class={`flex ${size === "large" ? "justify-center" : "items-start"} gap-4 mb-4`}
+    >
+      <div
+        class={`${currentSize.icon} ${
+          featured
+            ? "bg-gradient-to-br from-[#f9b4ab] to-[#679186] shadow-lg"
+            : "bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20"
+        } rounded-xl flex items-center justify-center ${size === "large" ? "mx-auto" : ""} group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-md group-hover:shadow-xl`}
+      >
+        <Icon
+          name={iconName}
+          class={`${featured || size === "large" ? "text-white" : "text-[#679186]"} group-hover:text-[#264e70] transition-colors duration-300`}
+          size={currentSize.iconSize}
+        />
+      </div>
+
+      {
+        size !== "large" && (
+          <div class="flex-1">
+            <h3
+              class={`${currentSize.title} text-[#264e70] mb-2 group-hover:text-[#679186] transition-colors duration-300`}
+            >
+              {title}
+            </h3>
+            {stats && (
+              <div class="text-[#679186] font-bold text-lg mb-2">{stats}</div>
+            )}
+            {highlight && (
+              <div class="text-[#f9b4ab] font-medium text-sm mb-2">
+                {highlight}
+              </div>
+            )}
+          </div>
+        )
+      }
+    </div>
+
+    {/* Title for large cards */}
+    {
+      size === "large" && (
+        <h3
+          class={`${currentSize.title} text-[#264e70] mb-4 group-hover:text-[#679186] transition-colors duration-300`}
+        >
+          {title}
+        </h3>
+      )
+    }
+
+    {/* Description */}
+    <p
+      class={`text-gray-600 leading-relaxed ${currentSize.description} group-hover:text-gray-700 transition-colors duration-300`}
+    >
+      {description}
+    </p>
+
+    {/* Interactive indicator */}
+    <div
+      class="flex justify-end mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    >
+      <div
+        class="w-8 h-8 bg-gradient-to-br from-[#679186]/20 to-[#f9b4ab]/20 rounded-full flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-[#679186] group-hover:to-[#f9b4ab] transition-all duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-4 h-4 text-[#679186] group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-1"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

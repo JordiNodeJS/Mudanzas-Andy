@@ -9,28 +9,15 @@
     <div class="flex flex-wrap items-center justify-between">
       <!-- Logo y nombre -->
       <div class="flex items-center space-x-3">
-        <!-- Replace `/p      // --- NEW: observe main content mutations (useful when navigating via ViewTransitions/SPA) ---
-      try {
-        let mutationTimer: number | undefined;
-        const observeMain = () => {
-          const main = document.querySelector('main');
-          if (!main) return;
-          const mo = new MutationObserver(() => {
-            window.clearTimeout(mutationTimer);
-            mutationTimer = window.setTimeout(() => {
-              setHeaderHeightVar();
-              // force a reflow to ensure layout updates
-              void document.body.offsetHeight;
-            }, 50);
-          });
-          mo.observe(main, { childList: true, subtree: true });
-        };-camion-transparent.png` with the attached transparent truck image -->
-        <img
-          src="/logos/logo-camion-transparent.png"
-          alt="Mudanzas ANDY Logo"
-          class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center"
-          onerror="this.onerror=null;this.src='/logos/logo-camion-mudanzas.png';"
-        />
+        <!-- Animated truck logo -->
+        <div class="relative overflow-hidden">
+          <img
+            src="/logos/logo-camion-transparent.png"
+            alt="Mudanzas ANDY Logo"
+            class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-logo"
+            onerror="this.onerror=null;this.src='/logos/logo-camion-mudanzas.png';"
+          />
+        </div>
         <div>
           <h1 class="text-lg lg:text-xl font-bold text-[#FAE360]">
             Mudanzas ANDY
@@ -399,4 +386,71 @@
       }
     });
   </script>
+
+  <style>
+    /* Truck logo animation */
+    .truck-logo {
+      animation: truckDriveIn 2s ease-out;
+      animation-fill-mode: both;
+    }
+
+    /* Keyframes for truck driving in from left */
+    @keyframes truckDriveIn {
+      0% {
+        transform: translateX(-200px) scale(0.8);
+        opacity: 0;
+      }
+      60% {
+        transform: translateX(10px) scale(1.05);
+        opacity: 1;
+      }
+      80% {
+        transform: translateX(-5px) scale(0.98);
+      }
+      100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Add some engine sound effect with subtle vibration on hover */
+    .truck-logo:hover {
+      animation: truckIdle 0.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes truckIdle {
+      0% {
+        transform: translateX(0) translateY(0);
+      }
+      100% {
+        transform: translateX(1px) translateY(-1px);
+      }
+    }
+
+    /* On page transitions, replay the animation */
+    .truck-logo.page-transition {
+      animation: truckDriveIn 1.5s ease-out;
+    }
+
+    /* Prefers-reduced-motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .truck-logo {
+        animation: fadeIn 1s ease-out;
+      }
+
+      .truck-logo:hover {
+        animation: none;
+        transform: none;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+  </style>
 </header>

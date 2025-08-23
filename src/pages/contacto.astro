@@ -3,7 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ContactForm from "../components/ContactForm.astro";
+import ContactCard from "../components/ui/ContactCard.astro";
+import ValueCard from "../components/ui/ValueCard.astro";
 import Breadcrumb from "../components/ui/Breadcrumb.astro";
+import Icon from "../components/ui/Icon.astro";
 
 const title = "Contacto | Mudanzas ANDY Barcelona";
 const description =
@@ -20,186 +23,423 @@ const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Contacto" }];
     <Breadcrumb items={breadcrumbItems} />
 
     <!-- Page Header -->
-    <section class="bg-gradient-to-b from-[#679186] to-[#264e70] py-8">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Contacto
+    <section class="py-16 lg:py-20 relative overflow-hidden">
+      <!-- Background with patterns and gradients -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#679186] via-[#264e70] to-[#679186]"
+      >
+      </div>
+
+      <!-- Decorative background elements -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-20 right-10 w-32 h-32 bg-gradient-to-br from-[#f9b4ab] to-white rounded-full blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute bottom-20 left-10 w-48 h-48 bg-gradient-to-br from-white to-[#fdebd3] rounded-full blur-3xl"
+        >
+        </div>
+      </div>
+
+      <!-- Pattern overlay -->
+      <div
+        class="absolute inset-0 opacity-5"
+        style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 20px 20px;"
+      >
+      </div>
+
+      <div class="container relative z-10">
+        <div class="row justify-center text-center">
+          <div class="lg:col-10">
+            <!-- Badge -->
+            <div
+              class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6"
+            >
+              <span class="w-2 h-2 bg-[#f9b4ab] rounded-full animate-pulse"
+              ></span>
+              <span
+                class="text-white font-semibold text-sm uppercase tracking-wide"
+                >Contacto Inmediato</span
+              >
+            </div>
+
+            <h1
+              class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"
+            >
+              ¡Hablemos de tu Mudanza!
             </h1>
-            <p class="text-white/90 text-lg max-w-2xl">
-              Ponte en contacto con nosotros. Presupuesto gratuito sin
-              compromiso.
+            <p class="text-white/90 text-lg lg:text-xl max-w-3xl mx-auto mb-8">
+              <strong>Presupuesto GRATIS</strong> en menos de 5 minutos. Atención
+              personalizada 24/7 para resolver todas tus dudas.
             </p>
+
+            <!-- Quick CTA buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <a
+                href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-3"
+              >
+                <Icon name="whatsapp" class="text-white" size={24} />
+                WhatsApp: Respuesta en 2 min
+              </a>
+
+              <a
+                href="tel:+34933539792"
+                class="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-[#264e70] font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-3"
+              >
+                <Icon name="phone" class="text-current" size={24} />
+                Llamar: 933 53 97 92
+              </a>
+            </div>
+
+            <!-- Trust indicators -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto"
+            >
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <div class="text-2xl mb-2">⚡</div>
+                <div class="text-white font-semibold text-sm">
+                  Respuesta Inmediata
+                </div>
+                <div class="text-white/80 text-xs">En menos de 5 minutos</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <div class="text-2xl mb-2">🔒</div>
+                <div class="text-white font-semibold text-sm">
+                  Presupuesto Sin Compromiso
+                </div>
+                <div class="text-white/80 text-xs">
+                  100% gratuito y sin letra pequeña
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <div class="text-2xl mb-2">📞</div>
+                <div class="text-white font-semibold text-sm">
+                  Atención 24/7
+                </div>
+                <div class="text-white/80 text-xs">
+                  Siempre disponibles para ti
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Information -->
-    <section class="py-16">
-      <div class="container">
+    <section class="py-16 lg:py-20 relative overflow-hidden">
+      <!-- Background -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-[#f9b4ab]/5"
+      >
+      </div>
+
+      <!-- Decorative elements -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-[#679186] to-[#f9b4ab] rounded-full blur-3xl"
+        >
+        </div>
+        <div
+          class="absolute bottom-20 right-10 w-48 h-48 bg-gradient-to-br from-[#fdebd3] to-[#bbd4ce] rounded-full blur-3xl"
+        >
+        </div>
+      </div>
+
+      <div class="container relative z-10">
         <div class="row">
-          <div class="lg:col-6 mb-8 lg:mb-0">
-            <h2 class="text-2xl font-bold text-[#264e70] mb-6">
-              Información de Contacto
-            </h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Card: Telephone -->
+          <div class="lg:col-6 mb-12 lg:mb-0">
+            <!-- Header -->
+            <div class="mb-8">
               <div
-                class="flex items-start gap-4 bg-[#FBF3E8] rounded-lg p-4 shadow-sm border border-[#F3E8D8]"
+                class="inline-flex items-center gap-2 bg-gradient-to-r from-[#f9b4ab]/20 to-[#679186]/20 px-4 py-2 rounded-full mb-4"
               >
-                <div
-                  class="w-12 h-12 rounded-lg flex items-center justify-center text-[#264e70] bg-[#FBF3E8] text-xl"
+                <span class="w-2 h-2 bg-[#679186] rounded-full animate-pulse"
+                ></span>
+                <span
+                  class="text-[#679186] font-semibold text-sm uppercase tracking-wide"
+                  >Múltiples Formas de Contacto</span
                 >
-                  📞
-                </div>
-                <div>
-                  <h3 class="font-semibold text-[#153745]">Teléfono</h3>
-                  <p class="text-gray-600 text-sm">
-                    <a
-                      href="tel:+34933539792"
-                      class="hover:text-[#679186] transition-colors"
-                      >933 53 97 92</a
-                    >
-                  </p>
-                </div>
               </div>
 
-              <!-- Card: WhatsApp -->
-              <div
-                class="flex items-start gap-4 bg-[#FBF3E8] rounded-lg p-4 shadow-sm border border-[#F3E8D8]"
+              <h2
+                class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#264e70] to-[#679186] bg-clip-text text-transparent mb-4"
               >
-                <div
-                  class="w-12 h-12 rounded-lg flex items-center justify-center text-[#264e70] bg-[#FBF3E8] text-xl"
+                Información de Contacto
+              </h2>
+              <p class="text-gray-600 text-lg">
+                Elige la forma que más te convenga para contactarnos.
+                <strong class="text-[#679186]"
+                  >Respuesta garantizada en menos de 5 minutos.</strong
                 >
-                  💬
-                </div>
-                <div>
-                  <h3 class="font-semibold text-[#153745]">WhatsApp</h3>
-                  <p class="text-gray-600 text-sm">
-                    <a
-                      href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="hover:text-[#679186] transition-colors"
-                      >640 50 60 84</a
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <!-- Card: Email -->
-              <div
-                class="flex items-start gap-4 bg-[#FBF3E8] rounded-lg p-4 shadow-sm border border-[#F3E8D8]"
-              >
-                <div
-                  class="w-12 h-12 rounded-lg flex items-center justify-center text-[#264e70] bg-[#FBF3E8] text-xl"
-                >
-                  📧
-                </div>
-                <div>
-                  <h3 class="font-semibold text-[#153745]">Email</h3>
-                  <p class="text-gray-600 text-sm">
-                    <a
-                      href="mailto:info@mudanzasandy.com"
-                      class="hover:text-[#679186] transition-colors"
-                      >info@mudanzasandy.com</a
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <!-- Card: Ubicación / Horarios combined -->
-              <div
-                class="flex items-start gap-4 bg-[#FBF3E8] rounded-lg p-4 shadow-sm border border-[#F3E8D8] col-span-1 sm:col-span-2"
-              >
-                <div
-                  class="w-12 h-12 rounded-lg flex items-center justify-center text-[#264e70] bg-[#FBF3E8] text-xl"
-                >
-                  📍
-                </div>
-                <div>
-                  <h3 class="font-semibold text-[#153745]">
-                    Ubicación & Horarios
-                  </h3>
-                  <p class="text-gray-600 text-sm">
-                    Barcelona y toda España · Servicio 24/7
-                  </p>
-                  <p class="text-gray-500 text-xs mt-2">
-                    Atención telefónica inmediata — disponible todos los días
-                  </p>
-                </div>
-              </div>
+              </p>
             </div>
 
-            <!-- Quick CTA -->
-            <div class="mt-6 flex flex-col sm:flex-row gap-3">
-              <a
+            <!-- Contact Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+              <ContactCard
+                iconName="phone"
+                title="Teléfono Directo"
+                value="933 53 97 92"
+                description="Atención inmediata 24/7"
+                href="tel:+34933539792"
+                gradient="bg-gradient-to-br from-[#f9b4ab]/10 to-[#fdebd3]/20"
+                badge="📞 RÁPIDO"
+              />
+
+              <ContactCard
+                iconName="whatsapp"
+                title="WhatsApp"
+                value="640 50 60 84"
+                description="Presupuesto gratis en 5 min"
                 href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
                 target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-3 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-5 rounded-lg shadow transition-all"
-              >
-                <span class="text-xl">💬</span>
-                Contactar por WhatsApp
-              </a>
+                gradient="bg-gradient-to-br from-[#25D366]/10 to-[#128C7E]/5"
+                badge="⚡ POPULAR"
+              />
 
-              <a
-                href="tel:+34933539792"
-                class="inline-flex items-center gap-3 border-2 border-[#679186] text-[#264e70] hover:bg-[#679186] hover:text-white font-semibold py-3 px-5 rounded-lg transition-all"
-              >
-                <span class="text-xl">📞</span>
-                Llamar ahora
-              </a>
+              <ContactCard
+                iconName="archive"
+                title="Email"
+                value="info@mudanzasandy.com"
+                description="Consultas detalladas"
+                href="mailto:info@mudanzasandy.com"
+                gradient="bg-gradient-to-br from-[#679186]/10 to-[#bbd4ce]/20"
+              />
+
+              <ContactCard
+                iconName="globe"
+                title="Cobertura"
+                value="Barcelona y España"
+                description="Servicio nacional completo"
+                gradient="bg-gradient-to-br from-[#264e70]/10 to-[#679186]/15"
+                badge="🌍 NACIONAL"
+              />
+            </div>
+
+            <!-- Enhanced CTA Section -->
+            <div
+              class="bg-gradient-to-r from-[#f9b4ab]/10 to-[#679186]/10 backdrop-blur-sm border border-[#679186]/20 rounded-2xl p-6"
+            >
+              <h3 class="text-lg font-bold text-[#264e70] mb-3">
+                🎯 ¿Necesitas atención urgente?
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Nuestro equipo está disponible 24/7 para emergencias y mudanzas
+                urgentes.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://wa.me/34640506084?text=URGENTE: Necesito mudanza inmediata"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-6 py-3 rounded-lg font-semibold text-center hover:from-[#679186] hover:to-[#f9b4ab] transition-all duration-300 transform hover:scale-105"
+                >
+                  🚨 WhatsApp Urgente
+                </a>
+
+                <a
+                  href="tel:+34933539792"
+                  class="flex-1 bg-white border-2 border-[#679186] text-[#679186] px-6 py-3 rounded-lg font-semibold text-center hover:bg-[#679186] hover:text-white transition-all duration-300 transform hover:scale-105"
+                >
+                  📞 Llamar Ahora
+                </a>
+              </div>
             </div>
           </div>
 
           <div class="lg:col-6">
-            <h2 class="text-2xl font-bold text-[#264e70] mb-6">
-              Solicita tu Presupuesto
-            </h2>
-            <ContactForm variant="inline" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Quick Actions -->
-    <section class="bg-gradient-to-r from-[#679186] to-[#264e70] py-16">
-      <div class="container">
-        <div class="row justify-center text-center">
-          <div class="lg:col-8">
-            <h2 class="text-3xl font-bold text-white mb-4">¡Contacta Ahora!</h2>
-            <p class="text-white/90 text-lg mb-8">
-              Respuesta inmediata para tu mudanza
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+            <!-- Form Header -->
+            <div class="mb-6">
+              <h2
+                class="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#264e70] to-[#679186] bg-clip-text text-transparent mb-4"
               >
-                <span class="text-xl">💬</span>
-                WhatsApp GRATIS
-              </a>
+                Solicita tu Presupuesto GRATIS
+              </h2>
+              <p class="text-gray-600">
+                Completa el formulario y recibe tu presupuesto personalizado sin
+                compromiso.
+              </p>
+            </div>
 
-              <a
-                href="tel:+34933539792"
-                class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#264e70] font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
-              >
-                <span class="text-xl">📞</span>
-                Llamar: 933 53 97 92
-              </a>
+            <!-- Enhanced Contact Form -->
+            <div
+              class="bg-white rounded-2xl shadow-lg border border-slate-200/50 p-6 lg:p-8"
+            >
+              <ContactForm variant="inline" />
+
+              <!-- Form Footer -->
+              <div class="mt-6 pt-6 border-t border-gray-100">
+                <div class="flex items-center gap-3 text-sm text-gray-600">
+                  <Icon
+                    name="check"
+                    class="text-green-600 flex-shrink-0"
+                    size={16}
+                  />
+                  <span>Tus datos están 100% seguros y protegidos</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm text-gray-600 mt-2">
+                  <Icon
+                    name="check"
+                    class="text-green-600 flex-shrink-0"
+                    size={16}
+                  />
+                  <span>Respuesta garantizada en menos de 2 horas</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
-
-  <Footer />
+  <div>
+    <h3 class="font-semibold text-[#153745]">Email</h3>
+    <p class="text-gray-600 text-sm">
+      <a
+        href="mailto:info@mudanzasandy.com"
+        class="hover:text-[#679186] transition-colors">info@mudanzasandy.com</a
+      >
+    </p>
+  </div>
 </Layout>
+
+<!-- Card: Ubicación / Horarios combined -->
+<div
+  class="flex items-start gap-4 bg-[#FBF3E8] rounded-lg p-4 shadow-sm border border-[#F3E8D8] col-span-1 sm:col-span-2"
+>
+  <div
+    class="w-12 h-12 rounded-lg flex items-center justify-center text-[#264e70] bg-[#FBF3E8] text-xl"
+  >
+    📍
+  </div>
+  <div>
+    <h3 class="font-semibold text-[#153745]">Ubicación & Horarios</h3>
+    <p class="text-gray-600 text-sm">Barcelona y toda España · Servicio 24/7</p>
+    <p class="text-gray-500 text-xs mt-2">
+      Atención telefónica inmediata — disponible todos los días
+    </p>
+  </div>
+</div>
+
+<!-- Quick CTA -->
+<div class="mt-6 flex flex-col sm:flex-row gap-3">
+  <a
+    href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center gap-3 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-5 rounded-lg shadow transition-all"
+  >
+    <span class="text-xl">💬</span>
+    Contactar por WhatsApp
+  </a>
+
+  <a
+    href="tel:+34933539792"
+    class="inline-flex items-center gap-3 border-2 border-[#679186] text-[#264e70] hover:bg-[#679186] hover:text-white font-semibold py-3 px-5 rounded-lg transition-all"
+  >
+    <span class="text-xl">📞</span>
+    Llamar ahora
+  </a>
+</div>
+
+<div class="lg:col-6">
+  <h2 class="text-2xl font-bold text-[#264e70] mb-6">
+    Solicita tu Presupuesto
+  </h2>
+  <ContactForm variant="inline" />
+</div>
+
+<!-- Guarantees Section -->
+<section class="py-16 bg-gradient-to-r from-[#679186] to-[#264e70]">
+  <div class="container">
+    <div class="row justify-center text-center mb-12">
+      <div class="lg:col-8">
+        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+          ¿Por qué elegir Mudanzas ANDY?
+        </h2>
+        <p class="text-white/90 text-lg">
+          Nuestra garantía de servicio y compromiso con la excelencia
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="lg:col-3 col-6 mb-8">
+        <ValueCard
+          iconName="bolt"
+          title="Respuesta Inmediata"
+          description="Te respondemos en menos de 5 minutos, cualquier día del año"
+          gradient="bg-white/10 backdrop-blur-sm border border-white/20"
+        />
+      </div>
+
+      <div class="lg:col-3 col-6 mb-8">
+        <ValueCard
+          iconName="check"
+          title="Presupuesto Sin Sorpresas"
+          description="Precio final cerrado sin costes ocultos ni letra pequeña"
+          gradient="bg-white/10 backdrop-blur-sm border border-white/20"
+        />
+      </div>
+
+      <div class="lg:col-3 col-6 mb-8">
+        <ValueCard
+          iconName="archive"
+          title="Seguro Incluido"
+          description="Cobertura completa de responsabilidad civil hasta 30.000€"
+          gradient="bg-white/10 backdrop-blur-sm border border-white/20"
+        />
+      </div>
+
+      <div class="lg:col-3 col-6 mb-8">
+        <ValueCard
+          iconName="truck"
+          title="+14 Años Experiencia"
+          description="Miles de mudanzas exitosas y clientes satisfechos"
+          gradient="bg-white/10 backdrop-blur-sm border border-white/20"
+        />
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="row justify-center text-center mt-12">
+      <div class="lg:col-8">
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+          <h3 class="text-2xl font-bold text-white mb-4">
+            🎯 ¡No esperes más!
+          </h3>
+          <p class="text-white/90 mb-6">
+            Cada minuto cuenta cuando planificas tu mudanza. Contactanos ahora y
+            asegura tu fecha.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-3"
+            >
+              <Icon name="whatsapp" class="text-white" size={24} />
+              WhatsApp: ¡Respuesta en 2 min!
+            </a>
+
+            <a
+              href="tel:+34933539792"
+              class="bg-white text-[#264e70] hover:bg-gray-100 font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-3"
+            >
+              <Icon name="phone" class="text-[#264e70]" size={24} />
+              Llamar: 933 53 97 92
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Footer />
