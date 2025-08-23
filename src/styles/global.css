@@ -1,17 +1,341 @@
 @import "tailwindcss";
 
-/* Prevent margin-collapsing between a fixed header and the first section */
+/* Implementación: Bootstrap Grid System para Astro 5.13.3+ */
+/* Compatibilidad: Astro 5.13.3+ con Tailwind CSS 4 */
+/* Fuente: https://docs.astro.build/en/guides/styling/#css-modules | Recuperado: 2025-08-23 */
+/* Prioridad: Crítico - Grid system requerido */
+
+/* Container system */
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Grid system */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+
+.row > * {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+/* Column system */
+.col-1 {
+  flex: 0 0 auto;
+  width: 8.333333%;
+}
+.col-2 {
+  flex: 0 0 auto;
+  width: 16.666667%;
+}
+.col-3 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.col-4 {
+  flex: 0 0 auto;
+  width: 33.333333%;
+}
+.col-5 {
+  flex: 0 0 auto;
+  width: 41.666667%;
+}
+.col-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+.col-7 {
+  flex: 0 0 auto;
+  width: 58.333333%;
+}
+.col-8 {
+  flex: 0 0 auto;
+  width: 66.666667%;
+}
+.col-9 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+.col-10 {
+  flex: 0 0 auto;
+  width: 83.333333%;
+}
+.col-11 {
+  flex: 0 0 auto;
+  width: 91.666667%;
+}
+.col-12 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+/* Large screen columns */
+@media (min-width: 992px) {
+  .lg\\:col-1 {
+    flex: 0 0 auto;
+    width: 8.333333%;
+  }
+  .lg\\:col-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+  }
+  .lg\\:col-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+  .lg\\:col-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+  .lg\\:col-5 {
+    flex: 0 0 auto;
+    width: 41.666667%;
+  }
+  .lg\\:col-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .lg\\:col-7 {
+    flex: 0 0 auto;
+    width: 58.333333%;
+  }
+  .lg\\:col-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+  .lg\\:col-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+  .lg\\:col-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+  .lg\\:col-11 {
+    flex: 0 0 auto;
+    width: 91.666667%;
+  }
+  .lg\\:col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* Medium screen columns */
+@media (min-width: 768px) {
+  .md\\:col-1 {
+    flex: 0 0 auto;
+    width: 8.333333%;
+  }
+  .md\\:col-2 {
+    flex: 0 0 auto;
+    width: 16.666667%;
+  }
+  .md\\:col-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+  .md\\:col-4 {
+    flex: 0 0 auto;
+    width: 33.333333%;
+  }
+  .md\\:col-5 {
+    flex: 0 0 auto;
+    width: 41.666667%;
+  }
+  .md\\:col-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+  .md\\:col-7 {
+    flex: 0 0 auto;
+    width: 58.333333%;
+  }
+  .md\\:col-8 {
+    flex: 0 0 auto;
+    width: 66.666667%;
+  }
+  .md\\:col-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+  .md\\:col-10 {
+    flex: 0 0 auto;
+    width: 83.333333%;
+  }
+  .md\\:col-11 {
+    flex: 0 0 auto;
+    width: 91.666667%;
+  }
+  .md\\:col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* Utility classes */
+.justify-center {
+  justify-content: center;
+}
+.text-center {
+  text-align: center;
+}
+.items-center {
+  align-items: center;
+}
+
+/* View Transitions Styles - Astro 5.13.3+ */
+/* Compatibilidad: Astro 5.13.3+ (ViewTransitions estables) */
+/* Implementación: View Transitions optimizadas */
+/* Fuente: https://docs.astro.build/en/guides/view-transitions/ | Recuperado: 2025-08-23 */
+/* Prioridad: Crítico para SPA behavior */
 html {
-  scroll-padding-top: 5rem; /* helps anchor links land below the fixed header */
+  view-transition-name: root;
 }
 
-main > *:first-child {
-  margin-top: 0; /* ensure the first element inside main doesn't collapse under the fixed header */
+/* Implementación: Smooth page transitions con performance optimizada */
+@view-transition {
+  navigation: auto;
 }
 
-/* small utility in case some section still collapses */
-section.flow-root {
-  display: flow-root;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: fade-out, slide-out-left;
+}
+
+::view-transition-new(root) {
+  animation-name: fade-in, slide-in-right;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(20px);
+  }
+}
+
+/* Implementación: Persistent header/footer durante transitions */
+/* Fuente: Astro View Transitions API docs | Recuperado: 2025-08-23 */
+/* Prioridad: Recomendado para UX consistente */
+.header-persistent {
+  view-transition-name: header;
+}
+
+::view-transition-old(header),
+::view-transition-new(header) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.footer-persistent {
+  view-transition-name: footer;
+}
+
+::view-transition-old(footer),
+::view-transition-new(footer) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Implementación: Fixed header scroll behavior mejorado */
+/* Compatibilidad: Astro 5.13.3+ con View Transitions */
+/* Fuente: https://docs.astro.build/en/guides/view-transitions/#scroll-behavior | Recuperado: 2025-08-23 */
+/* Prioridad: Crítico para evitar header overlap */
+/* Use a CSS variable as the single source of truth for header height. JS updates this variable on load/resize. */
+:root {
+  --header-height: 6rem; /* fallback */
+}
+html {
+  /* Prefer the runtime-measured header height, fallback to 6rem */
+  scroll-padding-top: var(--header-height, 6rem);
+  scroll-behavior: smooth;
+}
+
+/* Reserve space for fixed header globally so navigations never hide content */
+body {
+  padding-top: var(--header-height, 6rem);
+}
+
+/* Implementación: Prevenir margin collapse con header fijo */
+main {
+  padding-top: 0; /* Removido para evitar doble spacing */
+}
+
+/* Ensure the first visible section sits below the header for normal flow (not just anchor scrolling) */
+main > section:first-child {
+  margin-top: 0;
+  padding-top: 0; /* removed header-height dependent padding; body padding handles it */
+}
+
+/* Ensure hero sections that need extra breathing room can opt-in to a small extra offset. */
+.hero-offset {
+  padding-top: 1rem !important; /* small extra breathing room beyond body padding */
+}
+
+@media (min-width: 992px) {
+  .hero-offset {
+    padding-top: 1.5rem !important;
+  }
 }
 
 /* Responsive typography improvements */
@@ -154,4 +478,17 @@ img[loading="lazy"] {
 .no-js img[data-src]::before {
   content: attr(data-src);
   display: none;
+}
+
+/* Ensure hero sections that need to sit below the fixed header can opt-in to a runtime-managed offset. */
+.hero-offset {
+  /* Use important to override utility classes like pt-24/lg:pt-28 if they conflict */
+  padding-top: calc(var(--header-height, 6rem) + 1rem) !important;
+}
+
+/* Desktop-specific tweak when header is taller on large screens */
+@media (min-width: 992px) {
+  .hero-offset {
+    padding-top: calc(var(--header-height, 6rem) + 1.5rem) !important;
+  }
 }

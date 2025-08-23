@@ -2,44 +2,205 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import ContactForm from "../components/ContactForm.astro";
-import SmartPopup from "../components/SmartPopup.astro";
-
-// Section components
 import HeroSection from "../components/sections/HeroSection.astro";
-import ServicesSection from "../components/sections/ServicesSection.astro";
-import TeamSection from "../components/sections/TeamSection.astro";
-import PricingSection from "../components/sections/PricingSection.astro";
-import TestimonialsSection from "../components/sections/TestimonialsSection.astro";
+
+const title = "Mudanzas profesionales en Barcelona y España | Mudanzas ANDY";
+const description =
+  "Mudanzas profesionales en Barcelona y toda España. Presupuesto GRATIS en 5 minutos por WhatsApp. Atención 24/7. ¡Tu mudanza, nuestra prioridad!";
 ---
 
-<Layout>
-  <!-- Header fijo -->
+<Layout title={title} description={description}>
   <Header />
 
-  <main class="pt-20">
+  <main>
     <!-- Hero Section -->
     <HeroSection />
 
-    <!-- Sección de Servicios -->
-    <ServicesSection />
+    <!-- Navigation Cards Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container">
+        <div class="row justify-center text-center mb-12">
+          <div class="lg:col-8">
+            <h2 class="text-3xl font-bold text-[#264e70] mb-4">
+              Descubre Nuestros Servicios
+            </h2>
+            <p class="text-gray-600 text-lg">
+              Explora todo lo que ofrecemos para hacer de tu mudanza una
+              experiencia perfecta
+            </p>
+          </div>
+        </div>
 
-    <!-- Sección de Galería de Nuestro Equipo -->
-    <TeamSection />
+        <div class="row">
+          <!-- Services Card -->
+          <div class="lg:col-4 col-6 mb-8">
+            <a
+              href="/servicios"
+              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+            >
+              <div class="text-center">
+                <div
+                  class="w-16 h-16 bg-[#679186] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#264e70] transition-colors"
+                >
+                  <span class="text-2xl">📦</span>
+                </div>
+                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
+                  Servicios
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Mudanzas locales, nacionales, internacionales y más
+                </p>
+              </div>
+            </a>
+          </div>
 
-    <!-- Sección de Precios -->
-    <PricingSection />
+          <!-- Team Card -->
+          <div class="lg:col-4 col-6 mb-8">
+            <a
+              href="/equipo"
+              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+            >
+              <div class="text-center">
+                <div
+                  class="w-16 h-16 bg-[#679186] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#264e70] transition-colors"
+                >
+                  <span class="text-2xl">🚛</span>
+                </div>
+                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
+                  Nuestro Equipo
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Profesionales experimentados y comprometidos
+                </p>
+              </div>
+            </a>
+          </div>
 
-    <!-- Sección de Testimonios -->
-    <TestimonialsSection />
+          <!-- Pricing Card -->
+          <div class="lg:col-4 col-6 mb-8">
+            <a
+              href="/precios"
+              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+            >
+              <div class="text-center">
+                <div
+                  class="w-16 h-16 bg-[#679186] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#264e70] transition-colors"
+                >
+                  <span class="text-2xl">💰</span>
+                </div>
+                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
+                  Precios
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Tarifas transparentes y presupuesto gratuito
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Testimonials Card -->
+          <div class="lg:col-4 col-6 mb-8">
+            <a
+              href="/testimonios"
+              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+            >
+              <div class="text-center">
+                <div
+                  class="w-16 h-16 bg-[#679186] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#264e70] transition-colors"
+                >
+                  <span class="text-2xl">⭐</span>
+                </div>
+                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
+                  Testimonios
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Experiencias reales de clientes satisfechos
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Contact Card -->
+          <div class="lg:col-4 col-6 mb-8">
+            <a
+              href="/contacto"
+              class="block bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group"
+            >
+              <div class="text-center">
+                <div
+                  class="w-16 h-16 bg-[#679186] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#264e70] transition-colors"
+                >
+                  <span class="text-2xl">📞</span>
+                </div>
+                <h3 class="text-xl font-semibold text-[#264e70] mb-3">
+                  Contacto
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Hablemos de tu mudanza. Atención 24/7
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Emergency Card -->
+          <div class="lg:col-4 col-6 mb-8">
+            <a
+              href="https://wa.me/34123456789"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group text-white"
+            >
+              <div class="text-center">
+                <div
+                  class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors"
+                >
+                  <span class="text-2xl">💬</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-3">WhatsApp Directo</h3>
+                <p class="text-white/90 text-sm">
+                  Presupuesto gratuito en 5 minutos
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Stats Section -->
+    <section
+      class="py-16 bg-gradient-to-r from-[#679186] to-[#264e70] text-white"
+    >
+      <div class="container">
+        <div class="row text-center">
+          <div class="lg:col-3 col-6 mb-8">
+            <div class="text-center">
+              <div class="text-4xl font-bold mb-2">500+</div>
+              <div class="text-white/80">Mudanzas Realizadas</div>
+            </div>
+          </div>
+          <div class="lg:col-3 col-6 mb-8">
+            <div class="text-center">
+              <div class="text-4xl font-bold mb-2">10+</div>
+              <div class="text-white/80">Años de Experiencia</div>
+            </div>
+          </div>
+          <div class="lg:col-3 col-6 mb-8">
+            <div class="text-center">
+              <div class="text-4xl font-bold mb-2">24/7</div>
+              <div class="text-white/80">Atención al Cliente</div>
+            </div>
+          </div>
+          <div class="lg:col-3 col-6 mb-8">
+            <div class="text-center">
+              <div class="text-4xl font-bold mb-2">98%</div>
+              <div class="text-white/80">Clientes Satisfechos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
   <Footer />
-
-  <!-- Formulario de contacto sticky -->
-  <ContactForm />
-
-  <!-- Pop-up inteligente -->
-  <SmartPopup />
 </Layout>

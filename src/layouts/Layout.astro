@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -21,6 +22,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- View Transitions -->
+    <ViewTransitions />
 
     <!-- SEO Meta Tags -->
     <title>{title}</title>
