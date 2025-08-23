@@ -16,14 +16,14 @@ const renderStars = (rating: number) => {
 ---
 
 <div
-  class="bg-white/95 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-white/20"
+  class="bg-white/98 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-[#264e70]/10"
 >
   <div class="text-2xl mb-3">{renderStars(rating)}</div>
-  <p class="text-white/90 mb-4 text-sm lg:text-base italic">
+  <p class="text-[#264e70] mb-4 text-sm lg:text-base italic">
     "{text}"
   </p>
-  <div class="text-[#bbd4ce]">
-    <p class="font-semibold text-sm lg:text-base">{name}</p>
-    <p class="text-xs lg:text-sm opacity-80">{location}</p>
+  <div class="text-[#679186]">
+    <p class="font-semibold text-sm lg:text-base text-[#264e70]">{name}</p>
+    <p class="text-xs lg:text-sm text-[#679186] opacity-90">{location}</p>
   </div>
 </div>
