@@ -26,6 +26,14 @@
   - Ajustar contraste y legibilidad
   - Verificar responsive design
 
+## 🚨 **Tareas Críticas - Prioridad Media**
+
+### **TASK Animación: Implementar la animación del logo**
+
+- El logo de mudanzas que aparece en el header se anima de manera que: El logo sale de la izquierda moviéndose como un coche hacia su posición original.
+
+---
+
 ### **TASK-002: Implementar View Transitions para SPA-like behavior**
 
 - **Estado**: 🟡 PLANIFICADO

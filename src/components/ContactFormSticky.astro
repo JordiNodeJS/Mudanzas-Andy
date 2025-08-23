@@ -1,0 +1,62 @@
+---
+
+---
+
+<div
+  class="fixed bottom-0 left-0 right-0 bg-[#679186] text-white shadow-lg z-30 transform transition-transform duration-300"
+  id="contactForm"
+>
+  <div class="container mx-auto px-4 py-3 lg:py-4">
+    <div
+      class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6"
+    >
+      <div class="text-center lg:text-left flex-shrink-0">
+        <p class="font-bold text-[#FAE360] text-sm lg:text-base">
+          ¡Presupuesto GRATIS en 10 minutos!
+        </p>
+        <p class="text-xs text-[#bbd4ce]">
+          Te contactaremos por WhatsApp inmediatamente
+        </p>
+      </div>
+
+      <form
+        class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl"
+        id="budgetForm"
+      >
+        <div
+          class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 flex-1 min-w-0"
+        >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="tu@email.com"
+            required
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+          />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="640 50 60 84"
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-2 px-4 lg:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0"
+        >
+          <span>✅</span>
+          <span class="hidden sm:inline">¡Recibe presupuesto en 10 min!</span>
+          <span class="sm:hidden">¡Presupuesto!</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <button
+    class="absolute top-0 right-4 transform -translate-y-full bg-[#679186] text-white px-3 py-1 rounded-t-lg text-sm hover:bg-[#5a7a6f] transition-colors duration-300"
+    id="toggleForm">↓</button
+  >
+</div>
