@@ -1,5 +1,4 @@
 ---
-import LazyImage from "../LazyImage.astro";
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 import PhoneButton from "../ui/PhoneButton.astro";
 ---
@@ -44,11 +43,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
       <div
         class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300"
       >
-        <LazyImage
+        <img
           src="/camion/camion-frontal.jpg"
           alt="Camión de mudanzas profesional - Vista frontal"
           class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
+          width="400"
+          height="224"
         />
         <div class="p-4 lg:p-6">
           <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
@@ -64,11 +65,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
       <div
         class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300"
       >
-        <LazyImage
+        <img
           src="/camion/cargando-flete.jpg"
           alt="Equipo profesional cargando mudanza con cuidado"
           class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
+          width="400"
+          height="224"
         />
         <div class="p-4 lg:p-6">
           <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
@@ -84,11 +87,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
       <div
         class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300"
       >
-        <LazyImage
+        <img
           src="/camion/interior-caja.jpg"
           alt="Interior del camión - Espacio seguro y organizado"
           class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
+          width="400"
+          height="224"
         />
         <div class="p-4 lg:p-6">
           <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
@@ -112,6 +117,8 @@ import PhoneButton from "../ui/PhoneButton.astro";
           alt="Collage promocional de nuestros servicios"
           class="w-full h-full object-cover opacity-20"
           loading="lazy"
+          width="800"
+          height="400"
         />
         <div
           class="absolute inset-0 bg-gradient-to-r from-[#679186]/80 to-[#264e70]/80"
