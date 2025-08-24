@@ -62,7 +62,8 @@
         if (currentTransform === "translateY(0%)" || currentTransform === "") {
           // Banner visible -> ocultarlo
           form.style.transform = "translateY(100%)";
-          toggle.textContent = "!";
+          // show up-arrow to indicate it can be opened again
+          toggle.textContent = "↑";
           toggle.title = "Mostrar formulario de presupuesto gratis";
         } else {
           // Banner oculto -> mostrarlo

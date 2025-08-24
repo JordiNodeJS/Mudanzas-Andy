@@ -748,8 +748,15 @@
     user-select: none;
   }
 
+  /* Avoid moving the button on hover — only apply a subtle scale and color change */
+  #toggleForm {
+    /* ensure we have a transform layer so scale doesn't affect layout */
+    transform: translateY(0) scale(1);
+    transition: transform 160ms ease, background-color 160ms ease;
+  }
+
   #toggleForm:hover {
-    transform: translateY(100%) scale(1.1);
+    transform: translateY(0) scale(1.06);
   }
 
   /* Animaciones suaves para el colapso */
