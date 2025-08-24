@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./theme.css";
 @import "./components.css";
 
 /* Prevent margin-collapsing between a fixed header and the first section */

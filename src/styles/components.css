@@ -20,7 +20,16 @@
 
   /* Primary brand button (yellow + text color) */
   .btn-primary {
-    @apply bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold rounded-full shadow-md px-4 py-2 transition-colors duration-300;
+    background-color: rgb(var(--color-highlight));
+    color: rgb(var(--color-primary));
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: background-color 200ms ease, transform 200ms ease;
+  }
+  .btn-primary:hover {
+    background-color: rgba(var(--color-highlight), 0.92);
   }
 
   /* Bordered card helper (keeps border utilities centralized) */

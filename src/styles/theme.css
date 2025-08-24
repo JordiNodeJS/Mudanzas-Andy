@@ -1,0 +1,36 @@
+:root {
+  /* Mudanzas ANDY palette (RGB triples) */
+  --color-primary: 38 78 112; /* #264e70 */
+  --color-secondary: 103 145 134; /* #679186 */
+  --color-accent: 249 180 171; /* #f9b4ab */
+  --color-highlight: 250 227 96; /* #fae360 */
+  --color-neutral: 187 212 206; /* #bbd4ce */
+}
+
+/* Text utilities */
+.text-brand { color: rgb(var(--color-primary)); }
+.text-secondary { color: rgb(var(--color-secondary)); }
+.text-accent { color: rgb(var(--color-accent)); }
+.text-highlight { color: rgb(var(--color-highlight)); }
+.text-neutral { color: rgb(var(--color-neutral)); }
+
+/* Background utilities */
+.bg-brand { background-color: rgb(var(--color-primary)); }
+.bg-secondary { background-color: rgb(var(--color-secondary)); }
+.bg-accent { background-color: rgb(var(--color-accent)); }
+.bg-highlight { background-color: rgb(var(--color-highlight)); }
+.bg-neutral { background-color: rgb(var(--color-neutral)); }
+
+/* Border helpers with common opacities used in the project */
+.border-brand-10 { border-color: rgba(var(--color-primary), 0.1); }
+.border-accent-30 { border-color: rgba(var(--color-accent), 0.3); }
+.border-secondary-20 { border-color: rgba(var(--color-secondary), 0.2); }
+.border-neutral-40 { border-color: rgba(var(--color-neutral), 0.4); }
+
+/* Focus helpers */
+.focus-border-highlight:focus { border-color: rgb(var(--color-highlight)); }
+
+/* Small helpers for gradients that reuse variables */
+.from-accent { --tw-gradient-from: rgb(var(--color-accent)); }
+.via-neutral { --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--color-neutral)), var(--tw-gradient-to); }
+.to-neutral { --tw-gradient-to: rgb(var(--color-neutral)); }

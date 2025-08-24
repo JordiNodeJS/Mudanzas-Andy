@@ -45,16 +45,18 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
   
   <!-- Overlay de carga -->
   <div 
-    class="absolute inset-0 bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 flex items-center justify-center transition-opacity duration-300"
+  class="absolute inset-0 bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 flex items-center justify-center transition-opacity duration-300"
     data-loading-overlay
   >
-    <div class="w-8 h-8 border-4 border-[#679186]/30 border-t-[#679186] rounded-full animate-spin"></div>
+  <div class="w-8 h-8 border-4 border-secondary/30 border-t-secondary rounded-full animate-spin"></div>
   </div>
 </div>
 
 <script>
   // Intersection Observer para lazy loading mejorado
   class LazyImageLoader {
+    observer: IntersectionObserver | null;
+
     constructor() {
       this.observer = null;
       this.init();
@@ -78,14 +80,14 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     observeImages() {
-      const lazyImages = document.querySelectorAll('[data-lazy-image]');
-      lazyImages.forEach(img => {
+      const lazyImages = document.querySelectorAll('[data-lazy-image]') as NodeListOf<HTMLImageElement>;
+      lazyImages.forEach((img) => {
         this.observer?.observe(img);
       });
     }
 
-    handleIntersection(entries) {
-      entries.forEach(entry => {
+    handleIntersection(entries: IntersectionObserverEntry[]) {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.loadImage(entry.target as HTMLImageElement);
           this.observer?.unobserve(entry.target);
