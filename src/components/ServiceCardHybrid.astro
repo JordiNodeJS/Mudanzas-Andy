@@ -1,0 +1,78 @@
+---
+import { cn } from "../lib/utils.js";
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  features: string[];
+  gradient?: "primary" | "secondary" | "accent" | "neutral" | "custom";
+  gradientClass?: string;
+  class?: string;
+}
+
+const {
+  icon,
+  title,
+  description,
+  features,
+  gradient = "primary",
+  gradientClass,
+  class: className,
+} = Astro.props;
+
+// Mapeo de gradientes shadcn/ui
+const gradientMap = {
+  primary: "bg-gradient-to-br from-blue-50 to-slate-100",
+  secondary: "bg-gradient-to-br from-green-50 to-teal-100",
+  accent: "bg-gradient-to-br from-orange-50 to-red-100",
+  neutral: "bg-gradient-to-br from-gray-50 to-slate-100",
+  custom: gradientClass || "",
+};
+
+// Para compatibilidad con gradientes legacy
+const finalGradient =
+  gradientClass && gradient === "custom"
+    ? gradientClass
+    : gradientMap[gradient];
+---
+
+<!-- Card Container -->
+<div
+  class={cn(
+    // Base card styles (shadcn/ui Card equivalent)
+    "rounded-lg border bg-card text-card-foreground shadow-sm",
+    // Service card specific styles
+    "transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-opacity-30 p-4 lg:p-6",
+    // Gradient
+    finalGradient,
+    className
+  )}
+>
+  <!-- Card Header equivalent -->
+  <div class="pb-3">
+    <div class="text-3xl lg:text-4xl mb-3 lg:mb-4">{icon}</div>
+    <h3 class="text-lg lg:text-xl font-bold text-[#264e70] mb-2 lg:mb-3">
+      {title}
+    </h3>
+    <p class="text-[#679186] mb-3 lg:mb-4 text-sm lg:text-base">
+      {description}
+    </p>
+  </div>
+
+  <!-- Card Content equivalent -->
+  <div class="pt-0">
+    <div class="text-xs lg:text-sm text-[#264e70] font-semibold">
+      <ul class="space-y-1">
+        {
+          features.map((feature) => (
+            <li class="flex items-center gap-2">
+              <span class="text-green-600 flex-shrink-0">✓</span>
+              <span class="break-words hyphens-auto">{feature}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</div>

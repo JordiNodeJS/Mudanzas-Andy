@@ -1,0 +1,46 @@
+---
+import { cn } from "../lib/utils.js";
+
+interface Props {
+  name: string;
+  location: string;
+  text: string;
+  rating: number;
+  class?: string;
+}
+
+const { name, location, text, rating, class: className } = Astro.props;
+
+const renderStars = (rating: number): string => {
+  return Array.from({ length: 5 }, (_, i) => (i < rating ? "⭐" : "☆")).join(
+    ""
+  );
+};
+---
+
+<!-- Card Container usando clases shadcn/ui -->
+<div
+  class={cn(
+    // Base card styles (shadcn/ui Card equivalent)
+    "rounded-lg border bg-card text-card-foreground shadow-sm",
+    // Testimonial specific styles
+    "bg-white/98 backdrop-blur-sm border-[#264e70]/10 p-6",
+    className
+  )}
+>
+  <!-- Card Header equivalent -->
+  <div class="pb-3">
+    <div class="text-2xl mb-3">{renderStars(rating)}</div>
+  </div>
+
+  <!-- Card Content equivalent -->
+  <div class="pt-0 space-y-4">
+    <blockquote class="text-[#264e70] text-sm lg:text-base italic">
+      "{text}"
+    </blockquote>
+    <div class="text-[#679186]">
+      <p class="font-semibold text-sm lg:text-base text-[#264e70]">{name}</p>
+      <p class="text-xs lg:text-sm text-[#679186] opacity-90">{location}</p>
+    </div>
+  </div>
+</div>

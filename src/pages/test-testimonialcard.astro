@@ -1,0 +1,111 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TestimonialCardHybrid from "../components/TestimonialCardHybrid.astro";
+import { TestimonialCardShadcn } from "../components/TestimonialCardShadcn";
+
+const testTestimonials = [
+  {
+    name: "María González",
+    location: "Barcelona, Eixample",
+    text: "Excelente servicio. El equipo fue muy profesional y cuidadoso con nuestros muebles. Recomendado 100%.",
+    rating: 5,
+  },
+  {
+    name: "Carlos Martín",
+    location: "Madrid, Chamberí",
+    text: "Mudanza rápida y eficiente. Muy puntuales y el precio fue muy competitivo.",
+    rating: 4,
+  },
+  {
+    name: "Ana Rodríguez",
+    location: "Valencia, Ciutat Vella",
+    text: "Increíble atención al cliente. Resolvieron todas nuestras dudas y el servicio fue impecable.",
+    rating: 5,
+  },
+  {
+    name: "David López",
+    location: "Sevilla, Triana",
+    text: "Buen servicio en general, aunque hubo algún retraso. El equipo trabajó bien.",
+    rating: 3,
+  },
+];
+---
+
+<Layout>
+  <main class="container mx-auto py-20 px-4">
+    <h1 class="text-3xl font-bold text-center mb-12 text-[#264e70]">
+      Test TestimonialCard Migration
+    </h1>
+
+    <div class="max-w-6xl mx-auto space-y-12">
+      <!-- Comparación Original vs Híbrido -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Versión Original -->
+        <div>
+          <h2 class="text-xl font-semibold mb-4 text-[#264e70]">
+            Original TestimonialCard (Legacy)
+          </h2>
+          <div
+            class="bg-white/98 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-[#264e70]/10"
+          >
+            <div class="text-2xl mb-3">⭐⭐⭐⭐⭐</div>
+            <p class="text-[#264e70] mb-4 text-sm lg:text-base italic">
+              "Excelente servicio. El equipo fue muy profesional y cuidadoso con
+              nuestros muebles. Recomendado 100%."
+            </p>
+            <div class="text-[#679186]">
+              <p class="font-semibold text-sm lg:text-base text-[#264e70]">
+                María González
+              </p>
+              <p class="text-xs lg:text-sm text-[#679186] opacity-90">
+                Barcelona, Eixample
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Versión Híbrida -->
+        <div>
+          <h2 class="text-xl font-semibold mb-4 text-[#264e70]">
+            TestimonialCard Hybrid (shadcn/ui)
+          </h2>
+          <TestimonialCardHybrid {...testTestimonials[0]} />
+        </div>
+      </div>
+
+      <!-- Grid de Testimoniales React -->
+      <div>
+        <h2 class="text-xl font-semibold mb-6 text-[#264e70] text-center">
+          TestimonialCard React (shadcn/ui) - Diferentes Ratings
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {
+            testTestimonials.map((testimonial, index) => (
+              <TestimonialCardShadcn {...testimonial} client:load />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Grid de Testimoniales Híbridos -->
+      <div>
+        <h2 class="text-xl font-semibold mb-6 text-[#264e70] text-center">
+          TestimonialCard Hybrid - Grid Layout
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {
+            testTestimonials.map((testimonial, index) => (
+              <TestimonialCardHybrid {...testimonial} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/" class="text-[#264e70] underline"
+        >← Volver a la página principal</a
+      >
+    </div>
+  </main>
+</Layout>
