@@ -23,8 +23,16 @@ const {
   badge,
 } = Astro.props;
 
-// Definir el contenido del card como variables que luego reutilizaré
-const cardClass = `${gradient} p-5 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-slate-200/50 hover:border-secondary/30 relative overflow-hidden group contact-card-enhanced`;
+// [THEMING] Mapeo de gradientes usando variables CSS como fuente de verdad
+const gradientClassMap: Record<string, string> = {
+  phone: "contact-card-gradient-phone",
+  whatsapp: "contact-card-gradient-whatsapp",
+  archive: "contact-card-gradient-email",
+  globe: "contact-card-gradient-coverage",
+};
+
+// [RESPONSIVE] Mobile-first card design con breakpoints optimizados
+const cardClass = `${gradientClassMap[iconName] || gradient} p-6 lg:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02] border border-slate-200/30 hover:border-secondary/40 relative overflow-hidden group contact-card-modern backdrop-blur-sm`;
 ---
 
 {
@@ -36,58 +44,59 @@ const cardClass = `${gradient} p-5 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl 
       class="block h-full"
     >
       <div class={cardClass}>
-        {/* Badge - Mejorado */}
+        {/* Badge - Diseño moderno mejorado con colores del tema */}
         {badge && (
-          <div class="absolute top-6 right-6 z-20 pointer-events-none bg-gradient-to-r from-accent to-secondary text-white px-3 py-2 rounded-full text-xs font-bold shadow-lg lg:hidden">
+          <div class="absolute top-4 right-4 z-20 pointer-events-none badge-gradient-primary text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg transform rotate-3 group-hover:rotate-0 transition-transform duration-300">
             {badge}
           </div>
         )}
 
-        {/* Background decoration - Más sutil pero visible */}
-        <div class="absolute inset-0 opacity-8 group-hover:opacity-15 transition-opacity">
-          <div class="absolute bottom-0 right-0 w-24 h-24 transform translate-x-8 translate-y-8">
-            <Icon name={iconName} class="w-full h-full text-secondary/30" />
+        {/* Background decoration - Efecto glassmorphism moderno */}
+        <div class="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 transform group-hover:rotate-12 transition-transform duration-700">
+            <Icon name={iconName} class="w-full h-full text-secondary/40" />
           </div>
+          <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/20 to-transparent" />
         </div>
 
         <div class="relative z-10">
-          {/* Icon and Title - Mejorado */}
-          <div class="flex items-start gap-4 mb-4">
-            <div class="w-14 h-14 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+          {/* Icon and Title - Diseño moderno mejorado con colores del tema */}
+          <div class="flex items-start gap-5 mb-6">
+            <div class="w-16 h-16 icon-bg-theme rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-lg">
               <Icon
                 name={iconName}
-                class="text-secondary group-hover:text-primary transition-colors"
-                size={24}
+                class="text-secondary group-hover:text-primary transition-colors duration-300"
+                size={28}
               />
             </div>
 
             <div class="flex-1 min-w-0">
-              <h3 class="text-lg lg:text-base font-bold text-primary mb-1 leading-tight group-hover:text-secondary transition-colors">
+              <h3 class="text-xl lg:text-lg font-bold text-primary mb-2 leading-tight group-hover:text-secondary transition-colors duration-300">
                 {title}
               </h3>
               <div class="min-w-0">
-                <p class="text-secondary font-bold text-base whitespace-nowrap truncate">
+                <p class="text-secondary font-bold text-lg lg:text-base whitespace-nowrap truncate group-hover:text-primary transition-colors">
                   {value}
                 </p>
               </div>
               {description && (
-                <p class="text-gray-600 text-sm mt-2 leading-relaxed">
+                <p class="text-gray-600 text-sm mt-3 leading-relaxed group-hover:text-gray-700 transition-colors">
                   {description}
                 </p>
               )}
             </div>
           </div>
 
-          {/* Hover indicator - Más compacto y contextual */}
-          <div class="flex justify-end opacity-0 group-hover:opacity-100 transition-opacity mt-2">
-            <div class="w-7 h-7 bg-secondary/10 rounded-full flex items-center justify-center group-hover:bg-secondary transition-colors shadow-md">
+          {/* Hover indicator - Diseño moderno con colores del tema */}
+          <div class="flex justify-end items-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div class="w-8 h-8 badge-gradient-primary rounded-full flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="2.5"
                 stroke="currentColor"
-                class="w-3.5 h-3.5 text-secondary group-hover:text-white transition-colors"
+                class="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1"
               >
                 <path
                   stroke-linecap="round"

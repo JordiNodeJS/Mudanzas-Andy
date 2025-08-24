@@ -56,8 +56,7 @@ const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Contacto" }];
             <div
               class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6"
             >
-              <span class="w-2 h-2 bg-accent rounded-full animate-pulse"
-              ></span>
+              <span class="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
               <span
                 class="text-white font-semibold text-sm uppercase tracking-wide"
                 >Contacto Inmediato</span
@@ -185,21 +184,21 @@ const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Contacto" }];
               </p>
             </div>
 
-            <!-- Contact Cards Grid - Mejorado para desktop -->
-            <!-- Añadimos utilidades grid para garantizar columnas responsive -->
+            <!-- Contact Cards Grid - Mobile-first responsive design con colores del tema -->
             <div
-              class="contact-grid-desktop grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10"
+              class="contact-grid-modern grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-4 gap-6 lg:gap-8 mb-12"
             >
+              <!-- Teléfono Card - Usando gradiente del tema -->
               <ContactCard
                 iconName="phone"
                 title="Teléfono Directo"
                 value="933 53 97 92"
                 description="Atención inmediata 24/7"
                 href="tel:+34933539792"
-                gradient="bg-gradient-to-br from-[#fdebd3] via-[#f9e7d3] to-[#fdf2e8]"
                 badge="📞 INMEDIATO"
               />
 
+              <!-- WhatsApp Card - Usando gradiente del tema -->
               <ContactCard
                 iconName="whatsapp"
                 title="WhatsApp"
@@ -207,62 +206,93 @@ const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Contacto" }];
                 description="Presupuesto gratis en 5 min"
                 href="https://wa.me/34640506084?text=Hola! Quiero solicitar una mudanza"
                 target="_blank"
-                gradient="bg-gradient-to-br from-neutral via-[#c8ddd6] to-[#d4e5de]"
                 badge="⚡ PREFERIDO"
               />
 
+              <!-- Email Card - Usando gradiente del tema -->
               <ContactCard
                 iconName="archive"
                 title="Email"
                 value="info@mudanzasandy.com"
                 description="Consultas detalladas"
                 href="mailto:info@mudanzasandy.com"
-                gradient="bg-gradient-to-br from-accent via-[#fcc6bd] to-[#fdd7d0]"
                 badge="📧 COMPLETO"
               />
 
+              <!-- Cobertura Card - Usando gradiente del tema -->
               <ContactCard
                 iconName="globe"
                 title="Cobertura"
                 value="Barcelona y España"
                 description="Servicio nacional completo"
-                gradient="bg-gradient-to-br from-neutral via-[#c8ddd6] to-[#d4e5de]"
                 badge="🌍 NACIONAL"
               />
             </div>
 
-            <!-- Enhanced CTA Section -->
+            <!-- Enhanced CTA Section - Usando gradiente del tema -->
             <div
-              class="bg-gradient-to-r from-accent/20 to-secondary/20 backdrop-blur-sm border-2 border-secondary/30 rounded-2xl p-8 lg:p-10 shadow-lg"
+              class="contact-cta-gradient backdrop-blur-xl border border-secondary/20 rounded-3xl p-8 lg:p-12 shadow-2xl relative overflow-hidden"
             >
-              <div class="text-center mb-6">
-                <h3
-                  class="text-xl lg:text-2xl font-bold text-primary mb-4 flex items-center justify-center gap-3"
+              <!-- Decorative background elements -->
+              <div class="absolute inset-0 opacity-5">
+                <div
+                  class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-secondary to-accent rounded-full blur-xl"
                 >
-                  <span class="text-3xl">🚨</span>
+                </div>
+                <div
+                  class="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-primary to-highlight rounded-full blur-xl"
+                >
+                </div>
+              </div>
+
+              <div class="relative z-10 text-center mb-8">
+                <h3
+                  class="text-2xl lg:text-3xl font-bold text-primary mb-4 flex items-center justify-center gap-3"
+                >
+                  <span class="text-4xl animate-pulse">🚨</span>
                   ¿Necesitas atención urgente?
                 </h3>
-                <p class="text-gray-700 text-lg">
+                <p
+                  class="text-gray-700 text-lg lg:text-xl leading-relaxed max-w-lg mx-auto"
+                >
                   Nuestro equipo está disponible 24/7 para emergencias y
                   mudanzas urgentes.
                 </p>
               </div>
 
-              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <div
+                class="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              >
                 <a
                   href="https://wa.me/34640506084?text=URGENTE: Necesito mudanza inmediata"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="cta-urgent flex-1 max-w-xs mx-auto sm:mx-0 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-8 py-4 rounded-xl font-bold text-center hover:from-[#128C7E] hover:to-[#25D366] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
+                  class="cta-urgent-modern flex-1 max-w-xs bg-gradient-to-r from-[#25D366] via-[#1db95a] to-[#128C7E] text-white px-8 py-5 rounded-2xl font-bold text-center text-lg hover:from-[#128C7E] hover:via-[#1db95a] hover:to-[#25D366] transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 shadow-2xl hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 relative overflow-hidden group"
                 >
-                  � WhatsApp Urgente
+                  <span
+                    class="relative z-10 flex items-center justify-center gap-2"
+                  >
+                    💬 WhatsApp Urgente
+                  </span>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                  >
+                  </div>
                 </a>
 
                 <a
                   href="tel:+34933539792"
-                  class="cta-urgent flex-1 max-w-xs mx-auto sm:mx-0 bg-white border-3 border-secondary text-secondary px-8 py-4 rounded-xl font-bold text-center hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-secondary/30"
+                  class="cta-urgent-modern flex-1 max-w-xs bg-white border-2 border-secondary text-secondary px-8 py-5 rounded-2xl font-bold text-center text-lg hover:bg-secondary hover:text-white hover:border-secondary transition-all duration-500 transform hover:scale-105 hover:-translate-y-1 shadow-2xl hover:shadow-3xl focus:outline-none focus:ring-4 focus:ring-secondary/40 relative overflow-hidden group"
                 >
-                  📞 Llamar Ahora
+                  <span
+                    class="relative z-10 flex items-center justify-center gap-2"
+                  >
+                    📞 Llamar Ahora
+                  </span>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-r from-secondary/0 via-secondary/5 to-secondary/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                  >
+                  </div>
                 </a>
               </div>
             </div>
@@ -391,8 +421,7 @@ const breadcrumbItems = [{ label: "Inicio", href: "/" }, { label: "Contacto" }];
             <div
               class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-8"
             >
-              <span class="w-3 h-3 bg-accent rounded-full animate-pulse"
-              ></span>
+              <span class="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
               <span class="text-white font-bold text-sm uppercase tracking-wide"
                 >Garantía de Excelencia</span
               >

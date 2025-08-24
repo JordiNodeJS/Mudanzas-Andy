@@ -9,6 +9,81 @@
  */
 
 @layer components {
+  /* ===== GRADIENTES DE CONTACTO CON VARIABLES CSS ===== */
+  /* [THEMING] Gradientes usando variables CSS como fuente de verdad */
+  /* [ACCESIBILIDAD] Contraste optimizado para legibilidad */
+
+  .contact-card-gradient-phone {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-highlight), 0.2),
+      rgba(var(--color-highlight), 0.1),
+      rgba(255, 255, 255, 1)
+    );
+  }
+
+  .contact-card-gradient-whatsapp {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-secondary), 0.15),
+      rgba(var(--color-neutral), 0.2),
+      rgba(255, 255, 255, 1)
+    );
+  }
+
+  .contact-card-gradient-email {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-accent), 0.2),
+      rgba(var(--color-accent), 0.1),
+      rgba(255, 255, 255, 1)
+    );
+  }
+
+  .contact-card-gradient-coverage {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-primary), 0.1),
+      rgba(var(--color-neutral), 0.15),
+      rgba(255, 255, 255, 1)
+    );
+  }
+
+  .contact-cta-gradient {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-accent), 0.15),
+      rgba(var(--color-secondary), 0.1),
+      rgba(var(--color-neutral), 0.15)
+    );
+  }
+
+  /* ===== BADGE GRADIENTES ===== */
+  .badge-gradient-primary {
+    background: linear-gradient(
+      to right,
+      rgba(var(--color-secondary), 1),
+      rgba(var(--color-accent), 1)
+    );
+  }
+
+  /* ===== ICON BACKGROUNDS ===== */
+  .icon-bg-theme {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-secondary), 0.25),
+      rgba(var(--color-accent), 0.25)
+    );
+  }
+
+  .icon-bg-theme:hover {
+    background: linear-gradient(
+      to bottom right,
+      rgba(var(--color-secondary), 0.35),
+      rgba(var(--color-accent), 0.35)
+    );
+  }
+
   /* ===== LAYOUT COMPONENTS ===== */
   /* [LAYOUT] Header fixed y compensación de altura */
 
