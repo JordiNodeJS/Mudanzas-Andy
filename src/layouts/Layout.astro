@@ -11,14 +11,34 @@ const {
   title = "Mudanzas profesionales en Barcelona y España | Mudanzas ANDY",
   description = "Mudanzas profesionales en Barcelona y toda España. Presupuesto GRATIS en 5 minutos por WhatsApp. Atención 24/7. ¡Tu mudanza, nuestra prioridad!",
   image = "/og-image.jpg",
-} = Astro.props as Props;
-
+} = Astro.props;
 ---
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons generated from the truck logo -->
+    <link rel="icon" href="/favicons/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/favicon-16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicons/apple-touch-icon.png"
+    />
+    <!-- SVG fallback / source of truth -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
@@ -74,7 +94,7 @@ const {
       target="_blank"
       rel="noopener noreferrer"
       id="reserva-ya-floating"
-      class="fixed bottom-20 sm:bottom-24 lg:bottom-28 right-4 z-50 btn-primary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 animate-pulse hover:animate-none"
+      class="fixed bottom-20 sm:bottom-24 lg:bottom-28 right-4 z-50 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 animate-pulse hover:animate-none"
       aria-label="Contactar por WhatsApp"
     >
       <span class="text-2xl">💬</span>
