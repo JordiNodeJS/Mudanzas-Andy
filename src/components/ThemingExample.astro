@@ -1,0 +1,339 @@
+---
+/**
+ * Componente de ejemplo - Sistema de Theming
+ *
+ * Demuestra el uso completo del nuevo sistema de theming:
+ * - Variables CSS desde theme.css
+ * - Componentes CSS desde components.css
+ * - Utilidades de Tailwind integradas
+ * - Responsive design
+ * - Accesibilidad
+ */
+
+interface Props {
+  title?: string;
+  description?: string;
+  variant?: "primary" | "secondary" | "accent";
+  size?: "sm" | "md" | "lg";
+}
+
+const {
+  title = "Sistema de Theming",
+  description = "Ejemplo completo del nuevo sistema de design tokens",
+  variant = "primary",
+  size = "md",
+} = Astro.props;
+
+const cardVariants = {
+  primary: "border-primary/20 hover:border-primary/40",
+  secondary: "border-secondary/20 hover:border-secondary/40",
+  accent: "border-accent/20 hover:border-accent/40",
+};
+
+const badgeVariants = {
+  primary: "badge-primary",
+  secondary: "badge-secondary",
+  accent: "badge-info",
+};
+---
+
+<!-- [THEMING] Ejemplo completo usando el sistema de tokens -->
+<section class="container-responsive py-16">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-4">
+      {title}
+    </h1>
+    <p class="text-lg text-secondary/80 max-w-2xl mx-auto">
+      {description}
+    </p>
+  </div>
+
+  <!-- Grid de ejemplos -->
+  <div class="grid-cards">
+    <!-- Card 1: Botones -->
+    <div class={`card ${cardVariants[variant]}`}>
+      <div class="card-header">
+        <h3 class="text-xl font-semibold text-primary">Botones</h3>
+        <span class={`badge ${badgeVariants[variant]}`}>Componentes</span>
+      </div>
+      <div class="card-body space-y-4">
+        <div class="space-y-3">
+          <button class="btn btn-primary w-full">Botón Primario</button>
+          <button class="btn btn-secondary w-full">Botón Secundario</button>
+          <button class="btn btn-highlight w-full">Botón Destacado</button>
+          <button class="btn btn-outline-primary w-full">Botón Outlined</button>
+        </div>
+
+        <!-- Tamaños -->
+        <div class="flex gap-2 justify-center">
+          <button class="btn btn-primary btn-sm">SM</button>
+          <button class="btn btn-primary">MD</button>
+          <button class="btn btn-primary btn-lg">LG</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Colores -->
+    <div class={`card ${cardVariants[variant]}`}>
+      <div class="card-header">
+        <h3 class="text-xl font-semibold text-primary">Paleta de Colores</h3>
+        <span class={`badge ${badgeVariants[variant]}`}>Tokens</span>
+      </div>
+      <div class="card-body">
+        <div class="grid grid-cols-2 gap-3">
+          <!-- Primario -->
+          <div class="text-center">
+            <div class="h-12 bg-primary rounded-lg mb-2"></div>
+            <p class="text-xs font-medium text-gray-600">Primary</p>
+            <code class="text-xs text-gray-500">var(--color-primary)</code>
+          </div>
+
+          <!-- Secundario -->
+          <div class="text-center">
+            <div class="h-12 bg-secondary rounded-lg mb-2"></div>
+            <p class="text-xs font-medium text-gray-600">Secondary</p>
+            <code class="text-xs text-gray-500">var(--color-secondary)</code>
+          </div>
+
+          <!-- Accent -->
+          <div class="text-center">
+            <div class="h-12 bg-accent rounded-lg mb-2"></div>
+            <p class="text-xs font-medium text-gray-600">Accent</p>
+            <code class="text-xs text-gray-500">var(--color-accent)</code>
+          </div>
+
+          <!-- Highlight -->
+          <div class="text-center">
+            <div class="h-12 bg-highlight rounded-lg mb-2"></div>
+            <p class="text-xs font-medium text-gray-600">Highlight</p>
+            <code class="text-xs text-gray-500">var(--color-highlight)</code>
+          </div>
+        </div>
+
+        <!-- Opacidades -->
+        <div class="mt-6 pt-4 border-t border-gray-200">
+          <p class="text-sm font-medium text-gray-700 mb-3">Opacidades</p>
+          <div class="flex gap-2">
+            <div class="h-8 w-full bg-primary/20 rounded"></div>
+            <div class="h-8 w-full bg-primary/40 rounded"></div>
+            <div class="h-8 w-full bg-primary/60 rounded"></div>
+            <div class="h-8 w-full bg-primary/80 rounded"></div>
+            <div class="h-8 w-full bg-primary rounded"></div>
+          </div>
+          <div class="flex gap-2 mt-1 text-xs text-gray-500">
+            <span class="w-full text-center">20%</span>
+            <span class="w-full text-center">40%</span>
+            <span class="w-full text-center">60%</span>
+            <span class="w-full text-center">80%</span>
+            <span class="w-full text-center">100%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Formularios -->
+    <div class={`card ${cardVariants[variant]}`}>
+      <div class="card-header">
+        <h3 class="text-xl font-semibold text-primary">Formularios</h3>
+        <span class={`badge ${badgeVariants[variant]}`}>Accesible</span>
+      </div>
+      <div class="card-body">
+        <form class="space-y-4">
+          <div class="form-group">
+            <label class="form-label" for="demo-email">Email</label>
+            <input
+              type="email"
+              id="demo-email"
+              class="form-input"
+              placeholder="tu@email.com"
+              aria-describedby="demo-email-help"
+            />
+            <div id="demo-email-help" class="form-help">
+              Campo requerido con validación
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="demo-select">Servicio</label>
+            <select id="demo-select" class="form-select">
+              <option>Mudanza local</option>
+              <option>Mudanza nacional</option>
+              <option>Mudanza internacional</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="demo-message">Mensaje</label>
+            <textarea
+              id="demo-message"
+              class="form-textarea"
+              rows="3"
+              placeholder="Describe tu mudanza..."></textarea>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="demo-terms" class="form-checkbox" />
+            <label for="demo-terms" class="text-sm text-gray-700">
+              Acepto los términos y condiciones
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full">
+            Enviar Consulta
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Card 4: Alertas -->
+    <div class={`card ${cardVariants[variant]}`}>
+      <div class="card-header">
+        <h3 class="text-xl font-semibold text-primary">Alertas</h3>
+        <span class={`badge ${badgeVariants[variant]}`}>Estados</span>
+      </div>
+      <div class="card-body space-y-4">
+        <div class="alert alert-success">
+          <div class="alert-title">¡Éxito!</div>
+          <div class="alert-message">
+            Tu presupuesto ha sido enviado correctamente.
+          </div>
+        </div>
+
+        <div class="alert alert-warning">
+          <div class="alert-title">Atención</div>
+          <div class="alert-message">Revisa los datos antes de continuar.</div>
+        </div>
+
+        <div class="alert alert-error">
+          <div class="alert-title">Error</div>
+          <div class="alert-message">No se pudo procesar tu solicitud.</div>
+        </div>
+
+        <div class="alert alert-info">
+          <div class="alert-title">Información</div>
+          <div class="alert-message">
+            Te contactaremos en menos de 5 minutos.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Gradientes -->
+    <div class={`card ${cardVariants[variant]}`}>
+      <div class="card-header">
+        <h3 class="text-xl font-semibold text-primary">Gradientes</h3>
+        <span class={`badge ${badgeVariants[variant]}`}>Brand</span>
+      </div>
+      <div class="card-body space-y-4">
+        <div
+          class="h-16 bg-gradient-primary rounded-lg flex items-center justify-center"
+        >
+          <span class="text-white font-medium">Gradiente Primario</span>
+        </div>
+
+        <div
+          class="h-16 bg-gradient-accent rounded-lg flex items-center justify-center"
+        >
+          <span class="text-primary font-medium">Gradiente Accent</span>
+        </div>
+
+        <div
+          class="h-16 bg-gradient-hero rounded-lg flex items-center justify-center"
+        >
+          <span class="text-primary font-medium">Gradiente Hero</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6: Responsive -->
+    <div class={`card ${cardVariants[variant]}`}>
+      <div class="card-header">
+        <h3 class="text-xl font-semibold text-primary">Responsive</h3>
+        <span class={`badge ${badgeVariants[variant]}`}>Mobile-first</span>
+      </div>
+      <div class="card-body">
+        <div class="space-y-3">
+          <div class="p-4 bg-primary/10 rounded-lg">
+            <p class="text-sm font-medium text-primary mb-1">
+              Espaciado Adaptativo
+            </p>
+            <code class="text-xs text-gray-600">p-4 md:p-6 lg:p-8</code>
+          </div>
+
+          <div
+            class="text-sm bg-secondary/10 p-3 rounded-lg md:text-base lg:text-lg"
+          >
+            <p class="font-medium text-secondary mb-1">Tipografía Responsive</p>
+            <code class="text-xs text-gray-600"
+              >text-sm md:text-base lg:text-lg</code
+            >
+          </div>
+
+          <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+            <div
+              class="h-8 bg-accent/20 rounded flex items-center justify-center"
+            >
+              <span class="text-xs">1 col</span>
+            </div>
+            <div
+              class="h-8 bg-accent/20 rounded flex items-center justify-center"
+            >
+              <span class="text-xs">2 cols</span>
+            </div>
+            <div
+              class="h-8 bg-accent/20 rounded flex items-center justify-center"
+            >
+              <span class="text-xs">3 cols</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer con información técnica -->
+  <div class="mt-12 p-6 bg-gray-50 rounded-xl">
+    <h3 class="text-lg font-semibold text-primary mb-4">Información Técnica</h3>
+    <div class="grid md:grid-cols-2 gap-6 text-sm">
+      <div>
+        <h4 class="font-medium text-gray-700 mb-2">Archivos del Sistema</h4>
+        <ul class="space-y-1 text-gray-600">
+          <li><code>src/styles/theme.css</code> - Design tokens</li>
+          <li><code>src/styles/components.css</code> - Componentes</li>
+          <li><code>tailwind.config.js</code> - Configuración</li>
+          <li><code>docs/THEMING.md</code> - Documentación</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-medium text-gray-700 mb-2">Beneficios</h4>
+        <ul class="space-y-1 text-gray-600">
+          <li>✅ Theming dinámico en runtime</li>
+          <li>✅ Soporte de opacidades automático</li>
+          <li>✅ Accesibilidad WCAG 2.2 AA</li>
+          <li>✅ Mobile-first responsive</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* [EJEMPLO] CSS personalizado usando variables del sistema */
+  .custom-highlight {
+    background: linear-gradient(
+      45deg,
+      rgba(var(--color-primary), 0.1),
+      rgba(var(--color-secondary), 0.1)
+    );
+    border: 1px solid rgba(var(--color-primary), 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+
+  /* [ACCESIBILIDAD] Respeto por preferencias de movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
+  }
+</style>

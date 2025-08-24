@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/* ===== SISTEMA DE THEMING CENTRALIZADO ===== */
+/* [FUENTE DE VERDAD] Design tokens y variables CSS centralizadas */
+@import "./theme.css";
+
+/* [COMPONENTES] Componentes CSS reutilizables con @apply */
+@import "./components.css";
+
+/* ===== BOOTSTRAP GRID SYSTEM ===== */
 /* Implementación: Bootstrap Grid System para Astro 5.13.3+ */
 /* Compatibilidad: Astro 5.13.3+ con Tailwind CSS 4 */
 /* Fuente: https://docs.astro.build/en/guides/styling/#css-modules | Recuperado: 2025-08-23 */

@@ -1,0 +1,596 @@
+/**
+ * Componentes CSS - Mudanzas ANDY
+ * 
+ * Componentes reutilizables construidos con @apply y variables CSS.
+ * Siguiendo la metodología: utilidades de Tailwind + variables de theme.css
+ * 
+ * [REGLA] Usar @apply solo para componentes, no para overrides masivos
+ * [ACCESIBILIDAD] Todos los componentes incluyen estados focus y contraste
+ */
+
+@layer components {
+  /* ===== BOTONES ===== */
+  /* [REGLA] Componentes base para botones con variantes semánticas */
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply px-4 py-2 rounded-lg font-medium;
+    @apply transition-all duration-300 ease-out;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply transform hover:scale-105 active:scale-95;
+    min-height: 2.75rem; /* 44px - mínimo táctil accesible */
+    min-width: 2.75rem;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+    min-height: 2.25rem; /* 36px */
+    min-width: 2.25rem;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+    min-height: 3.5rem; /* 56px */
+  }
+
+  .btn-xl {
+    @apply px-8 py-4 text-xl;
+    min-height: 4rem; /* 64px */
+  }
+
+  /* Variantes de color */
+  .btn-primary {
+    background: rgb(var(--color-primary));
+    color: rgb(var(--color-white));
+  }
+
+  .btn-primary:hover {
+    background: rgba(var(--color-primary), 0.9);
+    @apply shadow-lg;
+  }
+
+  .btn-primary:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-primary), 0.5);
+  }
+
+  .btn-secondary {
+    background: rgb(var(--color-secondary));
+    color: rgb(var(--color-white));
+  }
+
+  .btn-secondary:hover {
+    background: rgba(var(--color-secondary), 0.9);
+    @apply shadow-lg;
+  }
+
+  .btn-secondary:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-secondary), 0.5);
+  }
+
+  .btn-accent {
+    background: rgb(var(--color-accent));
+    color: rgb(var(--color-primary));
+  }
+
+  .btn-accent:hover {
+    background: rgba(var(--color-accent), 0.9);
+    @apply shadow-lg;
+  }
+
+  .btn-accent:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-accent), 0.5);
+  }
+
+  .btn-highlight {
+    background: rgb(var(--color-highlight));
+    color: rgb(var(--color-primary));
+  }
+
+  .btn-highlight:hover {
+    background: rgba(var(--color-highlight), 0.9);
+    @apply shadow-lg;
+  }
+
+  .btn-highlight:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-highlight), 0.5);
+  }
+
+  .btn-white {
+    color: var(--color-primary);
+    background-color: white;
+    border: 2px solid white;
+  }
+
+  .btn-white:hover {
+    background: rgb(var(--color-white));
+    color: rgb(var(--color-secondary));
+    @apply shadow-lg;
+  }
+
+  .btn-white:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-white), 0.8);
+  }
+
+  .btn-outline {
+    @apply bg-transparent border-2 border-current;
+  }
+
+  .btn-outline-primary {
+    @apply bg-transparent border-2 hover:text-white;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    &:hover {
+      background-color: rgb(var(--color-primary));
+    }
+  }
+
+  .btn-outline-primary:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-primary), 0.5);
+  }
+
+  .btn-outline-secondary {
+    @apply bg-transparent border-2 hover:text-white;
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    &:hover {
+      background-color: rgb(var(--color-secondary));
+    }
+  }
+
+  .btn-outline-secondary:focus-visible {
+    @apply outline-none ring-2 ring-offset-2;
+    ring-color: rgba(var(--color-secondary), 0.5);
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-current;
+    @apply hover:bg-gray-100;
+  }
+
+  /* Estados especiales */
+  .btn-loading {
+    @apply relative text-transparent;
+  }
+
+  .btn-loading::after {
+    content: "";
+    @apply absolute inset-0 m-auto w-4 h-4;
+    @apply border-2 border-current border-t-transparent rounded-full;
+    @apply animate-spin;
+  }
+
+  /* ===== CARDS ===== */
+  /* [REGLA] Componentes de tarjeta con sombras y espaciado consistente */
+
+  .card {
+    @apply bg-white rounded-xl shadow-md;
+    @apply border border-gray-200/50;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card:hover {
+    @apply shadow-lg transform translate-y-[-2px];
+  }
+
+  .card-header {
+    @apply p-6 border-b border-gray-200/50;
+  }
+
+  .card-body {
+    @apply p-6;
+  }
+
+  .card-footer {
+    @apply p-6 border-t border-gray-200/50 bg-gray-50/50;
+  }
+
+  .card-compact .card-header,
+  .card-compact .card-body,
+  .card-compact .card-footer {
+    @apply p-4;
+  }
+
+  .card-glass {
+    background: rgba(var(--color-white), 0.8);
+    @apply backdrop-blur-sm border border-white/20;
+  }
+
+  /* ===== BADGES ===== */
+  /* [REGLA] Badges para estados y categorías */
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    background: rgba(var(--color-primary), 0.1);
+    color: rgb(var(--color-primary));
+  }
+
+  .badge-secondary {
+    background: rgba(var(--color-secondary), 0.1);
+    color: rgb(var(--color-secondary));
+  }
+
+  .badge-success {
+    background: rgba(var(--color-success), 0.1);
+    color: rgb(var(--color-success));
+  }
+
+  .badge-warning {
+    background: rgba(var(--color-warning), 0.1);
+    color: rgb(var(--color-warning));
+  }
+
+  .badge-error {
+    background: rgba(var(--color-error), 0.1);
+    color: rgb(var(--color-error));
+  }
+
+  .badge-info {
+    background: rgba(var(--color-info), 0.1);
+    color: rgb(var(--color-info));
+  }
+
+  /* ===== INPUTS Y FORMS ===== */
+  /* [ACCESIBILIDAD] Formularios con estados focus claros */
+
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300;
+    @apply focus:outline-none focus:ring-2;
+    @apply transition-colors duration-200;
+    @apply placeholder:text-gray-500;
+    min-height: 2.75rem; /* 44px mínimo táctil */
+    &:focus {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+      border-color: rgb(var(--color-primary));
+    }
+  }
+
+  .form-input:invalid {
+    border-color: rgb(var(--color-error));
+    &:focus {
+      --tw-ring-color: rgb(var(--color-error) / 0.5);
+      border-color: rgb(var(--color-error));
+    }
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+
+  .form-error {
+    @apply text-sm mt-1;
+    color: rgb(var(--color-error));
+  }
+
+  .form-help {
+    @apply text-sm text-gray-500 mt-1;
+  }
+
+  .form-group {
+    @apply mb-6;
+  }
+
+  /* Textarea */
+  .form-textarea {
+    @apply resize-y min-h-[6rem];
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300;
+    @apply focus:outline-none focus:ring-2;
+    @apply transition-colors duration-200;
+    @apply placeholder:text-gray-500;
+    min-height: 6rem;
+    &:focus {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+      border-color: rgb(var(--color-primary));
+    }
+  }
+
+  /* Select */
+  .form-select {
+    @apply bg-white cursor-pointer;
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300;
+    @apply focus:outline-none focus:ring-2;
+    @apply transition-colors duration-200;
+    @apply placeholder:text-gray-500;
+    min-height: 2.75rem; /* 44px mínimo táctil */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem 1.25rem;
+    padding-right: 2.5rem;
+    &:focus {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+      border-color: rgb(var(--color-primary));
+    }
+  }
+
+  /* Checkbox y Radio */
+  .form-checkbox,
+  .form-radio {
+    @apply w-4 h-4 border-gray-300 rounded;
+    @apply focus:ring-2;
+    color: var(--color-primary);
+    min-width: 1rem;
+    min-height: 1rem;
+    &:focus {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+    }
+  }
+
+  .form-radio {
+    @apply rounded-full;
+  }
+
+  /* ===== ALERTAS ===== */
+  /* [REGLA] Componentes de alerta con iconografía semántica */
+
+  .alert {
+    @apply p-4 rounded-lg border-l-4;
+    @apply flex items-start gap-3;
+  }
+
+  .alert-success {
+    @apply bg-green-50 text-green-800;
+    border-color: rgb(var(--color-success));
+  }
+
+  .alert-warning {
+    @apply bg-yellow-50 text-yellow-800;
+    border-color: rgb(var(--color-warning));
+  }
+
+  .alert-error {
+    @apply bg-red-50 text-red-800;
+    border-color: rgb(var(--color-error));
+  }
+
+  .alert-info {
+    @apply bg-blue-50 text-blue-800;
+    border-color: rgb(var(--color-info));
+  }
+
+  .alert-title {
+    @apply font-medium text-sm;
+  }
+
+  .alert-message {
+    @apply text-sm mt-1;
+  }
+
+  /* ===== NAVEGACIÓN ===== */
+  /* [REGLA] Componentes de navegación responsive */
+
+  .nav {
+    @apply flex items-center space-x-1;
+  }
+
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium;
+    @apply transition-colors duration-200;
+    @apply focus:outline-none focus:ring-2;
+    &:focus {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+    }
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+    @apply bg-gray-100;
+  }
+
+  .nav-link.active {
+    color: var(--color-primary);
+    background-color: rgb(var(--color-primary) / 0.1);
+  }
+
+  .nav-link.disabled {
+    @apply text-gray-400 cursor-not-allowed;
+  }
+
+  /* ===== MODALES Y OVERLAYS ===== */
+  /* [ACCESIBILIDAD] Overlays con manejo de focus y escape */
+
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm;
+    @apply flex items-center justify-center p-4;
+    z-index: var(--z-index-modal);
+  }
+
+  .modal-content {
+    @apply bg-white rounded-xl shadow-2xl;
+    @apply max-w-md w-full max-h-[90vh] overflow-y-auto;
+    animation: fadeIn var(--transition-base, 0.3s) var(--ease-out, ease-out);
+  }
+
+  .modal-header {
+    @apply p-6 border-b border-gray-200;
+    @apply flex items-center justify-between;
+  }
+
+  .modal-title {
+    @apply text-lg font-semibold text-gray-900;
+  }
+
+  .modal-close {
+    @apply text-gray-400 hover:text-gray-600;
+    @apply focus:outline-none focus:ring-2;
+    @apply rounded-md p-1;
+    &:focus {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+    }
+  }
+
+  .modal-body {
+    @apply p-6;
+  }
+
+  .modal-footer {
+    @apply p-6 border-t border-gray-200;
+    @apply flex justify-end gap-3;
+  }
+
+  /* ===== TOOLTIPS ===== */
+  /* [REGLA] Tooltips accesibles con positioning automático */
+
+  .tooltip {
+    @apply relative;
+  }
+
+  .tooltip::before {
+    content: attr(data-tooltip);
+    @apply absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2;
+    @apply px-2 py-1 text-xs text-white bg-gray-900 rounded;
+    @apply opacity-0 pointer-events-none transition-opacity duration-200;
+    @apply whitespace-nowrap;
+    z-index: var(--z-index-tooltip);
+  }
+
+  .tooltip:hover::before {
+    @apply opacity-100;
+  }
+
+  /* ===== LOADING STATES ===== */
+  /* [REGLA] Estados de carga consistentes */
+
+  .skeleton {
+    @apply bg-gray-200 rounded animate-pulse;
+  }
+
+  .skeleton-text {
+    @apply bg-gray-200 rounded animate-pulse h-4 w-full;
+  }
+
+  .skeleton-title {
+    @apply bg-gray-200 rounded animate-pulse h-6 w-3/4;
+  }
+
+  .skeleton-avatar {
+    @apply bg-gray-200 rounded-full animate-pulse h-10 w-10;
+  }
+
+  .skeleton-button {
+    @apply bg-gray-200 rounded animate-pulse h-10 w-24;
+  }
+
+  /* ===== UTILIDADES RESPONSIVE ===== */
+  /* [RESPONSIVE] Utilidades que se adaptan por breakpoint */
+
+  .container-responsive {
+    @apply w-full mx-auto px-4;
+  }
+
+  @media (min-width: 640px) {
+    .container-responsive {
+      @apply max-w-lg px-6;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container-responsive {
+      @apply max-w-2xl px-8;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-responsive {
+      @apply max-w-4xl px-10;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-responsive {
+      @apply max-w-6xl px-12;
+    }
+  }
+
+  /* ===== GRID LAYOUTS ===== */
+  /* [REGLA] Layouts de grid responsive predefinidos */
+
+  .grid-auto {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .grid-featured {
+    @apply grid gap-6;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .grid-featured {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  .grid-cards {
+    @apply grid gap-6;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .grid-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ===== ESTADOS DE FOCUS GLOBAL ===== */
+  /* [ACCESIBILIDAD] Estados de focus consistentes para navegación por teclado */
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    &:focus-visible {
+      --tw-ring-color: rgb(var(--color-primary) / 0.5);
+    }
+  }
+
+  /* Skip links para navegación por teclado */
+  .skip-link {
+    @apply sr-only focus:not-sr-only;
+    @apply focus:absolute focus:top-4 focus:left-4;
+    @apply focus:text-white;
+    @apply focus:px-4 focus:py-2 focus:rounded-md;
+    @apply focus:z-50;
+    &:focus {
+      background-color: rgb(var(--color-primary));
+    }
+  }
+
+  /* ===== PRINT UTILITIES ===== */
+  /* [ACCESIBILIDAD] Utilidades para impresión */
+
+  @media print {
+    .print-hidden {
+      display: none !important;
+    }
+
+    .print-visible {
+      display: block !important;
+    }
+
+    .print-break-before {
+      page-break-before: always;
+    }
+
+    .print-break-after {
+      page-break-after: always;
+    }
+
+    .print-break-inside-avoid {
+      page-break-inside: avoid;
+    }
+  }
+}
