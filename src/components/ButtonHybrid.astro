@@ -1,0 +1,85 @@
+---
+export interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "outline" | "destructive" | "ghost" | "link";
+  size?: "sm" | "md" | "lg" | "icon";
+  fullWidth?: boolean;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  className?: string;
+}
+
+const { 
+  href = "#", 
+  variant = "primary", 
+  size = "md", 
+  fullWidth = false, 
+  disabled = false, 
+  type = "button",
+  className = ""
+} = Astro.props;
+
+// Map Astro Button variants to shadcn CSS classes using the CSS variables
+const getVariantClasses = (variant: string) => {
+  switch (variant) {
+    case "primary":
+    case "default":
+      return "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90";
+    case "secondary":
+      return "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80";
+    case "outline":
+      return "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground";
+    case "destructive":
+      return "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90";
+    case "ghost":
+      return "hover:bg-accent hover:text-accent-foreground";
+    case "link":
+      return "text-primary underline-offset-4 hover:underline";
+    default:
+      return "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90";
+  }
+};
+
+// Map sizes to shadcn CSS classes
+const getSizeClasses = (size: string) => {
+  switch (size) {
+    case "sm":
+      return "h-8 rounded-md px-3 text-sm";
+    case "md":
+    case "default":
+      return "h-9 rounded-md px-4 py-2";
+    case "lg":
+      return "h-10 rounded-md px-6";
+    case "icon":
+      return "h-9 w-9";
+    default:
+      return "h-9 rounded-md px-4 py-2";
+  }
+};
+
+const baseClasses = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+const variantClasses = getVariantClasses(variant);
+const sizeClasses = getSizeClasses(size);
+const widthClasses = fullWidth ? "w-full" : "";
+const finalClasses = `${baseClasses} ${variantClasses} ${sizeClasses} ${widthClasses} ${className}`.trim();
+---
+
+{href && href !== "#" ? (
+  <!-- Render as link -->
+  <a 
+    href={href}
+    class={finalClasses}
+    aria-disabled={disabled}
+  >
+    <slot />
+  </a>
+) : (
+  <!-- Render as button -->
+  <button
+    type={type}
+    disabled={disabled}
+    class={finalClasses}
+  >
+    <slot />
+  </button>
+)}
