@@ -22,6 +22,10 @@ pnpm-debug.log*
 
 
 .playwright-mcp/
+playwright-report/
+test-results/
+
+*.spec.ts
 
 # jetbrains setting folder
 .idea/

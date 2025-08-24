@@ -33,7 +33,7 @@ const testTestimonials = [
 
 <Layout>
   <main class="container mx-auto py-20 px-4">
-    <h1 class="text-3xl font-bold text-center mb-12 text-[#264e70]">
+    <h1 class="text-3xl font-bold text-center mb-12 text-primary">
       Test TestimonialCard Migration
     </h1>
 
@@ -42,22 +42,22 @@ const testTestimonials = [
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Versión Original -->
         <div>
-          <h2 class="text-xl font-semibold mb-4 text-[#264e70]">
+          <h2 class="text-xl font-semibold mb-4 text-primary">
             Original TestimonialCard (Legacy)
           </h2>
           <div
-            class="bg-white/98 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-[#264e70]/10"
+            class="bg-white/98 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-[rgba(var(--color-primary),0.1)]"
           >
             <div class="text-2xl mb-3">⭐⭐⭐⭐⭐</div>
-            <p class="text-[#264e70] mb-4 text-sm lg:text-base italic">
+            <p class="text-primary mb-4 text-sm lg:text-base italic">
               "Excelente servicio. El equipo fue muy profesional y cuidadoso con
               nuestros muebles. Recomendado 100%."
             </p>
-            <div class="text-[#679186]">
-              <p class="font-semibold text-sm lg:text-base text-[#264e70]">
+            <div class="text-secondary">
+              <p class="font-semibold text-sm lg:text-base text-primary">
                 María González
               </p>
-              <p class="text-xs lg:text-sm text-[#679186] opacity-90">
+              <p class="text-xs lg:text-sm text-secondary opacity-90">
                 Barcelona, Eixample
               </p>
             </div>
@@ -66,7 +66,7 @@ const testTestimonials = [
 
         <!-- Versión Híbrida -->
         <div>
-          <h2 class="text-xl font-semibold mb-4 text-[#264e70]">
+          <h2 class="text-xl font-semibold mb-4 text-primary">
             TestimonialCard Hybrid (shadcn/ui)
           </h2>
           <TestimonialCardHybrid {...testTestimonials[0]} />
@@ -75,7 +75,7 @@ const testTestimonials = [
 
       <!-- Grid de Testimoniales React -->
       <div>
-        <h2 class="text-xl font-semibold mb-6 text-[#264e70] text-center">
+        <h2 class="text-xl font-semibold mb-6 text-primary text-center">
           TestimonialCard React (shadcn/ui) - Diferentes Ratings
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -89,7 +89,7 @@ const testTestimonials = [
 
       <!-- Grid de Testimoniales Híbridos -->
       <div>
-        <h2 class="text-xl font-semibold mb-6 text-[#264e70] text-center">
+        <h2 class="text-xl font-semibold mb-6 text-primary text-center">
           TestimonialCard Hybrid - Grid Layout
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -103,7 +103,7 @@ const testTestimonials = [
     </div>
 
     <div class="mt-12 text-center">
-      <a href="/" class="text-[#264e70] underline"
+      <a href="/" class="text-primary underline"
         >← Volver a la página principal</a
       >
     </div>

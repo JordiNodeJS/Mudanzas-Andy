@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./theme.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -72,7 +73,7 @@ section.flow-root {
   .bg-gradient-to-br,
   .bg-gradient-to-r {
     background-image: none;
-    background-color: #ffffff;
+    background-color: rgb(var(--color-white));
   }
 }
 
@@ -119,7 +120,12 @@ img[loading="lazy"] {
 
 /* Loading states for images */
 .image-loading {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(var(--color-gray-100), 1) 25%,
+    rgba(var(--color-gray-200), 1) 50%,
+    rgba(var(--color-gray-100), 1) 75%
+  );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
 }

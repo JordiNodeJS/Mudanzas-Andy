@@ -27,7 +27,7 @@ export function TestimonialCardShadcn({
   return (
     <Card
       className={cn(
-        "bg-white/98 backdrop-blur-sm border-[#264e70]/10",
+        "bg-white/98 backdrop-blur-sm border-[rgba(var(--color-primary),0.1)]",
         className
       )}
       {...props}
@@ -36,14 +36,14 @@ export function TestimonialCardShadcn({
         <div className="text-2xl mb-3">{renderStars(rating)}</div>
       </CardHeader>
       <CardContent className="pt-0 space-y-4">
-        <blockquote className="text-[#264e70] text-sm lg:text-base italic">
+        <blockquote className="text-[rgb(var(--color-primary))] text-sm lg:text-base italic">
           "{text}"
         </blockquote>
-        <div className="text-[#679186]">
-          <p className="font-semibold text-sm lg:text-base text-[#264e70]">
+        <div className="text-[rgb(var(--color-secondary))]">
+          <p className="font-semibold text-sm lg:text-base text-[rgb(var(--color-primary))]">
             {name}
           </p>
-          <p className="text-xs lg:text-sm text-[#679186] opacity-90">
+          <p className="text-xs lg:text-sm text-[rgb(var(--color-secondary))] opacity-90">
             {location}
           </p>
         </div>

@@ -1,0 +1,131 @@
+/* Sistema de Colores Centralizado - Mudanzas ANDY
+ * Fuente de verdad para todas las variables de color del sitio
+ * Formato: RGB values para uso con rgb(var(--color-name)) y rgba(var(--color-name), opacity)
+ */
+
+:root {
+  /* Paleta Oficial Mudanzas ANDY */
+  --color-primary: 38 78 112; /* #264e70 - Azul corporativo */
+  --color-secondary: 103 145 134; /* #679186 - Verde complementario */
+  --color-accent: 249 180 171; /* #f9b4ab - Rosa coral CTA */
+  --color-highlight: 250 227 96; /* #fae360 - Amarillo destacados */
+  --color-neutral: 187 212 206; /* #bbd4ce - Verde neutro */
+
+  /* Colores de estado y utilidades */
+  --color-success: 34 197 94; /* #22c55e - Verde éxito */
+  --color-warning: 245 158 11; /* #f59e0b - Amarillo advertencia */
+  --color-error: 239 68 68; /* #ef4444 - Rojo error */
+  --color-info: 59 130 246; /* #3b82f6 - Azul información */
+
+  /* Escalas de grises */
+  --color-white: 255 255 255; /* #ffffff */
+  --color-gray-50: 249 250 251; /* #f9fafb */
+  --color-gray-100: 243 244 246; /* #f3f4f6 */
+  --color-gray-200: 229 231 235; /* #e5e7eb */
+  --color-gray-300: 209 213 219; /* #d1d5db */
+  --color-gray-400: 156 163 175; /* #9ca3af */
+  --color-gray-500: 107 114 128; /* #6b7280 */
+  --color-gray-600: 75 85 99; /* #4b5563 */
+  --color-gray-700: 55 65 81; /* #374151 */
+  --color-gray-800: 31 41 55; /* #1f2937 */
+  --color-gray-900: 17 24 39; /* #111827 */
+  --color-black: 0 0 0; /* #000000 */
+
+  /* Variables de fondo y superficie */
+  --color-background: var(--color-white);
+  --color-surface: var(--color-gray-50);
+  --color-surface-elevated: var(--color-white);
+
+  /* Variables de texto */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-on-primary: var(--color-white);
+  --color-text-on-accent: var(--color-gray-900);
+
+  /* Variables de borde */
+  --color-border: var(--color-gray-200);
+  --color-border-focus: var(--color-primary);
+  --color-border-error: var(--color-error);
+}
+
+/* Modo oscuro (opcional - para futuras implementaciones) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-gray-900);
+    --color-surface: var(--color-gray-800);
+    --color-surface-elevated: var(--color-gray-700);
+    --color-text-primary: var(--color-gray-100);
+    --color-text-secondary: var(--color-gray-300);
+    --color-text-muted: var(--color-gray-400);
+    --color-border: var(--color-gray-700);
+  }
+}
+
+/* Utilidades CSS para uso directo */
+.text-primary {
+  color: rgb(var(--color-primary));
+}
+.text-secondary {
+  color: rgb(var(--color-secondary));
+}
+.text-accent {
+  color: rgb(var(--color-accent));
+}
+.text-highlight {
+  color: rgb(var(--color-highlight));
+}
+.text-neutral {
+  color: rgb(var(--color-neutral));
+}
+
+.bg-primary {
+  background-color: rgb(var(--color-primary));
+}
+.bg-secondary {
+  background-color: rgb(var(--color-secondary));
+}
+.bg-accent {
+  background-color: rgb(var(--color-accent));
+}
+.bg-highlight {
+  background-color: rgb(var(--color-highlight));
+}
+.bg-neutral {
+  background-color: rgb(var(--color-neutral));
+}
+
+.border-primary {
+  border-color: rgb(var(--color-primary));
+}
+.border-secondary {
+  border-color: rgb(var(--color-secondary));
+}
+.border-accent {
+  border-color: rgb(var(--color-accent));
+}
+
+/* Gradientes oficiales */
+.gradient-primary {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-primary), 0.1) 0%,
+    rgba(var(--color-secondary), 0.05) 100%
+  );
+}
+
+.gradient-accent {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-accent), 0.1) 0%,
+    rgba(var(--color-highlight), 0.05) 100%
+  );
+}
+
+.gradient-card {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-white), 0.95) 0%,
+    rgba(var(--color-neutral), 0.1) 100%
+  );
+}
