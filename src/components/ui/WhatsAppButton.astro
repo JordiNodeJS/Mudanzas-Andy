@@ -17,30 +17,10 @@ const {
   fullWidth = false,
 } = Astro.props;
 
-const baseClasses =
-  "font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 whitespace-nowrap";
+import { buttonClasses, formatPhoneForWhatsApp } from "../../lib/ui.ts";
 
-const variantClasses = {
-  primary: "bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70]",
-  secondary: "bg-[#679186] hover:bg-[#5a7a6f] text-white",
-};
-
-const sizeClasses = {
-  sm: "py-2 px-4 text-sm",
-  md: "py-3 lg:py-4 px-6 lg:px-8 text-base lg:text-lg",
-  lg: "py-4 px-8 text-lg",
-};
-
-const widthClasses = fullWidth ? "w-full sm:w-auto max-w-sm" : "w-auto";
-
-const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClasses}`;
-
-// Clean phone number for WhatsApp URL
-const cleanPhone = phone.replace(/\s+/g, "").replace(/[\(\)\-]/g, "");
-// Add 34 prefix for Spain if not present (WhatsApp doesn't use + in URL)
-const formattedPhone = cleanPhone.startsWith("34")
-  ? cleanPhone
-  : `34${cleanPhone}`;
+const classes = buttonClasses({ variant, size, fullWidth });
+const formattedPhone = formatPhoneForWhatsApp(phone);
 const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`;
 ---
 

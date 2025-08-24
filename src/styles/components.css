@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Reusable card base: rounded, shadow, padding and hover lift */
+  .card {
+    @apply rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  }
+
+  /* Slightly smaller card padding variant */
+  .card-compact {
+    @apply p-4;
+  }
+
+  /* Small wrapper for hover/animation used by many buttons */
+  .btn-animated {
+    @apply font-bold rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center;
+  }
+
+  /* Primary brand button (yellow + text color) */
+  .btn-primary {
+    @apply bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold rounded-full shadow-md px-4 py-2 transition-colors duration-300;
+  }
+
+  /* Bordered card helper (keeps border utilities centralized) */
+  .card-bordered {
+    @apply border;
+  }
+}

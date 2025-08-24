@@ -11,9 +11,9 @@ const {
   title = "Mudanzas profesionales en Barcelona y España | Mudanzas ANDY",
   description = "Mudanzas profesionales en Barcelona y toda España. Presupuesto GRATIS en 5 minutos por WhatsApp. Atención 24/7. ¡Tu mudanza, nuestra prioridad!",
   image = "/og-image.jpg",
-} = Astro.props;
----
+} = Astro.props as Props;
 
+---
 <!doctype html>
 <html lang="es">
   <head>
@@ -74,7 +74,7 @@ const {
       target="_blank"
       rel="noopener noreferrer"
       id="reserva-ya-floating"
-      class="fixed bottom-20 sm:bottom-24 lg:bottom-28 right-4 z-50 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 animate-pulse hover:animate-none"
+      class="fixed bottom-20 sm:bottom-24 lg:bottom-28 right-4 z-50 btn-primary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 animate-pulse hover:animate-none"
       aria-label="Contactar por WhatsApp"
     >
       <span class="text-2xl">💬</span>
