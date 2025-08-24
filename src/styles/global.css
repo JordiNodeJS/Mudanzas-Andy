@@ -7,6 +7,133 @@
 /* [COMPONENTES] Componentes CSS reutilizables con @apply */
 @import "./components.css";
 
+/* ===== SOLUCIÓN TEMPORAL: UTILIDADES DE COLORES DIRECTAS ===== */
+/* [TEMPORAL] Mientras resolvemos configuración de Tailwind CSS 4 */
+/* Utilidades de colores personalizados para garantizar funcionamiento */
+
+/* Colores de texto */
+.text-primary {
+  color: #264e70 !important;
+}
+.text-primary-dark {
+  color: #1e415c !important;
+}
+.text-secondary {
+  color: #679186 !important;
+}
+.text-secondary-dark {
+  color: #5a7a6f !important;
+}
+.text-accent {
+  color: #f9b4ab !important;
+}
+.text-accent-dark {
+  color: #f7a094 !important;
+}
+.text-highlight {
+  color: #fae360 !important;
+}
+.text-highlight-dark {
+  color: #f0d44a !important;
+}
+.text-neutral {
+  color: #bbd4ce !important;
+}
+.text-neutral-dark {
+  color: #a7c0ba !important;
+}
+.text-beige {
+  color: #fbf3e8 !important;
+}
+.text-beige-dark {
+  color: #f3e8d8 !important;
+}
+.text-cream {
+  color: #fdebf3 !important;
+}
+
+/* Colores de fondo */
+.bg-primary {
+  background-color: #264e70 !important;
+}
+.bg-primary-dark {
+  background-color: #1e415c !important;
+}
+.bg-secondary {
+  background-color: #679186 !important;
+}
+.bg-secondary-dark {
+  background-color: #5a7a6f !important;
+}
+.bg-accent {
+  background-color: #f9b4ab !important;
+}
+.bg-accent-dark {
+  background-color: #f7a094 !important;
+}
+.bg-highlight {
+  background-color: #fae360 !important;
+}
+.bg-highlight-dark {
+  background-color: #f0d44a !important;
+}
+.bg-neutral {
+  background-color: #bbd4ce !important;
+}
+.bg-neutral-dark {
+  background-color: #a7c0ba !important;
+}
+.bg-beige {
+  background-color: #fbf3e8 !important;
+}
+.bg-beige-dark {
+  background-color: #f3e8d8 !important;
+}
+.bg-cream {
+  background-color: #fdebf3 !important;
+}
+
+/* Colores de borde */
+.border-primary {
+  border-color: #264e70 !important;
+}
+.border-primary-dark {
+  border-color: #1e415c !important;
+}
+.border-secondary {
+  border-color: #679186 !important;
+}
+.border-secondary-dark {
+  border-color: #5a7a6f !important;
+}
+.border-accent {
+  border-color: #f9b4ab !important;
+}
+.border-accent-dark {
+  border-color: #f7a094 !important;
+}
+.border-highlight {
+  border-color: #fae360 !important;
+}
+.border-highlight-dark {
+  border-color: #f0d44a !important;
+}
+.border-neutral {
+  border-color: #bbd4ce !important;
+}
+.border-neutral-dark {
+  border-color: #a7c0ba !important;
+}
+.border-beige {
+  border-color: #fbf3e8 !important;
+}
+.border-beige-dark {
+  border-color: #f3e8d8 !important;
+}
+.border-cream {
+  border-color: #fdebf3 !important;
+}
+
 /* ===== BOOTSTRAP GRID SYSTEM ===== */
 /* Implementación: Bootstrap Grid System para Astro 5.13.3+ */
 /* Compatibilidad: Astro 5.13.3+ con Tailwind CSS 4 */

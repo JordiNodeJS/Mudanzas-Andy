@@ -2,21 +2,22 @@
 
 ## 🎯 **Resumen de Estado**
 
-| Tarea            | Estado            | Prioridad   | Progreso | ETA    |
-| ---------------- | ----------------- | ----------- | -------- | ------ |
-| TASK-001         | ✅ COMPLETADO     | CRÍTICA     | 100%     | ✅     |
-| TASK-002         | ✅ COMPLETADO     | ALTA        | 100%     | ✅     |
-| TASK-003         | ✅ COMPLETADO     | ALTA        | 100%     | ✅     |
-| TASK-004         | ✅ COMPLETADO     | ALTA        | 100%     | ✅     |
-| TASK-005         | ✅ COMPLETADO     | MEDIA       | 100%     | ✅     |
-| TASK-006         | ✅ COMPLETADO     | CRÍTICA     | 100%     | ✅     |
-| TASK-007         | ✅ COMPLETADO     | ALTA        | 100%     | ✅     |
-| TASK-008         | ✅ COMPLETADO     | ALTA        | 100%     | ✅     |
-| TASK-009         | ✅ COMPLETADO     | CRÍTICA     | 100%     | ✅     |
-| TASK-010         | ✅ COMPLETADO     | MEDIA       | 100%     | ✅     |
-| TASK-011         | ✅ COMPLETADO     | CRÍTICA     | 100%     | ✅     |
-| **THEMING**      | **✅ COMPLETADO** | **CRÍTICA** | **100%** | **✅** |
-| **LAYOUT-FIXES** | **✅ COMPLETADO** | **CRÍTICA** | **100%** | **✅** |
+| Tarea            | Estado             | Prioridad   | Progreso | ETA     |
+| ---------------- | ------------------ | ----------- | -------- | ------- |
+| TASK-001         | ✅ COMPLETADO      | CRÍTICA     | 100%     | ✅      |
+| TASK-002         | ✅ COMPLETADO      | ALTA        | 100%     | ✅      |
+| TASK-003         | ✅ COMPLETADO      | ALTA        | 100%     | ✅      |
+| TASK-004         | ✅ COMPLETADO      | ALTA        | 100%     | ✅      |
+| TASK-005         | ✅ COMPLETADO      | MEDIA       | 100%     | ✅      |
+| TASK-006         | ✅ COMPLETADO      | CRÍTICA     | 100%     | ✅      |
+| TASK-007         | ✅ COMPLETADO      | ALTA        | 100%     | ✅      |
+| TASK-008         | ✅ COMPLETADO      | ALTA        | 100%     | ✅      |
+| TASK-009         | ✅ COMPLETADO      | CRÍTICA     | 100%     | ✅      |
+| TASK-010         | ✅ COMPLETADO      | MEDIA       | 100%     | ✅      |
+| TASK-011         | ✅ COMPLETADO      | CRÍTICA     | 100%     | ✅      |
+| **THEMING**      | **🔄 EN PROGRESO** | **CRÍTICA** | **85%**  | **HOY** |
+| **COLOR-SYSTEM** | **⚠️ PARCIAL**     | **CRÍTICA** | **70%**  | **HOY** |
+| **LAYOUT-FIXES** | **✅ COMPLETADO**  | **CRÍTICA** | **100%** | **✅**  |
 
 ## 📊 **Progreso por Área**
 

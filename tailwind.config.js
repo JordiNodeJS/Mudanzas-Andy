@@ -1,12 +1,56 @@
 /**
  * Configuración de Tailwind CSS 4 para Mudanzas ANDY
  *
- * Integración con design tokens centralizados definidos en src/styles/theme.css
  * Configuración simplificada para compatibilidad con Tailwind CSS 4.1.12
  */
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  safelist: [
+    // Colores de texto
+    "text-primary",
+    "text-primary-dark",
+    "text-secondary",
+    "text-secondary-dark",
+    "text-accent",
+    "text-accent-dark",
+    "text-highlight",
+    "text-highlight-dark",
+    "text-neutral",
+    "text-neutral-dark",
+    "text-beige",
+    "text-beige-dark",
+    "text-cream",
+    // Colores de fondo
+    "bg-primary",
+    "bg-primary-dark",
+    "bg-secondary",
+    "bg-secondary-dark",
+    "bg-accent",
+    "bg-accent-dark",
+    "bg-highlight",
+    "bg-highlight-dark",
+    "bg-neutral",
+    "bg-neutral-dark",
+    "bg-beige",
+    "bg-beige-dark",
+    "bg-cream",
+    // Colores de borde
+    "border-primary",
+    "border-primary-dark",
+    "border-secondary",
+    "border-secondary-dark",
+    "border-accent",
+    "border-accent-dark",
+    "border-highlight",
+    "border-highlight-dark",
+    "border-neutral",
+    "border-neutral-dark",
+    "border-beige",
+    "border-beige-dark",
+    "border-cream",
+  ],
   theme: {
     // Extender la configuración base en lugar de sobrescribir
     extend: {
@@ -14,53 +58,53 @@ export default {
       colors: {
         /* Colores principales del brand */
         primary: {
-          DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
-          dark: "rgb(var(--color-primary-dark) / <alpha-value>)",
+          DEFAULT: "#264e70",
+          dark: "#1e415c",
         },
         secondary: {
-          DEFAULT: "rgb(var(--color-secondary) / <alpha-value>)",
-          dark: "rgb(var(--color-secondary-dark) / <alpha-value>)",
+          DEFAULT: "#679186",
+          dark: "#5a7a6f",
         },
         accent: {
-          DEFAULT: "rgb(var(--color-accent) / <alpha-value>)",
-          dark: "rgb(var(--color-accent-dark) / <alpha-value>)",
+          DEFAULT: "#f9b4ab",
+          dark: "#f7a094",
         },
         highlight: {
-          DEFAULT: "rgb(var(--color-highlight) / <alpha-value>)",
-          dark: "rgb(var(--color-highlight-dark) / <alpha-value>)",
+          DEFAULT: "#fae360",
+          dark: "#f0d44a",
         },
         neutral: {
-          DEFAULT: "rgb(var(--color-neutral) / <alpha-value>)",
-          dark: "rgb(var(--color-neutral-dark) / <alpha-value>)",
+          DEFAULT: "#bbd4ce",
+          dark: "#a7c0ba",
         },
 
         /* Colores beige para fondos */
         beige: {
-          DEFAULT: "rgb(var(--color-beige) / <alpha-value>)",
-          dark: "rgb(var(--color-beige-dark) / <alpha-value>)",
+          DEFAULT: "#fbf3e8",
+          dark: "#f3e8d8",
         },
 
         /* Color crema para gradientes */
-        cream: "rgb(var(--color-cream) / <alpha-value>)",
+        cream: "#fdebf3",
 
         /* Colores semánticos */
-        success: "rgb(var(--color-success) / <alpha-value>)",
-        warning: "rgb(var(--color-warning) / <alpha-value>)",
-        error: "rgb(var(--color-error) / <alpha-value>)",
-        info: "rgb(var(--color-info) / <alpha-value>)",
+        success: "#22c55e",
+        warning: "#f59e0b",
+        error: "#ef4444",
+        info: "#3b82f6",
 
         /* Grises y neutros extendidos */
         gray: {
-          50: "rgb(var(--color-gray-50) / <alpha-value>)",
-          100: "rgb(var(--color-gray-100) / <alpha-value>)",
-          200: "rgb(var(--color-gray-200) / <alpha-value>)",
-          300: "rgb(var(--color-gray-300) / <alpha-value>)",
-          400: "rgb(var(--color-gray-400) / <alpha-value>)",
-          500: "rgb(var(--color-gray-500) / <alpha-value>)",
-          600: "rgb(var(--color-gray-600) / <alpha-value>)",
-          700: "rgb(var(--color-gray-700) / <alpha-value>)",
-          800: "rgb(var(--color-gray-800) / <alpha-value>)",
-          900: "rgb(var(--color-gray-900) / <alpha-value>)",
+          50: "#f9fafb",
+          100: "#f3f4f6",
+          200: "#e5e7eb",
+          300: "#d1d5db",
+          400: "#9ca3af",
+          500: "#6b7280",
+          600: "#4b5563",
+          700: "#374151",
+          800: "#1f2937",
+          900: "#111827",
         },
       },
 
