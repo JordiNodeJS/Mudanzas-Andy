@@ -84,6 +84,23 @@
     );
   }
 
+  /* ===== CONTACT CARDS LIMPIAS ===== */
+  /* [LAYOUT] Tarjetas horizontales como en el diseño original */
+  .contact-card-clean {
+    min-height: 100px; /* Altura mínima consistente */
+  }
+
+  .contact-card-clean:hover {
+    transform: translateY(-2px);
+  }
+
+  /* [RESPONSIVE] Ajustes para móvil y escritorio */
+  @media (max-width: 640px) {
+    .contact-card-clean {
+      min-height: 90px;
+    }
+  }
+
   /* ===== LAYOUT COMPONENTS ===== */
   /* [LAYOUT] Header fixed y compensación de altura */
 
