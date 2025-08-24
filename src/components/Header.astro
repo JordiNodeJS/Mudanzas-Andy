@@ -2,9 +2,7 @@
 // No props needed for header
 ---
 
-<header
-  class="fixed top-0 w-full bg-primary text-white z-40 shadow-lg header-persistent"
->
+<header class="header-fixed bg-primary text-white shadow-lg">
   <div class="container mx-auto px-4 py-3">
     <div class="flex flex-wrap items-center justify-between">
       <!-- Logo y nombre -->
@@ -135,10 +133,7 @@
     </div>
 
     <!-- Menú móvil -->
-    <nav
-      id="mobile-menu"
-      class="lg:hidden hidden w-full mt-4 border-t border-secondary pt-4"
-    >
+    <nav id="mobile-menu" class="mobile-menu hidden">
       <div class="flex flex-col space-y-3">
         <a
           href="/"
@@ -176,7 +171,7 @@
         >
           📞 Contacto
         </a>
-        <div class="border-t border-secondary pt-3 mt-3">
+        <div class="border-t border-gray-300 pt-3 mt-3">
           <div class="flex flex-col space-y-3">
             <a
               href="tel:+34933539792"

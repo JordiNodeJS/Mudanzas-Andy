@@ -1,27 +1,12 @@
-import { defineConfig } from "@tailwindcss/vite";
-
 /**
  * Configuración de Tailwind CSS 4 para Mudanzas ANDY
  *
  * Integración con design tokens centralizados definidos en src/styles/theme.css
- * Utiliza helper withOpacity para soporte de opacidades con variables CSS en formato RGB
+ * Configuración simplificada para compatibilidad con Tailwind CSS 4.1.12
  */
 
-/**
- * Helper para crear colores con soporte de opacidad desde variables CSS
- * @param {string} variable - Nombre de la variable CSS (ej: '--color-primary')
- * @returns {Function} Función que acepta opacidad opcional
- */
-function withOpacity(variable) {
-  return ({ opacityValue }) => {
-    if (opacityValue !== undefined) {
-      return `rgba(var(${variable}), ${opacityValue})`;
-    }
-    return `rgb(var(${variable}))`;
-  };
-}
-
-export default defineConfig({
+/** @type {import('tailwindcss').Config} */
+export default {
   theme: {
     // Extender la configuración base en lugar de sobrescribir
     extend: {
@@ -29,53 +14,53 @@ export default defineConfig({
       colors: {
         /* Colores principales del brand */
         primary: {
-          DEFAULT: withOpacity("--color-primary"),
-          dark: withOpacity("--color-primary-dark"),
+          DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
+          dark: "rgb(var(--color-primary-dark) / <alpha-value>)",
         },
         secondary: {
-          DEFAULT: withOpacity("--color-secondary"),
-          dark: withOpacity("--color-secondary-dark"),
+          DEFAULT: "rgb(var(--color-secondary) / <alpha-value>)",
+          dark: "rgb(var(--color-secondary-dark) / <alpha-value>)",
         },
         accent: {
-          DEFAULT: withOpacity("--color-accent"),
-          dark: withOpacity("--color-accent-dark"),
+          DEFAULT: "rgb(var(--color-accent) / <alpha-value>)",
+          dark: "rgb(var(--color-accent-dark) / <alpha-value>)",
         },
         highlight: {
-          DEFAULT: withOpacity("--color-highlight"),
-          dark: withOpacity("--color-highlight-dark"),
+          DEFAULT: "rgb(var(--color-highlight) / <alpha-value>)",
+          dark: "rgb(var(--color-highlight-dark) / <alpha-value>)",
         },
         neutral: {
-          DEFAULT: withOpacity("--color-neutral"),
-          dark: withOpacity("--color-neutral-dark"),
+          DEFAULT: "rgb(var(--color-neutral) / <alpha-value>)",
+          dark: "rgb(var(--color-neutral-dark) / <alpha-value>)",
         },
 
         /* Colores beige para fondos */
         beige: {
-          DEFAULT: withOpacity("--color-beige"),
-          dark: withOpacity("--color-beige-dark"),
+          DEFAULT: "rgb(var(--color-beige) / <alpha-value>)",
+          dark: "rgb(var(--color-beige-dark) / <alpha-value>)",
         },
 
         /* Color crema para gradientes */
-        cream: withOpacity("--color-cream"),
+        cream: "rgb(var(--color-cream) / <alpha-value>)",
 
         /* Colores semánticos */
-        success: withOpacity("--color-success"),
-        warning: withOpacity("--color-warning"),
-        error: withOpacity("--color-error"),
-        info: withOpacity("--color-info"),
+        success: "rgb(var(--color-success) / <alpha-value>)",
+        warning: "rgb(var(--color-warning) / <alpha-value>)",
+        error: "rgb(var(--color-error) / <alpha-value>)",
+        info: "rgb(var(--color-info) / <alpha-value>)",
 
         /* Grises y neutros extendidos */
         gray: {
-          50: withOpacity("--color-gray-50"),
-          100: withOpacity("--color-gray-100"),
-          200: withOpacity("--color-gray-200"),
-          300: withOpacity("--color-gray-300"),
-          400: withOpacity("--color-gray-400"),
-          500: withOpacity("--color-gray-500"),
-          600: withOpacity("--color-gray-600"),
-          700: withOpacity("--color-gray-700"),
-          800: withOpacity("--color-gray-800"),
-          900: withOpacity("--color-gray-900"),
+          50: "rgb(var(--color-gray-50) / <alpha-value>)",
+          100: "rgb(var(--color-gray-100) / <alpha-value>)",
+          200: "rgb(var(--color-gray-200) / <alpha-value>)",
+          300: "rgb(var(--color-gray-300) / <alpha-value>)",
+          400: "rgb(var(--color-gray-400) / <alpha-value>)",
+          500: "rgb(var(--color-gray-500) / <alpha-value>)",
+          600: "rgb(var(--color-gray-600) / <alpha-value>)",
+          700: "rgb(var(--color-gray-700) / <alpha-value>)",
+          800: "rgb(var(--color-gray-800) / <alpha-value>)",
+          900: "rgb(var(--color-gray-900) / <alpha-value>)",
         },
       },
 
@@ -319,4 +304,4 @@ export default defineConfig({
     {
       // Configuraciones adicionales para desarrollo si es necesario
     }),
-});
+};

@@ -49,6 +49,20 @@
   /* Colores de gradientes para fondos de sección */
   --color-cream: 253 235 211; /* #fdebd3 - Crema suave para gradientes */
 
+  /* ===== ESPACIADOS Y DIMENSIONES ===== */
+  /* [LAYOUT] Variables para layout y posicionamiento */
+
+  /* Altura del header fixed (calculada dinámicamente via JS) */
+  --header-height: 120px; /* Fallback inicial, se actualiza dinámicamente */
+
+  /* Espaciados base del sistema */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+
   /* ===== COLORES SEMÁNTICOS ===== */
   /* [ACCESIBILIDAD] Colores con contraste suficiente WCAG 2.2 AA */
 

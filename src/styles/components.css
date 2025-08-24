@@ -9,6 +9,33 @@
  */
 
 @layer components {
+  /* ===== LAYOUT COMPONENTS ===== */
+  /* [LAYOUT] Header fixed y compensación de altura */
+
+  .header-fixed {
+    @apply fixed top-0 w-full z-50;
+    background: rgb(var(--color-primary));
+    /* [ACCESIBILIDAD] Sombra para definir separación visual */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* [LAYOUT] Compensación automática para contenido bajo header fixed */
+  .content-with-header {
+    padding-top: var(--header-height);
+  }
+
+  /* [MÓVIL] Menú móvil con fondo sólido */
+  .mobile-menu {
+    @apply lg:hidden w-full mt-4 border-t border-gray-300 pt-4;
+    background: rgb(var(--color-primary));
+    /* [ACCESIBILIDAD] Fondo sólido para mejor legibilidad y contraste */
+    /* [TEMPORAL] Usando border-gray-300 hasta solucionar configuración de border-secondary */
+  }
+
+  .mobile-menu.mobile-menu--open {
+    @apply block;
+  }
+
   /* ===== BOTONES ===== */
   /* [REGLA] Componentes base para botones con variantes semánticas */
 

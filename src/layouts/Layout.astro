@@ -69,8 +69,10 @@ const {
       })}
     />
   </head>
-  <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
-    <slot />
+  <body class="font-sans bg-cream text-gray-800 antialiased">
+    <div class="content-with-header">
+      <slot />
+    </div>
 
     <!-- WhatsApp Floating Button (visible during scroll; script will toggle visibility when footer is in view) -->
     <a
