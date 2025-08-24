@@ -28,11 +28,35 @@ export default defineConfig({
       /* ===== COLORES ===== */
       colors: {
         /* Colores principales del brand */
-        primary: withOpacity("--color-primary"),
-        secondary: withOpacity("--color-secondary"),
-        accent: withOpacity("--color-accent"),
-        highlight: withOpacity("--color-highlight"),
-        neutral: withOpacity("--color-neutral"),
+        primary: {
+          DEFAULT: withOpacity("--color-primary"),
+          dark: withOpacity("--color-primary-dark"),
+        },
+        secondary: {
+          DEFAULT: withOpacity("--color-secondary"),
+          dark: withOpacity("--color-secondary-dark"),
+        },
+        accent: {
+          DEFAULT: withOpacity("--color-accent"),
+          dark: withOpacity("--color-accent-dark"),
+        },
+        highlight: {
+          DEFAULT: withOpacity("--color-highlight"),
+          dark: withOpacity("--color-highlight-dark"),
+        },
+        neutral: {
+          DEFAULT: withOpacity("--color-neutral"),
+          dark: withOpacity("--color-neutral-dark"),
+        },
+
+        /* Colores beige para fondos */
+        beige: {
+          DEFAULT: withOpacity("--color-beige"),
+          dark: withOpacity("--color-beige-dark"),
+        },
+
+        /* Color crema para gradientes */
+        cream: withOpacity("--color-cream"),
 
         /* Colores semánticos */
         success: withOpacity("--color-success"),

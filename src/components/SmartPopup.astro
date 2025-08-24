@@ -9,8 +9,8 @@
       <!-- Header del popup -->
       <div class="mb-4">
         <div class="text-4xl mb-2">⏰</div>
-        <h3 class="text-2xl font-bold text-[#264e70] mb-2">¿Tienes prisa?</h3>
-        <p class="text-[#679186]">¡Te llamamos GRATIS en 2 minutos!</p>
+        <h3 class="text-2xl font-bold text-primary mb-2">¿Tienes prisa?</h3>
+        <p class="text-secondary">¡Te llamamos GRATIS en 2 minutos!</p>
       </div>
       
       <!-- Formulario del popup -->
@@ -22,7 +22,7 @@
             name="name"
             placeholder="Tu nombre" 
             required
-            class="w-full px-4 py-3 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none text-gray-800 placeholder-gray-500"
+            class="w-full px-4 py-3 rounded-lg border-2 border-neutral focus:border-highlight focus:outline-none text-gray-800 placeholder-gray-500"
           >
           <input 
             type="tel" 
@@ -31,14 +31,14 @@
             placeholder="Tu teléfono (ej: 640 50 60 84)" 
             required
             pattern="[0-9]{3} [0-9]{2} [0-9]{2} [0-9]{2}"
-            class="w-full px-4 py-3 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none text-gray-800 placeholder-gray-500"
+            class="w-full px-4 py-3 rounded-lg border-2 border-neutral focus:border-highlight focus:outline-none text-gray-800 placeholder-gray-500"
           >
         </div>
         
         <div class="flex flex-col sm:flex-row gap-3 pt-4">
           <button 
             type="submit"
-            class="bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 flex-1"
+            class="bg-highlight hover:bg-[#f0d84a] text-primary font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 flex-1"
           >
             <span>📞</span>
             <span>¡Llamar ahora!</span>
@@ -56,7 +56,7 @@
       
       <!-- Mensaje de confianza -->
       <div class="mt-4 pt-4 border-t border-gray-200">
-        <p class="text-xs text-[#679186]">
+        <p class="text-xs text-secondary">
           ✓ Llamada gratuita ✓ Sin compromiso ✓ Atención profesional 24/7
         </p>
       </div>
@@ -133,15 +133,15 @@
       popupContent.innerHTML = `
         <div class="p-6 text-center">
           <div class="text-4xl mb-4">✅</div>
-          <h3 class="text-2xl font-bold text-[#264e70] mb-4">¡Perfecto!</h3>
-          <p class="text-[#679186] mb-4">Hemos recibido tu solicitud. Te llamaremos al <strong>${phone}</strong> en menos de 2 minutos.</p>
-          <p class="text-sm text-[#679186] mb-6">Si necesitas contacto inmediato, también puedes llamarnos directamente:</p>
+          <h3 class="text-2xl font-bold text-primary mb-4">¡Perfecto!</h3>
+          <p class="text-secondary mb-4">Hemos recibido tu solicitud. Te llamaremos al <strong>${phone}</strong> en menos de 2 minutos.</p>
+          <p class="text-sm text-secondary mb-6">Si necesitas contacto inmediato, también puedes llamarnos directamente:</p>
           
           <div class="space-y-3">
-            <a href="tel:+34933539792" class="block bg-[#679186] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#5a7a6f] transition-colors duration-300">
+            <a href="tel:+34933539792" class="block bg-secondary text-white font-bold py-3 px-6 rounded-lg hover:bg-[#5a7a6f] transition-colors duration-300">
               📞 Llamar: 933 53 97 92
             </a>
-            <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="block bg-[#FAE360] text-[#264e70] font-bold py-3 px-6 rounded-lg hover:bg-[#f0d84a] transition-colors duration-300">
+            <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="block bg-highlight text-primary font-bold py-3 px-6 rounded-lg hover:bg-[#f0d84a] transition-colors duration-300">
               💬 WhatsApp: 640 50 60 84
             </a>
           </div>

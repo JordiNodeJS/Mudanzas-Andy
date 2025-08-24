@@ -5,7 +5,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
 <section id="servicios" class="py-16 lg:py-24 relative overflow-hidden">
   <!-- Background with patterns and gradients -->
   <div
-    class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-[#f9b4ab]/5"
+    class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-accent/5"
   >
   </div>
 
@@ -13,15 +13,15 @@ import ServiceCard from "../ui/ServiceCard.astro";
   <div class="absolute inset-0 opacity-10">
     <!-- Geometric shapes for visual interest -->
     <div
-      class="absolute top-20 right-10 w-32 h-32 bg-gradient-to-br from-[#f9b4ab] to-[#679186] rounded-full blur-3xl"
+      class="absolute top-20 right-10 w-32 h-32 bg-gradient-to-br from-accent to-secondary rounded-full blur-3xl"
     >
     </div>
     <div
-      class="absolute bottom-20 left-10 w-48 h-48 bg-gradient-to-br from-[#679186] to-[#264e70] rounded-full blur-3xl"
+      class="absolute bottom-20 left-10 w-48 h-48 bg-gradient-to-br from-secondary to-primary rounded-full blur-3xl"
     >
     </div>
     <div
-      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-[#fdebd3] to-[#bbd4ce] rounded-full blur-3xl"
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-cream to-neutral rounded-full blur-3xl"
     >
     </div>
   </div>
@@ -29,7 +29,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
   <!-- Pattern overlay -->
   <div
     class="absolute inset-0 opacity-5"
-    style="background-image: radial-gradient(circle at 1px 1px, #679186 1px, transparent 0); background-size: 20px 20px;"
+    style="background-image: radial-gradient(circle at 1px 1px, rgb(var(--color-secondary)) 1px, transparent 0); background-size: 20px 20px;"
   >
   </div>
 
@@ -37,17 +37,17 @@ import ServiceCard from "../ui/ServiceCard.astro";
     <!-- Enhanced header section -->
     <div class="text-center mb-16 lg:mb-20">
       <div
-        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#f9b4ab]/20 to-[#679186]/20 px-4 py-2 rounded-full mb-6"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-accent/20 to-secondary/20 px-4 py-2 rounded-full mb-6"
       >
-        <span class="w-2 h-2 bg-[#679186] rounded-full animate-pulse"></span>
+        <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
         <span
-          class="text-[#679186] font-semibold text-sm uppercase tracking-wide"
+          class="text-secondary font-semibold text-sm uppercase tracking-wide"
           >Servicios Profesionales</span
         >
       </div>
 
       <h2
-        class="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-[#264e70] to-[#679186] bg-clip-text text-transparent mb-6"
+        class="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-6"
       >
         Nuestros Servicios de Mudanza
       </h2>
@@ -55,7 +55,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
         class="text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
       >
         Especialistas en mudanzas profesionales con más de <strong
-          class="text-[#679186]">14 años de experiencia</strong
+          class="text-secondary">14 años de experiencia</strong
         >. Tu tranquilidad es nuestra prioridad.
       </p>
     </div>
@@ -75,7 +75,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Equipo especializado en objetos frágiles y obras de arte",
             "Coordinador personal asignado para tu mudanza",
           ]}
-          gradient="bg-gradient-to-br from-[#f9b4ab]/30 to-[#fdebd3]/40 border-[#f9b4ab]/50"
+          gradient="bg-gradient-to-br from-accent/30 to-[#fdebd3]/40 border-accent/50"
           featured={true}
           ctaText="¡Solicitar Presupuesto GRATIS!"
           badge="⭐ MÁS POPULAR"
@@ -96,7 +96,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Manejo especializado de equipos IT",
             "Documentación y seguimiento completo",
           ]}
-          gradient="bg-gradient-to-br from-[#679186]/20 to-[#bbd4ce]/30 border-[#679186]/40"
+          gradient="bg-gradient-to-br from-secondary/20 to-neutral/30 border-secondary/40"
           ctaText="Consultar para Empresas"
         />
 
@@ -110,7 +110,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Etiquetado y inventario digital",
             "Desembalaje en destino incluido",
           ]}
-          gradient="bg-gradient-to-br from-[#fdebd3]/40 to-[#f9b4ab]/20 border-[#fdebd3]/60"
+          gradient="bg-gradient-to-br from-[#fdebd3]/40 to-accent/20 border-[#fdebd3]/60"
           ctaText="Solicitar Embalaje"
         />
 
@@ -124,7 +124,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Equipo de emergencia dedicado",
             "Máxima rapidez garantizada",
           ]}
-          gradient="bg-gradient-to-br from-[#bbd4ce]/30 to-[#679186]/20 border-[#bbd4ce]/50"
+          gradient="bg-gradient-to-br from-neutral/30 to-secondary/20 border-neutral/50"
           ctaText="¡Emergencia Ya!"
           badge="🚨 URGENTE"
         />
@@ -139,7 +139,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Acceso flexible cuando lo necesites",
             "Inventario digital con fotos",
           ]}
-          gradient="bg-gradient-to-br from-[#f9b4ab]/15 to-[#679186]/10 border-[#f9b4ab]/40"
+          gradient="bg-gradient-to-br from-accent/15 to-secondary/10 border-accent/40"
           ctaText="Ver Almacenamiento"
         />
 
@@ -153,7 +153,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Coordinación entre ciudades",
             "Entrega en fecha confirmada",
           ]}
-          gradient="bg-gradient-to-br from-[#264e70]/15 to-[#bbd4ce]/25 border-[#264e70]/30"
+          gradient="bg-gradient-to-br from-primary/15 to-neutral/25 border-primary/30"
           ctaText="Cotizar Nacional"
         />
 
@@ -168,7 +168,7 @@ import ServiceCard from "../ui/ServiceCard.astro";
             "Coordinación puerta a puerta",
             "Seguros internacionales",
           ]}
-          gradient="bg-gradient-to-br from-[#679186]/20 to-[#264e70]/15 border-[#679186]/40"
+          gradient="bg-gradient-to-br from-secondary/20 to-primary/15 border-secondary/40"
           ctaText="Consultar Internacional"
           badge="🌍 GLOBAL"
         />
@@ -177,9 +177,9 @@ import ServiceCard from "../ui/ServiceCard.astro";
       <!-- Bottom CTA section -->
       <div class="mt-16 lg:mt-20 text-center">
         <div
-          class="bg-gradient-to-r from-[#f9b4ab]/10 to-[#679186]/10 backdrop-blur-sm border border-[#679186]/20 rounded-2xl p-8 lg:p-12"
+          class="bg-gradient-to-r from-accent/10 to-secondary/10 backdrop-blur-sm border border-secondary/20 rounded-2xl p-8 lg:p-12"
         >
-          <h3 class="text-2xl lg:text-3xl font-bold text-[#264e70] mb-4">
+          <h3 class="text-2xl lg:text-3xl font-bold text-primary mb-4">
             ¿Necesitas un servicio personalizado?
           </h3>
           <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
@@ -193,13 +193,13 @@ import ServiceCard from "../ui/ServiceCard.astro";
               href="https://wa.me/34640506084"
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-[#679186] hover:to-[#f9b4ab] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              class="bg-gradient-to-r from-accent to-secondary text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-secondary hover:to-accent transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               💬 WhatsApp: Consulta Personalizada
             </a>
             <a
               href="tel:+34933539792"
-              class="bg-white border-2 border-[#679186] text-[#679186] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#679186] hover:text-white transition-all duration-300 transform hover:scale-105"
+              class="bg-white border-2 border-secondary text-secondary px-8 py-4 rounded-xl font-bold text-lg hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-105"
             >
               📞 Llamar: 933 53 97 92
             </a>

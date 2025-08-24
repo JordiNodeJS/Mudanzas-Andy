@@ -40,7 +40,7 @@
       var formContainer = document.getElementById("contactForm");
       if (formContainer) {
         formContainer.innerHTML =
-          '\n          <div class="container mx-auto px-4 py-4 text-center">\n            <div class="bg-green-500 text-white p-4 rounded-lg">\n              <p class="font-bold">¡Listo! Te contactaremos en menos de 10 minutos por WhatsApp.</p>\n              <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>\n              <a id="open-wsp-after" href="#" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold">Abrir WhatsApp 💬</a>\n            </div>\n          </div>\n        ';
+          '\n          <div class="container mx-auto px-4 py-4 text-center">\n            <div class="bg-success text-white p-4 rounded-lg">\n              <p class="font-bold">¡Listo! Te contactaremos en menos de 10 minutos por WhatsApp.</p>\n              <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>\n              <a id="open-wsp-after" href="#" class="inline-block mt-3 bg-highlight text-primary px-4 py-2 rounded-lg font-bold">Abrir WhatsApp 💬</a>\n            </div>\n          </div>\n        ';
         var openBtn = document.getElementById("open-wsp-after");
         if (openBtn)
           openBtn.addEventListener("click", function () {
@@ -100,7 +100,7 @@
       var parent = inlineForm.parentElement;
       if (parent) {
         parent.innerHTML = `
-          <div class="p-4 bg-green-50 rounded-md border border-green-200 text-green-800">
+          <div class="p-4 bg-success/10 rounded-md border border-success/20 text-success">
             <strong>¡Enviado!</strong> Te contactaremos por WhatsApp en menos de 10 minutos.
           </div>
         `;

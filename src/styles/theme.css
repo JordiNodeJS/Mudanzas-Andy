@@ -22,11 +22,11 @@
   /* [PALETA] Colores principales del brand Mudanzas ANDY */
 
   /* Colores primarios (formato RGB para opacidades) */
-  --color-primary: 38 78 112; /* #264e70 - Azul corporativo principal */
-  --color-secondary: 103 145 134; /* #679186 - Verde complementario */
-  --color-accent: 249 180 171; /* #f9b4ab - Rosa coral para CTA */
-  --color-highlight: 250 227 96; /* #FAE360 - Amarillo para destacados */
-  --color-neutral: 187 212 206; /* #bbd4ce - Verde neutro suave */
+  --color-primary: 38 78 112; /* Azul corporativo principal */
+  --color-secondary: 103 145 134; /* Verde complementario */
+  --color-accent: 249 180 171; /* Rosa coral para CTA */
+  --color-highlight: 250 227 96; /* Amarillo para destacados */
+  --color-neutral: 187 212 206; /* Verde neutro suave */
 
   /* Colores primarios (fallback hex para navegadores antiguos) */
   --color-primary-hex: #264e70;
@@ -34,6 +34,20 @@
   --color-accent-hex: #f9b4ab;
   --color-highlight-hex: #fae360;
   --color-neutral-hex: #bbd4ce;
+
+  /* Variantes oscuras (hover states) */
+  --color-primary-dark: 30 65 92; /* #1e415c - Versión más oscura del primary */
+  --color-secondary-dark: 90 122 111; /* #5a7a6f - Versión más oscura del secondary */
+  --color-accent-dark: 247 160 148; /* #f7a094 - Versión más oscura del accent */
+  --color-highlight-dark: 240 212 74; /* #f0d44a - Versión más oscura del highlight */
+  --color-neutral-dark: 167 192 186; /* #a7c0ba - Versión más oscura del neutral */
+
+  /* Colores beige para fondos suaves */
+  --color-beige: 251 243 232; /* #FBF3E8 - Beige suave */
+  --color-beige-dark: 243 232 216; /* #F3E8D8 - Beige más oscuro */
+
+  /* Colores de gradientes para fondos de sección */
+  --color-cream: 253 235 211; /* #fdebd3 - Crema suave para gradientes */
 
   /* ===== COLORES SEMÁNTICOS ===== */
   /* [ACCESIBILIDAD] Colores con contraste suficiente WCAG 2.2 AA */

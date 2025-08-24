@@ -31,7 +31,7 @@ const {
   <!-- Enhanced Badge with better visibility -->
   {
     badge && (
-      <div class="absolute top-4 right-4 bg-gradient-to-r from-[#f9b4ab] to-[#679186] text-white px-3 py-2 rounded-full text-xs font-bold shadow-lg animate-pulse">
+      <div class="absolute top-4 right-4 bg-gradient-to-r from-accent to-secondary text-white px-3 py-2 rounded-full text-xs font-bold shadow-lg animate-pulse">
         {badge}
       </div>
     )
@@ -44,25 +44,25 @@ const {
     <div
       class="absolute bottom-0 right-0 w-28 h-28 transform translate-x-10 translate-y-10"
     >
-      <Icon name={iconName} class="w-full h-full text-[#679186]/30" />
+      <Icon name={iconName} class="w-full h-full text-secondary/30" />
     </div>
   </div>
 
   <div class="text-center relative z-10">
     <!-- Enhanced icon container with better visibility -->
     <div
-      class="w-20 h-20 bg-gradient-to-br from-[#679186]/30 to-[#f9b4ab]/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md border border-white/20"
+      class="w-20 h-20 bg-gradient-to-br from-secondary/30 to-accent/30 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md border border-white/20"
     >
       <Icon
         name={iconName}
-        class="text-[#679186] group-hover:text-[#264e70] transition-colors duration-300"
+        class="text-secondary group-hover:text-primary transition-colors duration-300"
         size={32}
       />
     </div>
 
     <!-- Enhanced title with better contrast -->
     <h3
-      class="text-xl font-bold text-[#264e70] mb-4 group-hover:text-[#679186] transition-colors duration-300"
+      class="text-xl font-bold text-primary mb-4 group-hover:text-secondary transition-colors duration-300"
     >
       {title}
     </h3>
@@ -75,7 +75,7 @@ const {
     <!-- Enhanced arrow indicator with better visibility -->
     <div class="mt-6 flex justify-center">
       <div
-        class="w-8 h-8 bg-gradient-to-r from-[#679186]/20 to-[#679186]/30 rounded-full flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-[#679186] group-hover:to-[#264e70] transition-all duration-300 shadow-md border border-[#679186]/20 group-hover:border-transparent"
+        class="w-8 h-8 bg-gradient-to-r from-secondary/20 to-secondary/30 rounded-full flex items-center justify-center group-hover:bg-gradient-to-r group-hover:from-secondary group-hover:to-primary transition-all duration-300 shadow-md border border-secondary/20 group-hover:border-transparent"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +83,7 @@ const {
           viewBox="0 0 24 24"
           stroke-width="2.5"
           stroke="currentColor"
-          class="w-4 h-4 text-[#679186] group-hover:text-white transition-colors duration-300"
+          class="w-4 h-4 text-secondary group-hover:text-white transition-colors duration-300"
         >
           <path
             stroke-linecap="round"
