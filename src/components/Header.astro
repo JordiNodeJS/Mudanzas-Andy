@@ -11,7 +11,9 @@
         <img
           src="/logos/logo-camion-transparent.png"
           alt="Mudanzas ANDY Logo"
-          class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center"
+          id="truck-logo"
+          data-animated="false"
+          class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
           onerror="this.onerror=null;this.src='/logos/logo-camion-mudanzas.png';"
         />
         <div>
@@ -186,6 +188,25 @@
 
   <!-- Script para el menú móvil -->
   <script>
+    // Truck animation: makes the truck drive in from the left on first load
+    (function animateTruck() {
+      const truck = document.getElementById("truck-logo");
+      if (!truck) return;
+
+      // Only trigger once per page load
+      try {
+        requestAnimationFrame(() => {
+          // small delay so the header layout settles
+          setTimeout(() => {
+            truck.dataset.animated = "true";
+            truck.classList.add("truck-drive");
+          }, 120);
+        });
+      } catch (e) {
+        // ignore
+      }
+    })();
+
     document.addEventListener("DOMContentLoaded", function () {
       const menuButton = document.getElementById("mobile-menu-button");
       const mobileMenu = document.getElementById("mobile-menu");
@@ -297,4 +318,47 @@
       highlightActiveSection();
     });
   </script>
+
+  <style>
+    /* Truck enter starting state */
+    .truck-enter {
+      transform: translateX(-140%) translateY(0) rotate(0deg);
+      transition:
+        transform 1.8s cubic-bezier(0.2, 0.9, 0.2, 1),
+        filter 0.5s ease;
+    }
+
+    /* When animation class added, truck drives in and brakes to stop */
+    .truck-drive {
+      transform: translateX(0) translateY(0) rotate(0deg);
+      transition-timing-function: cubic-bezier(
+        0.22,
+        0.98,
+        0.33,
+        1
+      ); /* fast start, smooth brake */
+      transition-duration: 1.6s;
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Add a small subtle bounce/brake at the end */
+    .truck-drive::after {
+      content: "";
+      display: block;
+      animation: truck-brake 600ms ease-out 1 forwards;
+      height: 0;
+    }
+
+    @keyframes truck-brake {
+      0% {
+        transform: translateY(0);
+      }
+      60% {
+        transform: translateY(-3px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
 </header>
