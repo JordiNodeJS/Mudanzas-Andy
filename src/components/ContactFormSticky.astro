@@ -3,18 +3,19 @@
 ---
 
 <div
-  class="fixed bottom-0 left-0 right-0 bg-secondary text-white shadow-lg z-30 transform transition-transform duration-300"
+  class="bg-highlight text-primary shadow-lg z-[60] transition-transform duration-300"
   id="contactForm"
+  style="position: fixed; left: 0; right: 0; bottom: 0; top: auto; width: 100%; max-height: 128px; transform: translateY(0%);"
 >
   <div class="container mx-auto px-4 py-3 lg:py-4">
     <div
       class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6"
     >
       <div class="text-center lg:text-left flex-shrink-0">
-        <p class="font-bold text-highlight text-sm lg:text-base">
+        <p class="font-bold text-primary text-sm lg:text-base">
           ¡Presupuesto GRATIS en 10 minutos!
         </p>
-        <p class="text-xs text-neutral">
+        <p class="text-xs text-primary/80">
           Te contactaremos por WhatsApp inmediatamente
         </p>
       </div>
@@ -32,20 +33,20 @@
             name="email"
             placeholder="tu@email.com"
             required
-            class="px-4 py-2 rounded-lg border-2 border-neutral focus:border-highlight focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+            class="px-4 py-2 rounded-lg border-2 border-primary/20 focus:border-primary focus:outline-none bg-white text-primary placeholder-primary/60 min-w-0 flex-1"
           />
           <input
             type="tel"
             id="phone"
             name="phone"
             placeholder="640 50 60 84"
-            class="px-4 py-2 rounded-lg border-2 border-neutral focus:border-highlight focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+            class="px-4 py-2 rounded-lg border-2 border-primary/20 focus:border-primary focus:outline-none bg-white text-primary placeholder-primary/60 min-w-0 flex-1"
           />
         </div>
 
         <button
           type="submit"
-          class="bg-highlight hover:bg-highlight-dark text-primary font-bold py-2 px-4 lg:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0"
+          class="bg-primary hover:bg-primary/90 text-highlight font-bold py-2 px-4 lg:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0"
         >
           <span>✅</span>
           <span class="hidden sm:inline">¡Recibe presupuesto en 10 min!</span>
@@ -56,7 +57,10 @@
   </div>
 
   <button
-    class="absolute top-0 right-4 transform -translate-y-full bg-secondary text-white px-3 py-1 rounded-t-lg text-sm hover:bg-secondary-dark transition-colors duration-300"
-    id="toggleForm">↓</button
+    class="fixed bottom-4 right-4 bg-primary text-highlight w-10 h-10 rounded-full text-sm font-bold hover:bg-primary/90 transition-all duration-300 z-[70] shadow-lg border-2 border-highlight/50 flex items-center justify-center"
+    id="toggleForm"
+    title="Cerrar formulario de presupuesto gratis"
   >
+    ✕
+  </button>
 </div>

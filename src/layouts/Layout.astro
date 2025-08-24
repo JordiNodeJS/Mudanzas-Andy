@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
+import ContactForm from "../components/ContactForm.astro";
 
 interface Props {
   title?: string;
@@ -73,6 +74,9 @@ const {
     <div class="content-with-header">
       <slot />
     </div>
+
+    <!-- Componente colapsable de presupuesto -->
+    <ContactForm variant="sticky" />
 
     <!-- WhatsApp Floating Button (visible during scroll; script will toggle visibility when footer is in view) -->
     <a

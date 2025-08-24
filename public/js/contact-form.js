@@ -56,12 +56,19 @@
       toggle.addEventListener("click", function () {
         var form = document.getElementById("contactForm");
         if (!form) return;
-        if (form.classList.contains("translate-y-full")) {
-          form.classList.remove("translate-y-full");
-          toggle.textContent = "↓";
+
+        // Usar transform style en lugar de clases
+        var currentTransform = form.style.transform;
+        if (currentTransform === "translateY(0%)" || currentTransform === "") {
+          // Banner visible -> ocultarlo
+          form.style.transform = "translateY(100%)";
+          toggle.textContent = "!";
+          toggle.title = "Mostrar formulario de presupuesto gratis";
         } else {
-          form.classList.add("translate-y-full");
-          toggle.textContent = "↑";
+          // Banner oculto -> mostrarlo
+          form.style.transform = "translateY(0%)";
+          toggle.textContent = "✕";
+          toggle.title = "Cerrar formulario de presupuesto gratis";
         }
       });
     }
