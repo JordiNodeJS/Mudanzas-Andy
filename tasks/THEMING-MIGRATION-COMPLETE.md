@@ -226,7 +226,7 @@ colors: {
 - `src/styles/theme.css`: Variables CSS centralizadas
 - `src/styles/components.css`: Componentes base Tailwind
 - `tailwind.config.js`: Configuración extendida con colores
-- `docs/THEMING.md`: Documentación completa del sistema
+- `.github/docs/THEMING.md`: Documentación completa del sistema
 
 ### 🏆 CONCLUSIÓN: MIGRACIÓN EXITOSA
 

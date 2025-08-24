@@ -19,7 +19,7 @@ Se ha implementado exitosamente un sistema robusto de theming para el proyecto M
 | `src/styles/theme.css`                | Design tokens centralizados          | ✅ Creado      |
 | `src/styles/components.css`           | Componentes reutilizables con @apply | ✅ Creado      |
 | `tailwind.config.js`                  | Configuración e integración          | ✅ Creado      |
-| `docs/THEMING.md`                     | Documentación completa               | ✅ Creado      |
+| `.github/docs/THEMING.md`             | Documentación completa               | ✅ Creado      |
 | `src/styles/global.css`               | Imports del sistema                  | ✅ Modificado  |
 | `src/components/ThemingExample.astro` | Componente de demostración           | ✅ Creado      |
 | `scripts/verify-theming.mjs`          | Script de verificación               | ✅ Creado      |
@@ -110,7 +110,7 @@ El script `scripts/verify-theming.mjs` verifica:
 
 ### 📚 Documentación
 
-La documentación completa en `docs/THEMING.md` incluye:
+La documentación completa en `.github/docs/THEMING.md` incluye:
 
 - Guía de uso paso a paso
 - Ejemplos de código

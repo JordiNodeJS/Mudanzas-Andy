@@ -34,7 +34,7 @@ const requiredFiles = [
   "src/styles/components.css",
   "src/styles/global.css",
   "tailwind.config.js",
-  "docs/THEMING.md",
+  ".github/docs/THEMING.md",
 ];
 
 // Variables CSS requeridas
@@ -301,7 +301,9 @@ async function main() {
     console.log(
       `❌ Se encontraron ${totalErrors} errores en el sistema de theming`
     );
-    console.log("\n📚 Consulta docs/THEMING.md para guías de migración");
+    console.log(
+      "\n📚 Consulta .github/docs/THEMING.md para guías de migración"
+    );
     process.exit(1);
   }
 }

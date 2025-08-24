@@ -7,7 +7,7 @@
  * - src/styles/theme.css      (Design tokens centralizados)
  * - src/styles/components.css (Componentes reutilizables)
  * - tailwind.config.js       (Integración con Tailwind)
- * - docs/THEMING.md          (Documentación completa)
+ * - .github/docs/THEMING.md          (Documentación completa)
  *
  * Migración completada:
  * ✅ Colores convertidos a formato RGB para opacidades
@@ -22,7 +22,7 @@
  * - En HTML: class="bg-primary/80 text-secondary"
  * - Componentes: class="btn btn-primary"
  *
- * Consulta docs/THEMING.md para la guía completa.
+ * Consulta .github/docs/THEMING.md para la guía completa.
  */
 
 // @theme {
@@ -60,6 +60,6 @@ export default {
     theme: "src/styles/theme.css",
     components: "src/styles/components.css",
     config: "tailwind.config.js",
-    documentation: "docs/THEMING.md",
+    documentation: ".github/docs/THEMING.md",
   },
 };
