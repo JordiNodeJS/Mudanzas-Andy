@@ -3,11 +3,23 @@
 @tailwind utilities;
 
 @layer components {
-  /* Team section shared variables to avoid duplicated durations and easings */
+  /* ============================================
+     TEAM SECTION VARIABLES
+     ============================================ */
   :root {
-    --team-transition: 450ms;
-    --team-title-transition: 800ms;
-    --team-easing: cubic-bezier(0.2, 0.85, 0.25, 1);
+    /* Duraciones y transiciones unificadas */
+    --team-transition-fast: 250ms;
+    --team-transition-normal: 400ms;
+    --team-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    /* Dimensiones de tarjetas */
+    --team-card-height-mobile: 12rem;
+    --team-card-height-desktop: 14rem;
+    --team-card-height-hover: 15rem;
+
+    /* Efectos de filtro simplificados */
+    --team-overlay-opacity: 0.15;
+    --team-overlay-opacity-hover: 0.05;
   }
 
   /* Reusable card base: rounded, shadow, padding and hover lift */
@@ -72,269 +84,151 @@
     }
   }
 
-  /* Team card: enforce consistent proportions (image area on top, content below) */
+  /* ============================================
+     TEAM CARD BASE STRUCTURE
+     ============================================ */
   .team-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* relies on parent (.items-stretch + h-full) */
-    background-clip: padding-box; /* keep rounded corners clean when media overflows */
+    @apply flex flex-col h-full rounded-xl overflow-hidden shadow-lg;
+    background-color: white;
+    transition: transform var(--team-transition-normal) var(--team-easing),
+      shadow var(--team-transition-normal) var(--team-easing);
   }
 
+  .team-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ============================================
+     TEAM CARD MEDIA AREA
+     ============================================ */
   .team-card__media {
-    /* Fixed height for consistent proportions */
-    height: 200px;
+    position: relative;
+    height: var(--team-card-height-mobile);
     overflow: hidden;
-    flex: 0 0 auto;
-  }
-
-  @media (min-width: 1024px) {
-    .team-card__media {
-      height: 220px;
-    }
-  }
-
-  .team-card__body {
-    /* Do not grow to fill the card — keep height tight to content to avoid large empty areas */
-    flex: 0 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* start from top, no centering */
-    padding: 0.75rem 1rem; /* reduce vertical and horizontal padding */
-    gap: 0.25rem; /* smaller spacing between title and description */
-  }
-
-  @media (min-width: 768px) {
-    .team-card-2 .mobile-truck-position {
-      --truck-pos-y-desktop: 65%; /* más abajo para reducir cielo */
-      --truck-clip-bottom-desktop: 5%;
-    }
-  }
-
-  /* Filtros estilo fondo/overlay para las imágenes del equipo profesional */
-  /* Las imágenes se tratan como fondos: tinte sutil + desaturado, al hover se aclaran. */
-  .team-card__media {
-    position: relative;
-    overflow: hidden; /* asegurar recorte del pseudo-elemento */
-  }
-
-  /* Hover behavior: expand image area smoothly and push content down.
-     We use max-height + transform to allow smooth GPU-accelerated transitions. */
-  .team-card__media {
-    --team-media-height: 12rem; /* default 192px */
-    height: var(--team-media-height);
-    transition: height 450ms cubic-bezier(0.2, 0.9, 0.2, 1),
-      transform 450ms ease;
+    transition: height var(--team-transition-normal) var(--team-easing);
   }
 
   @media (min-width: 768px) {
     .team-card__media {
-      --team-media-height: 14rem; /* 224px on md+ */
+      height: var(--team-card-height-desktop);
     }
   }
 
+  .team-card:hover .team-card__media {
+    height: var(--team-card-height-hover);
+  }
+
+  /* ============================================
+     TEAM CARD IMAGE STYLING
+     ============================================ */
   .team-image-filter {
-    /* Estado base: aspecto de fondo con tinte sutil y ligera desaturación */
-    /* Reemplazamos el tinte gris por un degradado de color usando variables del sistema */
-    filter: brightness(0.98) contrast(1.04) saturate(1.08);
-    position: relative;
-    z-index: 0;
-    opacity: 1;
-    background-image: linear-gradient(
-      135deg,
-      rgba(var(--color-accent), 0.18),
-      rgba(var(--color-neutral), 0.08) 45%,
-      rgba(var(--color-primary), 0.12) 100%
-    );
-    background-blend-mode: color;
-    mix-blend-mode: multiply;
-    transform-origin: center center;
-    /* Transiciones sincronizadas y más cortas para evitar arrastres al salir del hover */
-    transition: filter var(--team-transition) ease,
-      transform var(--team-transition) ease, opacity var(--team-transition) ease;
-    will-change: filter, transform, opacity;
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: filter var(--team-transition-normal) var(--team-easing);
   }
 
-  /* More specific selector to ensure opacity transition isn't overridden; no !important. */
-  .team-card .team-card__media .team-image-filter {
-    transition: filter var(--team-transition) ease,
-      transform var(--team-transition) ease, opacity var(--team-transition) ease;
-    will-change: opacity, filter, transform;
-  }
-
-  /* variantes para experimentar */
-  .team-image-filter--multiply {
-    mix-blend-mode: multiply;
-  }
-  .team-image-filter--screen {
-    mix-blend-mode: screen;
-  }
-  .team-image-filter--soft-light {
-    mix-blend-mode: soft-light;
-  }
-  .team-image-filter--hard-light {
-    mix-blend-mode: hard-light;
-  }
-  .team-image-filter--color {
-    mix-blend-mode: color;
-  }
-  .team-image-filter--luminosity {
-    mix-blend-mode: luminosity;
-  }
-  .team-image-filter--difference {
-    mix-blend-mode: difference;
-  }
-
-  /* Pseudo-overlay que actúa como fondo de la imagen (estilo tarjetas) */
+  /* Overlay base para todas las imágenes */
   .team-card__media::after {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
-    /* Gradiente base que mezcla con la paleta del sitio */
     background: linear-gradient(
       135deg,
-      rgba(var(--color-accent), 0.12) 0%,
-      rgba(var(--color-neutral), 0.08) 45%,
-      rgba(var(--color-primary), 0.08) 100%
+      rgba(var(--color-primary), var(--team-overlay-opacity)),
+      rgba(var(--color-neutral), calc(var(--team-overlay-opacity) * 0.5))
     );
-    mix-blend-mode: multiply; /* se comporta como fondo sobre la imagen */
-    opacity: 0.9;
-    /* Unificar duración con la imagen para evitar desincronización al salir del hover */
-    transition: opacity var(--team-transition) ease,
-      background var(--team-transition) ease;
-    z-index: 1;
-  }
-
-  /* Al hover aclaramos la imagen y reducimos el overlay para 'revelarla' */
-  .team-card:hover .team-image-filter {
-    filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
-  }
-
-  /* When the card is hovered, smoothly expand the media area to reveal more image.
-     We also hide the description and pin the title to the bottom of the body. */
-  .team-card:hover .team-card__media {
-    --team-media-height: 15rem; /* reduced expansion to ~240px on hover to remove extra gap */
-  }
-
-  /* Mirror hover behaviour to an explicit class so tests can simulate hover */
-  .team-card.is-hover .team-image-filter {
-    filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
-  }
-
-  .team-card.is-hover .team-card__media {
-    --team-media-height: 15rem;
-    transform: translateZ(0);
-  }
-
-  /* Accessibility: mirror hover behaviour for keyboard users using :focus-within */
-  .team-card:focus-within .team-image-filter,
-  .team-card:focus-within .team-card__media {
-    filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
-    transform: scale(1.02);
-  }
-
-  .team-card:focus-within .team-card__media {
-    --team-media-height: 15rem;
-    transform: translateZ(0);
-  }
-
-  /* Body layout: consistent positioning to avoid layout jumps */
-  .team-card__body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* consistent positioning - no jumping from flex-end to center */
-    position: relative;
-    z-index: 2; /* ensure body content sits above pseudo-overlay */
-    transition: padding var(--team-transition) var(--team-easing); /* smooth padding changes */
-  }
-
-  .team-card__body h3 {
-    margin: 0 0 0.5rem 0;
-    /* Transición del título: más suave y unificada */
-    transition: transform var(--team-title-transition) var(--team-easing),
-      color 250ms ease;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform-origin: left top; /* avoid center repositioning, scale from top-left */
-  }
-
-  .team-card__desc {
-    transition: opacity var(--team-transition) ease;
     opacity: 1;
-  }
-
-  /* Keep description visible on hover. Preserve transitions but don't hide. */
-  .team-card:hover .team-card__desc,
-  .team-card.is-hover .team-card__desc {
-    opacity: 1;
-    text-align: left; /* ensure description stays left-aligned */
-  }
-
-  /* On hover: add top padding to push content down (simulating media expansion) 
-     instead of changing justify-content which causes layout jumps */
-  .team-card:hover .team-card__body,
-  .team-card.is-hover .team-card__body {
-    padding-top: 1rem; /* push content down smoothly instead of justify-content change */
-  }
-
-  .team-card:hover .team-card__body h3,
-  .team-card.is-hover .team-card__body h3 {
-    /* Keep transform-origin consistent and avoid repositioning */
-    transform: scale(
-      1.08
-    ); /* slightly smaller scale to reduce aggressiveness */
-    line-height: 1.1; /* prevent text overlap */
-  }
-
-  /* Smooth scaling adjustments for different screen sizes */
-  @media (max-width: 767px) {
-    .team-card:hover .team-card__body h3,
-    .team-card.is-hover .team-card__body h3 {
-      transform: scale(1.05); /* smaller scale on mobile */
-    }
+    transition: opacity var(--team-transition-normal) var(--team-easing);
+    pointer-events: none;
   }
 
   .team-card:hover .team-card__media::after {
-    opacity: 0.25; /* deja ver la imagen más limpia */
+    opacity: var(--team-overlay-opacity-hover);
   }
 
-  /* Variantes por tarjeta usando gradientes puntuales (coinciden con ServicesSection) */
-  .team-card--variant-primary .team-card__media::after {
+  /* ============================================
+     TEAM CARD CONTENT AREA
+     ============================================ */
+  .team-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .team-card__body h3 {
+    margin: 0;
+    font-weight: 600;
+    color: rgb(var(--color-primary));
+    transition: transform var(--team-transition-fast) var(--team-easing);
+  }
+
+  .team-card__desc {
+    color: #64748b;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    transition: opacity var(--team-transition-fast) var(--team-easing);
+  }
+
+  .team-card:hover .team-card__body h3 {
+    transform: scale(1.02);
+  }
+
+  /* ============================================
+     TEAM CARD VARIANTS (SIMPLIFICADAS)
+     ============================================ */
+  .team-card--primary .team-card__media::after {
     background: linear-gradient(
       135deg,
-      rgba(249, 180, 171, 0.16),
-      rgba(253, 235, 211, 0.06)
+      rgba(var(--color-accent), var(--team-overlay-opacity)),
+      rgba(var(--color-highlight), calc(var(--team-overlay-opacity) * 0.3))
     );
   }
 
-  .team-card--variant-secondary .team-card__media::after {
+  .team-card--secondary .team-card__media::after {
     background: linear-gradient(
       135deg,
-      rgba(103, 145, 134, 0.16),
-      rgba(187, 212, 206, 0.06)
+      rgba(var(--color-secondary), var(--team-overlay-opacity)),
+      rgba(var(--color-neutral), calc(var(--team-overlay-opacity) * 0.5))
     );
   }
 
-  .team-card--variant-accent .team-card__media::after {
+  .team-card--accent .team-card__media::after {
     background: linear-gradient(
       135deg,
-      rgba(38, 78, 112, 0.16),
-      rgba(187, 212, 206, 0.06)
+      rgba(var(--color-primary), var(--team-overlay-opacity)),
+      rgba(var(--color-secondary), calc(var(--team-overlay-opacity) * 0.3))
     );
   }
 
-  /* (consolidado arriba) */
+  /* ============================================
+     ACCESSIBILITY & FOCUS STATES
+     ============================================ */
+  .team-card:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 2px;
+  }
 
-  /* Final override with higher specificity to avoid needing !important.
-     Placed at the end so it wins if load order otherwise conflicts. */
-  html body .team-card .team-card__media > .team-image-filter,
-  html body .team-card .team-card__media .team-image-filter {
-    transition: filter 450ms ease, transform 450ms ease, opacity 450ms ease;
-    will-change: opacity, filter, transform;
+  /* Clase helper para testing (simula hover) */
+  .team-card.is-hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .team-card.is-hover .team-card__media {
+    height: var(--team-card-height-hover);
+  }
+
+  .team-card.is-hover .team-card__media::after {
+    opacity: var(--team-overlay-opacity-hover);
+  }
+
+  .team-card.is-hover .team-card__body h3 {
+    transform: scale(1.02);
   }
 }
