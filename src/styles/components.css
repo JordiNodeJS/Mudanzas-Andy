@@ -242,65 +242,60 @@
     transform: translateZ(0);
   }
 
-  /* Body layout adjustments: pin the title to bottom and hide description on hover */
+  /* Body layout: consistent positioning to avoid layout jumps */
   .team-card__body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* push title to the bottom when media expands */
+    justify-content: flex-start; /* consistent positioning - no jumping from flex-end to center */
     position: relative;
     z-index: 2; /* ensure body content sits above pseudo-overlay */
+    transition: padding var(--team-transition) var(--team-easing); /* smooth padding changes */
   }
 
   .team-card__body h3 {
     margin: 0 0 0.5rem 0;
-    /* Transición del título: más suave pero sincronizada con la imagen */
+    /* Transición del título: más suave y unificada */
     transition: transform var(--team-title-transition) var(--team-easing),
       color 250ms ease;
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    transform-origin: left top; /* avoid center repositioning, scale from top-left */
   }
 
   .team-card__desc {
-    transition: opacity 300ms ease, transform 300ms ease;
+    transition: opacity var(--team-transition) ease;
     opacity: 1;
   }
+
   /* Keep description visible on hover. Preserve transitions but don't hide. */
   .team-card:hover .team-card__desc,
   .team-card.is-hover .team-card__desc {
     opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    transition: opacity 300ms ease, transform 300ms ease;
     text-align: left; /* ensure description stays left-aligned */
-    align-self: stretch; /* allow it to take full width while staying left-aligned */
   }
 
-  /* On hover/forced state, vertically center content but keep description left-aligned.
-     The title will scale and be centered within its own line. */
+  /* On hover: add top padding to push content down (simulating media expansion) 
+     instead of changing justify-content which causes layout jumps */
   .team-card:hover .team-card__body,
   .team-card.is-hover .team-card__body {
-    justify-content: center;
-    align-items: stretch; /* keep horizontal stretch so desc remains left-aligned */
+    padding-top: 1rem; /* push content down smoothly instead of justify-content change */
   }
 
   .team-card:hover .team-card__body h3,
   .team-card.is-hover .team-card__body h3 {
-    transform-origin: left center; /* scale from the left so it stays left-aligned */
-    /* Movimiento muy suave y escala moderada para reducir agresividad */
-    transform: scale(1.1);
-    line-height: 1.05;
-    width: 100%;
-    text-align: left; /* keep title left-aligned on hover */
-    margin-left: 0;
-    margin-right: 0;
+    /* Keep transform-origin consistent and avoid repositioning */
+    transform: scale(
+      1.08
+    ); /* slightly smaller scale to reduce aggressiveness */
+    line-height: 1.1; /* prevent text overlap */
   }
 
-  /* Slightly smaller scale on small screens to avoid overflow */
+  /* Smooth scaling adjustments for different screen sizes */
   @media (max-width: 767px) {
     .team-card:hover .team-card__body h3,
     .team-card.is-hover .team-card__body h3 {
-      transform-origin: left center;
+      transform: scale(1.05); /* smaller scale on mobile */
     }
   }
 
