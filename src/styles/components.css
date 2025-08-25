@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer components {
+  /* Team section shared variables to avoid duplicated durations and easings */
+  :root {
+    --team-transition: 450ms;
+    --team-title-transition: 800ms;
+    --team-easing: cubic-bezier(0.2, 0.85, 0.25, 1);
+  }
+
   /* Reusable card base: rounded, shadow, padding and hover lift */
   .card {
     @apply rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105;
@@ -87,12 +94,13 @@
   }
 
   .team-card__body {
-    flex: 1 1 auto;
+    /* Do not grow to fill the card — keep height tight to content to avoid large empty areas */
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* start from top, no centering */
-    padding: 1rem 1.5rem 1.5rem 1.5rem; /* top, right, bottom, left */
-    gap: 0.5rem; /* consistent spacing between title and description */
+    padding: 0.75rem 1rem; /* reduce vertical and horizontal padding */
+    gap: 0.25rem; /* smaller spacing between title and description */
   }
 
   @media (min-width: 768px) {
@@ -107,6 +115,21 @@
   .team-card__media {
     position: relative;
     overflow: hidden; /* asegurar recorte del pseudo-elemento */
+  }
+
+  /* Hover behavior: expand image area smoothly and push content down.
+     We use max-height + transform to allow smooth GPU-accelerated transitions. */
+  .team-card__media {
+    --team-media-height: 12rem; /* default 192px */
+    height: var(--team-media-height);
+    transition: height 450ms cubic-bezier(0.2, 0.9, 0.2, 1),
+      transform 450ms ease;
+  }
+
+  @media (min-width: 768px) {
+    .team-card__media {
+      --team-media-height: 14rem; /* 224px on md+ */
+    }
   }
 
   .team-image-filter {
@@ -125,7 +148,9 @@
     background-blend-mode: color;
     mix-blend-mode: multiply;
     transform-origin: center center;
-    transition: filter 0.7s ease, transform 0.45s ease, opacity 1.5s ease;
+    /* Transiciones sincronizadas y más cortas para evitar arrastres al salir del hover */
+    transition: filter var(--team-transition) ease,
+      transform var(--team-transition) ease, opacity var(--team-transition) ease;
     will-change: filter, transform, opacity;
     display: block;
     width: 100%;
@@ -135,7 +160,8 @@
 
   /* More specific selector to ensure opacity transition isn't overridden; no !important. */
   .team-card .team-card__media .team-image-filter {
-    transition: filter 0.7s ease, transform 0.45s ease, opacity 1.5s ease;
+    transition: filter var(--team-transition) ease,
+      transform var(--team-transition) ease, opacity var(--team-transition) ease;
     will-change: opacity, filter, transform;
   }
 
@@ -177,14 +203,105 @@
     );
     mix-blend-mode: multiply; /* se comporta como fondo sobre la imagen */
     opacity: 0.9;
-    transition: opacity 0.35s ease, background 0.35s ease;
+    /* Unificar duración con la imagen para evitar desincronización al salir del hover */
+    transition: opacity var(--team-transition) ease,
+      background var(--team-transition) ease;
     z-index: 1;
   }
 
   /* Al hover aclaramos la imagen y reducimos el overlay para 'revelarla' */
   .team-card:hover .team-image-filter {
     filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
+  }
+
+  /* When the card is hovered, smoothly expand the media area to reveal more image.
+     We also hide the description and pin the title to the bottom of the body. */
+  .team-card:hover .team-card__media {
+    --team-media-height: 15rem; /* reduced expansion to ~240px on hover to remove extra gap */
+  }
+
+  /* Mirror hover behaviour to an explicit class so tests can simulate hover */
+  .team-card.is-hover .team-image-filter {
+    filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
+  }
+
+  .team-card.is-hover .team-card__media {
+    --team-media-height: 15rem;
+    transform: translateZ(0);
+  }
+
+  /* Accessibility: mirror hover behaviour for keyboard users using :focus-within */
+  .team-card:focus-within .team-image-filter,
+  .team-card:focus-within .team-card__media {
+    filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
     transform: scale(1.02);
+  }
+
+  .team-card:focus-within .team-card__media {
+    --team-media-height: 15rem;
+    transform: translateZ(0);
+  }
+
+  /* Body layout adjustments: pin the title to bottom and hide description on hover */
+  .team-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* push title to the bottom when media expands */
+    position: relative;
+    z-index: 2; /* ensure body content sits above pseudo-overlay */
+  }
+
+  .team-card__body h3 {
+    margin: 0 0 0.5rem 0;
+    /* Transición del título: más suave pero sincronizada con la imagen */
+    transition: transform var(--team-title-transition) var(--team-easing),
+      color 250ms ease;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .team-card__desc {
+    transition: opacity 300ms ease, transform 300ms ease;
+    opacity: 1;
+  }
+  /* Keep description visible on hover. Preserve transitions but don't hide. */
+  .team-card:hover .team-card__desc,
+  .team-card.is-hover .team-card__desc {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: opacity 300ms ease, transform 300ms ease;
+    text-align: left; /* ensure description stays left-aligned */
+    align-self: stretch; /* allow it to take full width while staying left-aligned */
+  }
+
+  /* On hover/forced state, vertically center content but keep description left-aligned.
+     The title will scale and be centered within its own line. */
+  .team-card:hover .team-card__body,
+  .team-card.is-hover .team-card__body {
+    justify-content: center;
+    align-items: stretch; /* keep horizontal stretch so desc remains left-aligned */
+  }
+
+  .team-card:hover .team-card__body h3,
+  .team-card.is-hover .team-card__body h3 {
+    transform-origin: left center; /* scale from the left so it stays left-aligned */
+    /* Movimiento muy suave y escala moderada para reducir agresividad */
+    transform: scale(1.1);
+    line-height: 1.05;
+    width: 100%;
+    text-align: left; /* keep title left-aligned on hover */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Slightly smaller scale on small screens to avoid overflow */
+  @media (max-width: 767px) {
+    .team-card:hover .team-card__body h3,
+    .team-card.is-hover .team-card__body h3 {
+      transform-origin: left center;
+    }
   }
 
   .team-card:hover .team-card__media::after {
@@ -216,17 +333,13 @@
     );
   }
 
-  /* Asegurar que el contenido del team-card__body esté por encima del overlay */
-  .team-card__body {
-    position: relative;
-    z-index: 2;
-  }
+  /* (consolidado arriba) */
 
   /* Final override with higher specificity to avoid needing !important.
      Placed at the end so it wins if load order otherwise conflicts. */
   html body .team-card .team-card__media > .team-image-filter,
   html body .team-card .team-card__media .team-image-filter {
-    transition: filter 0.7s ease, transform 0.45s ease, opacity 1.5s ease;
+    transition: filter 450ms ease, transform 450ms ease, opacity 450ms ease;
     will-change: opacity, filter, transform;
   }
 }

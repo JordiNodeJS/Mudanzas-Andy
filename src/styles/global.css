@@ -158,11 +158,4 @@ img[loading="lazy"] {
   display: none;
 }
 
-/* Load-order override: ensure team image transition includes opacity 1.5s
-   This rule is placed in global.css after components.css import so it wins
-   without using !important (higher precedence via source order). */
-html body .team-card .team-card__media > .team-image-filter,
-html body .team-card .team-card__media .team-image-filter {
-  transition: filter 0.7s ease, transform 0.45s ease, opacity 1.5s ease;
-  will-change: opacity, filter, transform;
-}
+/* Previously this file overrode team transitions; transitions are now centralized in components.css */

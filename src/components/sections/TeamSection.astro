@@ -47,9 +47,9 @@ import PhoneButton from "../ui/PhoneButton.astro";
     >
       <!-- Imagen 1: Camión frontal -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
+        class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
-        <div class="h-48 md:h-56 lg:h-56 overflow-hidden relative">
+        <div class="team-card__media overflow-hidden relative">
           <LazyImage
             src="/camion/resized/moving-truck-cutout-02.jpg"
             alt="Camión de mudanzas profesional - Vista frontal"
@@ -58,13 +58,15 @@ import PhoneButton from "../ui/PhoneButton.astro";
           />
         </div>
 
-        <div class="p-4 lg:p-6">
+        <div class="team-card__body p-4 lg:p-6">
           <h3
             class="text-base lg:text-lg font-bold mb-2 text-[rgb(var(--color-primary))]"
           >
             Flota Moderna
           </h3>
-          <p class="text-sm lg:text-base text-[rgb(var(--color-secondary))]">
+          <p
+            class="team-card__desc text-sm lg:text-base text-[rgb(var(--color-secondary))]"
+          >
             Camiones equipados con sistemas de seguridad y protección
           </p>
         </div>
@@ -72,9 +74,9 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
       <!-- Imagen 2: Cargando flete -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
+        class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
-        <div class="h-48 md:h-56 lg:h-56 overflow-hidden relative">
+        <div class="team-card__media overflow-hidden relative">
           <LazyImage
             src="/camion/resized/moving-truck-cutout-01.jpg"
             alt="Equipo profesional cargando mudanza con cuidado"
@@ -83,13 +85,15 @@ import PhoneButton from "../ui/PhoneButton.astro";
           />
         </div>
 
-        <div class="p-4 lg:p-6">
+        <div class="team-card__body p-4 lg:p-6">
           <h3
             class="text-base lg:text-lg font-bold mb-2 text-[rgb(var(--color-primary))]"
           >
             Equipo Experimentado
           </h3>
-          <p class="text-sm lg:text-base text-[rgb(var(--color-secondary))]">
+          <p
+            class="team-card__desc text-sm lg:text-base text-[rgb(var(--color-secondary))]"
+          >
             Más de 14 años de experiencia en mudanzas profesionales
           </p>
         </div>
@@ -97,9 +101,9 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
       <!-- Imagen 3: Interior de la caja -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
+        class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
-        <div class="h-48 md:h-56 lg:h-56 overflow-hidden relative">
+        <div class="team-card__media overflow-hidden relative">
           <LazyImage
             src="/camion/resized/moving-truck-01.jpg"
             alt="Interior del camión - Espacio seguro y organizado"
@@ -108,13 +112,15 @@ import PhoneButton from "../ui/PhoneButton.astro";
           />
         </div>
 
-        <div class="p-4 lg:p-6">
+        <div class="team-card__body p-4 lg:p-6">
           <h3
             class="text-base lg:text-lg font-bold mb-2 text-[rgb(var(--color-primary))]"
           >
             Seguridad Garantizada
           </h3>
-          <p class="text-sm lg:text-base text-[rgb(var(--color-secondary))]">
+          <p
+            class="team-card__desc text-sm lg:text-base text-[rgb(var(--color-secondary))]"
+          >
             Interior acondicionado para máxima protección de tus pertenencias
           </p>
         </div>
