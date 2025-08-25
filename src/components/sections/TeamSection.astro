@@ -6,7 +6,10 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
 <section
   id="equipo"
-  class="py-16 lg:py-20 bg-gradient-to-br from-[#264e70]/5 via-white to-[#bbd4ce]/10 relative overflow-hidden"
+  class="py-16 lg:py-20 relative overflow-hidden"
+  class:list={[
+    "bg-[linear-gradient(135deg,rgba(var(--color-primary),0.05),rgba(255,255,255,0.0),rgba(var(--color-neutral),0.04))]",
+  ]}
 >
   <!-- Imagen de fondo con filtro -->
   <div class="absolute inset-0 z-0">
@@ -25,10 +28,14 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-12 lg:mb-16">
-      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand mb-4">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-[rgb(var(--color-primary))]"
+      >
         🚛 Nuestro Equipo Profesional
       </h2>
-      <p class="text-lg lg:text-xl text-secondary max-w-3xl mx-auto">
+      <p
+        class="text-lg lg:text-xl max-w-3xl mx-auto text-[rgb(var(--color-secondary))]"
+      >
         Flota moderna y profesionales experimentados para garantizar una mudanza
         segura y eficiente
       </p>
@@ -40,9 +47,9 @@ import PhoneButton from "../ui/PhoneButton.astro";
     >
       <!-- Imagen 1: Camión frontal -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 team-card team-card--variant-primary team-card-1 h-full"
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
-        <div class="team-card__media">
+        <div class="h-48 md:h-56 lg:h-56 overflow-hidden relative">
           <LazyImage
             src="/camion/resized/moving-truck-cutout-02.jpg"
             alt="Camión de mudanzas profesional - Vista frontal"
@@ -51,11 +58,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
           />
         </div>
 
-        <div class="team-card__body">
-          <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
+        <div class="p-4 lg:p-6">
+          <h3
+            class="text-base lg:text-lg font-bold mb-2 text-[rgb(var(--color-primary))]"
+          >
             Flota Moderna
           </h3>
-          <p class="text-sm lg:text-base text-[#679186]">
+          <p class="text-sm lg:text-base text-[rgb(var(--color-secondary))]">
             Camiones equipados con sistemas de seguridad y protección
           </p>
         </div>
@@ -63,9 +72,9 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
       <!-- Imagen 2: Cargando flete -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300 team-card team-card--variant-secondary team-card-2 h-full"
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
-        <div class="team-card__media">
+        <div class="h-48 md:h-56 lg:h-56 overflow-hidden relative">
           <LazyImage
             src="/camion/resized/moving-truck-cutout-01.jpg"
             alt="Equipo profesional cargando mudanza con cuidado"
@@ -74,11 +83,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
           />
         </div>
 
-        <div class="team-card__body">
-          <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
+        <div class="p-4 lg:p-6">
+          <h3
+            class="text-base lg:text-lg font-bold mb-2 text-[rgb(var(--color-primary))]"
+          >
             Equipo Experimentado
           </h3>
-          <p class="text-sm lg:text-base text-[#679186]">
+          <p class="text-sm lg:text-base text-[rgb(var(--color-secondary))]">
             Más de 14 años de experiencia en mudanzas profesionales
           </p>
         </div>
@@ -86,9 +97,9 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
       <!-- Imagen 3: Interior de la caja -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300 team-card team-card--variant-accent h-full"
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
-        <div class="team-card__media">
+        <div class="h-48 md:h-56 lg:h-56 overflow-hidden relative">
           <LazyImage
             src="/camion/resized/moving-truck-01.jpg"
             alt="Interior del camión - Espacio seguro y organizado"
@@ -97,11 +108,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
           />
         </div>
 
-        <div class="team-card__body">
-          <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
+        <div class="p-4 lg:p-6">
+          <h3
+            class="text-base lg:text-lg font-bold mb-2 text-[rgb(var(--color-primary))]"
+          >
             Seguridad Garantizada
           </h3>
-          <p class="text-sm lg:text-base text-[#679186]">
+          <p class="text-sm lg:text-base text-[rgb(var(--color-secondary))]">
             Interior acondicionado para máxima protección de tus pertenencias
           </p>
         </div>
