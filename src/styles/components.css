@@ -101,4 +101,83 @@
       --truck-clip-bottom-desktop: 5%;
     }
   }
+
+  /* Filtros estilo fondo/overlay para las imágenes del equipo profesional */
+  /* Las imágenes se tratan como fondos: tinte sutil + desaturado, al hover se aclaran. */
+  .team-card__media {
+    position: relative;
+    overflow: hidden; /* asegurar recorte del pseudo-elemento */
+  }
+
+  .team-image-filter {
+    /* Estado base: aspecto de fondo con tinte sutil y ligera desaturación */
+    filter: grayscale(30%) brightness(0.72) contrast(0.95) saturate(0.9);
+    transform-origin: center center;
+    transition: filter 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
+    will-change: filter, transform, opacity;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Pseudo-overlay que actúa como fondo de la imagen (estilo tarjetas) */
+  .team-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* Gradiente base que mezcla con la paleta del sitio */
+    background: linear-gradient(
+      135deg,
+      rgba(var(--color-accent), 0.12) 0%,
+      rgba(var(--color-neutral), 0.08) 45%,
+      rgba(var(--color-primary), 0.08) 100%
+    );
+    mix-blend-mode: multiply; /* se comporta como fondo sobre la imagen */
+    opacity: 0.9;
+    transition: opacity 0.35s ease, background 0.35s ease;
+    z-index: 1;
+  }
+
+  /* Al hover aclaramos la imagen y reducimos el overlay para 'revelarla' */
+  .team-card:hover .team-image-filter {
+    filter: grayscale(0%) brightness(1.03) contrast(1.06) saturate(1.05);
+    transform: scale(1.02);
+  }
+
+  .team-card:hover .team-card__media::after {
+    opacity: 0.25; /* deja ver la imagen más limpia */
+  }
+
+  /* Variantes por tarjeta usando gradientes puntuales (coinciden con ServicesSection) */
+  .team-card--variant-primary .team-card__media::after {
+    background: linear-gradient(
+      135deg,
+      rgba(249, 180, 171, 0.16),
+      rgba(253, 235, 211, 0.06)
+    );
+  }
+
+  .team-card--variant-secondary .team-card__media::after {
+    background: linear-gradient(
+      135deg,
+      rgba(103, 145, 134, 0.16),
+      rgba(187, 212, 206, 0.06)
+    );
+  }
+
+  .team-card--variant-accent .team-card__media::after {
+    background: linear-gradient(
+      135deg,
+      rgba(38, 78, 112, 0.16),
+      rgba(187, 212, 206, 0.06)
+    );
+  }
+
+  /* Asegurar que el contenido del team-card__body esté por encima del overlay */
+  .team-card__body {
+    position: relative;
+    z-index: 2;
+  }
 }
