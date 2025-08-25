@@ -64,4 +64,34 @@
       clip-path: inset(0% 0% var(--truck-clip-bottom-desktop) 0%);
     }
   }
+
+  /* Team card: enforce consistent proportions (image area on top, content below) */
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* relies on parent (.items-stretch + h-full) */
+    background-clip: padding-box; /* keep rounded corners clean when media overflows */
+  }
+
+  .team-card__media {
+    /* Fixed height for consistent proportions */
+    height: 200px;
+    overflow: hidden;
+    flex: 0 0 auto;
+  }
+
+  @media (min-width: 1024px) {
+    .team-card__media {
+      height: 220px;
+    }
+  }
+
+  .team-card__body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* start from top, no centering */
+    padding: 1rem 1.5rem 1.5rem 1.5rem; /* top, right, bottom, left */
+    gap: 0.5rem; /* consistent spacing between title and description */
+  }
 }

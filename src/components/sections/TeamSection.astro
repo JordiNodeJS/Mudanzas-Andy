@@ -40,15 +40,18 @@ import PhoneButton from "../ui/PhoneButton.astro";
     >
       <!-- Imagen 1: Camión frontal -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 team-card h-full"
       >
-        <LazyImage
-          src="/camion/resized/moving- truck-02.jpg"
-          alt="Camión de mudanzas profesional - Vista frontal"
-          class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position flex-shrink-0"
-          loading="lazy"
-        />
-        <div class="p-4 lg:p-6 flex-1">
+        <div class="team-card__media">
+          <LazyImage
+            src="/camion/resized/moving- truck-02.jpg"
+            alt="Camión de mudanzas profesional - Vista frontal"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="team-card__body">
           <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
             Flota Moderna
           </h3>
@@ -60,15 +63,18 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
       <!-- Imagen 2: Cargando flete -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300 team-card h-full"
       >
-        <LazyImage
-          src="/camion/resized/moving-truck-05.jpg"
-          alt="Equipo profesional cargando mudanza con cuidado"
-          class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position flex-shrink-0"
-          loading="lazy"
-        />
-        <div class="p-4 lg:p-6 flex-1">
+        <div class="team-card__media">
+          <LazyImage
+            src="/camion/resized/moving-truck-05.jpg"
+            alt="Equipo profesional cargando mudanza con cuidado"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="team-card__body">
           <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
             Equipo Experimentado
           </h3>
@@ -80,15 +86,18 @@ import PhoneButton from "../ui/PhoneButton.astro";
 
       <!-- Imagen 3: Interior de la caja -->
       <div
-        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+        class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-[#bbd4ce]/20 hover:shadow-xl transition-all duration-300 team-card h-full"
       >
-        <LazyImage
-          src="/camion/resized/moving- truck-01.jpg"
-          alt="Interior del camión - Espacio seguro y organizado"
-          class="w-full h-48 lg:h-56 object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position flex-shrink-0"
-          loading="lazy"
-        />
-        <div class="p-4 lg:p-6 flex-1">
+        <div class="team-card__media">
+          <LazyImage
+            src="/camion/resized/moving- truck-01.jpg"
+            alt="Interior del camión - Espacio seguro y organizado"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="team-card__body">
           <h3 class="text-base lg:text-lg font-bold text-[#264e70] mb-2">
             Seguridad Garantizada
           </h3>
