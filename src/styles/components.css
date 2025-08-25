@@ -25,7 +25,7 @@
     border-radius: 9999px; /* rounded-full */
     font-weight: 700;
     padding: 0.5rem 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     transition: background-color 200ms ease, transform 200ms ease;
   }
   .btn-primary:hover {
@@ -35,5 +35,33 @@
   /* Bordered card helper (keeps border utilities centralized) */
   .card-bordered {
     @apply border;
+  }
+
+  /* Posicionamiento específico para la imagen del camión en móvil */
+  .mobile-truck-position {
+    /* Variables controlables:
+       - --truck-pos-x: mueve horizontalmente (0% = izquierda, 50% = centro, 100% = derecha)
+       - --truck-pos-y-mobile: mueve verticalmente en móvil (0% = arriba, 100% = abajo)
+       - --truck-clip-bottom-mobile: cuánto recortar desde la parte inferior en móvil (porcentaje)
+    */
+    --truck-pos-x: 50%;
+    --truck-pos-y-mobile: 95%;
+    --truck-clip-bottom-mobile: 15%;
+
+    /* Aplicación de variables */
+    object-position: var(--truck-pos-x) var(--truck-pos-y-mobile);
+    clip-path: inset(0% 0% var(--truck-clip-bottom-mobile) 0%);
+  }
+
+  /* En pantallas más grandes, usar variables específicas de desktop */
+  @media (min-width: 768px) {
+    .mobile-truck-position {
+      /* Valores por defecto para desktop: ajústalos si necesitas mover la imagen o cambiar el recorte */
+      --truck-pos-y-desktop: 65%;
+      --truck-clip-bottom-desktop: 5%;
+
+      object-position: var(--truck-pos-x) var(--truck-pos-y-desktop);
+      clip-path: inset(0% 0% var(--truck-clip-bottom-desktop) 0%);
+    }
   }
 }

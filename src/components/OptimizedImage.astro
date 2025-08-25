@@ -4,8 +4,8 @@ interface Props {
   alt: string;
   sizes?: string;
   class?: string;
-  loading?: 'lazy' | 'eager';
-  decoding?: 'async' | 'sync' | 'auto';
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
   widths?: number[];
   formats?: string[];
 }
@@ -17,23 +17,20 @@ const {
   class: className = "",
   loading = "lazy",
   decoding = "async",
-  widths = [320, 640, 768, 1024, 1280, 1536],
-  formats = ['webp', 'avif']
 } = Astro.props;
 
-// Generate srcset for different widths
-function generateSrcSet(baseSrc: string, widths: number[]): string {
-  const baseUrl = baseSrc.replace(/\.[^/.]+$/, ""); // Remove extension
-  const extension = baseSrc.match(/\.[^/.]+$/)?.[0] || '.jpg';
-  
-  return widths
-    .map(width => `${baseUrl}-${width}w${extension} ${width}w`)
-    .join(', ');
-}
+// Future enhancement: Generate srcset for different widths
+// function generateSrcSet(baseSrc: string, widths: number[]): string {
+//   const baseUrl = baseSrc.replace(/\.[^/.]+$/, ""); // Remove extension
+//   const extension = baseSrc.match(/\.[^/.]+$/)?.[0] || '.jpg';
+//
+//   return widths
+//     .map(width => `${baseUrl}-${width}w${extension} ${width}w`)
+//     .join(', ');
+// }
 
 // For now, we'll use the original images with responsive sizing
 // In a real implementation, you'd generate multiple sizes during build
-const srcSet = generateSrcSet(src, widths);
 ---
 
 <picture class={className}>
@@ -50,7 +47,7 @@ const srcSet = generateSrcSet(src, widths);
     sizes={sizes}
   />
   -->
-  
+
   <img
     src={src}
     alt={alt}
@@ -67,11 +64,11 @@ const srcSet = generateSrcSet(src, widths);
     display: block;
     overflow: hidden;
   }
-  
+
   img {
     transition: transform 0.3s ease-in-out;
   }
-  
+
   picture:hover img {
     transform: scale(1.05);
   }

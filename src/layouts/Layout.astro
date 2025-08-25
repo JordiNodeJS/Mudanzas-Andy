@@ -63,6 +63,7 @@ const {
     <!-- Schema.org markup -->
     <script
       type="application/ld+json"
+      is:inline
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -103,7 +104,7 @@ const {
     </a>
 
     <!-- External script toggles floating/footer Reserva button visibility -->
-    <script src="/js/move-reserva.js" defer></script>
+    <script src="/js/move-reserva.js" defer is:inline></script>
   </body>
 </html>
 

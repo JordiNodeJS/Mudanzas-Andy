@@ -3,9 +3,8 @@ interface Props {
   src: string;
   alt: string;
   class?: string;
-  loading?: 'lazy' | 'eager';
+  loading?: "lazy" | "eager";
   placeholder?: string;
-  blurDataURL?: string;
 }
 
 const {
@@ -14,14 +13,13 @@ const {
   class: className = "",
   loading = "lazy",
   placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PC9zdmc+",
-  blurDataURL
 } = Astro.props;
 
 // Generate a unique ID for this image
-const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
+const imageId = `img-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
-<div class={`relative overflow-hidden ${className}`} data-image-container>
+<div class="relative overflow-hidden" data-image-container>
   <!-- Placeholder que se muestra mientras carga -->
   <img
     src={placeholder}
@@ -30,7 +28,7 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     data-placeholder
     aria-hidden="true"
   />
-  
+
   <!-- Imagen principal -->
   <img
     id={imageId}
@@ -38,17 +36,20 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     alt={alt}
     loading={loading}
     decoding="async"
-    class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+    class={`w-full h-full object-cover opacity-0 transition-opacity duration-500 ${className}`}
     data-lazy-image
     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
   />
-  
+
   <!-- Overlay de carga -->
-  <div 
-  class="absolute inset-0 bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 flex items-center justify-center transition-opacity duration-300"
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-[#bbd4ce]/20 to-[#679186]/20 flex items-center justify-center transition-opacity duration-300"
     data-loading-overlay
   >
-  <div class="w-8 h-8 border-4 border-secondary/30 border-t-secondary rounded-full animate-spin"></div>
+    <div
+      class="w-8 h-8 border-4 border-secondary/30 border-t-secondary rounded-full animate-spin"
+    >
+    </div>
   </div>
 </div>
 
@@ -63,12 +64,12 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     init() {
-      if ('IntersectionObserver' in window) {
+      if ("IntersectionObserver" in window) {
         this.observer = new IntersectionObserver(
           this.handleIntersection.bind(this),
           {
-            rootMargin: '50px 0px',
-            threshold: 0.1
+            rootMargin: "50px 0px",
+            threshold: 0.1,
           }
         );
 
@@ -80,7 +81,9 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     observeImages() {
-      const lazyImages = document.querySelectorAll('[data-lazy-image]') as NodeListOf<HTMLImageElement>;
+      const lazyImages = document.querySelectorAll(
+        "[data-lazy-image]"
+      ) as NodeListOf<HTMLImageElement>;
       lazyImages.forEach((img) => {
         this.observer?.observe(img);
       });
@@ -96,25 +99,29 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     loadImage(img: HTMLImageElement) {
-      const container = img.closest('[data-image-container]');
-      const placeholder = container?.querySelector('[data-placeholder]') as HTMLImageElement;
-      const loadingOverlay = container?.querySelector('[data-loading-overlay]') as HTMLElement;
+      const container = img.closest("[data-image-container]");
+      const placeholder = container?.querySelector(
+        "[data-placeholder]"
+      ) as HTMLImageElement;
+      const loadingOverlay = container?.querySelector(
+        "[data-loading-overlay]"
+      ) as HTMLElement;
       const src = img.dataset.src;
 
       if (!src) return;
 
       // Precargar la imagen
       const tempImg = new Image();
-      
+
       tempImg.onload = () => {
         // Imagen cargada exitosamente
         img.src = src;
-        img.style.opacity = '1';
-        
+        img.style.opacity = "1";
+
         // Ocultar placeholder y loading
-        if (placeholder) placeholder.style.opacity = '0';
-        if (loadingOverlay) loadingOverlay.style.opacity = '0';
-        
+        if (placeholder) placeholder.style.opacity = "0";
+        if (loadingOverlay) loadingOverlay.style.opacity = "0";
+
         // Limpiar después de la transición
         setTimeout(() => {
           if (placeholder) placeholder.remove();
@@ -124,23 +131,25 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
 
       tempImg.onerror = () => {
         // Error al cargar, mostrar imagen por defecto
-        img.src = img.dataset.src || '';
-        img.style.opacity = '0.5';
-        if (loadingOverlay) loadingOverlay.style.opacity = '0';
+        img.src = img.dataset.src || "";
+        img.style.opacity = "0.5";
+        if (loadingOverlay) loadingOverlay.style.opacity = "0";
       };
 
       tempImg.src = src;
     }
 
     loadAllImages() {
-      const lazyImages = document.querySelectorAll('[data-lazy-image]') as NodeListOf<HTMLImageElement>;
-      lazyImages.forEach(img => this.loadImage(img));
+      const lazyImages = document.querySelectorAll(
+        "[data-lazy-image]"
+      ) as NodeListOf<HTMLImageElement>;
+      lazyImages.forEach((img) => this.loadImage(img));
     }
   }
 
   // Inicializar cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
       new LazyImageLoader();
     });
   } else {
@@ -153,7 +162,7 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     background-color: #f3f4f6;
     min-height: 200px;
   }
-  
+
   @media (prefers-reduced-motion: reduce) {
     [data-lazy-image],
     [data-placeholder],
