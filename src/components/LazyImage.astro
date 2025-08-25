@@ -159,8 +159,8 @@ const imageId = `img-${Math.random().toString(36).substring(2, 9)}`;
 
 <style>
   [data-image-container] {
-    background-color: #f3f4f6;
-    min-height: 200px;
+    /* Use transparent so clipped parts show the card background instead of gray */
+    background-color: transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {
