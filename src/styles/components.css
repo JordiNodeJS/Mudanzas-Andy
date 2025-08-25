@@ -94,4 +94,11 @@
     padding: 1rem 1.5rem 1.5rem 1.5rem; /* top, right, bottom, left */
     gap: 0.5rem; /* consistent spacing between title and description */
   }
+
+  @media (min-width: 768px) {
+    .team-card-2 .mobile-truck-position {
+      --truck-pos-y-desktop: 65%; /* más abajo para reducir cielo */
+      --truck-clip-bottom-desktop: 5%;
+    }
+  }
 }

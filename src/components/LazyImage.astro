@@ -116,7 +116,8 @@ const imageId = `img-${Math.random().toString(36).substring(2, 9)}`;
       tempImg.onload = () => {
         // Imagen cargada exitosamente
         img.src = src;
-        img.style.opacity = "1";
+        // Remover la clase opacity-0 en lugar de usar style inline
+        img.classList.remove("opacity-0");
 
         // Ocultar placeholder y loading
         if (placeholder) placeholder.style.opacity = "0";
@@ -132,7 +133,9 @@ const imageId = `img-${Math.random().toString(36).substring(2, 9)}`;
       tempImg.onerror = () => {
         // Error al cargar, mostrar imagen por defecto
         img.src = img.dataset.src || "";
-        img.style.opacity = "0.5";
+        // Remover opacity-0 pero añadir opacidad reducida para indicar error
+        img.classList.remove("opacity-0");
+        img.classList.add("opacity-50");
         if (loadingOverlay) loadingOverlay.style.opacity = "0";
       };
 
