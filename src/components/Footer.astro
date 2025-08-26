@@ -12,8 +12,8 @@
           <img
             src="/logos/logo-camion-transparent.png"
             alt="Mudanzas ANDY Logo"
+            data-fallback="/logos/logo-camion-mudanzas.png"
             class="w-18 h-12 object-contain bg-transparent drop-shadow-sm self-center"
-            onerror="this.onerror=null; this.src='/logos/logo-camion-mudanzas.png';"
           />
           <div>
             <h3 class="text-2xl font-bold text-highlight">Mudanzas ANDY</h3>
@@ -138,3 +138,22 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Attach fallback handler for images with data-fallback in footer
+  (function () {
+    document.addEventListener("DOMContentLoaded", function () {
+      const imgs = document.querySelectorAll("img[data-fallback]");
+      imgs.forEach((img) => {
+        img.addEventListener("error", function () {
+          const el = img as HTMLImageElement;
+          const fb = el.getAttribute("data-fallback");
+          if (fb && el.src !== fb) {
+            el.onerror = null;
+            el.src = fb;
+          }
+        });
+      });
+    });
+  })();
+</script>

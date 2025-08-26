@@ -13,8 +13,8 @@
           alt="Mudanzas ANDY Logo"
           id="truck-logo"
           data-animated="false"
+          data-fallback="/logos/logo-camion-mudanzas.png"
           class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
-          onerror="this.onerror=null; this.src='/logos/logo-camion-mudanzas.png';"
         />
         <div>
           <h1 class="text-lg lg:text-xl font-bold text-highlight">
@@ -317,6 +317,25 @@
       // Ejecutar al cargar la página
       highlightActiveSection();
     });
+  </script>
+
+  <script>
+    // Fallback handler for images using data-fallback to avoid inline onerror attributes
+    (function attachImageFallbacks() {
+      document.addEventListener("DOMContentLoaded", function () {
+        const imgs = document.querySelectorAll('img[data-fallback]');
+        imgs.forEach((img) => {
+          img.addEventListener("error", function () {
+            const el = img as HTMLImageElement;
+            const fb = el.getAttribute("data-fallback");
+            if (fb && el.src !== fb) {
+              el.onerror = null;
+              el.src = fb;
+            }
+          });
+        });
+      });
+    })();
   </script>
 
   <style>

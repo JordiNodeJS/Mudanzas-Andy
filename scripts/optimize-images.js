@@ -5,9 +5,9 @@
  * Este script sería útil para un flujo de trabajo real con herramientas como Sharp
  */
 
-const sharp = require("sharp");
-const fs = require("fs");
-const path = require("path");
+import sharp from "sharp";
+import fs from "fs";
+import path from "path";
 
 // Configuración de tamaños responsivos
 const SIZES = [
@@ -135,4 +135,4 @@ if (require.main === module) {
   );
 }
 
-module.exports = ImageOptimizer;
+export default ImageOptimizer;
