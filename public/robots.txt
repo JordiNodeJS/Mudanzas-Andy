@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Disallow specific paths
+Disallow: /admin/
+Disallow: /_astro/
+Disallow: /test-results/
+Disallow: /.playwright-mcp/
+Disallow: /playwright-report/
+
+# Allow important resources
+Allow: /images/
+Allow: /js/
+Allow: /css/
+Allow: /favicon.ico
+Allow: /robots.txt
+
+# Sitemap location
+Sitemap: https://mudanzasandy.es/sitemap.xml
+
+# Crawl delay (optional, be careful with this)
+# Crawl-delay: 1

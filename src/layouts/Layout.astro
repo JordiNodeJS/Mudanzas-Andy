@@ -1,16 +1,30 @@
 ---
 import "../styles/global.css";
+import analyticsConfig from "../config/analytics.json";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonical?: string;
+  keywords?: string;
+  robots?: string;
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+  };
 }
 
 const {
-  title = "Mudanzas profesionales en Barcelona y España | Mudanzas ANDY",
-  description = "Mudanzas profesionales en Barcelona y toda España. Presupuesto GRATIS en 5 minutos por WhatsApp. Atención 24/7. ¡Tu mudanza, nuestra prioridad!",
+  title = "Mudanzas Profesionales Barcelona ⚡ Presupuesto GRATIS | Mudanzas ANDY",
+  description = "🚛 Mudanzas profesionales en Barcelona y España desde 2010. ✅ Presupuesto GRATIS en 5 min por WhatsApp ✅ Precio cerrado sin sorpresas ✅ Atención 24/7 ✅ Embalaje incluido",
   image = "/og-image.jpg",
+  canonical = Astro.url.href,
+  keywords = "mudanzas Barcelona, mudanzas profesionales, empresa mudanzas Barcelona, mudanzas baratas, presupuesto mudanza gratis, mudanzas particulares, mudanzas oficinas",
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  article,
 } = Astro.props satisfies Props;
 ---
 
@@ -45,48 +59,359 @@ const {
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="author" content="Mudanzas ANDY" />
+    <meta name="language" content="es" />
+    <meta name="geo.region" content="ES-CT" />
+    <meta name="geo.placename" content="Barcelona" />
+    <meta name="geo.position" content="41.3851;2.1734" />
+    <meta name="ICBM" content="41.3851, 2.1734" />
+
+    <!-- Business Information -->
+    <meta name="contact" content="mundanzas.andy@gmail.com" />
+    <meta name="phone" content="+34933539792" />
+    <meta
+      name="address"
+      content="Carrer de Casals i Cuberó, Barcelona, España"
+    />
+
+    <!-- Search Engine Verification Tags -->
+    {
+      analyticsConfig.google.search_console.verification_code && (
+        <meta
+          name="google-site-verification"
+          content={analyticsConfig.google.search_console.verification_code}
+        />
+      )
+    }
+    {
+      analyticsConfig.bing.webmaster_tools.verification_code && (
+        <meta
+          name="msvalidate.01"
+          content={analyticsConfig.bing.webmaster_tools.verification_code}
+        />
+      )
+    }
+    {
+      analyticsConfig.meta.domain_verification && (
+        <meta
+          name="facebook-domain-verification"
+          content={analyticsConfig.meta.domain_verification}
+        />
+      )
+    }
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:site_name" content="Mudanzas ANDY" />
+    <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:url" content={canonical} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta
+      property="twitter:image:alt"
+      content="Mudanzas ANDY - Empresa de mudanzas profesionales en Barcelona"
+    />
+    <meta property="twitter:site" content="@MudanzasAndy" />
+    <meta property="twitter:creator" content="@MudanzasAndy" />
 
-    <!-- Schema.org markup -->
+    <!-- Enhanced Schema.org markup for Moving Company -->
     <script
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "MovingCompany",
         name: "Mudanzas ANDY",
-        description: "Empresa de mudanzas profesionales en Barcelona y España",
-        telephone: "+34 933 53 97 92",
+        alternateName: "ANDY Mudanzas Barcelona",
+        description:
+          "Empresa de mudanzas profesionales en Barcelona y España con más de 14 años de experiencia. Servicios de mudanzas particulares, oficinas, embalaje profesional y guardamuebles.",
+        url: canonical,
+        logo: new URL("/logo-mudanzas-andy.svg", Astro.url),
+        image: new URL(image, Astro.url),
+        telephone: "+34933539792",
         email: "mundanzas.andy@gmail.com",
-        url: Astro.url,
+        foundingDate: "2010",
+        slogan: "Tu mudanza, nuestra prioridad desde 2010",
         address: {
           "@type": "PostalAddress",
+          streetAddress: "Carrer de Casals i Cuberó",
           addressLocality: "Barcelona",
-          addressCountry: "España",
+          addressRegion: "Cataluña",
+          postalCode: "08016",
+          addressCountry: "ES",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: "41.3851",
+          longitude: "2.1734",
         },
         openingHours: "Mo-Su 00:00-23:59",
         priceRange: "€€",
-        serviceArea: {
-          "@type": "Country",
-          name: "España",
+        currenciesAccepted: "EUR",
+        paymentAccepted: ["Cash", "Credit Card", "Bank Transfer"],
+        serviceArea: [
+          {
+            "@type": "Country",
+            name: "España",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Cataluña",
+          },
+          {
+            "@type": "City",
+            name: "Barcelona",
+          },
+        ],
+        areaServed: ["Barcelona", "Madrid", "Valencia", "Cataluña", "España"],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Servicios de Mudanzas",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Mudanzas Particulares",
+                description:
+                  "Mudanzas de viviendas completas con embalaje profesional incluido",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Mudanzas de Oficinas",
+                description:
+                  "Traslados empresariales con mínima interrupción del negocio",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Embalaje Profesional",
+                description:
+                  "Servicio completo de embalaje con materiales de alta calidad",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Guardamuebles",
+                description: "Almacenamiento seguro temporal de pertenencias",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Mudanzas Express",
+                description: "Mudanzas urgentes realizadas en el mismo día",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Mudanzas Nacionales",
+                description:
+                  "Mudanzas por toda España con seguimiento en tiempo real",
+              },
+            },
+          ],
+        },
+        review: [
+          {
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: "María García",
+            },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            reviewBody:
+              "Profesionales, puntuales y muy cuidadosos. Mi mudanza fue perfecta y sin estrés.",
+          },
+          {
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: "Carlos Ruiz",
+            },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            reviewBody:
+              "Trasladaron toda nuestra oficina en un fin de semana. El lunes ya estábamos trabajando normalmente.",
+          },
+          {
+            "@type": "Review",
+            author: {
+              "@type": "Person",
+              name: "Ana López",
+            },
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: "5",
+              bestRating: "5",
+            },
+            reviewBody:
+              "En menos de 4 horas habían terminado. Todo perfectamente organizado y sin un solo rasguño.",
+          },
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: "3",
+          bestRating: "5",
+          worstRating: "1",
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: "+34933539792",
+            contactType: "customer service",
+            areaServed: "ES",
+            availableLanguage: "Spanish",
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: "+34640506084",
+            contactType: "customer service",
+            contactOption: "WhatsApp",
+            areaServed: "ES",
+            availableLanguage: "Spanish",
+          },
+        ],
+        sameAs: ["https://wa.me/34640506084"],
+      })}
+    />
+
+    <!-- Website Schema -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Mudanzas ANDY",
+        url: canonical,
+        potentialAction: {
+          "@type": "SearchAction",
+          target: canonical + "?q={search_term_string}",
+          "query-input": "required name=search_term_string",
         },
       })}
     />
+
+    <!-- Breadcrumb Schema (for pages with navigation) -->
+    {
+      Astro.url.pathname !== "/" && (
+        <script
+          type="application/ld+json"
+          is:inline
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Inicio",
+                item: new URL("/", Astro.url).href,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: title,
+                item: canonical,
+              },
+            ],
+          })}
+        />
+      )
+    }
+
+    <!-- Google Tag Manager (head) -->
+    {
+      analyticsConfig.google.tag_manager.container_id && (
+        <script
+          is:inline
+          set:html={`
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${analyticsConfig.google.tag_manager.container_id}');
+      `}
+        />
+      )
+    }
+
+    <!-- Google Analytics 4 -->
+    {
+      analyticsConfig.google.analytics.measurement_id && (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.google.analytics.measurement_id}`}
+          />
+          <script
+            is:inline
+            set:html={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${analyticsConfig.google.analytics.measurement_id}', {
+            page_title: '${title}',
+            page_location: '${canonical}',
+            anonymize_ip: true,
+            cookie_flags: 'secure;samesite=lax'
+          });
+        `}
+          />
+        </>
+      )
+    }
   </head>
   <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
+    <!-- Google Tag Manager (noscript) -->
+    {
+      analyticsConfig.google.tag_manager.container_id && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${analyticsConfig.google.tag_manager.container_id}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+          ></iframe>
+        </noscript>
+      )
+    }
+
     <slot />
 
     <!-- WhatsApp Floating Button (visible during scroll; script will toggle visibility when footer is in view) -->

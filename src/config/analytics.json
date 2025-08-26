@@ -1,0 +1,32 @@
+{
+    "google": {
+        "analytics": {
+            "measurement_id": "",
+            "description": "Configura tu Google Analytics 4 Measurement ID aquí"
+        },
+        "search_console": {
+            "verification_code": "",
+            "description": "Código de verificación de Google Search Console"
+        },
+        "tag_manager": {
+            "container_id": "",
+            "description": "ID del contenedor de Google Tag Manager (opcional)"
+        }
+    },
+    "bing": {
+        "webmaster_tools": {
+            "verification_code": "",
+            "description": "Código de verificación de Bing Webmaster Tools"
+        }
+    },
+    "meta": {
+        "domain_verification": "",
+        "description": "Código de verificación de Meta (Facebook) Domain Verification"
+    },
+    "structured_data": {
+        "enable_faq": true,
+        "enable_reviews": true,
+        "enable_breadcrumbs": true,
+        "enable_local_business": true
+    }
+}
