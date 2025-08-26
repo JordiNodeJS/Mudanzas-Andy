@@ -31,22 +31,24 @@
 - ✅ Contact forms enhancement (100%)
 - ✅ Email automation with fallback (100%)
 
-### **Performance ⚡ [COMPLETADO - ÉXITO TOTAL]**
+### **Performance ⚡ [REGRESIÓN DETECTADA Y CORREGIDA]**
 
-- ✅ Image optimization (100%) - 99% mobile, 94% desktop reduction **REAL VALIDATED**
-- ✅ LCP optimization (100%) - 9.3s → 3.1s mobile (67% mejora) **REAL VALIDATED**
+- ✅ Image optimization (100%) - Hero mobile: 185KB → 18KB **CORREGIDO**
+- ✅ LCP optimization (100%) - Preload con media queries **CORREGIDO**
+- ✅ Logo optimization (100%) - Footer: 77KB → 5KB (93% ahorro) **NUEVO**
 - ✅ Component splitting (100%)
 - ✅ Build optimization (100%)
 - ✅ CSS optimization (100%)
 - ✅ Critical CSS inline (100%)
-- ✅ Resource hints (100%)
+- ✅ Resource hints (100%) - **Media queries añadidos**
 - ✅ Cache headers (100%)
 - ✅ Responsive images (100%)
 - ✅ Modern formats (AVIF/WebP) (100%)
-- ✅ **PageSpeed Score: 75 → 94 (Top 6% websites)** 🏆
-- ✅ **TBT: 30ms → 0ms (100% mejora)** ⚡
-- ✅ **Speed Index: 2.3s → 1.5s (35% mejora)** 🚀
-- ✅ **Core Web Vitals: APROBADO** ✅
+- 🚨 **REGRESIÓN**: Score 94 → 73 **DETECTADA**
+- ✅ **RECUPERACIÓN**: Preload conflicts corregidos
+- ✅ **SOLUCIÓN**: Logos optimizados (235KB ahorro total)
+- 🎯 **OBJETIVO**: Score 73 → 90+ esperado tras deploy
+- ✅ **Core Web Vitals**: Optimizaciones aplicadas para verde
 - 🟡 Service Worker (0%) - Opcional
 - 🟡 Code splitting advanced (25%) - JS optimizado básico
 
