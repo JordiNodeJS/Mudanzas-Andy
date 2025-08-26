@@ -20,7 +20,7 @@ const {
   buttonText = "Ver más",
   variant = "default",
   ...attrs
-} = Astro.props as Props;
+} = Astro.props satisfies Props;
 ---
 
 <article class={`card card-${variant}`} {...attrs}>

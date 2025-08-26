@@ -6,7 +6,7 @@ interface Props {
   rating: number;
 }
 
-const { name, location, text, rating } = Astro.props as Props;
+const { name, location, text, rating } = Astro.props satisfies Props;
 
 const renderStars = (rating: number) => {
   return Array.from({ length: 5 }, (_, i) => (i < rating ? "⭐" : "☆")).join(

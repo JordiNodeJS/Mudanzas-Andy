@@ -17,7 +17,7 @@ const {
   class: className = "",
   loading = "lazy",
   decoding = "async",
-} = Astro.props as Props;
+} = Astro.props satisfies Props;
 
 // Future enhancement: Generate srcset for different widths
 // function generateSrcSet(baseSrc: string, widths: number[]): string {

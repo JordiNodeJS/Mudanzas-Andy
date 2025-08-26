@@ -15,7 +15,7 @@ const {
   variant = "primary",
   size = "md",
   fullWidth = false,
-} = Astro.props as Props;
+} = Astro.props satisfies Props;
 
 import { buttonClasses, formatPhoneForWhatsApp } from "../../lib/ui.ts";
 

@@ -7,7 +7,8 @@ interface Props {
   gradient: string;
 }
 
-const { icon, title, description, features, gradient } = Astro.props as Props;
+const { icon, title, description, features, gradient } =
+  Astro.props satisfies Props;
 ---
 
 <div class={`${gradient} card card-compact card-bordered`}>

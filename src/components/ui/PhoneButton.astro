@@ -17,7 +17,7 @@ const {
   size = "md",
   icon = "\ud83d\udcde",
   fullWidth = false,
-} = Astro.props as Props;
+} = Astro.props satisfies Props;
 
 const classes = buttonClasses({ variant, size, fullWidth });
 const formattedPhone = formatPhoneForTel(phone);
