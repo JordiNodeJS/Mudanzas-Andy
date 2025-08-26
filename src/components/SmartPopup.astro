@@ -168,6 +168,10 @@
       const whatsappUrl = `https://wa.me/34${businessNumber}?text=${encodeURIComponent(
         message
       )}`;
+      // Native app scheme (used as a first attempt on mobile devices)
+      const whatsappAppUrl = `whatsapp://send?phone=34${businessNumber}&text=${encodeURIComponent(
+        message
+      )}`;
 
       // Mostrar mensaje de éxito
       const popupContent = document.getElementById("popupContent");
@@ -189,6 +193,7 @@
               <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="block bg-[#FAE360] text-[#264e70] font-bold py-3 px-6 rounded-lg hover:bg-[#f0d84a] transition-colors duration-300">
                 💬 WhatsApp: 640 50 60 84
               </a>
+              <button id="copyAndOpenWhatsApp" class="w-full mt-2 bg-[#f7c9a8] text-[#264e70] font-bold py-3 px-6 rounded-lg hover:bg-[#f5bf95] transition-colors duration-300">Copiar mensaje y abrir WhatsApp</button>
             </div>
             
             <button id="closeSuccessPopup" class="mt-4 text-gray-500 hover:text-gray-700 text-sm underline">
@@ -212,6 +217,7 @@
               <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="block bg-[#FAE360] text-[#264e70] font-bold py-3 px-6 rounded-lg hover:bg-[#f0d84a] transition-colors duration-300">
                 💬 WhatsApp: 640 50 60 84
               </a>
+              <button id="copyAndOpenWhatsApp" class="w-full mt-2 bg-[#f7c9a8] text-[#264e70] font-bold py-3 px-6 rounded-lg hover:bg-[#f5bf95] transition-colors duration-300">Copiar mensaje y abrir WhatsApp</button>
             </div>
             
             <button id="closeSuccessPopup" class="mt-4 text-gray-500 hover:text-gray-700 text-sm underline">
@@ -219,14 +225,59 @@
             </button>
           </div>
         `;
-          // Abrir WhatsApp automáticamente en caso de error
-          window.open(whatsappUrl, "_blank");
+          // Intentar abrir la app nativa de WhatsApp primero; si no responde, abrir la versión web
+          try {
+            // Navegar directamente al scheme nativo. En muchos móviles esto abrirá la app
+            window.location.href = whatsappAppUrl;
+            // Si la app no responde, abrir la URL web como fallback tras un pequeño retraso
+            setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
+          } catch (err) {
+            // Fallback simple
+            window.open(whatsappUrl, "_blank");
+          }
         }
 
         // Event listener para cerrar popup de éxito
         document
           .getElementById("closeSuccessPopup")
           ?.addEventListener("click", hidePopup);
+
+        // Añadir un handler al enlace de WhatsApp dentro del popup para que intente
+        // abrir la app nativa primero cuando el usuario pulse el botón.
+        const waAnchor = popupContent.querySelector(
+          'a[href^="https://wa.me"], a[href^="https://api.whatsapp.com"]'
+        );
+        if (waAnchor) {
+          waAnchor.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            try {
+              window.location.href = whatsappAppUrl;
+              setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
+            } catch (e) {
+              window.open(whatsappUrl, "_blank");
+            }
+          });
+        }
+        // Handler: copiar mensaje al portapapeles y abrir WhatsApp (app nativa o web)
+        const copyBtn = popupContent.querySelector("#copyAndOpenWhatsApp");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", async (ev) => {
+            ev.preventDefault();
+            try {
+              await navigator.clipboard.writeText(message);
+              // feedback visual breve
+              (copyBtn as HTMLElement).innerText = "Copiado — Abriendo...";
+            } catch (e) {
+              // ignore clipboard errors
+            }
+            try {
+              window.location.href = whatsappAppUrl;
+              setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
+            } catch (e) {
+              window.open(whatsappUrl, "_blank");
+            }
+          });
+        }
       }
     });
 
