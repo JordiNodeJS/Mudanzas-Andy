@@ -6,7 +6,7 @@ interface Props {
   rating: number;
 }
 
-const { name, location, text, rating } = Astro.props;
+const { name, location, text, rating } = Astro.props as Props;
 
 const renderStars = (rating: number) => {
   return Array.from({ length: 5 }, (_, i) => (i < rating ? "⭐" : "☆")).join(
@@ -25,5 +25,10 @@ const renderStars = (rating: number) => {
   <div class="text-[#679186]">
     <p class="font-semibold text-sm lg:text-base text-[#264e70]">{name}</p>
     <p class="text-xs lg:text-sm text-[#679186] opacity-90">{location}</p>
-  <div class="card bg-white/98 backdrop-blur-sm card-bordered" style="border-color: rgba(38,78,112,0.1)">
+    <div
+      class="card bg-white/98 backdrop-blur-sm card-bordered"
+      style="border-color: rgba(38,78,112,0.1)"
+    >
+    </div>
+  </div>
 </div>
