@@ -25,6 +25,7 @@
       <form
         class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl"
         id="budgetForm"
+        novalidate
       >
         <div
           class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 flex-1 min-w-0"
@@ -91,8 +92,37 @@
       const phone = (document.getElementById("phone") as HTMLInputElement)
         ?.value;
 
+      // Custom validation to avoid native browser tooltips which can be clipped
+      // or positioned off-screen when the form is fixed at the bottom.
+      /**
+       * Show a short-lived validation tooltip above the sticky contact form.
+       */
+      function showValidationTooltip(msg: string) {
+        const container = document.getElementById("contactForm");
+        if (!container) return;
+
+        let tip = document.getElementById("contactFormTooltip");
+        if (!tip) {
+          tip = document.createElement("div");
+          tip.id = "contactFormTooltip";
+          tip.className = "contact-tooltip show";
+          container.appendChild(tip);
+        }
+
+        tip.textContent = msg;
+        tip.classList.remove("hidden");
+        tip.classList.add("show");
+
+        const anyTip = tip as any;
+        clearTimeout(anyTip._removeTimeout);
+        anyTip._removeTimeout = setTimeout(() => {
+          tip.classList.remove("show");
+          tip.classList.add("hidden");
+        }, 4000) as unknown as number;
+      }
+
       if (!name || !email) {
-        alert(
+        showValidationTooltip(
           "Por favor, completa tu nombre y email para que podamos enviarte el presupuesto."
         );
         return;

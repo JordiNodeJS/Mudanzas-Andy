@@ -452,11 +452,26 @@ await expect(page).toHaveURL(/wa\.me/);
 
 ### 3. Testing Funcional con Playwright
 
-- [x] Test ContactForm: llenar → enviar → verificar fallback WhatsApp
+- [x] Test ContactForm: llenar → enviar → verificar fallback WhatsApp ✅ **VERIFICADO 26/08/2025**
 - [x] Test SmartPopup: trigger → llenar → enviar → verificar fallback
-- [x] Test fallback funciona cuando EmailJS falla
-- [x] Test UI/UX preservado exactamente
-- [x] Screenshots documentando funcionamiento
+- [x] Test fallback funciona cuando EmailJS falla ✅ **VERIFICADO 26/08/2025**
+- [x] Test UI/UX preservado exactamente ✅ **VERIFICADO 26/08/2025**
+- [x] Screenshots documentando funcionamiento ✅ **VERIFICADO 26/08/2025**
+
+**🧪 Test realizado con datos reales**:
+
+- **Nombre**: Ramón | **Email**: frontend.flipoeyewear@gmail.com | **Teléfono**: 679099000
+
+**📊 Resultados del test automatizado**:
+
+- ✅ API EmailJS llamada: `https://api.emailjs.com/api/v1.0/email/send`
+- ✅ Error 400 manejado (configuración dashboard pendiente)
+- ✅ Fallback WhatsApp: URL generada con todos los datos correctos
+- ✅ Estados de carga: "Enviando..." → resultado apropiado
+- ✅ Datos codificados: `Ram%C3%B3n` → `Ramón` en WhatsApp
+
+**📝 Para reproducir**: `pnpm test:emailjs`
+**📸 Evidencias**: `EMAILJS-VERIFICATION-RESULTS.md` + capturas test-results/
 
 ### 4. Verificación Técnica
 

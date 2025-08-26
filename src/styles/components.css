@@ -232,3 +232,29 @@
     transform: scale(1.02);
   }
 }
+
+/* Tooltip for contact form validation (custom to avoid native validation bubbles) */
+.contact-tooltip {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  bottom: 100%; /* sitúa justo encima del footer */
+  background: rgba(38, 78, 112, 0.95); /* primary dark */
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  z-index: 60;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 180ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+.contact-tooltip.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-14px);
+}
+.contact-tooltip.hidden {
+  opacity: 0;
+}

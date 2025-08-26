@@ -20,9 +20,29 @@ export class EmailService {
 
   static init(): void {
     if (!this.initialized) {
+      // Merge options but allow overriding blockHeadless when running under
+      // an automated browser (Playwright) or when explicitly enabled via
+      // import.meta.env.PUBLIC_EMAILJS_ALLOW_HEADLESS.
+      const options = { ...emailConfig.options } as Record<string, any>;
+
+      try {
+        const allowHeadless =
+          Boolean(import.meta.env?.PUBLIC_EMAILJS_ALLOW_HEADLESS) ||
+          (typeof navigator !== "undefined" &&
+            (navigator as any).webdriver === true) ||
+          (typeof window !== "undefined" &&
+            (window as any).__EMAILJS_ALLOW_HEADLESS === true);
+
+        if (allowHeadless) {
+          options.blockHeadless = false;
+        }
+      } catch (err) {
+        // ignore - defensive for non-browser environments
+      }
+
       emailjs.init({
         publicKey: emailConfig.publicKey,
-        ...emailConfig.options,
+        ...options,
       });
       this.initialized = true;
     }

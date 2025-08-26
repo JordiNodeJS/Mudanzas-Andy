@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:emailjs": "playwright test src/tests/emailjs-test.spec.js --reporter=line",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -18,6 +20,7 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "png-to-ico": "^3.0.1",
     "sharp": "^0.34.3"
   }
