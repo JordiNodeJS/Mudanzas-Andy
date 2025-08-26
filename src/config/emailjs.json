@@ -1,0 +1,14 @@
+{
+    "publicKey": "4KyOE-93jACxKcJPf",
+    "serviceId": "service_mudanzas_andy",
+    "templates": {
+        "contactForm": "template_contact_form",
+        "smartPopup": "template_smart_popup"
+    },
+    "options": {
+        "blockHeadless": true,
+        "limitRate": {
+            "throttle": 10000
+        }
+    }
+}

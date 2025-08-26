@@ -13,10 +13,10 @@
     >
       <!-- Texto del formulario -->
       <div class="text-center lg:text-left flex-shrink-0">
-  <p class="font-bold text-highlight text-sm lg:text-base">
+        <p class="font-bold text-highlight text-sm lg:text-base">
           ¡Presupuesto GRATIS en 10 minutos!
         </p>
-  <p class="text-xs text-neutral">
+        <p class="text-xs text-neutral">
           Te contactaremos por WhatsApp inmediatamente
         </p>
       </div>
@@ -29,6 +29,14 @@
         <div
           class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 flex-1 min-w-0"
         >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Tu nombre"
+            required
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+          />
           <input
             type="email"
             id="email"
@@ -69,46 +77,84 @@
 </div>
 
 <script>
+  import { EmailService } from "@/lib/utils/emailService.js";
+
   // Validación y envío del formulario
   document
     .getElementById("budgetForm")
-    ?.addEventListener("submit", function (e) {
+    ?.addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      const name = (document.getElementById("name") as HTMLInputElement)?.value;
       const email = (document.getElementById("email") as HTMLInputElement)
         ?.value;
       const phone = (document.getElementById("phone") as HTMLInputElement)
         ?.value;
 
-      if (!email) {
+      if (!name || !email) {
         alert(
-          "Por favor, ingresa tu email para que podamos enviarte el presupuesto."
+          "Por favor, completa tu nombre y email para que podamos enviarte el presupuesto."
         );
         return;
       }
 
-      // Mensaje personalizado para WhatsApp
-      const message = `¡Hola! Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
-      const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
-
-      // Mensaje de éxito
-      const formContainer = document.getElementById("contactForm");
-      if (formContainer) {
-        formContainer.innerHTML = `
-        <div class="container mx-auto px-4 py-4 text-center">
-          <div class="bg-green-500 text-white p-4 rounded-lg">
-            <p class="font-bold">¡Listo! Te contactaremos en menos de 10 minutos por WhatsApp al 640 50 60 84.</p>
-            <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>
-            <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300">
-              Abrir WhatsApp 💬
-            </a>
-          </div>
-        </div>
-      `;
+      // Mostrar estado de carga
+      const submitButton = document.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.innerHTML = "<span>⏳</span><span>Enviando...</span>";
+        submitButton.setAttribute("disabled", "true");
       }
 
-      // Abrir WhatsApp automáticamente
-      window.open(whatsappUrl, "_blank");
+      // Intentar envío por EmailJS primero
+      const emailResult = await EmailService.sendContactEmail({
+        from_name: name,
+        from_email: email,
+        from_phone: phone,
+        message: `Solicitud de presupuesto de mudanza desde web. 
+        Nombre: ${name}
+        Email: ${email}
+        ${phone ? `Teléfono: ${phone}` : ""}
+        
+        Por favor contactar cuanto antes para presupuesto de mudanza.`,
+      });
+
+      // Mensaje personalizado para WhatsApp (backup)
+      const message = `¡Hola! Soy ${name}. Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
+      const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
+
+      // Mostrar resultado
+      const formContainer = document.getElementById("contactForm");
+      if (formContainer) {
+        if (emailResult.success) {
+          // Éxito con EmailJS
+          formContainer.innerHTML = `
+            <div class="container mx-auto px-4 py-4 text-center">
+              <div class="bg-green-500 text-white p-4 rounded-lg">
+                <p class="font-bold">✅ ${emailResult.message}</p>
+                <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300">
+                  También vía WhatsApp 💬
+                </a>
+              </div>
+            </div>
+          `;
+        } else {
+          // Error EmailJS - usar WhatsApp como backup
+          formContainer.innerHTML = `
+            <div class="container mx-auto px-4 py-4 text-center">
+              <div class="bg-yellow-500 text-white p-4 rounded-lg">
+                <p class="font-bold">Te contactaremos por WhatsApp inmediatamente</p>
+                <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300">
+                  Abrir WhatsApp 💬
+                </a>
+              </div>
+            </div>
+          `;
+          // Abrir WhatsApp automáticamente en caso de error
+          window.open(whatsappUrl, "_blank");
+        }
+      }
     });
 
   // Funcionalidad para minimizar/maximizar formulario
