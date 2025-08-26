@@ -1,0 +1,111 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+  class?: string;
+  style?: string;
+  sizes?: string;
+  priority?: boolean;
+  responsive?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = "lazy",
+  decoding = "async",
+  class: className = "",
+  style = "",
+  sizes = "100vw",
+  priority = false,
+  responsive = false,
+} = Astro.props satisfies Props;
+
+// Generar las rutas de las imágenes optimizadas
+const basePath = src.replace(/\.(jpg|jpeg|png)$/i, "");
+const extension = src.match(/\.(jpg|jpeg|png)$/i)?.[1] || "jpg";
+
+// Para imágenes en /camion/, usar la carpeta optimized
+const isInCamionFolder = src.includes("/camion/");
+const optimizedBasePath = isInCamionFolder
+  ? basePath.replace("/camion/", "/camion/optimized/")
+  : basePath;
+
+// Generar versiones responsive para hero
+const isHeroImage = src.includes("hero-fondo");
+const responsiveEnabled = responsive && isHeroImage;
+
+const avifSrc = `${optimizedBasePath}.avif`;
+const webpSrc = `${optimizedBasePath}.webp`;
+const jpegSrc = isInCamionFolder ? `${optimizedBasePath}.${extension}` : src;
+
+// Versiones mobile para hero
+const avifMobileSrc = responsiveEnabled
+  ? `${optimizedBasePath}-mobile.avif`
+  : avifSrc;
+const webpMobileSrc = responsiveEnabled
+  ? `${optimizedBasePath}-mobile.webp`
+  : webpSrc;
+const jpegMobileSrc = responsiveEnabled
+  ? `${optimizedBasePath}-mobile.jpg`
+  : jpegSrc;
+---
+
+---
+
+<picture>
+  <!-- AVIF: formato más moderno y eficiente -->
+  {
+    isInCamionFolder && (
+      <source
+        srcset={
+          responsiveEnabled
+            ? `${avifMobileSrc} 768w, ${avifSrc} 1920w`
+            : avifSrc
+        }
+        type="image/avif"
+        sizes={responsiveEnabled ? "(max-width: 768px) 768px, 1920px" : sizes}
+      />
+    )
+  }
+
+  <!-- WebP: buen soporte y compresión -->
+  {
+    isInCamionFolder && (
+      <source
+        srcset={
+          responsiveEnabled
+            ? `${webpMobileSrc} 768w, ${webpSrc} 1920w`
+            : webpSrc
+        }
+        type="image/webp"
+        sizes={responsiveEnabled ? "(max-width: 768px) 768px, 1920px" : sizes}
+      />
+    )
+  }
+
+  <!-- JPEG: fallback universal -->
+  <img
+    src={jpegSrc}
+    srcset={responsiveEnabled
+      ? `${jpegMobileSrc} 768w, ${jpegSrc} 1920w`
+      : undefined}
+    sizes={responsiveEnabled ? "(max-width: 768px) 768px, 1920px" : undefined}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={priority ? "eager" : loading}
+    decoding={decoding}
+    class={className}
+    style={style}
+    {...priority && { fetchpriority: "high" }}
+  />
+</picture>
+
+{priority && <link rel="preload" as="image" href={avifSrc} type="image/avif" />}

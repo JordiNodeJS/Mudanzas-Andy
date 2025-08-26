@@ -1,20 +1,26 @@
 ---
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 import PhoneButton from "../ui/PhoneButton.astro";
+import OptimizedPicture from "../OptimizedPicture.astro";
 ---
 
 <section
   id="inicio"
   class="bg-gradient-to-br from-[#f9b4ab] via-[#fdebd3] to-[#bbd4ce] py-16 lg:py-20 flow-root relative overflow-hidden"
 >
-  <!-- Imagen de fondo con filtro para mejor contraste -->
+  <!-- Imagen de fondo optimizada para LCP -->
   <div class="absolute inset-0 z-0">
-    <img
+    <OptimizedPicture
       src="/camion/hero-fondo.jpg"
       alt="Fondo: Camión de mudanzas profesional"
       class="w-full h-full object-cover opacity-15"
       loading="eager"
       decoding="async"
+      priority={true}
+      responsive={true}
+      width={1920}
+      height={1080}
+      sizes="100vw"
     />
     <div
       class="absolute inset-0 bg-gradient-to-br from-[#f9b4ab]/70 via-[#fdebd3]/80 to-[#bbd4ce]/70"

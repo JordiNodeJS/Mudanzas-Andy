@@ -1,0 +1,78 @@
+<!--
+Configuración de caché y performance headers para Hostinger/hosting estático
+
+Instrucciones:
+1. Si tu hosting soporta .htaccess (Apache), renombra a .htaccess
+2. Si es Nginx, añade estas directivas al server block
+3. Para Hostinger específicamente, algunos headers pueden configurarse desde el panel
+-->
+
+# Compresión GZIP/Brotli
+<IfModule mod_deflate.c>
+  # Comprimir texto, HTML, JavaScript, CSS, XML
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Headers de caché optimizados
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+  # Imágenes optimizadas - caché muy largo
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  
+  # CSS y JS con hash - caché muy largo
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  
+  # Fuentes
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  
+  # HTML - caché corto para contenido dinámico
+  ExpiresByType text/html "access plus 1 hour"
+  
+  # Documentos específicos
+  ExpiresByType application/xml "access plus 1 day"
+  ExpiresByType text/xml "access plus 1 day"
+</IfModule>
+
+# Headers de rendimiento y seguridad
+<IfModule mod_headers.c>
+  # Cache control específico
+  <FilesMatch "\.(avif|webp)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  <FilesMatch "\.(jpg|jpeg|png)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+  
+  # Security headers
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options DENY
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Performance hints
+  Header always set Accept-CH "DPR, Viewport-Width, Width"
+</IfModule>
+
+# Preload hints en HTML (ya implementado en Layout.astro)
+# Estos se manejan desde el componente Astro

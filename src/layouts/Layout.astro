@@ -56,6 +56,206 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Performance & Critical Resource Hints -->
+    <!-- Preload hero images con media queries -->
+    <link
+      rel="preload"
+      as="image"
+      href="/camion/optimized/hero-fondo-mobile.avif"
+      type="image/avif"
+      media="(max-width: 768px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/camion/optimized/hero-fondo.avif"
+      type="image/avif"
+      media="(min-width: 769px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/camion/optimized/hero-fondo-mobile.webp"
+      type="image/webp"
+      media="(max-width: 768px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/camion/optimized/hero-fondo.webp"
+      type="image/webp"
+      media="(min-width: 769px)"
+    />
+
+    <!-- DNS prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="//wa.me" />
+
+    <!-- Preconnect para recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <!-- Resource hints para imágenes above-the-fold -->
+    <link rel="prefetch" href="/camion/optimized/camion-frontal.webp" />
+    <link rel="prefetch" href="/camion/optimized/camion-evening.webp" />
+
+    <!-- Critical CSS inline para Above The Fold -->
+    <style>
+      /* Critical styles para hero section y layout base */
+      html {
+        scroll-padding-top: 5rem;
+      }
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .inset-0 {
+        inset: 0;
+      }
+      .z-0 {
+        z-index: 0;
+      }
+      .z-10 {
+        z-index: 10;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .h-full {
+        height: 100%;
+      }
+      .object-cover {
+        object-fit: cover;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .pt-20 {
+        padding-top: 5rem;
+      }
+      .py-16 {
+        padding: 4rem 0;
+      }
+      .mb-4 {
+        margin-bottom: 1rem;
+      }
+      .mb-6 {
+        margin-bottom: 1.5rem;
+      }
+      .overflow-hidden {
+        overflow: hidden;
+      }
+      .bg-gradient-to-br {
+        background-image: linear-gradient(
+          to bottom right,
+          var(--tw-gradient-stops)
+        );
+      }
+      .from-\[rgb\(249\,180\,171\)\] {
+        --tw-gradient-from: rgb(249, 180, 171);
+        --tw-gradient-to: rgb(249 180 171 / 0);
+        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+      }
+      .to-\[rgb\(187\,212\,206\)\] {
+        --tw-gradient-to: rgb(187, 212, 206);
+      }
+      .text-brand {
+        color: rgb(38, 78, 112);
+      }
+      .text-secondary {
+        color: rgb(103, 145, 134);
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .font-semibold {
+        font-weight: 600;
+      }
+      .leading-tight {
+        line-height: 1.25;
+      }
+      .drop-shadow-sm {
+        filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+      }
+      .opacity-15 {
+        opacity: 0.15;
+      }
+
+      /* Responsive text sizes */
+      .text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+      }
+      .text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+      }
+
+      @media (min-width: 640px) {
+        .sm\:text-3xl {
+          font-size: 1.875rem;
+          line-height: 2.25rem;
+        }
+        .sm\:text-xl {
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .md\:text-4xl {
+          font-size: 2.25rem;
+          line-height: 2.5rem;
+        }
+        .md\:text-2xl {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .lg\:text-5xl {
+          font-size: 3rem;
+          line-height: 1;
+        }
+        .lg\:text-3xl {
+          font-size: 1.875rem;
+          line-height: 2.25rem;
+        }
+        .lg\:py-20 {
+          padding: 5rem 0;
+        }
+        .lg\:mb-6 {
+          margin-bottom: 1.5rem;
+        }
+        .lg\:mb-8 {
+          margin-bottom: 2rem;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .xl\:text-6xl {
+          font-size: 3.75rem;
+          line-height: 1;
+        }
+      }
+    </style>
+
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -407,7 +607,7 @@ const {
             height="0"
             width="0"
             style="display:none;visibility:hidden"
-          ></iframe>
+          />
         </noscript>
       )
     }
