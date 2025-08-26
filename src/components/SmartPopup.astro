@@ -161,8 +161,11 @@
       });
 
       // Mensaje personalizado para WhatsApp (backup)
-      const message = `¡Hola! Soy ${name}. Por favor llámenme URGENTE al ${phoneDigits || phone} para presupuesto de mudanza. ¡Tengo prisa!`;
-      const whatsappUrl = `https://wa.me/34${(phoneDigits || phone).replace(/^0+/, "")}?text=${encodeURIComponent(
+      // Enviar al número del negocio y mencionar el teléfono particular del cliente en el cuerpo del mensaje
+      const customerPhone = (phoneDigits || phone).replace(/^0+/, "");
+      const businessNumber = "640506084"; // número del negocio sin prefijo 34
+      const message = `¡Hola! Soy ${name}. Mi teléfono es ${customerPhone}. Por favor llámenme URGENTE para presupuesto de mudanza. ¡Tengo prisa!`;
+      const whatsappUrl = `https://wa.me/34${businessNumber}?text=${encodeURIComponent(
         message
       )}`;
 
@@ -235,6 +238,10 @@
     .getElementById("smartPopup")
     ?.addEventListener("click", function (e) {
       if (e.target === this) {
+        // If user is currently focused on an input inside the popup,
+        // ignore overlay clicks (prevents accidental close while typing).
+        const active = document.activeElement;
+        if (active && this.contains(active)) return;
         hidePopup();
       }
     });
