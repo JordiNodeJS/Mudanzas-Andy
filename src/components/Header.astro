@@ -323,7 +323,7 @@
     // Fallback handler for images using data-fallback to avoid inline onerror attributes
     (function attachImageFallbacks() {
       document.addEventListener("DOMContentLoaded", function () {
-        const imgs = document.querySelectorAll('img[data-fallback]');
+        const imgs = document.querySelectorAll("img[data-fallback]");
         imgs.forEach((img) => {
           img.addEventListener("error", function () {
             const el = img as HTMLImageElement;

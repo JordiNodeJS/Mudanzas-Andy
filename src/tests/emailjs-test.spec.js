@@ -76,11 +76,11 @@ test.describe("EmailJS Contact Form Integration", () => {
 
     // Verificar si el resultado es exitoso o fallback
 
-  // Verificar si aparece mensaje de éxito (EmailJS funcionó)
-  const successMessage = page.locator(".bg-green-500");
-  const fallbackMessage = page.locator(".bg-yellow-500");
+    // Verificar si aparece mensaje de éxito (EmailJS funcionó)
+    const successMessage = page.locator(".bg-green-500");
+    const fallbackMessage = page.locator(".bg-yellow-500");
 
-  if (await successMessage.isVisible()) {
+    if (await successMessage.isVisible()) {
       console.log("✅ EmailJS funcionó correctamente");
       await expect(successMessage).toContainText("Email enviado correctamente");
 
@@ -89,7 +89,7 @@ test.describe("EmailJS Contact Form Integration", () => {
         page.locator('#contactForm a[href*="tel:"]').first()
       ).toBeVisible();
       await expect(page.locator('#contactForm a[href*="wa.me"]')).toBeVisible();
-  } else if (await fallbackMessage.isVisible()) {
+    } else if (await fallbackMessage.isVisible()) {
       console.log("⚠️ EmailJS falló, usando WhatsApp fallback");
       await expect(fallbackMessage).toContainText("WhatsApp");
 
@@ -103,7 +103,7 @@ test.describe("EmailJS Contact Form Integration", () => {
       expect(decodedHref).toContain("Ramón");
       expect(decodedHref).toContain("frontend.flipoeyewear@gmail.com");
       expect(decodedHref).toContain("679099000");
-  } else {
+    } else {
       throw new Error("No se detectó ni éxito ni fallback en el formulario");
     }
 
