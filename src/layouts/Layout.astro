@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import analyticsConfig from "../config/analytics.json";
+import CookieBanner from "../components/CookieBanner.astro";
 
 interface Props {
   title?: string;
@@ -616,6 +617,9 @@ const {
     }
 
     <slot />
+
+    <!-- Cookie Banner -->
+    <CookieBanner />
 
     <!-- WhatsApp Floating Button (visible during scroll; script will toggle visibility when footer is in view) -->
     <a

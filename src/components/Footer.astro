@@ -139,6 +139,34 @@
         Empresa especializada en mudanzas profesionales en Barcelona y toda
         España
       </p>
+
+      <!-- Enlaces legales -->
+      <div class="flex flex-wrap justify-center gap-4 mt-4 text-xs">
+        <a
+          href="/politica-privacidad"
+          class="hover:text-[#FAE360] transition-colors duration-300 underline"
+        >
+          Política de Privacidad
+        </a>
+        <span class="text-[#679186]">•</span>
+        <a
+          href="/politica-cookies"
+          class="hover:text-[#FAE360] transition-colors duration-300 underline"
+        >
+          Política de Cookies
+        </a>
+        <span class="text-[#679186]">•</span>
+        <button
+          id="footer-cookie-settings"
+          class="hover:text-[#FAE360] transition-colors duration-300 underline bg-transparent border-none cursor-pointer"
+        >
+          Configurar Cookies
+        </button>
+      </div>
+
+      <p class="text-xs mt-3 opacity-75">
+        © 2025 Mudanzas ANDY. Todos los derechos reservados.
+      </p>
     </div>
   </div>
 </footer>
@@ -158,6 +186,21 @@
           }
         });
       });
+
+      // Footer cookie settings button
+      const footerCookieBtn = document.getElementById("footer-cookie-settings");
+      if (footerCookieBtn) {
+        footerCookieBtn.addEventListener("click", function () {
+          if (typeof (window as any).showCookieSettings === "function") {
+            (window as any).showCookieSettings();
+          } else {
+            // If cookie banner not loaded yet, show fallback
+            alert(
+              "La configuración de cookies se abrirá cuando esté disponible."
+            );
+          }
+        });
+      }
     });
   })();
 </script>
