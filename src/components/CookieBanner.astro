@@ -369,6 +369,60 @@
 
       // Global function for cookie settings
       window.showCookieSettings = showModal;
+
+      // When footer is visible we should make the banner go behind it so
+      // legal links (policy) remain visible and clickable.
+      function handleFooterVisibility() {
+        const footer = document.querySelector("footer");
+        const banner = document.getElementById("cookie-banner");
+        if (!footer || !banner) return;
+
+        function setBehind() {
+          banner.classList.add("behind-footer");
+          // disable pointer events so footer links are clickable
+          banner.style.pointerEvents = "none";
+          // also hide sticky contact form (if present) to avoid overlap
+          const contact = document.getElementById("contactForm");
+          if (contact) {
+            contact.classList.add("translate-y-full");
+            contact.style.pointerEvents = "none";
+          }
+        }
+
+        function unsetBehind() {
+          banner.classList.remove("behind-footer");
+          banner.style.pointerEvents = "";
+          const contact = document.getElementById("contactForm");
+          if (contact) {
+            contact.classList.remove("translate-y-full");
+            contact.style.pointerEvents = "";
+          }
+        }
+
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) setBehind();
+                else unsetBehind();
+              });
+            },
+            { threshold: 0.05 }
+          );
+          io.observe(footer);
+        } else {
+          const onScroll = () => {
+            const rect = footer.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom >= 0) setBehind();
+            else unsetBehind();
+          };
+          window.addEventListener("scroll", onScroll, { passive: true });
+          onScroll();
+        }
+      }
+
+      // start footer visibility handler after init
+      handleFooterVisibility();
     }
 
     // Run initialization when DOM is ready
@@ -419,5 +473,12 @@
     #cookie-banner button {
       border-width: 2px;
     }
+  }
+
+  /* When footer is visible put the banner behind it so footer links are reachable */
+  #cookie-banner.behind-footer {
+    z-index: 20000; /* lower than footer (20001) */
+    transform: translateY(6px) !important; /* small visual offset */
+    opacity: 0.98;
   }
 </style>
