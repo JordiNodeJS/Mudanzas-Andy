@@ -90,6 +90,10 @@ Semana 2 (Agosto 31 - Sep 6):
 2. **[DESPUÉS]** Testing integral y documentación
 3. **[FUTURO]** Optimizaciones de performance adicionales
 
+### Cambios recientes de estilo
+
+- ✅ 27/08/2025: Añadida regla CSS explícita para `h1` dentro de `article/section/nav/aside` para resolver la advertencia de Google Tag Manager sobre tamaño de fuente no especificado.
+
 ## 🎉 **Completadas Recientemente**
 
 - ✅ **23/08/2025**: Refactorización completa de componentes

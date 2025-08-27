@@ -184,6 +184,10 @@ pnpm dlx sharp-cli -i "public/logos/logo-camion-transparent.png" -o "public/logo
 - [x] Progress tracker actualizado
 - [x] Informe de éxito generado
 
+### Nota adicional
+
+- ✅ 27/08/2025: Se añadió una regla CSS explícita para `h1` dentro de `article`, `section`, `nav` y `aside` para resolver la advertencia de Google Tag Manager sobre encabezados sin tamaño de fuente especificado.
+
 ## 🎖️ Conclusión
 
 **MISIÓN CUMPLIDA CON ÉXITO EXCEPCIONAL**
