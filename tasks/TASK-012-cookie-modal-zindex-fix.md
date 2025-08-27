@@ -28,11 +28,25 @@ Se ha corregido el problema donde el footer se superponía al modal de configura
 
 ## Verificación con Playwright
 
-- ✅ Modal se abre correctamente desde el botón "Configurar Cookies" del footer
-- ✅ Modal está por encima del footer (no hay superposición)
-- ✅ Todos los botones del modal son accesibles
-- ✅ Modal se cierra correctamente con el botón X
-- ✅ Screenshot tomado para verificación visual
+### ✅ Páginas Verificadas
+
+- **Política de Cookies** (`/politica-cookies`): Modal funciona correctamente
+- **Política de Privacidad** (`/politica-privacidad`): Modal funciona correctamente
+- **Página Principal** (`/`): Modal funciona correctamente
+
+### ✅ Funcionalidades Probadas
+
+- Modal se abre correctamente desde el botón "Configurar Cookies" del footer
+- Modal está por encima del footer (no hay superposición)
+- Todos los botones del modal son accesibles
+- Modal se cierra correctamente con el botón X
+- Screenshots tomados para verificación visual en todas las páginas
+
+### 📸 Capturas de Pantalla
+
+- `cookie-modal-fix.png` - Página de política de cookies
+- `cookie-modal-privacidad-fix.png` - Página de política de privacidad
+- `cookie-modal-homepage-fix.png` - Página principal
 
 ## Archivos Modificados
 
@@ -42,9 +56,21 @@ Se ha corregido el problema donde el footer se superponía al modal de configura
 
 ## Testing
 
-- URL probada: `http://localhost:4322/politica-cookies`
-- Screenshot: `cookie-modal-fix.png`
-- Test automatizado: `src/tests/cookie-modal-zindex.spec.js`
+### URLs Probadas
+
+- `http://localhost:4322/politica-cookies` - ✅ Funciona correctamente
+- `http://localhost:4322/politica-privacidad` - ✅ Funciona correctamente
+- `http://localhost:4322/` - ✅ Funciona correctamente
+
+### Screenshots
+
+- `cookie-modal-fix.png` - Verificación en página de cookies
+- `cookie-modal-privacidad-fix.png` - Verificación en página de privacidad
+- `cookie-modal-homepage-fix.png` - Verificación en página principal
+
+### Test Automatizado
+
+- `src/tests/cookie-modal-zindex.spec.js` - Test de verificación (creado)
 
 ## Estado: ✅ COMPLETADO
 
