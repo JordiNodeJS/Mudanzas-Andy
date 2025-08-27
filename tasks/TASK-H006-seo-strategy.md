@@ -17,6 +17,7 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ## 📝 **Descripción Detallada**
 
 ### **Problema Identificado**
+
 - Necesidad de posicionamiento en sector competitivo (mudanzas)
 - Falta de estrategia SEO específica para servicios locales
 - Ausencia de optimización técnica avanzada
@@ -24,6 +25,7 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 - Métricas de rendimiento no monitorizadas
 
 ### **Solución Implementada**
+
 - Investigación exhaustiva de palabras clave del sector
 - Optimización técnica completa (Core Web Vitals, Schema markup)
 - Estrategia de contenido orientada a intención de compra
@@ -33,15 +35,17 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ## 🔍 **Investigación de Palabras Clave**
 
 ### **Palabras Clave Primarias (Alta Prioridad)**
+
 ```
 1. "mudanzas madrid" - 2400 búsquedas/mes - Alta competencia
-2. "empresa mudanzas" - 1900 búsquedas/mes - Media competencia  
+2. "empresa mudanzas" - 1900 búsquedas/mes - Media competencia
 3. "mudanzas baratas" - 1600 búsquedas/mes - Alta competencia
 4. "mudanzas oficinas" - 880 búsquedas/mes - Media competencia
 5. "transportes mudanzas" - 720 búsquedas/mes - Baja competencia
 ```
 
 ### **Long-tail Keywords (Conversión Alta)**
+
 ```
 1. "mudanzas madrid económicas" - 320 búsquedas/mes
 2. "empresa mudanzas madrid norte" - 210 búsquedas/mes
@@ -51,6 +55,7 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ```
 
 ### **Keywords de Intención de Compra**
+
 ```
 1. "presupuesto mudanza madrid" - 580 búsquedas/mes
 2. "precio mudanza madrid" - 450 búsquedas/mes
@@ -61,27 +66,33 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ## 🎯 **Análisis de Intención de Búsqueda**
 
 ### **1. Intención Informacional**
+
 **Usuarios buscando**: Información sobre proceso de mudanza
 **Keywords**: "como hacer una mudanza", "consejos mudanza"
 **Contenido optimizado**:
+
 - Guías paso a paso
-- Consejos de expertos  
+- Consejos de expertos
 - Checklists de mudanza
 - Blog posts informativos
 
 ### **2. Intención Navegacional**
+
 **Usuarios buscando**: Empresa específica o comparativas
 **Keywords**: "mudanzas andy", "mejor empresa mudanzas madrid"
 **Contenido optimizado**:
+
 - Página de empresa optimizada
 - Testimonios y reseñas
 - Comparativas de servicios
 - Página "Sobre nosotros" mejorada
 
 ### **3. Intención Comercial/Transaccional** 🎯
+
 **Usuarios buscando**: Contratar servicio inmediatamente
 **Keywords**: "presupuesto mudanza", "contactar mudanzas"
 **Contenido optimizado**:
+
 - Landing pages de servicios
 - Formularios de presupuesto
 - Call-to-actions prominentes
@@ -90,32 +101,49 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ## 📋 **Metaetiquetas Optimizadas Implementadas**
 
 ### **Página Principal**
+
 ```html
 <title>Mudanzas Madrid ANDY - Empresa Profesional Mudanzas y Transportes</title>
-<meta name="description" content="Empresa de mudanzas Madrid ANDY. Servicios profesionales de mudanzas y transportes. Presupuesto gratis ✓ Mudanzas oficinas ✓ Mudanzas viviendas ✓ 20 años experiencia">
-<meta name="keywords" content="mudanzas madrid, empresa mudanzas, transportes mudanzas, mudanzas oficinas">
+<meta
+  name="description"
+  content="Empresa de mudanzas Madrid ANDY. Servicios profesionales de mudanzas y transportes. Presupuesto gratis ✓ Mudanzas oficinas ✓ Mudanzas viviendas ✓ 20 años experiencia"
+/>
+<meta
+  name="keywords"
+  content="mudanzas madrid, empresa mudanzas, transportes mudanzas, mudanzas oficinas"
+/>
 ```
 
 ### **Página de Servicios**
+
 ```html
 <title>Servicios de Mudanzas Madrid - Oficinas y Viviendas | ANDY</title>
-<meta name="description" content="Servicios completos de mudanzas en Madrid. Mudanzas de oficinas, viviendas y locales comerciales. Equipo profesional y presupuesto sin compromiso ✓">
+<meta
+  name="description"
+  content="Servicios completos de mudanzas en Madrid. Mudanzas de oficinas, viviendas y locales comerciales. Equipo profesional y presupuesto sin compromiso ✓"
+/>
 ```
 
 ### **Página de Contacto**
+
 ```html
 <title>Contacto y Presupuesto Mudanzas Madrid | Mudanzas ANDY</title>
-<meta name="description" content="Solicita tu presupuesto gratuito para mudanzas en Madrid. Contacta con Mudanzas ANDY: teléfono, email y formulario. Respuesta en 24h ✓">
+<meta
+  name="description"
+  content="Solicita tu presupuesto gratuito para mudanzas en Madrid. Contacta con Mudanzas ANDY: teléfono, email y formulario. Respuesta en 24h ✓"
+/>
 ```
 
 ## ⚡ **Optimización Técnica Implementada**
 
 ### **Core Web Vitals Optimizados**
+
 - ✅ **LCP (Largest Contentful Paint)**: 1.4s (< 2.5s) ✅ Verde
-- ✅ **FID (First Input Delay)**: 45ms (< 100ms) ✅ Verde  
+- ✅ **FID (First Input Delay)**: 45ms (< 100ms) ✅ Verde
 - ✅ **CLS (Cumulative Layout Shift)**: 0.02 (< 0.1) ✅ Verde
 
 ### **Performance Técnico**
+
 ```javascript
 // Preload crítico optimizado
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
@@ -130,6 +158,7 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ```
 
 ### **Schema Markup Implementado**
+
 ```json
 {
   "@context": "https://schema.org",
@@ -174,7 +203,7 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
         }
       },
       {
-        "@type": "Offer", 
+        "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": "Mudanzas de Oficinas",
@@ -191,30 +220,31 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ### **Estrategia de Contenido Implementada**
 
 #### **1. Landing Pages Específicas**
+
 - ✅ **Mudanzas de Oficinas**: Contenido B2B optimizado
 - ✅ **Mudanzas Residenciales**: Contenido B2C familiar
 - ✅ **Mudanzas Urgentes**: Servicio express diferenciado
 - ✅ **Mudanzas Internacionales**: Nicho especializado
 
 #### **2. Contenido Local Optimizado**
+
 ```html
 <!-- Páginas por zona geográfica -->
-/mudanzas-madrid-centro
-/mudanzas-madrid-norte  
-/mudanzas-alcala-henares
-/mudanzas-getafe
-/mudanzas-mostoles
+/mudanzas-madrid-centro /mudanzas-madrid-norte /mudanzas-alcala-henares
+/mudanzas-getafe /mudanzas-mostoles
 ```
 
 #### **3. Blog de Valor Añadido**
+
 - **"Guía completa para mudanzas sin estrés"** (1200 palabras)
-- **"Checklist mudanza: qué hacer antes, durante y después"** (950 palabras)  
+- **"Checklist mudanza: qué hacer antes, durante y después"** (950 palabras)
 - **"Mudanzas de oficina: planificación y mejores prácticas"** (1100 palabras)
 - **"Cómo embalar correctamente para evitar roturas"** (800 palabras)
 
 ## 🔧 **SEO Técnico Avanzado**
 
 ### **Estructura de URLs Optimizada**
+
 ```
 https://mudanzasandy.com/
 ├── /servicios/
@@ -231,12 +261,14 @@ https://mudanzasandy.com/
 ```
 
 ### **Optimización Móvil**
+
 - ✅ **Responsive Design**: 100% compatible móvil
 - ✅ **Mobile-First**: Desarrollo mobile-first
 - ✅ **Touch Optimization**: Botones y formularios táctiles
 - ✅ **Page Speed Mobile**: 84/100 PageSpeed Insights
 
 ### **Configuración robots.txt**
+
 ```
 User-agent: *
 Allow: /
@@ -256,6 +288,7 @@ Allow: /blog/
 ```
 
 ### **Sitemap XML Optimizado**
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -278,62 +311,70 @@ Allow: /blog/
 ## 📊 **Sistema de Medición Implementado**
 
 ### **Google Analytics 4 Setup**
+
 ```javascript
 // Eventos personalizados para mudanzas
-gtag('event', 'presupuesto_solicitado', {
-  'event_category': 'conversion',
-  'event_label': 'formulario_contacto',
-  'value': 1
+gtag("event", "presupuesto_solicitado", {
+  event_category: "conversion",
+  event_label: "formulario_contacto",
+  value: 1,
 });
 
-gtag('event', 'llamada_telefonica', {
-  'event_category': 'conversion', 
-  'event_label': 'click_telefono',
-  'value': 1
+gtag("event", "llamada_telefonica", {
+  event_category: "conversion",
+  event_label: "click_telefono",
+  value: 1,
 });
 ```
 
 ### **Google Search Console**
+
 - ✅ **Property verificada**: Mudanzasandy.com
 - ✅ **Sitemap enviado**: URLs indexadas correctamente
 - ✅ **Core Web Vitals**: Monitorizados semanalmente
 - ✅ **Keywords tracking**: Top 20 keywords seguidas
 
 ### **Métricas Clave Monitorizadas**
+
 1. **Tráfico orgánico**: Sesiones desde búsqueda orgánica
 2. **Posicionamiento keywords**: Ranking top 10 para palabras objetivo
-3. **CTR search results**: Click-through rate desde SERPs  
+3. **CTR search results**: Click-through rate desde SERPs
 4. **Conversiones**: Formularios enviados y llamadas telefónicas
 5. **Core Web Vitals**: LCP, FID, CLS mantenidos en verde
 
 ## ✅ **Resultados Obtenidos**
 
 ### **Mejoras de Posicionamiento**
+
 - ✅ **"mudanzas madrid"**: Posición 12 → Posición 6 (+6)
 - ✅ **"empresa mudanzas"**: Posición 18 → Posición 8 (+10)
 - ✅ **"mudanzas oficinas madrid"**: No posicionado → Posición 5
 - ✅ **"transportes mudanzas"**: Posición 25 → Posición 11 (+14)
 
 ### **Métricas de Tráfico**
+
 - ✅ **Tráfico orgánico**: +145% en 3 meses
 - ✅ **Sesiones desde búsqueda**: +89% incremento
 - ✅ **CTR promedio**: 3.2% → 5.8% (+81%)
 - ✅ **Tiempo en página**: +34% incremento
 
 ### **Conversiones**
+
 - ✅ **Formularios enviados**: +156% incremento
-- ✅ **Llamadas telefónicas**: +78% incremento  
+- ✅ **Llamadas telefónicas**: +78% incremento
 - ✅ **Presupuestos solicitados**: +134% incremento
 
 ## 🎓 **Lecciones Aprendidas**
 
 ### **Estrategias Más Efectivas**
+
 1. **Local SEO**: Fundamental para servicios de mudanzas
 2. **Intención de compra**: Keywords transaccionales convierten mejor
 3. **Contenido específico**: Páginas por tipo de mudanza funcionan
 4. **Technical SEO**: Core Web Vitals impactan significativamente
 
 ### **Insights del Sector Mudanzas**
+
 - **Estacionalidad**: Picos en septiembre y enero
 - **Búsquedas móviles**: 68% del tráfico desde móvil
 - **Urgencia**: Keywords con "urgente" tienen alta conversión

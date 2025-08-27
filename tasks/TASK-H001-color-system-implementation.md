@@ -17,12 +17,14 @@ Implementar un sistema de colores centralizado usando variables CSS como fuente 
 ## 📝 **Descripción Detallada**
 
 ### **Problema Identificado**
+
 - Colores hardcodeados dispersos por toda la aplicación
 - Falta de consistencia en la paleta corporativa
 - Dificultad para mantener y actualizar colores
 - Incompatibilidad con futuros sistemas de theming
 
 ### **Solución Implementada**
+
 - Sistema centralizado en `src/styles/theme.css`
 - Variables CSS en formato RGB para compatibilidad con opacidades
 - Paleta oficial de Mudanzas ANDY definida
@@ -33,23 +35,25 @@ Implementar un sistema de colores centralizado usando variables CSS como fuente 
 ```css
 :root {
   /* Paleta Oficial Mudanzas ANDY */
-  --color-primary: 38 78 112;     /* #264e70 - Azul corporativo */
+  --color-primary: 38 78 112; /* #264e70 - Azul corporativo */
   --color-secondary: 103 145 134; /* #679186 - Verde complementario */
-  --color-accent: 249 180 171;    /* #f9b4ab - Rosa coral CTA */
-  --color-highlight: 250 227 96;  /* #fae360 - Amarillo destacados */
-  --color-neutral: 187 212 206;   /* #bbd4ce - Verde neutro */
+  --color-accent: 249 180 171; /* #f9b4ab - Rosa coral CTA */
+  --color-highlight: 250 227 96; /* #fae360 - Amarillo destacados */
+  --color-neutral: 187 212 206; /* #bbd4ce - Verde neutro */
 }
 ```
 
 ## 🔧 **Implementación Técnica**
 
 ### **Archivos Modificados/Creados**
+
 - ✅ `src/styles/theme.css` - Variables CSS centralizadas
 - ✅ `src/styles/components.css` - Componentes usando variables
 - ✅ `.github/docs/COLOR-SYSTEM-RULES.md` - Documentación del sistema
 - ✅ Múltiples componentes refactorizados
 
 ### **Patrón de Uso Implementado**
+
 ```css
 /* Color sólido */
 background: rgb(var(--color-primary));
@@ -68,12 +72,14 @@ background: linear-gradient(
 ## 🚫 **Reglas Establecidas**
 
 ### **NUNCA usar colores hardcodeados**
+
 - ❌ `background: #264e70;`
 - ❌ `color: #679186;`
 - ✅ `background: rgb(var(--color-primary));`
 - ✅ `color: rgb(var(--color-secondary));`
 
 ### **Sistema de Mapeo Automático**
+
 - `gradientClassMap` para componentes
 - Clases del sistema: `.contact-card-gradient-*`, `.badge-gradient-primary`
 - Prohibición de estilos inline y props de color
@@ -81,6 +87,7 @@ background: linear-gradient(
 ## ✅ **Resultados Obtenidos**
 
 ### **Beneficios Implementados**
+
 - ✅ Consistencia visual completa
 - ✅ Mantenimiento centralizado
 - ✅ Compatibilidad con sistemas de opacidad
@@ -88,6 +95,7 @@ background: linear-gradient(
 - ✅ Base sólida para dark mode (futuro)
 
 ### **Componentes Refactorizados**
+
 - ✅ ContactCard con gradientes automáticos
 - ✅ Badges del sistema
 - ✅ Iconos con backgrounds temáticos
@@ -104,12 +112,14 @@ background: linear-gradient(
 ## 🎓 **Lecciones Aprendidas**
 
 ### **Mejores Prácticas Identificadas**
+
 1. Variables CSS > Tailwind config para esta escala
 2. Formato RGB permite opacidades sin conflictos
 3. Documentación estricta previene regresiones
 4. Mapeo automático reduce errores humanos
 
 ### **Antipatrones Evitados**
+
 - Colores en props de componentes
 - Estilos inline para theming
 - Dispersión de definiciones de color

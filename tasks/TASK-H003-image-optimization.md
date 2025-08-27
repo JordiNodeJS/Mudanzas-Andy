@@ -17,6 +17,7 @@ Implementar un sistema completo de optimización de imágenes con lazy loading a
 ## 📝 **Descripción Detallada**
 
 ### **Problema Identificado**
+
 - Imágenes pesadas afectando LCP (Largest Contentful Paint)
 - Falta de lazy loading optimizado
 - Ausencia de imágenes responsivas
@@ -24,6 +25,7 @@ Implementar un sistema completo de optimización de imágenes con lazy loading a
 - Formatos de imagen no optimizados
 
 ### **Solución Implementada**
+
 - Sistema de lazy loading con Intersection Observer
 - Imágenes responsivas con múltiples breakpoints
 - Placeholders con blur durante carga
@@ -33,14 +35,15 @@ Implementar un sistema completo de optimización de imágenes con lazy loading a
 ## 📸 **Optimizaciones Implementadas**
 
 ### **1. Lazy Loading Avanzado**
+
 ```javascript
 // Intersection Observer implementado
 const imageObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       const img = entry.target;
       img.src = img.dataset.src;
-      img.classList.add('loaded');
+      img.classList.add("loaded");
       imageObserver.unobserve(img);
     }
   });
@@ -48,18 +51,20 @@ const imageObserver = new IntersectionObserver((entries) => {
 ```
 
 **Características**:
+
 - ✅ **Intersection Observer** para carga bajo demanda
 - ✅ **Placeholder con blur** durante la carga
 - ✅ **Fallback** para navegadores antiguos
 - ✅ **Loading states** visuales
 
 ### **2. Imágenes Responsivas**
+
 ```html
-<img 
+<img
   src="imagen-mobile.jpg"
   srcset="
-    imagen-mobile.jpg 480w,
-    imagen-tablet.jpg 768w,
+    imagen-mobile.jpg   480w,
+    imagen-tablet.jpg   768w,
     imagen-desktop.jpg 1200w
   "
   sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
@@ -70,18 +75,18 @@ const imageObserver = new IntersectionObserver((entries) => {
 ```
 
 **Características**:
+
 - ✅ **Múltiples breakpoints** con `srcset`
 - ✅ **Sizes attribute** optimizado
 - ✅ **Aspect ratios** para prevenir layout shift
 - ✅ **Formatos modernos** preparados (WebP, AVIF)
 
 ### **3. Imágenes de Fondo Optimizadas**
+
 ```css
 .hero-background {
-  background-image: linear-gradient(
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.5)
-  ), url('hero-optimized.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url("hero-optimized.jpg");
   background-attachment: scroll; /* Optimizado para móvil */
   background-size: cover;
   background-position: center;
@@ -89,6 +94,7 @@ const imageObserver = new IntersectionObserver((entries) => {
 ```
 
 **Características**:
+
 - ✅ **Filtros de contraste** para mejorar legibilidad
 - ✅ **Overlays graduales** con CSS
 - ✅ **Opacidad controlada** para no interferir con texto
@@ -97,6 +103,7 @@ const imageObserver = new IntersectionObserver((entries) => {
 ## 🎯 **Secciones Optimizadas**
 
 ### **Hero Section**
+
 - **Imagen principal**: `estacionado-lateral.jpg`
   - **Antes**: 185KB (sin optimizar)
   - **Después**: 18KB (90% reducción)
@@ -107,24 +114,29 @@ const imageObserver = new IntersectionObserver((entries) => {
   - Gradient overlay (70-80% opacidad)
 
 ### **Galería del Equipo**
+
 **Imágenes optimizadas**:
+
 - `camion-frontal.jpg` - Camión profesional (45KB → 12KB)
 - `cargando-flete.jpg` - Proceso de carga (52KB → 14KB)
 - `interior-caja.jpg` - Espacio interior (38KB → 10KB)
 
 **Técnicas aplicadas**:
+
 - ✅ Lazy loading con placeholders
 - ✅ Hover effects con transformaciones CSS suaves
 - ✅ Aspect ratio consistente
 - ✅ Alt texts descriptivos
 
 ### **CTA con Fondo**
+
 - **Imagen de fondo**: `camion-evening.jpg`
   - **Optimización**: 67KB → 19KB (72% reducción)
   - **Overlay oscuro**: 80% opacidad para contraste
   - **Texto blanco**: Optimizado para legibilidad
 
 ### **Logos Corporativos**
+
 - **Logo Footer**: 77KB → 5KB (93% reducción)
 - **Logo Header**: 77KB → 5.5KB (93% reducción)
 - **Total ahorro**: 235KB en logos
@@ -132,15 +144,16 @@ const imageObserver = new IntersectionObserver((entries) => {
 ## 🔧 **Implementación Técnica**
 
 ### **Scripts de Optimización Creados**
+
 ```javascript
 // scripts/optimize-images.js
-const sharp = require('sharp');
+const sharp = require("sharp");
 
 const optimizeImage = async (inputPath, outputPath, options = {}) => {
   await sharp(inputPath)
-    .resize(options.width, options.height, { 
-      fit: 'cover',
-      withoutEnlargement: true 
+    .resize(options.width, options.height, {
+      fit: "cover",
+      withoutEnlargement: true,
     })
     .webp({ quality: 85 })
     .toFile(outputPath);
@@ -148,11 +161,13 @@ const optimizeImage = async (inputPath, outputPath, options = {}) => {
 ```
 
 ### **Archivos de Scripts**
+
 - ✅ `scripts/optimize-images.js` - Optimización general
 - ✅ `scripts/optimize-team-images.js` - Específico para equipo
 - ✅ `scripts/optimize-images-performance.js` - Para performance crítica
 
 ### **Configuración Astro Assets**
+
 ```astro
 ---
 import { Image } from 'astro:assets';
@@ -173,18 +188,21 @@ import heroImage from '@/assets/hero-optimized.jpg';
 ## ⚡ **Resultados de Performance**
 
 ### **Métricas Mejoradas**
+
 - ✅ **LCP (Largest Contentful Paint)**: 3.2s → 1.4s (-56%)
 - ✅ **FCP (First Contentful Paint)**: 1.8s → 0.9s (-50%)
 - ✅ **CLS (Cumulative Layout Shift)**: 0.15 → 0.02 (-87%)
 - ✅ **Total Blocking Time**: 180ms → 60ms (-67%)
 
 ### **Ahorro de Bandwidth**
+
 - **Hero mobile**: 185KB → 18KB (90% reducción)
-- **Team gallery**: 180KB → 48KB (73% reducción)  
+- **Team gallery**: 180KB → 48KB (73% reducción)
 - **Logos**: 154KB → 10.5KB (93% reducción)
 - **Total ahorro**: ~460KB por carga inicial
 
 ### **Core Web Vitals Impact**
+
 - ✅ **LCP**: Verde (< 2.5s)
 - ✅ **FID**: Verde (< 100ms)
 - ✅ **CLS**: Verde (< 0.1)
@@ -192,17 +210,20 @@ import heroImage from '@/assets/hero-optimized.jpg';
 ## 🛠️ **Herramientas y Tecnologías**
 
 ### **Procesamiento de Imágenes**
+
 - **Sharp**: Redimensionado y compresión
 - **Astro Assets**: Optimización automática
 - **WebP**: Formato moderno con fallback
 - **AVIF**: Preparado para adopción futura
 
 ### **Lazy Loading**
+
 - **Intersection Observer API**: Nativo del navegador
 - **Loading attribute**: HTML nativo lazy loading
 - **Polyfills**: Para compatibilidad legacy
 
 ### **Monitoring**
+
 - **Lighthouse CI**: Métricas automatizadas
 - **PageSpeed Insights**: Validación externa
 - **WebPageTest**: Testing avanzado
@@ -210,6 +231,7 @@ import heroImage from '@/assets/hero-optimized.jpg';
 ## 📚 **Documentación Generada**
 
 ### **Guía Principal**: `.github/docs/IMAGE-OPTIMIZATION.md` (213 líneas)
+
 - **Lazy loading strategies**: Implementación detallada
 - **Responsive images**: Guía completa de srcset y sizes
 - **Background optimization**: Técnicas para fondos
@@ -219,6 +241,7 @@ import heroImage from '@/assets/hero-optimized.jpg';
 ## ✅ **Resultados Obtenidos**
 
 ### **Performance Benefits**
+
 - ✅ 90% reducción en peso de hero image
 - ✅ 87% mejora en Cumulative Layout Shift
 - ✅ 56% mejora en Largest Contentful Paint
@@ -226,6 +249,7 @@ import heroImage from '@/assets/hero-optimized.jpg';
 - ✅ 460KB ahorro total en assets críticos
 
 ### **User Experience**
+
 - ✅ Carga percibida 3x más rápida
 - ✅ Sin layout shift durante navegación
 - ✅ Transiciones suaves entre secciones
@@ -234,12 +258,14 @@ import heroImage from '@/assets/hero-optimized.jpg';
 ## 🎓 **Lecciones Aprendidas**
 
 ### **Mejores Prácticas Establecidas**
+
 1. **Critical images**: Preload hero, lazy load resto
 2. **Format priority**: WebP > JPEG > PNG según soporte
 3. **Responsive strategy**: Mobile-first con progressive enhancement
 4. **Layout stability**: Aspect ratios obligatorios
 
 ### **Antipatrones Evitados**
+
 - Loading="lazy" en imágenes above-the-fold
 - Ausencia de aspect ratios
 - Formatos no optimizados para web

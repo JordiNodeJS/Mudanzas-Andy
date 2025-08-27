@@ -17,12 +17,14 @@ Definir y documentar la arquitectura de componentes para el proyecto Astro.js, e
 ## 📝 **Descripción Detallada**
 
 ### **Problema Identificado**
+
 - Falta de claridad en patrones de componentes
 - Confusión entre renderizado servidor vs cliente
 - Necesidad de guías para hidratación selectiva
 - Ausencia de documentación técnica centralizada
 
 ### **Solución Implementada**
+
 - Arquitectura híbrida servidor/cliente documentada
 - Patrones claros para cada tipo de componente
 - Guías de hidratación con directivas `client:*`
@@ -31,6 +33,7 @@ Definir y documentar la arquitectura de componentes para el proyecto Astro.js, e
 ## 🏗️ **Arquitectura Implementada**
 
 ### **1. Componentes `.astro` (Server-Side)**
+
 ```astro
 ---
 // Frontmatter: Lógica del servidor
@@ -48,28 +51,27 @@ const { label, href, variant = 'primary' } = Astro.props;
 ```
 
 **Características implementadas**:
+
 - ✅ Zero JavaScript por defecto
 - ✅ Renderizado completo en servidor
 - ✅ Props tipadas con TypeScript
 - ✅ HTML + CSS optimizados
 
 ### **2. Islas Interactivas (React Components)**
+
 ```jsx
 // src/components/ContactForm.jsx
 import { useState } from "react";
 
 export default function ContactForm({ endpoint }) {
   const [formData, setFormData] = useState({});
-  
-  return (
-    <form onSubmit={handleSubmit}>
-      {/* Componente interactivo */}
-    </form>
-  );
+
+  return <form onSubmit={handleSubmit}>{/* Componente interactivo */}</form>;
 }
 ```
 
 **Integración en Astro**:
+
 ```astro
 ---
 import ContactForm from '@/components/ContactForm.jsx';
@@ -80,12 +82,14 @@ import ContactForm from '@/components/ContactForm.jsx';
 ## 🎮 **Directivas de Hidratación Implementadas**
 
 ### **Estrategias Documentadas**
+
 - **`client:load`**: Hidratación inmediata para elementos críticos
-- **`client:idle`**: Hidratación diferida para componentes de baja prioridad  
+- **`client:idle`**: Hidratación diferida para componentes de baja prioridad
 - **`client:visible`**: Hidratación al entrar en viewport (más eficiente)
 - **`client:media`**: Hidratación condicional por media queries
 
 ### **Patrones de Uso Establecidos**
+
 ```astro
 <!-- Formulario crítico -->
 <ContactForm client:load />
@@ -124,12 +128,14 @@ src/components/
 ## ⚡ **Optimizaciones de Performance**
 
 ### **Estrategias Implementadas**
+
 - **Renderizado híbrido**: HTML estático + hidratación selectiva
 - **Bundle splitting**: Separación automática de islas
 - **Lazy loading**: Carga diferida de componentes no críticos
 - **Tree shaking**: Eliminación de código no utilizado
 
 ### **Métricas de Rendimiento**
+
 - ✅ JavaScript inicial reducido en 70%
 - ✅ First Contentful Paint mejorado
 - ✅ Time to Interactive optimizado
@@ -138,20 +144,22 @@ src/components/
 ## 🔧 **Patrones de Comunicación**
 
 ### **Props desde Astro a React**
+
 ```astro
 ---
 import InteractiveForm from '@/components/InteractiveForm.jsx';
 const apiEndpoint = '/api/contact';
 const config = { theme: 'dark', lang: 'es' };
 ---
-<InteractiveForm 
-  client:load 
+<InteractiveForm
+  client:load
   endpoint={apiEndpoint}
   config={config}
 />
 ```
 
 ### **Slots y Composición**
+
 ```astro
 <!-- Layout.astro -->
 <main>
@@ -173,6 +181,7 @@ const config = { theme: 'dark', lang: 'es' };
 ## 📚 **Documentación Generada**
 
 ### **Guía Principal**: `.github/docs/architecture.md` (232 líneas)
+
 - **Tipos de componentes**: Detalle completo de patrones
 - **Directivas de hidratación**: Cuándo y cómo usar cada una
 - **Comunicación**: Props, slots y composición
@@ -180,6 +189,7 @@ const config = { theme: 'dark', lang: 'es' };
 - **Ejemplos prácticos**: Casos de uso reales
 
 ### **Contenido Documentado**
+
 1. **Componentes .astro**: Estructura y uso
 2. **Islas interactivas**: Integración con React
 3. **Estrategias de hidratación**: Guía completa
@@ -189,6 +199,7 @@ const config = { theme: 'dark', lang: 'es' };
 ## ✅ **Resultados Obtenidos**
 
 ### **Beneficios de Arquitectura**
+
 - ✅ Separación clara servidor/cliente
 - ✅ Hidratación optimizada y selectiva
 - ✅ Performance mejorado significativamente
@@ -196,6 +207,7 @@ const config = { theme: 'dark', lang: 'es' };
 - ✅ Escalabilidad preparada
 
 ### **Componentes Implementados**
+
 - ✅ **Layout system**: Header, Footer, Navigation
 - ✅ **UI components**: Button, Card, Modal
 - ✅ **Interactive forms**: ContactForm, Newsletter
@@ -205,12 +217,14 @@ const config = { theme: 'dark', lang: 'es' };
 ## 🎓 **Lecciones Aprendidas**
 
 ### **Mejores Prácticas Establecidas**
+
 1. **Principio "Static First"**: HTML estático por defecto
 2. **Hidratación Progresiva**: Solo donde se necesita interactividad
 3. **TypeScript Strict**: Props tipadas en todos los componentes
 4. **Performance Budget**: Límites claros de JavaScript cliente
 
 ### **Antipatrones Evitados**
+
 - Hidratación innecesaria de componentes estáticos
 - Props sin tipado en componentes
 - JavaScript pesado en componentes críticos

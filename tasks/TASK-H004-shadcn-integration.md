@@ -17,6 +17,7 @@ Integrar shadcn/ui con Astro v5, estableciendo un sistema de componentes UI mode
 ## 📝 **Descripción Detallada**
 
 ### **Problema Identificado**
+
 - Necesidad de componentes UI modernos y accesibles
 - Integración compleja entre shadcn/ui y Astro
 - Configuración específica para Tailwind CSS 4
@@ -24,6 +25,7 @@ Integrar shadcn/ui con Astro v5, estableciendo un sistema de componentes UI mode
 - Compatibilidad con el sistema de colores existente
 
 ### **Solución Implementada**
+
 - Integración completa de shadcn/ui con Astro v5.13.2
 - Configuración optimizada de React + Tailwind
 - Sistema de componentes híbrido .astro + .tsx
@@ -33,6 +35,7 @@ Integrar shadcn/ui con Astro v5, estableciendo un sistema de componentes UI mode
 ## 🔧 **Configuración Técnica Implementada**
 
 ### **1. Setup del Proyecto Base**
+
 ```bash
 # Comandos ejecutados (con pnpm)
 pnpm create astro@latest mudanzas-astro
@@ -43,11 +46,12 @@ pnpm add -D tailwindcss postcss autoprefixer
 ```
 
 ### **2. Configuración Astro**
+
 ```javascript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   integrations: [
@@ -60,19 +64,18 @@ export default defineConfig({
 ```
 
 ### **3. Configuración Tailwind CSS 4**
+
 ```javascript
 // tailwind.config.mjs
 export default {
-  content: [
-    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-  ],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
       colors: {
         // Integración con sistema de colores existente
-        primary: 'rgb(var(--color-primary))',
-        secondary: 'rgb(var(--color-secondary))',
-        accent: 'rgb(var(--color-accent))',
+        primary: "rgb(var(--color-primary))",
+        secondary: "rgb(var(--color-secondary))",
+        accent: "rgb(var(--color-accent))",
       },
     },
   },
@@ -83,6 +86,7 @@ export default {
 ## 🎨 **Integración con Sistema de Colores**
 
 ### **Variables CSS Unificadas**
+
 ```css
 /* src/styles/theme.css - Manteniendo compatibilidad */
 :root {
@@ -93,7 +97,7 @@ export default {
   --primary-foreground: 210 40% 98%;
   --secondary: 103 145 134; /* Verde complementario */
   --accent: 249 180 171; /* Rosa coral */
-  
+
   /* Compatibilidad con sistema existente */
   --color-primary: 38 78 112;
   --color-secondary: 103 145 134;
@@ -102,13 +106,20 @@ export default {
 ```
 
 ### **Componentes shadcn/ui Personalizados**
+
 ```tsx
 // src/components/ui/Button.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps {
-  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
   children: React.ReactNode;
@@ -116,7 +127,7 @@ interface ButtonProps {
 
 export function Button({
   variant = "default",
-  size = "default", 
+  size = "default",
   className,
   children,
   ...props
@@ -128,18 +139,22 @@ export function Button({
         "inline-flex items-center justify-center rounded-md text-sm font-medium",
         "ring-offset-background transition-colors focus-visible:outline-none",
         "focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none",
-        
+
         // Variants usando colores del sistema
-        variant === "default" && "bg-[rgb(var(--color-primary))] text-white hover:opacity-90",
-        variant === "destructive" && "bg-destructive text-destructive-foreground",
-        variant === "outline" && "border border-[rgb(var(--color-primary))] text-[rgb(var(--color-primary))]",
-        variant === "secondary" && "bg-[rgb(var(--color-secondary))] text-white",
-        
+        variant === "default" &&
+          "bg-[rgb(var(--color-primary))] text-white hover:opacity-90",
+        variant === "destructive" &&
+          "bg-destructive text-destructive-foreground",
+        variant === "outline" &&
+          "border border-[rgb(var(--color-primary))] text-[rgb(var(--color-primary))]",
+        variant === "secondary" &&
+          "bg-[rgb(var(--color-secondary))] text-white",
+
         // Sizes
         size === "default" && "h-10 px-4 py-2",
         size === "sm" && "h-9 rounded-md px-3",
         size === "lg" && "h-11 rounded-md px-8",
-        
+
         className
       )}
       {...props}
@@ -153,6 +168,7 @@ export function Button({
 ## 🚀 **Directivas de Hidratación Implementadas**
 
 ### **Patrones de Uso Establecidos**
+
 ```astro
 ---
 // src/pages/ejemplo.astro
@@ -179,6 +195,7 @@ import { Dialog } from '@/components/ui/Dialog';
 ```
 
 ### **Reglas de Hidratación Establecidas**
+
 - ✅ **`client:load`**: Formularios críticos, botones de acción
 - ✅ **`client:idle`**: Elementos UI de menor prioridad
 - ✅ **`client:visible`**: Modales, carruseles below-the-fold
@@ -212,6 +229,7 @@ src/components/
 ## 🛠️ **Utilidades y Helpers Implementados**
 
 ### **cn() Utility Function**
+
 ```typescript
 // src/lib/utils.ts
 import { type ClassValue, clsx } from "clsx";
@@ -223,6 +241,7 @@ export function cn(...inputs: ClassValue[]) {
 ```
 
 ### **Component Factory Pattern**
+
 ```typescript
 // src/lib/componentFactory.ts
 export const createShadcnComponent = <T extends React.ComponentProps<any>>(
@@ -239,6 +258,7 @@ export const createShadcnComponent = <T extends React.ComponentProps<any>>(
 ## ⚡ **Optimizaciones de Performance**
 
 ### **Bundle Splitting Implementado**
+
 ```javascript
 // vite.config.js personalización para shadcn
 export default {
@@ -246,14 +266,14 @@ export default {
     rollupOptions: {
       output: {
         manualChunks: {
-          'shadcn-ui': [
-            'src/components/ui/Button.tsx',
-            'src/components/ui/Card.tsx',
-            'src/components/ui/Dialog.tsx',
+          "shadcn-ui": [
+            "src/components/ui/Button.tsx",
+            "src/components/ui/Card.tsx",
+            "src/components/ui/Dialog.tsx",
           ],
-          'forms': [
-            'src/components/forms/ContactForm.tsx',
-            'src/components/forms/NewsletterForm.tsx',
+          forms: [
+            "src/components/forms/ContactForm.tsx",
+            "src/components/forms/NewsletterForm.tsx",
           ],
         },
       },
@@ -263,6 +283,7 @@ export default {
 ```
 
 ### **Tree Shaking Optimizations**
+
 - ✅ Import específicos en lugar de import masivos
 - ✅ Side effects marcados correctamente
 - ✅ Componentes separados en archivos individuales
@@ -273,6 +294,7 @@ export default {
 ### **Guía Principal**: `.github/docs/Migracion-shacdn.md` (252 líneas)
 
 **Contenido documentado**:
+
 1. **Setup completo**: Paso a paso desde cero
 2. **Configuraciones**: Astro, React, Tailwind
 3. **Componentes shadcn/ui**: Implementación y personalización
@@ -282,6 +304,7 @@ export default {
 7. **Troubleshooting**: Problemas comunes y soluciones
 
 ### **Ejemplos Implementados**
+
 - **Button component**: Completo con variants y sizes
 - **Form components**: Input, Label, validation
 - **Layout components**: Card, Dialog, Navigation
@@ -290,6 +313,7 @@ export default {
 ## ✅ **Resultados Obtenidos**
 
 ### **Componentes shadcn/ui Implementados**
+
 - ✅ **Button**: Variants completos con sistema de colores
 - ✅ **Card**: Layout components reutilizables
 - ✅ **Dialog/Modal**: Componentes interactivos
@@ -297,6 +321,7 @@ export default {
 - ✅ **Navigation**: Responsive con hidratación condicional
 
 ### **Beneficios de Integración**
+
 - ✅ **Accessibility**: ARIA compliant por defecto
 - ✅ **Consistency**: Design system unificado
 - ✅ **Performance**: Hidratación optimizada
@@ -304,6 +329,7 @@ export default {
 - ✅ **Maintenance**: Updates centralizados
 
 ### **Métricas de Performance**
+
 - ✅ **Bundle size**: Optimizado con tree-shaking
 - ✅ **Runtime performance**: Sin regresiones
 - ✅ **Hydration timing**: Controlado por directivas
@@ -312,21 +338,24 @@ export default {
 ## 🎓 **Lecciones Aprendidas**
 
 ### **Mejores Prácticas Establecidas**
+
 1. **Híbrido approach**: .astro para estático, .tsx para interactivo
 2. **Selective hydration**: Solo componentes que requieren interactividad
 3. **Color system integration**: Variables CSS como fuente de verdad
 4. **TypeScript strict**: Props tipadas obligatorias
 
 ### **Antipatrones Evitados**
+
 - ❌ Hidratación innecesaria de componentes estáticos
 - ❌ Import masivos de shadcn/ui library
 - ❌ Conflictos entre sistemas de colores
 - ❌ Props sin tipado en componentes React
 
 ### **Desafíos Técnicos Resueltos**
+
 - **Tailwind CSS 4 compatibility**: Configuración específica
 - **Color system integration**: Variables CSS unificadas
-- **Hydration patterns**: Directivas client:* optimizadas
+- **Hydration patterns**: Directivas client:\* optimizadas
 - **Bundle optimization**: Tree-shaking y code-splitting
 
 ## 🚀 **Impacto en el Proyecto**
