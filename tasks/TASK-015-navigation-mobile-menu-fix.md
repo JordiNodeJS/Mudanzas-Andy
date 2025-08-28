@@ -2,18 +2,19 @@
 
 ## **Estado: ✅ COMPLETADO**
 
-**Fecha**: 21 enero 2025  
+**Fecha**: 28 agosto 2025  
 **Prioridad**: ALTA  
-**Categoría**: UX/UI - Navegación Mobile
+**Categoría**: UX/UI - Navegación Mobile & Desktop
 
 ---
 
 ## **Descripción del Problema**
 
-Durante la implementación de TASK-014 (blog integration), se detectaron dos problemas de navegación:
+Durante la implementación de TASK-014 (blog integration), se detectaron tres problemas de navegación:
 
 1. **Links de navegación no funcionaban**: Los enlaces del header no funcionaban correctamente desde la página `/blog`
 2. **Menú móvil mal posicionado**: El menú hamburguesa aparecía en la izquierda en lugar de la derecha
+3. **Layout desktop incorrecto**: La navegación no estaba centrada y faltaba información de contacto a la derecha
 
 ---
 
@@ -30,6 +31,12 @@ Durante la implementación de TASK-014 (blog integration), se detectaron dos pro
 - **Causa**: Estructura flexbox del Header.astro no posicionaba correctamente el botón móvil
 - **Impacto**: UX inconsistente - menú hamburguesa en lado incorrecto
 - **Solución**: Reestructurar layout flex para posicionamiento correcto
+
+### **Problema 3: Desktop Header Layout**
+
+- **Causa**: Layout flexbox no permitía distribución en 3 columnas (logo, navegación, contacto)
+- **Impacto**: UX desktop no cumplía con el diseño esperado (navegación centrada, contacto a la derecha)
+- **Solución**: Implementar CSS Grid con 3 columnas específicas para desktop
 
 ---
 
@@ -49,7 +56,36 @@ Durante la implementación de TASK-014 (blog integration), se detectaron dos pro
 <a href="/#servicios">Servicios</a>
 ```
 
-### **2. Mobile Menu Positioning**
+### **2. Desktop Header Layout - CSS Grid Implementation**
+
+**Restructuración completa del layout para desktop**:
+
+```astro
+<!-- Desktop: CSS Grid con 3 columnas -->
+<div class="hidden lg:grid lg:grid-cols-3 lg:items-center lg:gap-4">
+  <!-- Columna 1: Logo (izquierda) -->
+  <div class="flex items-center space-x-3">
+    <!-- Logo y brand info -->
+  </div>
+
+  <!-- Columna 2: Navegación (centro) -->
+  <nav class="flex items-center justify-center space-x-6">
+    <!-- Enlaces de navegación centrados -->
+  </nav>
+
+  <!-- Columna 3: Información de contacto (derecha) -->
+  <div class="flex items-center justify-end space-x-4">
+    <!-- Teléfono y email alineados a la derecha -->
+  </div>
+</div>
+
+<!-- Mobile: Layout flexbox separado -->
+<div class="flex flex-wrap items-center justify-between lg:hidden">
+  <!-- Logo y hamburger menu -->
+</div>
+```
+
+### **3. Mobile Menu Positioning**
 
 **Restructuración completa del layout flex**:
 
