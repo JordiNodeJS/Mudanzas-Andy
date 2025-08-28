@@ -216,11 +216,11 @@ Semana 1 (Agosto 23-30):
 
 ### **22/01/2025 - 19:45**
 
-- ✅ **TASK-016 COMPLETADO**: Optimización del layout responsivo del header
-- 🖥️ **Resoluciones optimizadas**: Corrección específica para 1440x891 y 1024x802
-- 📝 **Texto responsivo**: "Nuestro Equipo" → "Equipo", "Testimonios" → "Reviews" en breakpoint lg
-- 🎨 **Grid mejorado**: Sistema 2-col (lg) / 3-col (xl+) con distribución inteligente
-- ✨ **UX mejorada**: Sin solapamientos ni texto cortado en resoluciones intermedias
+- ✅ **TASK-016 COMPLETADO**: Optimización del layout responsivo del header y espaciado del blog
+- 🖥️ **Header**: Resoluciones optimizadas para 1440x891 y 1024x802 con grid mejorado  
+- 📝 **Blog**: Eliminado espacio en blanco excesivo en 768x802, padding optimizado
+- 🎨 **Responsive**: Texto adaptable y transiciones fluidas entre resoluciones
+- ✨ **UX mejorada**: Sin solapamientos ni espacios molestos en todas las resoluciones
 
 ---
 
