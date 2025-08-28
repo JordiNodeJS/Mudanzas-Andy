@@ -234,21 +234,28 @@
 <script>
   // Truck animation: makes the truck drive in from the left on first load
   (function animateTruck() {
-    const truck = document.getElementById("truck-logo");
-    if (!truck) return;
+    const truckDesktop = document.getElementById("truck-logo");
+    const truckMobile = document.getElementById("truck-logo-mobile");
+    
+    const animateTruckElement = (truck) => {
+      if (!truck) return;
+      // Only trigger once per page load
+      try {
+        requestAnimationFrame(() => {
+          // small delay so the header layout settles
+          setTimeout(() => {
+            truck.dataset.animated = "true";
+            truck.classList.add("truck-drive");
+          }, 120);
+        });
+      } catch (e) {
+        // ignore
+      }
+    };
 
-    // Only trigger once per page load
-    try {
-      requestAnimationFrame(() => {
-        // small delay so the header layout settles
-        setTimeout(() => {
-          truck.dataset.animated = "true";
-          truck.classList.add("truck-drive");
-        }, 120);
-      });
-    } catch (e) {
-      // ignore
-    }
+    // Animate both desktop and mobile truck logos
+    animateTruckElement(truckDesktop);
+    animateTruckElement(truckMobile);
   })();
 
   document.addEventListener("DOMContentLoaded", function () {
