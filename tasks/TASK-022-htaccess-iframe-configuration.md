@@ -9,27 +9,32 @@ Modificación del archivo `.htaccess` del sitio principal para permitir la carga
 ### Archivo modificado: `public/.htaccess`
 
 **Antes:**
+
 ```apache
 Header always set X-Frame-Options DENY
 ```
 
 **Después:**
+
 ```apache
 Header always set X-Frame-Options SAMEORIGIN
 ```
 
 ### Justificación del cambio
+
 - **DENY**: Bloqueaba TODOS los iframes, incluso los del propio sitio
 - **SAMEORIGIN**: Permite iframes del mismo dominio y subdominios
 
 ## Estado Actual
 
 ### ✅ Sitio Principal (mudanzasandy.es)
+
 - **Configuración**: `X-Frame-Options SAMEORIGIN`
 - **Estado**: ✅ Listo para permitir iframes
 - **Build**: ✅ Compilado exitosamente
 
 ### ⏳ Blog WordPress (blog.mudanzasandy.es)
+
 - **Configuración**: ❌ Pendiente
 - **Estado**: Aún bloquea iframes con X-Frame-Options
 - **Acción requerida**: Configurar WordPress para permitir iframe
@@ -37,6 +42,7 @@ Header always set X-Frame-Options SAMEORIGIN
 ## Próximos Pasos para WordPress
 
 ### Opción A: .htaccess en el blog
+
 ```apache
 <IfModule mod_headers.c>
     Header always unset X-Frame-Options
@@ -46,11 +52,12 @@ Header always set X-Frame-Options SAMEORIGIN
 ```
 
 ### Opción B: functions.php en WordPress
+
 ```php
 function allow_iframe_from_main_site() {
     $allowed_origins = array('https://mudanzasandy.es');
     $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-    
+
     foreach ($allowed_origins as $allowed) {
         if (strpos($referer, $allowed) !== false) {
             header_remove('X-Frame-Options');
@@ -65,11 +72,13 @@ add_action('init', 'allow_iframe_from_main_site');
 ## Verificación
 
 ### Después de configurar WordPress:
+
 1. **Build y deploy**: Subir archivos del `dist/` al servidor
 2. **Test manual**: Verificar que iframe carga en `/blog-astro`
 3. **Playwright test**: Confirmar que no hay errores X-Frame-Options
 
 ### Estado esperado:
+
 - ✅ **Sitio principal**: Permite iframes (SAMEORIGIN)
 - ✅ **Blog WordPress**: Permite iframe desde mudanzasandy.es
 - ✅ **Resultado**: iframe del blog funciona sin errores

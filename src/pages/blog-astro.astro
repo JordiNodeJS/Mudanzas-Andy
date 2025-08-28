@@ -148,13 +148,14 @@ const pageDescription =
 </style>
 
 <script>
-  // Script simple para detectar errores de iframe y mostrar fallback
+  // Script mejorado para detectar errores reales de iframe
   document.addEventListener("DOMContentLoaded", function () {
     const iframe = document.getElementById("blog-iframe") as HTMLIFrameElement;
     const fallbackDiv = document.getElementById("iframe-fallback");
 
     if (iframe && fallbackDiv) {
       let fallbackShown = false;
+      let iframeLoaded = false;
 
       // Función para mostrar el fallback
       function showFallback() {
@@ -166,25 +167,17 @@ const pageDescription =
         }
       }
 
+      // Detectar cuando el iframe se carga exitosamente
+      iframe.addEventListener("load", function () {
+        console.log("Iframe del blog cargado exitosamente");
+        iframeLoaded = true;
+      });
+
       // Detectar errores de carga del iframe
       iframe.addEventListener("error", function () {
         console.error("Error al cargar el iframe del blog");
         showFallback();
       });
-
-      // Para detectar X-Frame-Options, usamos un timeout simple
-      // En caso de problemas de CORS/X-Frame-Options, el iframe no cargará contenido
-      setTimeout(() => {
-        // Si llegamos aquí y no hay contenido visible, probablemente hay un error
-        if (iframe.style.display !== "none" && !fallbackShown) {
-          // Simplemente activamos el fallback después del timeout
-          // En producción, el error de X-Frame-Options impide la carga del iframe
-          console.warn(
-            "Activando fallback por timeout o restricciones de iframe"
-          );
-          showFallback();
-        }
-      }, 4000); // 3 segundos de timeout
 
       // Interceptar errores de consola relacionados con X-Frame-Options
       const originalConsoleError = console.error;
@@ -195,10 +188,22 @@ const pageDescription =
           message.includes("refused to display") ||
           message.includes("frame because it set")
         ) {
+          console.error("Detectado error X-Frame-Options:", ...args);
           showFallback();
         }
         originalConsoleError.apply(console, args);
       };
+
+      // Solo usar timeout como último recurso si no hay carga tras bastante tiempo
+      // Y solo si no hemos detectado una carga exitosa
+      setTimeout(() => {
+        if (!iframeLoaded && !fallbackShown) {
+          console.warn(
+            "Iframe no se ha cargado después de 8 segundos - posibles restricciones"
+          );
+          showFallback();
+        }
+      }, 8000); // Timeout más largo y solo si no hay carga
     }
   });
 </script>
