@@ -4,85 +4,125 @@
 
 <header class="fixed top-0 w-full bg-brand text-white z-40 shadow-lg">
   <div class="container mx-auto px-4 py-3">
-    <!-- Layout principal para desktop: 3 columnas -->
-    <div class="hidden lg:grid lg:grid-cols-3 lg:items-center lg:gap-4">
-      <!-- Columna 1: Logo (izquierda) -->
-      <div class="flex items-center space-x-3">
-        <img
-          src="/logos/logo-camion-transparent-80.webp"
-          alt="Mudanzas ANDY Logo"
-          id="truck-logo"
-          data-animated="false"
-          data-fallback="/logos/logo-camion-transparent.png"
-          class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
-          width="80"
-          height="80"
-          loading="eager"
-        />
-        <div>
-          <h1 class="text-lg lg:text-xl font-bold text-highlight">
-            Mudanzas ANDY
-          </h1>
-          <p class="text-xs text-neutral hidden sm:block">
-            Tu mudanza, nuestra prioridad
-          </p>
+    <!-- Layout principal para desktop: responsive grid adaptable -->
+    <div class="hidden lg:block">
+      <!-- Grid de 2 columnas en lg, 3 columnas en xl+ -->
+      <div
+        class="lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:items-center lg:gap-2 xl:gap-4"
+      >
+        <!-- Columna 1: Logo (izquierda) -->
+        <div class="flex items-center space-x-3">
+          <img
+            src="/logos/logo-camion-transparent-80.webp"
+            alt="Mudanzas ANDY Logo"
+            id="truck-logo"
+            data-animated="false"
+            data-fallback="/logos/logo-camion-transparent.png"
+            class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
+            width="80"
+            height="80"
+            loading="eager"
+          />
+          <div>
+            <h1 class="text-lg lg:text-xl font-bold text-highlight">
+              Mudanzas ANDY
+            </h1>
+            <p class="text-xs text-neutral hidden sm:block">
+              Tu mudanza, nuestra prioridad
+            </p>
+          </div>
+        </div>
+
+        <!-- Columna 2: Navegación (centro en xl, derecha en lg) -->
+        <nav
+          class="flex items-center lg:justify-end xl:justify-center space-x-2 lg:space-x-3 xl:space-x-6"
+        >
+          <a
+            href="/#inicio"
+            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-xs lg:text-sm whitespace-nowrap"
+          >
+            Inicio
+          </a>
+          <a
+            href="/#servicios"
+            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-xs lg:text-sm whitespace-nowrap"
+          >
+            Servicios
+          </a>
+          <a
+            href="/#equipo"
+            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-xs lg:text-sm whitespace-nowrap"
+          >
+            <span class="lg:hidden xl:inline">Nuestro Equipo</span>
+            <span class="hidden lg:inline xl:hidden">Equipo</span>
+          </a>
+          <a
+            href="/#precios"
+            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-xs lg:text-sm whitespace-nowrap"
+          >
+            Precios
+          </a>
+          <a
+            href="/#testimonios"
+            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-xs lg:text-sm whitespace-nowrap"
+          >
+            <span class="lg:hidden xl:inline">Testimonios</span>
+            <span class="hidden lg:inline xl:hidden">Reviews</span>
+          </a>
+          <a
+            href="/blog"
+            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-xs lg:text-sm whitespace-nowrap"
+          >
+            Blog
+          </a>
+        </nav>
+
+        <!-- Columna 3: Información de contacto (derecha) - solo visible en xl+ -->
+        <div class="hidden xl:flex items-center justify-end space-x-4">
+          <a
+            href="tel:+34933539792"
+            class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+          >
+            <span class="text-lg">📞</span>
+            <span class="font-semibold text-sm">933 53 97 92</span>
+          </a>
+          <a
+            href="mailto:info@mudanzasandy.es,mundanzas.andy@gmail.com"
+            class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+          >
+            <span class="text-lg" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="w-4 h-4"
+                fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+                ></path>
+              </svg>
+            </span>
+            <span class="text-sm">info@mudanzasandy.es</span>
+          </a>
         </div>
       </div>
 
-      <!-- Columna 2: Navegación (centro) -->
-      <nav class="flex items-center justify-center space-x-6">
-        <a
-          href="/#inicio"
-          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-        >
-          Inicio
-        </a>
-        <a
-          href="/#servicios"
-          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-        >
-          Servicios
-        </a>
-        <a
-          href="/#equipo"
-          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-        >
-          Nuestro Equipo
-        </a>
-        <a
-          href="/#precios"
-          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-        >
-          Precios
-        </a>
-        <a
-          href="/#testimonios"
-          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-        >
-          Testimonios
-        </a>
-        <a
-          href="/blog"
-          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-        >
-          Blog
-        </a>
-      </nav>
-
-      <!-- Columna 3: Información de contacto (derecha) -->
-      <div class="flex items-center justify-end space-x-4">
+      <!-- Información de contacto para lg (cuando no hay 3 columnas) -->
+      <div class="lg:flex xl:hidden items-center justify-center space-x-6 mt-2">
         <a
           href="tel:+34933539792"
           class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
         >
-          <span class="text-lg">📞</span>
+          <span class="text-base">📞</span>
           <span class="font-semibold text-sm">933 53 97 92</span>
         </a>
         <a
           href="mailto:info@mudanzasandy.es,mundanzas.andy@gmail.com"
           class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
         >
-          <span class="text-lg" aria-hidden="true">
+          <span class="text-base" aria-hidden="true">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

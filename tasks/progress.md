@@ -21,6 +21,7 @@
 | TASK-013 | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-014 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-015 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
+| TASK-016 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 
 ### **Tareas Históricas (Trabajo Previo Documentado)**
 
@@ -35,7 +36,7 @@
 
 ## 🎉 **ESTADO GENERAL: PROYECTO COMPLETADO AL 100%**
 
-✅ **Total: 21/21 tareas completadas (15 actuales + 6 históricas)**
+✅ **Total: 22/22 tareas completadas (16 actuales + 6 históricas)**
 
 - Funcionalidad core: 100% ✅
 - Performance optimization: 100% ✅
@@ -201,7 +202,27 @@ Semana 1 (Agosto 23-30):
 - ⚖️ **Legal**: Cumplimiento total RGPD, LOPDGDD y LSSI-CE
 - 🔗 **Integración**: Enlaces añadidos al footer con configuración funcional
 
+### **22/01/2025 - 18:45**
+
+- ✅ **TASK-014 COMPLETADO**: Integración completa del blog con header/footer
+- 📝 **Blog Integrado**: iframe funcional manteniendo navegación del sitio
+- 🔧 **Solución técnica**: Implementación con postMessage para responsive
+
+### **22/01/2025 - 19:15**
+
+- ✅ **TASK-015 COMPLETADO**: Corrección de enlaces de navegación y menú móvil
+- 🔗 **Enlaces funcionales**: Navegación desde blog a secciones principales
+- 📱 **Menú móvil**: Hamburger menu posicionado correctamente a la derecha
+
+### **22/01/2025 - 19:45**
+
+- ✅ **TASK-016 COMPLETADO**: Optimización del layout responsivo del header
+- 🖥️ **Resoluciones optimizadas**: Corrección específica para 1440x891 y 1024x802
+- 📝 **Texto responsivo**: "Nuestro Equipo" → "Equipo", "Testimonios" → "Reviews" en breakpoint lg
+- 🎨 **Grid mejorado**: Sistema 2-col (lg) / 3-col (xl+) con distribución inteligente
+- ✨ **UX mejorada**: Sin solapamientos ni texto cortado en resoluciones intermedias
+
 ---
 
-**Última actualización**: 27 de Agosto, 2025 - 16:30
-**Próxima revisión**: 28 de Agosto, 2025 - 09:00
+**Última actualización**: 22 de Enero, 2025 - 19:45
+**Próxima revisión**: Según necesidades del proyecto
