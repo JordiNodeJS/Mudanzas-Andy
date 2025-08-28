@@ -6,12 +6,10 @@
   <div class="container mx-auto px-4 py-3">
     <!-- Layout principal para desktop: responsive grid adaptable -->
     <div class="hidden lg:block">
-      <!-- Grid de 2 columnas en lg, 3 columnas en xl+ -->
-      <div
-        class="lg:grid lg:grid-cols-2 xl:grid-cols-3 lg:items-center lg:gap-2 xl:gap-4"
-      >
+      <!-- Grid de 3 columnas consistente desde lg -->
+      <div class="lg:grid lg:grid-cols-3 lg:items-center lg:gap-2 xl:gap-4">
         <!-- Columna 1: Logo (izquierda) -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-3 lg:col-span-1">
           <img
             src="/logos/logo-camion-transparent-80.webp"
             alt="Mudanzas ANDY Logo"
@@ -33,9 +31,9 @@
           </div>
         </div>
 
-        <!-- Columna 2: Navegación (centro en xl, derecha en lg) -->
+        <!-- Columna 2: Navegación (centro) -->
         <nav
-          class="flex items-center lg:justify-end xl:justify-center space-x-2 lg:space-x-3 xl:space-x-6"
+          class="flex items-center justify-center space-x-2 lg:space-x-3 xl:space-x-6 lg:col-span-1"
         >
           <a
             href="/#inicio"
@@ -77,14 +75,16 @@
           </a>
         </nav>
 
-        <!-- Columna 3: Información de contacto (derecha) - solo visible en xl+ -->
-        <div class="hidden xl:flex items-center justify-end space-x-4">
+        <!-- Columna 3: Información de contacto (derecha) - visible desde lg+ -->
+        <div
+          class="flex items-center justify-end space-x-3 lg:space-x-4 lg:col-span-1"
+        >
           <a
             href="tel:+34933539792"
             class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
           >
             <span class="text-lg">📞</span>
-            <span class="font-semibold text-sm">933 53 97 92</span>
+            <span class="font-semibold text-xs lg:text-sm">933 53 97 92</span>
           </a>
           <a
             href="mailto:info@mudanzasandy.es,mundanzas.andy@gmail.com"
@@ -104,40 +104,9 @@
                 ></path>
               </svg>
             </span>
-            <span class="text-sm">info@mudanzasandy.es</span>
+            <span class="text-xs lg:text-sm">info@mudanzasandy.es</span>
           </a>
         </div>
-      </div>
-
-      <!-- Información de contacto para lg (cuando no hay 3 columnas) -->
-      <div class="lg:flex xl:hidden items-center justify-center space-x-6 mt-2">
-        <a
-          href="tel:+34933539792"
-          class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
-        >
-          <span class="text-base">📞</span>
-          <span class="font-semibold text-sm">933 53 97 92</span>
-        </a>
-        <a
-          href="mailto:info@mudanzasandy.es,mundanzas.andy@gmail.com"
-          class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
-        >
-          <span class="text-base" aria-hidden="true">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              class="w-4 h-4"
-              fill="currentColor"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
-              ></path>
-            </svg>
-          </span>
-          <span class="text-sm">info@mudanzasandy.es</span>
-        </a>
       </div>
     </div>
 
