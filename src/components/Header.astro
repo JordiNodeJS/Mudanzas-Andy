@@ -402,6 +402,105 @@
       });
     });
   })();
+
+  // 🎨 Navegación suave mejorada con animaciones
+  document.addEventListener("DOMContentLoaded", function () {
+    // Función para scroll suave con animación de elementos
+    function smoothScrollToSection(target: string) {
+      const element = document.querySelector(target);
+      if (!element) return;
+
+      // Añadir clase de preparación para animación
+      element.classList.add("section-entering");
+
+      // Scroll suave
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      // Animación de highlight de la sección
+      setTimeout(() => {
+        element.classList.add("section-highlight");
+        setTimeout(() => {
+          element.classList.remove("section-entering", "section-highlight");
+        }, 800);
+      }, 500);
+    }
+
+    // Interceptar clicks en enlaces de navegación interna
+    const navLinks = document.querySelectorAll('a[href^="/#"]');
+    navLinks.forEach((link) => {
+      link.addEventListener("click", function (e: Event) {
+        e.preventDefault();
+
+        const targetElement = e.currentTarget as HTMLAnchorElement;
+        const href = targetElement.getAttribute("href");
+        if (!href) return;
+
+        const targetId = href.replace("/#", "#");
+
+        // Efecto visual en el enlace clickeado
+        targetElement.style.transform = "scale(0.95)";
+        targetElement.style.transition = "transform 0.1s ease";
+
+        setTimeout(() => {
+          targetElement.style.transform = "scale(1)";
+          smoothScrollToSection(targetId);
+        }, 100);
+
+        // Cerrar menú móvil si está abierto
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuToggle = document.getElementById("mobile-menu-toggle");
+        if (mobileMenu && mobileMenu.classList.contains("block")) {
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("block");
+          if (menuToggle) {
+            menuToggle.textContent = "☰";
+            menuToggle.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
+    });
+
+    // Destacar enlace activo según scroll position
+    function updateActiveNavLink() {
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll('a[href^="/#"]');
+
+      let current = "";
+      sections.forEach((section) => {
+        const htmlSection = section as HTMLElement;
+        const sectionTop = htmlSection.offsetTop - 100;
+        if (window.scrollY >= sectionTop) {
+          const id = section.getAttribute("id");
+          if (id) current = id;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active-nav-link");
+        if (link.getAttribute("href") === `/#${current}`) {
+          link.classList.add("active-nav-link");
+        }
+      });
+    }
+
+    // Throttled scroll listener
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveNavLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll);
+    updateActiveNavLink(); // Initial call
+  });
 </script>
 
 <style>
@@ -444,5 +543,112 @@
     100% {
       transform: translateY(0);
     }
+  }
+
+  /* 🎨 Estilos para navegación mejorada */
+  .active-nav-link {
+    color: rgb(var(--color-highlight)) !important;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .active-nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgb(var(--color-highlight));
+    border-radius: 1px;
+    animation: underline-expand 0.3s ease-out;
+  }
+
+  @keyframes underline-expand {
+    from {
+      width: 0;
+      left: 50%;
+      right: 50%;
+    }
+    to {
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  /* Animaciones para secciones */
+  :global(.section-entering) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global(.section-entering::before) {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(var(--color-highlight), 0.1),
+      transparent
+    );
+    animation: section-shimmer 0.8s ease-out;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  :global(.section-highlight) {
+    animation: section-glow 0.8s ease-out;
+  }
+
+  @keyframes section-shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes section-glow {
+    0% {
+      box-shadow: 0 0 0 rgba(var(--color-primary), 0);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(var(--color-primary), 0.2);
+    }
+    100% {
+      box-shadow: 0 0 0 rgba(var(--color-primary), 0);
+    }
+  }
+
+  /* Mejoras hover para enlaces de navegación */
+  nav a {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  nav a:hover {
+    transform: translateY(-1px);
+  }
+
+  nav a::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  nav a:hover::before {
+    width: 100%;
   }
 </style>

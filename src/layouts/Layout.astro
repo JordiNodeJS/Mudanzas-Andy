@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import analyticsConfig from "../config/analytics.json";
 import CookieBanner from "../components/CookieBanner.astro";
-import { ClientRouter } from "astro:transitions";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -626,7 +626,94 @@ const {
     }
 
     <!-- View Transitions para navegación suave -->
-    <ClientRouter />
+    <ViewTransitions />
+
+    <!-- Estilos personalizados para view transitions -->
+    <style>
+      /* View Transitions personalizadas */
+      @media (prefers-reduced-motion: no-preference) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation-duration: 0.3s;
+          animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ::view-transition-old(root) {
+          animation-name: slide-out-left;
+        }
+
+        ::view-transition-new(root) {
+          animation-name: slide-in-right;
+        }
+
+        @keyframes slide-out-left {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(-30px);
+            opacity: 0;
+          }
+        }
+
+        @keyframes slide-in-right {
+          from {
+            transform: translateX(30px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        /* Transición específica para el blog */
+        [data-astro-transition-scope="blog"] {
+          view-transition-name: blog-content;
+        }
+
+        ::view-transition-old(blog-content),
+        ::view-transition-new(blog-content) {
+          animation-duration: 0.4s;
+        }
+
+        ::view-transition-old(blog-content) {
+          animation-name: fade-scale-out;
+        }
+
+        ::view-transition-new(blog-content) {
+          animation-name: fade-scale-in;
+        }
+
+        @keyframes fade-scale-out {
+          from {
+            transform: scale(1);
+            opacity: 1;
+          }
+          to {
+            transform: scale(0.95);
+            opacity: 0;
+          }
+        }
+
+        @keyframes fade-scale-in {
+          from {
+            transform: scale(1.05);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+      }
+
+      /* Animaciones suaves para scroll interno */
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
   </head>
   <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
     <!-- Google Tag Manager (noscript) -->

@@ -16,7 +16,10 @@ const pageDescription =
   <!-- Header fijo -->
   <Header />
 
-  <main class="pt-20 md:pt-24 lg:pt-28 bg-gray-50">
+  <main
+    class="pt-20 md:pt-24 lg:pt-28 bg-gray-50"
+    data-astro-transition-scope="blog"
+  >
     <!-- Título de la sección -->
     <section class="bg-brand text-white pt-16 pb-3 lg:py-12 lg:pb-2">
       <div class="container mx-auto px-4">
@@ -54,9 +57,12 @@ const pageDescription =
                 href="https://blog.mudanzasandy.es/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-3 bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand/90 transition-colors font-medium"
+                class="blog-cta-button inline-flex items-center gap-3 bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand/90 transition-all duration-300 font-medium group"
               >
-                <span>🚀</span>
+                <span
+                  class="rocket-icon text-xl transition-transform duration-300 group-hover:translate-x-1"
+                  >🚀</span
+                >
                 <span>Visitar nuestro Blog</span>
                 <span class="text-xs opacity-75">(Nueva ventana)</span>
               </a>
@@ -99,9 +105,12 @@ const pageDescription =
           href="https://blog.mudanzasandy.es/"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand/90 transition-colors"
+          class="blog-external-link inline-flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg group"
         >
-          <span>🚀</span>
+          <span
+            class="rocket-icon text-sm transition-transform duration-300 group-hover:rotate-12"
+            >🚀</span
+          >
           <span>Abrir blog en nueva ventana</span>
         </a>
       </div>
@@ -144,6 +153,166 @@ const pageDescription =
     padding: 2rem;
     color: #666;
     font-family: system-ui, sans-serif;
+  }
+
+  /* 🎨 Animaciones mejoradas para enlaces del blog */
+  .blog-cta-button {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-primary)),
+      rgb(var(--color-secondary))
+    );
+    box-shadow: 0 4px 15px rgba(var(--color-primary), 0.3);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .blog-cta-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .blog-cta-button:hover::before {
+    left: 100%;
+  }
+
+  .blog-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(var(--color-primary), 0.4);
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-secondary)),
+      rgb(var(--color-primary))
+    );
+  }
+
+  .blog-cta-button:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
+  }
+
+  /* Animación específica para el enlace externo */
+  .blog-external-link {
+    background: linear-gradient(
+      45deg,
+      rgb(var(--color-primary)),
+      rgb(var(--color-accent))
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-external-link::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.6s ease,
+      height 0.6s ease;
+  }
+
+  .blog-external-link:hover::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  .blog-external-link:hover {
+    background: linear-gradient(
+      45deg,
+      rgb(var(--color-accent)),
+      rgb(var(--color-highlight))
+    );
+    color: rgb(var(--color-primary));
+    font-weight: 600;
+  }
+
+  /* Animación de pulso para llamar la atención */
+  @keyframes gentle-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  }
+
+  .blog-cta-button:focus {
+    animation: gentle-pulse 2s infinite;
+    outline: 3px solid rgba(var(--color-highlight), 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Animación de rebote suave para los iconos */
+  @keyframes bounce-soft {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    40% {
+      transform: translateY(-3px) rotate(5deg);
+    }
+    60% {
+      transform: translateY(-1px) rotate(-2deg);
+    }
+  }
+
+  .rocket-icon {
+    display: inline-block;
+  }
+
+  .blog-cta-button:hover .rocket-icon {
+    animation: bounce-soft 0.6s ease;
+  }
+
+  /* Efecto de highlight en la lista del fallback */
+  .text-left li {
+    transition: all 0.3s ease;
+    padding: 0.25rem 0;
+    border-radius: 4px;
+  }
+
+  .text-left li:hover {
+    background: rgba(var(--color-highlight), 0.1);
+    transform: translateX(5px);
+    color: rgb(var(--color-primary));
+    font-weight: 500;
+  }
+
+  /* Transición suave para el contenedor del fallback */
+  #iframe-fallback {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  #iframe-fallback:not(.hidden) {
+    transform: translateY(0);
+    opacity: 1;
   }
 </style>
 
@@ -205,5 +374,115 @@ const pageDescription =
         }
       }, 8000); // Timeout más largo y solo si no hay carga
     }
+
+    // 🎨 Animaciones adicionales para mejorar la experiencia
+    initEnhancedAnimations();
   });
+
+  // Función para inicializar animaciones mejoradas
+  function initEnhancedAnimations() {
+    // Animación de entrada para elementos del fallback
+    const observerOptions: IntersectionObserverInit = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const target = entry.target as HTMLElement;
+          target.style.animation = "slideInUp 0.6s ease-out forwards";
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos del fallback cuando aparezcan
+    setTimeout(() => {
+      const fallbackElements = document.querySelectorAll(
+        "#iframe-fallback h3, #iframe-fallback p, #iframe-fallback .blog-cta-button, #iframe-fallback ul"
+      );
+      fallbackElements.forEach((el, index) => {
+        const element = el as HTMLElement;
+        element.style.opacity = "0";
+        element.style.transform = "translateY(20px)";
+        element.style.animationDelay = `${index * 0.1}s`;
+        observer.observe(element);
+      });
+    }, 100);
+
+    // Efecto de partículas sutiles en hover para botones principales
+    const blogButtons = document.querySelectorAll(
+      ".blog-cta-button, .blog-external-link"
+    );
+    blogButtons.forEach((button) => {
+      button.addEventListener("mouseenter", createSparkleEffect);
+      button.addEventListener("mouseleave", removeSparkleEffect);
+    });
+
+    function createSparkleEffect(e: Event) {
+      const button = e.currentTarget as HTMLElement;
+      const rect = button.getBoundingClientRect();
+
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const sparkle = document.createElement("div");
+          sparkle.className = "sparkle";
+          sparkle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(var(--color-highlight), 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            top: ${Math.random() * rect.height}px;
+            left: ${Math.random() * rect.width}px;
+            animation: sparkleFloat 1s ease-out forwards;
+          `;
+
+          button.style.position = "relative";
+          button.appendChild(sparkle);
+
+          setTimeout(() => sparkle.remove(), 1000);
+        }, i * 100);
+      }
+    }
+
+    function removeSparkleEffect(e: Event) {
+      const button = e.currentTarget as HTMLElement;
+      const sparkles = button.querySelectorAll(".sparkle");
+      sparkles.forEach((sparkle: Element) => sparkle.remove());
+    }
+
+    // Agregar keyframes dinámicos para las animaciones
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes sparkleFloat {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-10px) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-20px) scale(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 </script>
