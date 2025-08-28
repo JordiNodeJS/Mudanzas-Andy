@@ -66,9 +66,11 @@ Instrucciones:
   
   # Security headers
   Header always set X-Content-Type-Options nosniff
-  Header always set X-Frame-Options DENY
   Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # X-Frame-Options: permitir iframes de nuestro blog
+  Header always set X-Frame-Options SAMEORIGIN
   
   # Performance hints
   Header always set Accept-CH "DPR, Viewport-Width, Width"

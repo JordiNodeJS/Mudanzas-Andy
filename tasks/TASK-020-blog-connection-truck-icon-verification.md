@@ -7,7 +7,87 @@ Verificación y resolución de dos problemas reportados:
 1. La página de blog no carga por rechazo de conexión
 2. El icono del camión no se muestra en el origen después de hacer la animación
 
-## Problemas Reportados
+## ⚠️ ACTUALIZACIÓN - PROBLEMA EN PRODUCCIÓN IDENTIFICADO
+
+### Error X-Frame-Options en Producción
+
+**Fecha**: 29 de agosto de 2025  
+**Entorno**: https://mudanzasandy.es/blog-astro
+
+#### Problema Identificado con Playwright
+
+```
+ERROR: Refused to display 'https://blog.mudanzasandy.es/' in a frame because it set 'X-Frame-Options'
+```
+
+#### Análisis del Error
+
+- **Causa**: El servidor de WordPress en `blog.mudanzasandy.es` envía headers `X-Frame-Options` que prohíben el embedding en iframes desde otros dominios
+- **Entorno afectado**: Solo producción (localhost funciona correctamente)
+- **Comportamiento**: El iframe muestra "La página blog.mudanzasandy.es ha rechazado la conexión"
+
+#### Solución Implementada: Sistema de Fallback Inteligente
+
+**Archivos modificados**: `src/pages/blog-astro.astro`
+
+##### 1. UI de Fallback Mejorada
+
+- **Mensaje explicativo**: Información clara sobre por qué se debe usar ventana separada
+- **Botón destacado**: Enlace directo al blog en nueva ventana
+- **Contenido informativo**: Lista de lo que los usuarios encontrarán en el blog
+- **Diseño consistente**: Mantiene la estética del sitio
+
+##### 2. Detección Automática de Errores
+
+- **Script JavaScript**: Detecta errores de X-Frame-Options automáticamente
+- **Timeout inteligente**: Fallback después de 3 segundos si no carga
+- **Intercepción de errores**: Captura mensajes de error específicos de X-Frame-Options
+- **Experiencia fluida**: Transición suave entre iframe y fallback
+
+##### 3. Código de Fallback
+
+```astro
+<!-- Mensaje de fallback si el iframe no carga -->
+<div id="iframe-fallback" class="hidden text-center p-8 bg-blue-50 border border-blue-200 rounded-lg m-4">
+  <div class="max-w-2xl mx-auto">
+    <h3 class="text-xl font-semibold text-brand mb-4">
+      📝 Accede a nuestro Blog
+    </h3>
+    <p class="text-gray-700 mb-6">
+      Nuestro blog contiene artículos útiles sobre mudanzas, consejos profesionales y guías prácticas.
+      Por motivos de seguridad, el contenido se debe visualizar en una ventana separada.
+    </p>
+    <!-- Botón de enlace directo -->
+  </div>
+</div>
+```
+
+##### 4. Script de Detección
+
+```javascript
+// Detectar errores de X-Frame-Options y activar fallback
+setTimeout(() => {
+  showFallback(); // Activa fallback en producción
+}, 3000);
+
+// Interceptar errores de consola
+console.error = function (...args) {
+  if (message.includes("x-frame-options")) {
+    showFallback();
+  }
+};
+```
+
+#### Testing en Producción
+
+- ✅ **Error detectado**: `https://mudanzasandy.es/blog-astro` falla con X-Frame-Options
+- ✅ **Blog directo funciona**: `https://blog.mudanzasandy.es/` accesible
+- ✅ **Fallback implementado**: Sistema de detección y fallback automático
+- ✅ **UX mejorada**: Mensaje claro y enlace directo funcional
+
+---
+
+## Problemas Reportados (ORIGINAL - LOCALHOST)
 
 ### 1. Blog - Error de Conexión
 

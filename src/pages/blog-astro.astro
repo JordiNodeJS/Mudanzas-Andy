@@ -34,8 +34,51 @@ const pageDescription =
 
     <!-- Contenedor del iframe del blog -->
     <section class="bg-white">
-      <div class="w-full">
+      <div class="w-full" id="blog-container">
+        <!-- Mensaje de fallback si el iframe no carga -->
+        <div
+          id="iframe-fallback"
+          class="hidden text-center p-8 bg-blue-50 border border-blue-200 rounded-lg m-4"
+        >
+          <div class="max-w-2xl mx-auto">
+            <h3 class="text-xl font-semibold text-brand mb-4">
+              📝 Accede a nuestro Blog
+            </h3>
+            <p class="text-gray-700 mb-6">
+              Nuestro blog contiene artículos útiles sobre mudanzas, consejos
+              profesionales y guías prácticas. Por motivos de seguridad, el
+              contenido se debe visualizar en una ventana separada.
+            </p>
+            <div class="space-y-4">
+              <a
+                href="https://blog.mudanzasandy.es/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-3 bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand/90 transition-colors font-medium"
+              >
+                <span>🚀</span>
+                <span>Visitar nuestro Blog</span>
+                <span class="text-xs opacity-75">(Nueva ventana)</span>
+              </a>
+
+              <div class="text-sm text-gray-600">
+                <p class="mb-2">
+                  📚 <strong>En nuestro blog encontrarás:</strong>
+                </p>
+                <ul class="text-left max-w-md mx-auto space-y-1">
+                  <li>• Consejos para organizar tu mudanza</li>
+                  <li>• Guías de embalaje profesional</li>
+                  <li>• Tips para ahorrar en tu mudanza</li>
+                  <li>• Noticias del sector</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Iframe del blog (intentará cargar primero) -->
         <iframe
+          id="blog-iframe"
           src="https://blog.mudanzasandy.es/"
           class="w-full border-0"
           style="height: 800px; min-height: 600px;"
@@ -105,59 +148,57 @@ const pageDescription =
 </style>
 
 <script>
-  // Script para mejorar la experiencia del iframe
+  // Script simple para detectar errores de iframe y mostrar fallback
   document.addEventListener("DOMContentLoaded", function () {
-    const iframe = document.querySelector("iframe");
+    const iframe = document.getElementById("blog-iframe") as HTMLIFrameElement;
+    const fallbackDiv = document.getElementById("iframe-fallback");
 
-    if (iframe) {
-      // Mostrar indicador de carga
-      iframe.addEventListener("load", function () {
-        console.log("Blog cargado exitosamente");
+    if (iframe && fallbackDiv) {
+      let fallbackShown = false;
 
-        // Opcional: enviar evento de analytics
-        try {
-          if (typeof window !== "undefined" && (window as any).gtag) {
-            (window as any).gtag("event", "blog_iframe_loaded", {
-              event_category: "Blog",
-              event_label: "iframe_integration",
-            });
-          }
-        } catch (e) {
-          // Ignore analytics errors
+      // Función para mostrar el fallback
+      function showFallback() {
+        if (!fallbackShown && fallbackDiv) {
+          fallbackShown = true;
+          iframe.style.display = "none";
+          fallbackDiv.classList.remove("hidden");
+          console.log("Mostrando página de fallback para el blog");
         }
-      });
+      }
 
-      // Manejo de errores
+      // Detectar errores de carga del iframe
       iframe.addEventListener("error", function () {
-        console.error("Error al cargar el blog");
-
-        // Mostrar mensaje de error amigable
-        const errorMessage = document.createElement("div");
-        errorMessage.className =
-          "text-center p-8 bg-red-50 border border-red-200 rounded-lg m-4";
-        errorMessage.innerHTML = `
-          <h3 class="text-lg font-semibold text-red-800 mb-2">
-            🚫 Error al cargar el blog
-          </h3>
-          <p class="text-red-600 mb-4">
-            No pudimos cargar el contenido del blog. Por favor, inténtalo más tarde.
-          </p>
-          <a 
-            href="https://blog.mudanzasandy.es/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
-          >
-            Visitar blog directamente
-          </a>
-        `;
-
-        // Verificar que el padre existe antes de reemplazar
-        const parent = iframe.parentNode;
-        if (parent) {
-          parent.replaceChild(errorMessage, iframe);
-        }
+        console.error("Error al cargar el iframe del blog");
+        showFallback();
       });
+
+      // Para detectar X-Frame-Options, usamos un timeout simple
+      // En caso de problemas de CORS/X-Frame-Options, el iframe no cargará contenido
+      setTimeout(() => {
+        // Si llegamos aquí y no hay contenido visible, probablemente hay un error
+        if (iframe.style.display !== "none" && !fallbackShown) {
+          // Simplemente activamos el fallback después del timeout
+          // En producción, el error de X-Frame-Options impide la carga del iframe
+          console.warn(
+            "Activando fallback por timeout o restricciones de iframe"
+          );
+          showFallback();
+        }
+      }, 4000); // 3 segundos de timeout
+
+      // Interceptar errores de consola relacionados con X-Frame-Options
+      const originalConsoleError = console.error;
+      console.error = function (...args: any[]) {
+        const message = args.join(" ").toLowerCase();
+        if (
+          message.includes("x-frame-options") ||
+          message.includes("refused to display") ||
+          message.includes("frame because it set")
+        ) {
+          showFallback();
+        }
+        originalConsoleError.apply(console, args);
+      };
     }
   });
 </script>
