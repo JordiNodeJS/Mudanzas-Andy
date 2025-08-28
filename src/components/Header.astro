@@ -234,10 +234,10 @@
 <script>
   // Truck animation: makes the truck drive in from the left on first load
   (function animateTruck() {
-    const truckDesktop = document.getElementById("truck-logo");
-    const truckMobile = document.getElementById("truck-logo-mobile");
-    
-    const animateTruckElement = (truck) => {
+  const truckDesktop = document.getElementById("truck-logo") as HTMLImageElement | null;
+  const truckMobile = document.getElementById("truck-logo-mobile") as HTMLImageElement | null;
+
+  const animateTruckElement = (truck: HTMLImageElement | null) => {
       if (!truck) return;
       // Only trigger once per page load
       try {
