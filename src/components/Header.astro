@@ -10,25 +10,29 @@
       <div class="lg:grid lg:grid-cols-3 lg:items-center lg:gap-2 xl:gap-4">
         <!-- Columna 1: Logo (izquierda) -->
         <div class="flex items-center space-x-3 lg:col-span-1">
-          <img
-            src="/logos/logo-camion-transparent-80.webp"
-            alt="Mudanzas ANDY Logo"
-            id="truck-logo"
-            data-animated="false"
-            data-fallback="/logos/logo-camion-transparent.png"
-            class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
-            width="80"
-            height="80"
-            loading="eager"
-          />
-          <div>
-            <h1 class="text-lg lg:text-xl font-bold text-highlight">
-              Mudanzas ANDY
-            </h1>
-            <p class="text-xs text-neutral hidden sm:block">
-              Tu mudanza, nuestra prioridad
-            </p>
-          </div>
+          <a href="/#inicio" class="flex items-center space-x-3 group">
+            <img
+              src="/logos/logo-camion-transparent-80.webp"
+              alt="Mudanzas ANDY Logo"
+              id="truck-logo"
+              data-animated="false"
+              data-fallback="/logos/logo-camion-transparent.png"
+              class="h-16 w-16 lg:h-20 lg:w-20 object-contain bg-transparent drop-shadow-sm self-center truck-enter group-hover:scale-105 transition-transform duration-300"
+              width="80"
+              height="80"
+              loading="eager"
+            />
+            <div>
+              <h1
+                class="text-lg lg:text-xl font-bold text-highlight group-hover:text-white transition-colors duration-300"
+              >
+                Mudanzas ANDY
+              </h1>
+              <p class="text-xs text-neutral hidden sm:block">
+                Tu mudanza, nuestra prioridad
+              </p>
+            </div>
+          </a>
         </div>
 
         <!-- Columna 2: Navegación (centro) -->
@@ -113,25 +117,29 @@
     <!-- Layout móvil/tablet -->
     <div class="flex flex-wrap items-center justify-between lg:hidden">
       <!-- Logo y nombre -->
-      <div class="flex items-center space-x-3">
+      <a href="/#inicio" class="flex items-center space-x-3 group">
         <img
           src="/logos/logo-camion-transparent-80.webp"
           alt="Mudanzas ANDY Logo"
           id="truck-logo-mobile"
           data-animated="false"
           data-fallback="/logos/logo-camion-transparent.png"
-          class="h-16 w-16 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
+          class="h-16 w-16 object-contain bg-transparent drop-shadow-sm self-center truck-enter group-hover:scale-105 transition-transform duration-300"
           width="80"
           height="80"
           loading="eager"
         />
         <div>
-          <h1 class="text-lg font-bold text-highlight">Mudanzas ANDY</h1>
+          <h1
+            class="text-lg font-bold text-highlight group-hover:text-white transition-colors duration-300"
+          >
+            Mudanzas ANDY
+          </h1>
           <p class="text-xs text-neutral hidden sm:block">
             Tu mudanza, nuestra prioridad
           </p>
         </div>
-      </div>
+      </a>
 
       <!-- Botón menú móvil -->
       <button
