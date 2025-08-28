@@ -4,10 +4,10 @@
 
 <header class="fixed top-0 w-full bg-brand text-white z-40 shadow-lg">
   <div class="container mx-auto px-4 py-3">
-    <div class="flex flex-wrap items-center justify-between">
-      <!-- Logo y nombre -->
+    <!-- Layout principal para desktop: 3 columnas -->
+    <div class="hidden lg:grid lg:grid-cols-3 lg:items-center lg:gap-4">
+      <!-- Columna 1: Logo (izquierda) -->
       <div class="flex items-center space-x-3">
-        <!-- Optimized logo for header -->
         <img
           src="/logos/logo-camion-transparent-80.webp"
           alt="Mudanzas ANDY Logo"
@@ -29,114 +29,132 @@
         </div>
       </div>
 
-      <!-- Contenedor derecho para navegación y menú móvil -->
-      <div class="flex items-center">
-        <!-- Menú de navegación desktop -->
-        <nav class="hidden lg:flex items-center space-x-6">
-          <a
-            href="/#inicio"
-            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-          >
-            Inicio
-          </a>
-          <a
-            href="/#servicios"
-            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-          >
-            Servicios
-          </a>
-          <a
-            href="/#equipo"
-            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-          >
-            Nuestro Equipo
-          </a>
-          <a
-            href="/#precios"
-            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-          >
-            Precios
-          </a>
-          <a
-            href="/#testimonios"
-            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-          >
-            Testimonios
-          </a>
-          <a
-            href="/blog"
-            class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
-          >
-            Blog
-          </a>
-        </nav>
-
-        <!-- Botón menú móvil -->
-        <button
-          id="mobile-menu-button"
-          class="lg:hidden flex items-center p-2 rounded-md text-[#bbd4ce] hover:text-[#FAE360] focus:outline-none focus:ring-2 focus:ring-[#FAE360] transition-colors duration-300"
-          aria-label="Abrir menú de navegación"
+      <!-- Columna 2: Navegación (centro) -->
+      <nav class="flex items-center justify-center space-x-6">
+        <a
+          href="/#inicio"
+          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
         >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+          Inicio
+        </a>
+        <a
+          href="/#servicios"
+          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
+        >
+          Servicios
+        </a>
+        <a
+          href="/#equipo"
+          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
+        >
+          Nuestro Equipo
+        </a>
+        <a
+          href="/#precios"
+          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
+        >
+          Precios
+        </a>
+        <a
+          href="/#testimonios"
+          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
+        >
+          Testimonios
+        </a>
+        <a
+          href="/blog"
+          class="text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300 font-medium text-sm"
+        >
+          Blog
+        </a>
+      </nav>
+
+      <!-- Columna 3: Información de contacto (derecha) -->
+      <div class="flex items-center justify-end space-x-4">
+        <a
+          href="tel:+34933539792"
+          class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+        >
+          <span class="text-lg">📞</span>
+          <span class="font-semibold text-sm">933 53 97 92</span>
+        </a>
+        <a
+          href="mailto:info@mudanzasandy.es,mundanzas.andy@gmail.com"
+          class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+        >
+          <span class="text-lg" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="w-4 h-4"
+              fill="currentColor"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+              ></path>
+            </svg>
+          </span>
+          <span class="text-sm">info@mudanzasandy.es</span>
+        </a>
       </div>
     </div>
 
-    <!-- Información de contacto -->
-    <div
-      class="hidden xl:flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 lg:space-x-6"
-    >
-      <a
-        href="tel:+34933539792"
-        class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
-      >
-        <span class="text-lg">📞</span>
-        <span class="font-semibold text-sm lg:text-base">933 53 97 92</span>
-      </a>
+    <!-- Layout móvil/tablet -->
+    <div class="flex flex-wrap items-center justify-between lg:hidden">
+      <!-- Logo y nombre -->
+      <div class="flex items-center space-x-3">
+        <img
+          src="/logos/logo-camion-transparent-80.webp"
+          alt="Mudanzas ANDY Logo"
+          id="truck-logo-mobile"
+          data-animated="false"
+          data-fallback="/logos/logo-camion-transparent.png"
+          class="h-16 w-16 object-contain bg-transparent drop-shadow-sm self-center truck-enter"
+          width="80"
+          height="80"
+          loading="eager"
+        />
+        <div>
+          <h1 class="text-lg font-bold text-highlight">
+            Mudanzas ANDY
+          </h1>
+          <p class="text-xs text-neutral hidden sm:block">
+            Tu mudanza, nuestra prioridad
+          </p>
+        </div>
+      </div>
 
-      <a
-        href="mailto:info@mudanzasandy.es,mundanzas.andy@gmail.com"
-        class="flex items-center space-x-2 text-[#bbd4ce] hover:text-[#FAE360] transition-colors duration-300"
+      <!-- Botón menú móvil -->
+      <button
+        id="mobile-menu-button"
+        class="flex items-center p-2 rounded-md text-[#bbd4ce] hover:text-[#FAE360] focus:outline-none focus:ring-2 focus:ring-[#FAE360] transition-colors duration-300"
+        aria-label="Abrir menú de navegación"
       >
-        <!-- Use an inline SVG so the icon inherits the link color (currentColor) instead of a colored emoji -->
-        <span class="text-lg" aria-hidden="true">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            class="w-4 h-4 lg:w-5 lg:h-5"
-            fill="currentColor"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
-            ></path>
-          </svg>
-        </span>
-        <span class="hidden lg:inline text-sm">info@mudanzasandy.es</span>
-        <span class="lg:hidden text-sm">Email</span>
-      </a>
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
     </div>
-  </div>
 
-  <!-- Badge de atención 24/7 -->
-  <div class="mt-2 text-center">
-    <span
-      class="inline-block bg-[#f9b4ab] text-[#264e70] px-3 lg:px-4 py-1 rounded-full text-xs lg:text-sm font-bold animate-bounce"
-    >
-      ¡Atención 24/7! Llámanos o escríbenos cuando quieras
-    </span>
+    <!-- Badge de atención 24/7 -->
+    <div class="mt-2 text-center">
+      <span
+        class="inline-block bg-[#f9b4ab] text-[#264e70] px-3 lg:px-4 py-1 rounded-full text-xs lg:text-sm font-bold animate-bounce"
+      >
+        ¡Atención 24/7! Llámanos o escríbenos cuando quieras
+      </span>
+    </div>
   </div>
 
   <!-- Menú móvil -->
