@@ -202,6 +202,16 @@ iframe.addEventListener("error", function () {
    - **Solución**: Añadido `import Footer from "../components/Footer.astro"` y `<Footer />` al final de la página
    - **Verificación**: Footer completo visible en todas las resoluciones
 
+3. **✅ Footer Visible "Abajo" - NUEVA CORRECCIÓN**
+   - **Problema**: "el footer debe ser visible pero abajo"
+   - **Solución**: Ajustada altura del iframe de viewport completo a altura fija específica
+   - **Cambios aplicados**:
+     - iframe desktop: `height: 800px` (antes: `height: calc(100vh - 300px)`)
+     - iframe tablet: `height: 600px` (antes: altura variable)
+     - iframe móvil: `height: 500px` (antes: altura variable)
+     - main container: eliminado `min-h-screen` para permitir flujo natural
+   - **Resultado**: El footer aparece naturalmente al final después del iframe cuando se hace scroll hacia abajo
+
 ### Cambios Técnicos Aplicados:
 
 ```astro
@@ -239,3 +249,29 @@ iframe.addEventListener("error", function () {
 ### Commit de Corrección:
 
 `fix: resolve blog page header/footer display issues` - Todas las correcciones aplicadas y verificadas
+
+### 🔧 Actualización Final - Footer Posicionado Correctamente (28 Agosto 2025)
+
+#### **✅ Problema Resuelto: "el footer debe ser visible pero abajo"**
+
+**Cambios Aplicados:**
+- **iframe Desktop**: altura fija `800px` (antes: `calc(100vh - 300px)`)
+- **iframe Tablet**: altura fija `600px` (responsive)
+- **iframe Mobile**: altura fija `500px` (optimizado para pantallas pequeñas)
+- **Main container**: eliminado `min-h-screen` para permitir flujo natural del contenido
+- **Footer**: ahora aparece naturalmente al final después del iframe, accesible mediante scroll
+
+**Resultado:**
+- ✅ Header siempre visible (fijo)
+- ✅ iframe del blog con altura apropiada para cada dispositivo
+- ✅ Footer visible al hacer scroll hacia abajo
+- ✅ Experiencia de usuario mejorada con flujo natural del contenido
+- ✅ Responsive design mantenido en todos los dispositivos
+
+**Commits:**
+1. `fix: resolve blog page header/footer display issues` - Estructura inicial
+2. `fix: adjust iframe height to make footer visible at bottom` - Posicionamiento del footer
+
+**Screenshots de Verificación:**
+- `blog-iframe-footer-visible-at-bottom.png` - Desktop con footer al final
+- `blog-iframe-mobile-footer-visible-at-bottom.png` - Mobile con footer accesible
