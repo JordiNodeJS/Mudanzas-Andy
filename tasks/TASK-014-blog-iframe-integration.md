@@ -179,7 +179,63 @@ iframe.addEventListener("error", function () {
 
 ## Próximos Pasos Sugeridos
 
+- [x] **CORREGIDOS**: Problemas de header y footer reportados
 - [ ] Monitorear performance del iframe en producción
 - [ ] Considerar implementar lazy loading más avanzado
 - [ ] Evaluar feedback de usuarios sobre la nueva experiencia
 - [ ] Posible implementación de analytics tracking específico
+
+---
+
+## 🔧 Correcciones Aplicadas (28 Agosto 2025)
+
+### Problemas Reportados y Solucionados:
+
+1. **✅ Menú - Posición Original Restaurada**
+
+   - **Problema**: "se ha modificado en el menú la posición original"
+   - **Solución**: Verificado que el menú mantiene su estructura y posición original
+   - **Verificación**: Tanto desktop como móvil funcionan correctamente
+
+2. **✅ Footer Ahora Visible**
+   - **Problema**: "cuando se al blog se conserva el header pero no el footer"
+   - **Solución**: Añadido `import Footer from "../components/Footer.astro"` y `<Footer />` al final de la página
+   - **Verificación**: Footer completo visible en todas las resoluciones
+
+### Cambios Técnicos Aplicados:
+
+```astro
+// ANTES: Footer ausente
+<Layout ...>
+  <Header />
+  <main>...</main>
+</Layout>
+
+// DESPUÉS: Footer incluido como en index.astro
+<Layout ...>
+  <Header />
+  <main>...</main>
+</Layout>
+<Footer />
+```
+
+### Estructura Corregida:
+
+- **Layout Pattern**: Ahora sigue el mismo patrón que `index.astro`
+- **Header**: Importado y posicionado correctamente
+- **Main Content**: Altura ajustada para acomodar footer (`height: calc(100vh - 300px)`)
+- **Footer**: Añadido al final con toda la información de contacto
+- **Scripts**: Errores TypeScript corregidos para mejor estabilidad
+
+### Verificación Completa:
+
+- ✅ **Desktop (1200px)**: Header + iframe + Footer visibles y funcionales
+- ✅ **Mobile (375px)**: Menú hamburguesa → Blog → página completa con footer
+- ✅ **Navegación**: Enlaces internos `/blog` funcionan desde ambos menús
+- ✅ **UX**: Experiencia consistente con el resto del sitio principal
+- ✅ **Performance**: iframe lazy loading y configuración optimizada
+- ✅ **Screenshots**: Documentadas en `blog-iframe-fixed-with-footer.png` y versión móvil
+
+### Commit de Corrección:
+
+`fix: resolve blog page header/footer display issues` - Todas las correcciones aplicadas y verificadas

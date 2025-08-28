@@ -16,7 +16,7 @@ const pageDescription =
   <!-- Header fijo -->
   <Header />
 
-  <main class="pt-20 min-h-screen bg-gray-50">
+  <main class="pt-20 bg-gray-50">
     <!-- Título de la sección -->
     <section class="bg-brand text-white py-8">
       <div class="container mx-auto px-4">
@@ -33,12 +33,12 @@ const pageDescription =
     </section>
 
     <!-- Contenedor del iframe del blog -->
-    <section class="flex-1">
-      <div class="w-full h-full">
+    <section class="bg-white">
+      <div class="w-full">
         <iframe
           src="https://blog.mudanzasandy.es/"
-          class="w-full min-h-screen border-0"
-          style="height: calc(100vh - 300px); min-height: 800px;"
+          class="w-full border-0"
+          style="height: 800px; min-height: 600px;"
           title="Blog Mudanzas ANDY"
           loading="lazy"
           sandbox="allow-same-origin allow-scripts allow-forms allow-top-navigation allow-popups"
@@ -81,8 +81,15 @@ const pageDescription =
   /* Responsive adjustments */
   @media (max-width: 768px) {
     iframe {
-      height: calc(100vh - 180px);
-      min-height: 600px;
+      height: 600px !important;
+      min-height: 500px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    iframe {
+      height: 500px !important;
+      min-height: 400px;
     }
   }
 
