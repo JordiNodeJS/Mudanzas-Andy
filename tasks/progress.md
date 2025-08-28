@@ -22,6 +22,7 @@
 | TASK-014 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-015 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-016 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
+| TASK-017 | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
 
 ### **Tareas Históricas (Trabajo Previo Documentado)**
 
@@ -36,7 +37,7 @@
 
 ## 🎉 **ESTADO GENERAL: PROYECTO COMPLETADO AL 100%**
 
-✅ **Total: 22/22 tareas completadas (16 actuales + 6 históricas)**
+✅ **Total: 23/23 tareas completadas (17 actuales + 6 históricas)**
 
 - Funcionalidad core: 100% ✅
 - Performance optimization: 100% ✅
@@ -222,7 +223,15 @@ Semana 1 (Agosto 23-30):
 - 🎨 **Responsive**: Texto adaptable y transiciones fluidas entre resoluciones
 - ✨ **UX mejorada**: Sin solapamientos ni espacios molestos en todas las resoluciones
 
+### **28/08/2025 - 23:15**
+
+- ✅ **TASK-017 COMPLETADO**: Visibilidad del icono del camión en todas las resoluciones
+- 🚛 **Icono corporativo**: Camión visible en móvil, tablet y desktop con animación drive-in
+- 🎨 **JavaScript mejorado**: Función helper para animar tanto #truck-logo como #truck-logo-mobile
+- 📱 **Responsive fix**: Corregido translateX(-140%) que ocultaba el icono en móviles/tablets
+- ✨ **Identidad visual**: Consistencia de marca garantizada en todos los dispositivos
+
 ---
 
-**Última actualización**: 22 de Enero, 2025 - 19:45
+**Última actualización**: 28 de Agosto, 2025 - 23:15
 **Próxima revisión**: Según necesidades del proyecto
