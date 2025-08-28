@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import analyticsConfig from "../config/analytics.json";
 import CookieBanner from "../components/CookieBanner.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -253,6 +254,29 @@ const {
         .xl\:text-6xl {
           font-size: 3.75rem;
           line-height: 1;
+        }
+      }
+
+      /* ============================================
+         VIEW TRANSITIONS - ULTRA SIMPLE
+         ============================================ */
+
+      /* Solo fade básico para evitar problemas de scroll */
+      ::view-transition-old(root) {
+        animation-duration: 0.15s;
+        animation-timing-function: ease-out;
+      }
+
+      ::view-transition-new(root) {
+        animation-duration: 0.15s;
+        animation-timing-function: ease-in;
+      }
+
+      /* Respeto por preferencias de movimiento reducido */
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation-duration: 0.01s;
         }
       }
     </style>
@@ -600,6 +624,9 @@ const {
         </>
       )
     }
+
+    <!-- View Transitions para navegación suave -->
+    <ClientRouter />
   </head>
   <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
     <!-- Google Tag Manager (noscript) -->
