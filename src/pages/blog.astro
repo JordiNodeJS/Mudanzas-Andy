@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+
+const pageTitle = "Blog - Mudanzas ANDY";
+const pageDescription = "Artículos, consejos y noticias sobre mudanzas profesionales. Todo lo que necesitas saber para tu próxima mudanza con Mudanzas ANDY.";
+---
+
+<Layout 
+  title={pageTitle}
+  meta_title={pageTitle}
+  description={pageDescription}
+  image="/logos/logo-mudanzas-andy.svg"
+>
+  <!-- Header fijo -->
+  <Header />
+
+  <main class="pt-24 min-h-screen bg-gray-50">
+    <!-- Título de la sección -->
+    <section class="bg-brand text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="text-center">
+          <h1 class="text-3xl lg:text-4xl font-bold text-highlight mb-4">
+            📝 Blog de Mudanzas ANDY
+          </h1>
+          <p class="text-lg text-neutral max-w-2xl mx-auto">
+            Consejos, guías y artículos sobre mudanzas profesionales para hacer tu traslado más fácil
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contenedor del iframe del blog -->
+    <section class="flex-1">
+      <div class="w-full h-full">
+        <iframe
+          src="https://blog.mudanzasandy.es/"
+          class="w-full min-h-screen border-0"
+          style="height: calc(100vh - 200px); min-height: 800px;"
+          title="Blog Mudanzas ANDY"
+          loading="lazy"
+          sandbox="allow-same-origin allow-scripts allow-forms allow-top-navigation allow-popups"
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Enlace directo al blog original -->
+    <section class="bg-white py-6 border-t">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-600 text-sm mb-2">
+          ¿Prefieres ver el blog en una ventana separada?
+        </p>
+        <a
+          href="https://blog.mudanzasandy.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand/90 transition-colors"
+        >
+          <span>🚀</span>
+          <span>Abrir blog en nueva ventana</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- El Footer se incluye automáticamente en Layout.astro -->
+</Layout>
+
+<style>
+  /* Estilos adicionales para el iframe */
+  iframe {
+    display: block;
+    width: 100%;
+    border: none;
+    overflow: hidden;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    iframe {
+      height: calc(100vh - 180px);
+      min-height: 600px;
+    }
+  }
+
+  /* Loading state */
+  iframe::before {
+    content: "Cargando blog...";
+    display: block;
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-family: system-ui, sans-serif;
+  }
+</style>
+
+<script>
+  // Script para mejorar la experiencia del iframe
+  document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.querySelector('iframe');
+    
+    if (iframe) {
+      // Mostrar indicador de carga
+      iframe.addEventListener('load', function() {
+        console.log('Blog cargado exitosamente');
+        
+        // Opcional: enviar evento de analytics
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'blog_iframe_loaded', {
+            'event_category': 'Blog',
+            'event_label': 'iframe_integration'
+          });
+        }
+      });
+
+      // Manejo de errores
+      iframe.addEventListener('error', function() {
+        console.error('Error al cargar el blog');
+        
+        // Mostrar mensaje de error amigable
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'text-center p-8 bg-red-50 border border-red-200 rounded-lg m-4';
+        errorMessage.innerHTML = `
+          <h3 class="text-lg font-semibold text-red-800 mb-2">
+            🚫 Error al cargar el blog
+          </h3>
+          <p class="text-red-600 mb-4">
+            No pudimos cargar el contenido del blog. Por favor, inténtalo más tarde.
+          </p>
+          <a 
+            href="https://blog.mudanzasandy.es/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-block bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors"
+          >
+            Visitar blog directamente
+          </a>
+        `;
+        
+        iframe.parentNode.replaceChild(errorMessage, iframe);
+      });
+    }
+  });
+</script>
