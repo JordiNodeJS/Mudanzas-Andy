@@ -12,10 +12,13 @@ Resolver problemas de navegación en la página del blog donde los enlaces del m
 ## Análisis del Problema
 
 ### Causa Raíz
+
 Los enlaces de navegación en `Header.astro` utilizaban anclas relativas (`#inicio`, `#servicios`, etc.) que solo funcionan en la página principal. Cuando el usuario navega a `/blog`, estos enlaces no pueden encontrar las secciones correspondientes.
 
 ### Solución Técnica
+
 Cambiar todos los enlaces de navegación de anclas relativas a rutas absolutas que incluyan la página principal:
+
 - `#inicio` → `/#inicio`
 - `#servicios` → `/#servicios`
 - `#equipo` → `/#equipo`
@@ -24,11 +27,13 @@ Cambiar todos los enlaces de navegación de anclas relativas a rutas absolutas q
 ## Implementación
 
 ### Archivos Modificados
+
 - `src/components/Header.astro` - Corrección en navegación desktop y móvil
 
 ### Cambios Realizados
 
 #### 1. Navegación Desktop
+
 ```astro
 <!-- ANTES -->
 <a href="#inicio">Inicio</a>
@@ -42,6 +47,7 @@ Cambiar todos los enlaces de navegación de anclas relativas a rutas absolutas q
 ```
 
 #### 2. Navegación Móvil
+
 ```astro
 <!-- ANTES -->
 <a href="#inicio" class="mobile-menu-link">🏠 Inicio</a>
@@ -53,6 +59,7 @@ Cambiar todos los enlaces de navegación de anclas relativas a rutas absolutas q
 ```
 
 #### 3. Enlaces Corregidos
+
 - ✅ `/#inicio` - Sección hero de la página principal
 - ✅ `/#servicios` - Sección de servicios de mudanza
 - ✅ `/#equipo` - Sección del equipo profesional
@@ -85,12 +92,14 @@ Cambiar todos los enlaces de navegación de anclas relativas a rutas absolutas q
 ## Beneficios de la Corrección
 
 ### Para el Usuario
+
 - **Navegación consistente**: Enlaces funcionan desde cualquier página del sitio
 - **Acceso completo**: Puede acceder a todas las secciones desde el blog
 - **Experiencia fluida**: No se pierden en páginas sin navegación funcional
 - **Menú familiar**: Comportamiento esperado del menú en todo el sitio
 
 ### Técnicas
+
 - **URLs absolutas**: Enlaces robustos que funcionan desde cualquier ubicación
 - **Mantenimiento fácil**: Cambio centralizado en un solo componente
 - **Escalabilidad**: Futuras páginas heredarán navegación funcional
@@ -127,11 +136,13 @@ Cambiar todos los enlaces de navegación de anclas relativas a rutas absolutas q
 ## 🎯 Impacto de la Corrección
 
 ### Antes:
+
 - ❌ Enlaces no funcionaban desde páginas secundarias
 - ❌ Usuarios atrapados en la página del blog
 - ❌ Experiencia de navegación frustante
 
 ### Después:
+
 - ✅ Navegación funcional desde cualquier página
 - ✅ Acceso completo a todas las secciones del sitio
 - ✅ Experiencia de usuario fluida y profesional

@@ -198,6 +198,7 @@ iframe.addEventListener("error", function () {
    - **Verificación**: Tanto desktop como móvil funcionan correctamente
 
 2. **✅ Footer Ahora Visible**
+
    - **Problema**: "cuando se al blog se conserva el header pero no el footer"
    - **Solución**: Añadido `import Footer from "../components/Footer.astro"` y `<Footer />` al final de la página
    - **Verificación**: Footer completo visible en todas las resoluciones
@@ -255,6 +256,7 @@ iframe.addEventListener("error", function () {
 #### **✅ Problema Resuelto: "el footer debe ser visible pero abajo"**
 
 **Cambios Aplicados:**
+
 - **iframe Desktop**: altura fija `800px` (antes: `calc(100vh - 300px)`)
 - **iframe Tablet**: altura fija `600px` (responsive)
 - **iframe Mobile**: altura fija `500px` (optimizado para pantallas pequeñas)
@@ -262,6 +264,7 @@ iframe.addEventListener("error", function () {
 - **Footer**: ahora aparece naturalmente al final después del iframe, accesible mediante scroll
 
 **Resultado:**
+
 - ✅ Header siempre visible (fijo)
 - ✅ iframe del blog con altura apropiada para cada dispositivo
 - ✅ Footer visible al hacer scroll hacia abajo
@@ -269,12 +272,14 @@ iframe.addEventListener("error", function () {
 - ✅ Responsive design mantenido en todos los dispositivos
 
 **Commits:**
+
 1. `fix: resolve blog page header/footer display issues` - Estructura inicial
 2. `fix: adjust iframe height to make footer visible at bottom` - Posicionamiento del footer
 3. `improve: enhance spacing between header and blog title section` - Mejora del espaciado general
 4. `fix: improve mobile spacing between header and blog title` - Corrección específica para móvil
 
 **Screenshots de Verificación:**
+
 - `blog-iframe-footer-visible-at-bottom.png` - Desktop con footer al final
 - `blog-iframe-mobile-footer-visible-at-bottom.png` - Mobile con footer accesible
 - `blog-improved-spacing.png` - Mobile con espaciado mejorado (primera iteración)
@@ -287,6 +292,7 @@ iframe.addEventListener("error", function () {
 **Problema Reportado:** "la sección donde aparece 'Consejos, guías y artículos sobre mudanzas profesionales para hacer tu traslado más fácil', la veo muy pegada al header de arriba"
 
 **Solución Implementada:**
+
 - **Main Container**: espaciado superior aumentado de `pt-20` a `pt-24 lg:pt-28`
 - **Title Section**: espaciado vertical mejorado de `py-8` a `py-12 lg:py-16`
 - **Responsive Design**: diferentes espaciados para mobile/desktop para mejor jerarquía visual
@@ -296,11 +302,13 @@ iframe.addEventListener("error", function () {
 **Problema Adicional:** "en la versión móvil la sección del título blog de mudanzas andy está muy pegado al menú o header de arriba"
 
 **Solución Final:**
+
 - **Mobile Container**: espaciado superior móvil aumentado de `pt-24` a `pt-32`
 - **Desktop mantenido**: `lg:pt-28` preserva el espaciado óptimo en pantallas grandes
 - **Resultado**: Separación visual clara entre header fijo y contenido en móviles
 
 **Resultado Final:**
+
 - ✅ Mejor separación visual entre header fijo y contenido del blog
 - ✅ Más respiro visual para la descripción del blog
 - ✅ Jerarquía visual mejorada y más profesional
