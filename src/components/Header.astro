@@ -238,10 +238,10 @@
   </nav>
 </header>
 
-<!-- Script para el menú móvil -->
+<!-- Script para el menú móvil y animación del camión -->
 <script>
-  // Truck animation: makes the truck drive in from the left on first load
-  (function animateTruck() {
+  // Truck animation: makes the truck drive in from the left on page load
+  function initTruckAnimation() {
     const truckDesktop = document.getElementById(
       "truck-logo"
     ) as HTMLImageElement | null;
@@ -251,68 +251,88 @@
 
     const animateTruckElement = (truck: HTMLImageElement | null) => {
       if (!truck) return;
-      // Only trigger once per page load
+
+      // Reset animation classes first
+      truck.classList.remove("truck-drive");
+      truck.classList.add("truck-enter");
+      truck.dataset.animated = "false";
+
+      // Force a reflow to ensure the reset is applied
+      truck.offsetHeight;
+
       try {
         requestAnimationFrame(() => {
-          // small delay so the header layout settles
+          // Small delay so the header layout settles
           setTimeout(() => {
             truck.dataset.animated = "true";
+            truck.classList.remove("truck-enter");
             truck.classList.add("truck-drive");
           }, 120);
         });
       } catch (e) {
-        // ignore
+        // Fallback: just remove truck-enter to prevent stuck animation
+        truck.classList.remove("truck-enter");
+        truck.classList.add("truck-drive");
       }
     };
 
     // Animate both desktop and mobile truck logos
     animateTruckElement(truckDesktop);
     animateTruckElement(truckMobile);
-  })();
+  }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  // Mobile menu initialization
+  function initMobileMenu() {
     const menuButton = document.getElementById("mobile-menu-button");
     const mobileMenu = document.getElementById("mobile-menu");
     const menuLinks = document.querySelectorAll(".mobile-menu-link");
 
-    // Toggle del menú móvil
-    if (menuButton && mobileMenu) {
-      menuButton.addEventListener("click", function () {
-        mobileMenu.classList.toggle("hidden");
+    // Remove existing event listeners to prevent duplicates
+    if (menuButton) {
+      menuButton.replaceWith(menuButton.cloneNode(true));
+      const newMenuButton = document.getElementById("mobile-menu-button");
 
-        // Cambiar icono del botón
-        const svg = menuButton.querySelector("svg");
-        const currentPath = svg?.querySelector("path");
+      if (newMenuButton && mobileMenu) {
+        newMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
 
-        if (mobileMenu.classList.contains("hidden")) {
-          // Mostrar icono de hamburguesa
-          if (currentPath) {
-            currentPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+          // Cambiar icono del botón
+          const svg = newMenuButton.querySelector("svg");
+          const currentPath = svg?.querySelector("path");
+
+          if (mobileMenu.classList.contains("hidden")) {
+            // Mostrar icono de hamburguesa
+            if (currentPath) {
+              currentPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+            }
+          } else {
+            // Mostrar icono de X
+            if (currentPath) {
+              currentPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+            }
           }
-        } else {
-          // Mostrar icono de X
-          if (currentPath) {
-            currentPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+        });
+      }
+
+      // Cerrar menú al hacer click en un enlace
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          if (mobileMenu) {
+            mobileMenu.classList.add("hidden");
+            // Restaurar icono de hamburguesa
+            const svg = newMenuButton?.querySelector("svg");
+            const currentPath = svg?.querySelector("path");
+            if (currentPath) {
+              currentPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+            }
           }
-        }
+        });
       });
     }
+  }
 
-    // Cerrar menú al hacer click en un enlace
-    menuLinks.forEach((link) => {
-      link.addEventListener("click", function () {
-        if (mobileMenu) {
-          mobileMenu.classList.add("hidden");
-          // Restaurar icono de hamburguesa
-          const svg = menuButton?.querySelector("svg");
-          const currentPath = svg?.querySelector("path");
-          if (currentPath) {
-            currentPath.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
-          }
-        }
-      });
-    });
-
+  // Smooth scroll initialization
+  function initSmoothScroll() {
     // Smooth scroll SOLO para enlaces de secciones internas (mismo dominio)
     const allNavLinks = document.querySelectorAll('a[href^="#"]');
     allNavLinks.forEach((link) => {
@@ -342,7 +362,10 @@
         // Los enlaces a otras páginas (/blog-astro) se manejan normalmente
       });
     });
+  }
 
+  // Scroll highlighting initialization
+  function initScrollHighlighting() {
     // Destacar enlace activo en scroll
     function highlightActiveSection() {
       const sections = document.querySelectorAll("section[id]");
@@ -378,10 +401,36 @@
       });
     }
 
-    // Ejecutar al hacer scroll
+    // Remove existing scroll listener to prevent duplicates
+    window.removeEventListener("scroll", highlightActiveSection);
+    // Add scroll listener
     window.addEventListener("scroll", highlightActiveSection);
-    // Ejecutar al cargar la página
+    // Execute on page load
     highlightActiveSection();
+  }
+
+  // Initialize all functionality
+  function initAllHeaderFunctionality() {
+    initTruckAnimation();
+    initMobileMenu();
+    initSmoothScroll();
+    initScrollHighlighting();
+  }
+
+  // Run on initial page load
+  initAllHeaderFunctionality();
+
+  // Re-run after view transitions (for navigation between pages)
+  document.addEventListener("astro:page-load", function () {
+    // Small delay to ensure DOM is ready after transition
+    setTimeout(() => {
+      initAllHeaderFunctionality();
+    }, 50);
+  });
+
+  // Fallback for DOMContentLoaded (for browsers without view transitions)
+  document.addEventListener("DOMContentLoaded", function () {
+    initAllHeaderFunctionality();
   });
 </script>
 

@@ -276,3 +276,18 @@
 .contact-tooltip.hidden {
   opacity: 0;
 }
+
+/* ============================================
+   TRUCK ANIMATION CLASSES
+   ============================================ */
+.truck-enter {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.8s ease-out;
+}
+
+.truck-drive {
+  transform: translateX(0);
+  opacity: 1;
+}
