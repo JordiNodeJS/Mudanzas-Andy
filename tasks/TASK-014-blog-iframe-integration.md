@@ -271,13 +271,16 @@ iframe.addEventListener("error", function () {
 **Commits:**
 1. `fix: resolve blog page header/footer display issues` - Estructura inicial
 2. `fix: adjust iframe height to make footer visible at bottom` - Posicionamiento del footer
-3. `improve: enhance spacing between header and blog title section` - Mejora final del espaciado
+3. `improve: enhance spacing between header and blog title section` - Mejora del espaciado general
+4. `fix: improve mobile spacing between header and blog title` - Corrección específica para móvil
 
 **Screenshots de Verificación:**
 - `blog-iframe-footer-visible-at-bottom.png` - Desktop con footer al final
 - `blog-iframe-mobile-footer-visible-at-bottom.png` - Mobile con footer accesible
-- `blog-improved-spacing.png` - Mobile con espaciado mejorado
+- `blog-improved-spacing.png` - Mobile con espaciado mejorado (primera iteración)
 - `blog-improved-spacing-desktop.png` - Desktop con espaciado mejorado
+- `blog-mobile-spacing-fixed.png` - Mobile con espaciado móvil corregido
+- `blog-desktop-spacing-maintained.png` - Desktop manteniendo espaciado óptimo
 
 #### **✅ Mejora Final: Espaciado Optimizado (28 Agosto 2025)**
 
@@ -288,12 +291,22 @@ iframe.addEventListener("error", function () {
 - **Title Section**: espaciado vertical mejorado de `py-8` a `py-12 lg:py-16`
 - **Responsive Design**: diferentes espaciados para mobile/desktop para mejor jerarquía visual
 
+**Nueva Corrección - Espaciado Móvil Específico:**
+
+**Problema Adicional:** "en la versión móvil la sección del título blog de mudanzas andy está muy pegado al menú o header de arriba"
+
+**Solución Final:**
+- **Mobile Container**: espaciado superior móvil aumentado de `pt-24` a `pt-32`
+- **Desktop mantenido**: `lg:pt-28` preserva el espaciado óptimo en pantallas grandes
+- **Resultado**: Separación visual clara entre header fijo y contenido en móviles
+
 **Resultado Final:**
 - ✅ Mejor separación visual entre header fijo y contenido del blog
 - ✅ Más respiro visual para la descripción del blog
 - ✅ Jerarquía visual mejorada y más profesional
-- ✅ Espaciado responsive que se adapta a diferentes tamaños de pantalla
+- ✅ Espaciado responsive que se adapta específicamente a móviles y desktop
+- ✅ Problema de "pegado al header" completamente resuelto en móvil
 
 **Estado Final: COMPLETADO** ✅
 
-Toda la funcionalidad del blog está implementada con todos los problemas reportados resueltos y mejoras visuales aplicadas.
+Toda la funcionalidad del blog está implementada con todos los problemas reportados resueltos y mejoras visuales aplicadas, incluyendo la corrección específica del espaciado móvil.
