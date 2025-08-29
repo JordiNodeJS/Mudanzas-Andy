@@ -113,9 +113,15 @@
         tip.classList.remove("hidden");
         tip.classList.add("show");
 
-        const anyTip = tip as any;
-        clearTimeout(anyTip._removeTimeout);
-        anyTip._removeTimeout = setTimeout(() => {
+        // Define el tipo extendido para el elemento con la propiedad custom
+        type TipElementWithTimeout = HTMLElement & { _removeTimeout?: number };
+        const tipWithTimeout = tip as TipElementWithTimeout;
+        
+        if (tipWithTimeout._removeTimeout) {
+          clearTimeout(tipWithTimeout._removeTimeout);
+        }
+        
+        tipWithTimeout._removeTimeout = setTimeout(() => {
           tip.classList.remove("show");
           tip.classList.add("hidden");
         }, 4000) as unknown as number;

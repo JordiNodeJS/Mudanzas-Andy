@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import analyticsConfig from "../config/analytics.json";
 import CookieBanner from "../components/CookieBanner.astro";
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -11,12 +11,6 @@ interface Props {
   canonical?: string;
   keywords?: string;
   robots?: string;
-  article?: {
-    publishedTime?: string;
-    modifiedTime?: string;
-    author?: string;
-    section?: string;
-  };
 }
 
 const {
@@ -26,7 +20,6 @@ const {
   canonical = Astro.url.href,
   keywords = "mudanzas Barcelona, mudanzas profesionales, empresa mudanzas Barcelona, mudanzas baratas, presupuesto mudanza gratis, mudanzas particulares, mudanzas oficinas",
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-  article,
 } = Astro.props satisfies Props;
 ---
 
@@ -605,6 +598,7 @@ const {
         <>
           <script
             async
+            is:inline
             src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.google.analytics.measurement_id}`}
           />
           <script
@@ -625,8 +619,8 @@ const {
       )
     }
 
-    <!-- View Transitions para navegación suave -->
-    <ViewTransitions />
+    <!-- Client Router para navegación suave -->
+    <ClientRouter />
 
     <!-- Estilos personalizados para view transitions -->
     <style>
