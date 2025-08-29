@@ -28,7 +28,3 @@ test-results/
 *.spec.ts
 
 # jetbrains setting folder
-.idea/
-.github/
-GEMINI.md
-.cursorrules
