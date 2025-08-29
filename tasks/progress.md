@@ -26,7 +26,7 @@
 | TASK-018 | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-019 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-021 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
-| TASK-022 | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
+| TASK-022 | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-023 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 
 ### **Tareas Históricas (Trabajo Previo Documentado)**
