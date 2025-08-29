@@ -122,6 +122,7 @@
 - ✅ Cache headers (100%)
 - ✅ Responsive images (100%)
 - ✅ Modern formats (AVIF/WebP) (100%)
+- ✅ **UNUSED IMAGES CLEANUP**: 21 imágenes no utilizadas renombradas con prefijo "no-" **IMPLEMENTADO**
 - 🚨 **REGRESIÓN**: Score 94 → 73 **DETECTADA Y RESUELTA**
 - ✅ **RECUPERACIÓN**: Preload conflicts corregidos **EXITOSO**
 - ✅ **SOLUCIÓN**: Logos optimizados (235KB ahorro total) **IMPLEMENTADO**
