@@ -73,11 +73,12 @@
 <script>
   import { EmailService } from "@/lib/utils/emailService.js";
 
-  // Mostrar popup después de 45 segundos
+  // Variables globales del popup
   let popupTimer: NodeJS.Timeout;
   let popupShown = false;
 
-  function showPopup() {
+  // Función para mostrar el popup
+  function showPopup(): void {
     if (popupShown) return;
 
     const popup = document.getElementById("smartPopup");
@@ -96,7 +97,8 @@
     }
   }
 
-  function hidePopup() {
+  // Función para ocultar el popup
+  function hidePopup(): void {
     const popup = document.getElementById("smartPopup");
     const content = document.getElementById("popupContent");
 
@@ -111,18 +113,47 @@
     }
   }
 
-  // Iniciar timer cuando se carga la página
-  document.addEventListener("DOMContentLoaded", () => {
+  // Función para inicializar el timer del popup
+  function initPopupTimer(): void {
+    // Limpiar timer existente si ya hay uno
+    if (popupTimer) {
+      clearTimeout(popupTimer);
+    }
+
     // Solo mostrar popup si no es mobile (pantallas > 768px)
     if (window.innerWidth > 768) {
       popupTimer = setTimeout(showPopup, 45000); // 45 segundos
     }
-  });
+  }
 
-  // Manejar formulario de callback
-  document
-    .getElementById("callbackForm")
-    ?.addEventListener("submit", async function (e) {
+  // Función para manejar los eventos de cierre del popup
+  function initPopupCloseEvents(): void {
+    // Cerrar popup con el botón "Quizás luego"
+    const closeButton = document.getElementById("closePopup");
+    if (closeButton) {
+      closeButton.addEventListener("click", hidePopup);
+    }
+
+    // Cerrar popup al hacer clic fuera del contenido
+    const popup = document.getElementById("smartPopup");
+    if (popup) {
+      popup.addEventListener("click", function (e) {
+        if (e.target === this) {
+          // Si el usuario está escribiendo en un input, ignorar clicks fuera
+          const active = document.activeElement;
+          if (active && this.contains(active)) return;
+          hidePopup();
+        }
+      });
+    }
+  }
+
+  // Función para manejar el formulario del popup
+  function initPopupForm(): void {
+    const form = document.getElementById("callbackForm");
+    if (!form) return;
+
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const name = (document.getElementById("popupName") as HTMLInputElement)
@@ -160,18 +191,12 @@
         message: `¡SOLICITUD URGENTE! Soy ${name}. Por favor llámenme URGENTE al ${phoneDigits || phone} para presupuesto de mudanza.`,
       });
 
-      // Mensaje personalizado para WhatsApp (backup)
-      // Enviar al número del negocio y mencionar el teléfono particular del cliente en el cuerpo del mensaje
+      // Configuración de WhatsApp
       const customerPhone = (phoneDigits || phone).replace(/^0+/, "");
-      const businessNumber = "640506084"; // número del negocio sin prefijo 34
+      const businessNumber = "640506084";
       const message = `¡Hola! Soy ${name}. Mi teléfono es ${customerPhone}. Por favor llámenme URGENTE para presupuesto de mudanza. ¡Tengo prisa!`;
-      const whatsappUrl = `https://wa.me/34${businessNumber}?text=${encodeURIComponent(
-        message
-      )}`;
-      // Native app scheme (used as a first attempt on mobile devices)
-      const whatsappAppUrl = `whatsapp://send?phone=34${businessNumber}&text=${encodeURIComponent(
-        message
-      )}`;
+      const whatsappUrl = `https://wa.me/34${businessNumber}?text=${encodeURIComponent(message)}`;
+      const whatsappAppUrl = `whatsapp://send?phone=34${businessNumber}&text=${encodeURIComponent(message)}`;
 
       // Mostrar mensaje de éxito
       const popupContent = document.getElementById("popupContent");
@@ -225,82 +250,103 @@
             </button>
           </div>
         `;
-          // Intentar abrir la app nativa de WhatsApp primero; si no responde, abrir la versión web
+          // Intentar abrir la app nativa de WhatsApp primero
           try {
-            // Navegar directamente al scheme nativo. En muchos móviles esto abrirá la app
             window.location.href = whatsappAppUrl;
-            // Si la app no responde, abrir la URL web como fallback tras un pequeño retraso
             setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
           } catch (err) {
-            // Fallback simple
             window.open(whatsappUrl, "_blank");
           }
         }
 
-        // Event listener para cerrar popup de éxito
-        document
-          .getElementById("closeSuccessPopup")
-          ?.addEventListener("click", hidePopup);
-
-        // Añadir un handler al enlace de WhatsApp dentro del popup para que intente
-        // abrir la app nativa primero cuando el usuario pulse el botón.
-        const waAnchor = popupContent.querySelector(
-          'a[href^="https://wa.me"], a[href^="https://api.whatsapp.com"]'
-        );
-        if (waAnchor) {
-          waAnchor.addEventListener("click", (ev) => {
-            ev.preventDefault();
-            try {
-              window.location.href = whatsappAppUrl;
-              setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
-            } catch (e) {
-              window.open(whatsappUrl, "_blank");
-            }
-          });
-        }
-        // Handler: copiar mensaje al portapapeles y abrir WhatsApp (app nativa o web)
-        const copyBtn = popupContent.querySelector("#copyAndOpenWhatsApp");
-        if (copyBtn) {
-          copyBtn.addEventListener("click", async (ev) => {
-            ev.preventDefault();
-            try {
-              await navigator.clipboard.writeText(message);
-              // feedback visual breve
-              (copyBtn as HTMLElement).innerText = "Copiado — Abriendo...";
-            } catch (e) {
-              // ignore clipboard errors
-            }
-            try {
-              window.location.href = whatsappAppUrl;
-              setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
-            } catch (e) {
-              window.open(whatsappUrl, "_blank");
-            }
-          });
-        }
+        // Event listeners para el contenido de éxito
+        initSuccessPopupEvents(whatsappUrl, whatsappAppUrl, message);
       }
     });
+  }
 
-  // Cerrar popup
-  document.getElementById("closePopup")?.addEventListener("click", hidePopup);
+  // Función para manejar eventos del popup de éxito
+  function initSuccessPopupEvents(
+    whatsappUrl: string,
+    whatsappAppUrl: string,
+    message: string
+  ): void {
+    // Cerrar popup de éxito
+    const closeSuccessButton = document.getElementById("closeSuccessPopup");
+    if (closeSuccessButton) {
+      closeSuccessButton.addEventListener("click", hidePopup);
+    }
 
-  // Cerrar popup al hacer clic fuera
-  document
-    .getElementById("smartPopup")
-    ?.addEventListener("click", function (e) {
-      if (e.target === this) {
-        // If user is currently focused on an input inside the popup,
-        // ignore overlay clicks (prevents accidental close while typing).
-        const active = document.activeElement;
-        if (active && this.contains(active)) return;
-        hidePopup();
+    // WhatsApp links dentro del popup
+    const popupContent = document.getElementById("popupContent");
+    if (popupContent) {
+      const waAnchor = popupContent.querySelector(
+        'a[href^="https://wa.me"], a[href^="https://api.whatsapp.com"]'
+      );
+      if (waAnchor) {
+        waAnchor.addEventListener("click", (ev) => {
+          ev.preventDefault();
+          try {
+            window.location.href = whatsappAppUrl;
+            setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
+          } catch (e) {
+            window.open(whatsappUrl, "_blank");
+          }
+        });
       }
-    });
 
-  // Limpiar timer si el usuario sale de la página
-  window.addEventListener("beforeunload", () => {
+      // Botón copiar y abrir WhatsApp
+      const copyBtn = popupContent.querySelector("#copyAndOpenWhatsApp");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async (ev) => {
+          ev.preventDefault();
+          try {
+            await navigator.clipboard.writeText(message);
+            (copyBtn as HTMLElement).innerText = "Copiado — Abriendo...";
+          } catch (e) {
+            // ignore clipboard errors
+          }
+          try {
+            window.location.href = whatsappAppUrl;
+            setTimeout(() => window.open(whatsappUrl, "_blank"), 800);
+          } catch (e) {
+            window.open(whatsappUrl, "_blank");
+          }
+        });
+      }
+    }
+  }
+
+  // Función principal para inicializar el popup
+  function initSmartPopup(): void {
+    // Reset del estado del popup
+    popupShown = false;
+
+    // Inicializar eventos de cierre
+    initPopupCloseEvents();
+
+    // Inicializar formulario
+    initPopupForm();
+
+    // Inicializar timer
+    initPopupTimer();
+
+    console.log("SmartPopup inicializado correctamente");
+  }
+
+  // Limpiar timer al salir de la página
+  function cleanupPopup(): void {
     if (popupTimer) {
       clearTimeout(popupTimer);
     }
-  });
+  }
+
+  // Inicialización y eventos
+  document.addEventListener("DOMContentLoaded", initSmartPopup);
+
+  // Soporte para View Transitions
+  document.addEventListener("astro:after-swap", initSmartPopup);
+
+  // Limpiar al salir
+  window.addEventListener("beforeunload", cleanupPopup);
 </script>
