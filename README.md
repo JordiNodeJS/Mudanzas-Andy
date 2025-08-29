@@ -32,14 +32,22 @@ To learn more about the folder structure of an Astro project, refer to [our guid
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `pnpm install`         | Installs dependencies                            |
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 🧭 Regla de inicialización JS (View Transitions)
+
+Para comportamientos cliente (listeners, popups, animaciones) que deben re-inicializarse tras navegaciones internas, sigue las reglas documentadas en:
+
+- `.ai/JS-INIT-RULES.md` — Patrón idempotente / cleanup + uso de `astro:after-swap`.
+
+(Ver este archivo antes de crear o modificar lógica cliente JS.)
 
 ## 👀 Want to learn more?
 
