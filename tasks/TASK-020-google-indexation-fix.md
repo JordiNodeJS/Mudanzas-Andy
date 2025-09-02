@@ -62,17 +62,18 @@
 6. ✅ `src/pages/politica-cookies.astro` - Canonical corregido
 7. ✅ `src/pages/blog-astro.astro` - Canonical añadido
 
-## Resultado Conseguido
+## Resultado Conseguido ✅ MEJORADO
 
 - ✅ **ELIMINADO** problema de contenido duplicado
 - ✅ **URLs canónicas** claras para Google en todas las páginas
-- ✅ **Sitemap automático** generado con 4 páginas válidas:
-  - `https://mudanzasandy.es/`
-  - `https://mudanzasandy.es/blog-astro/`
-  - `https://mudanzasandy.es/politica-cookies/`
-  - `https://mudanzasandy.es/politica-privacidad/`
+- ✅ **Sitemap optimizado** generado como sitemap.xml (formato estándar):
+  - `https://mudanzasandy.es/` (priority: 1.0, daily)
+  - `https://mudanzasandy.es/blog-astro/` (priority: 0.8, weekly)
+  - `https://mudanzasandy.es/politica-cookies/` (priority: 0.3, monthly)
+  - `https://mudanzasandy.es/politica-privacidad/` (priority: 0.3, monthly)
 - ✅ **Redirects configurados** para prevenir futuros problemas
 - ✅ **Build exitoso** sin errores
+- ✅ **Google Search Console compatible** - URL: https://mudanzasandy.es/sitemap.xml
 
 ## Resultado Esperado
 
@@ -85,17 +86,20 @@
 
 **Impacto SEO crítico** - Problemas de indexación resueltos
 
-## Pasos Siguientes para el Usuario
+## Pasos Siguientes para el Usuario ✅
 
 1. **Subir cambios al servidor de producción**
 2. **Ir a Google Search Console**
-3. **Enviar nuevo sitemap**: `https://mudanzasandy.es/sitemap-index.xml`
-4. **Solicitar indexación** de la página principal
-5. **Monitorear** durante 48-72 horas los cambios en Search Console
+3. **Eliminar sitemap anterior**: Quitar sitemap-index.xml si existe
+4. **Enviar nuevo sitemap**: `https://mudanzasandy.es/sitemap.xml` ← **ESTA URL**
+5. **Solicitar indexación** de la página principal
+6. **Monitorear** durante 48-72 horas los cambios en Search Console
 
 ## Notas Técnicas
 
-- El sitemap se regenera automáticamente en cada build
+- **Sitemap.xml manual** optimizado para Google Search Console
+- **4 páginas incluidas** con prioridades adecuadas
 - Los redirects evitarán problemas futuros de URLs duplicadas
 - Todas las páginas tienen canonical URLs apropiadas
-- La estructura SEO está optimizada para indexación
+- **robots.txt** apunta al sitemap correcto
+- **Formato estándar** que Google reconoce inmediatamente
