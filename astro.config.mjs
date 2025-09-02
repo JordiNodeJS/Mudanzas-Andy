@@ -11,7 +11,14 @@ export default defineConfig({
       changefreq: "weekly",
       priority: 0.7,
       lastmod: new Date(),
-      entryLimit: 10000,
+      entryLimit: 45000, // Permite hasta 45k entradas en un solo archivo
+      serialize: (item) => {
+        // Configurar prioridades específicas por página
+        if (item.url === "https://mudanzasandy.es/") {
+          item.priority = 1.0;
+        }
+        return item;
+      },
     }),
   ],
   vite: {

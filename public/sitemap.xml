@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://mudanzasandy.es/sitemap-0.xml</loc>
-    <lastmod>2025-09-02T22:04:34Z</lastmod>
-  </sitemap>
-</sitemapindex>
+<!-- Este archivo será sobrescrito por el sitemap automático de Astro -->
+<!-- La URL del sitemap para Google Search Console es: https://mudanzasandy.es/sitemap.xml -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://mudanzasandy.es/</loc>
+    <lastmod>2025-09-03T00:00:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
