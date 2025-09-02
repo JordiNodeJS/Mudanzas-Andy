@@ -1,10 +1,18 @@
-# Astro Starter Kit: Basics
+# Mudanzas Andy - Web Corporativa
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+## 📋 Descripción del Proyecto
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Diseñé la identidad visual y la experiencia de usuario de mudanzasandy.es, una web estática para empresa de mudanzas. Trabajo completo: diseño responsive, sistema de colores centralizado, maquetación accesible y optimización de imágenes y rendimiento.
+
+**Stack tecnológico:** Astro 5 + TypeScript + Tailwind CSS 4 + React Islands + Content Collections
+
+**Características destacadas:**
+
+- Sistema de colores centralizado con variables CSS
+- Optimización de performance y Core Web Vitals
+- Diseño responsive y accesible
+- Blog integrado con Content Layer API
+- Hidratación selectiva de componentes React
 
 ## 🚀 Project Structure
 
