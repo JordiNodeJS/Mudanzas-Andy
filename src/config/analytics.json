@@ -9,7 +9,7 @@
             "description": "Código de verificación de Google Search Console"
         },
         "tag_manager": {
-            "container_id": "",
+            "container_id": "GTM-5NH8WKQC",
             "description": "ID del contenedor de Google Tag Manager (opcional)"
         }
     },
