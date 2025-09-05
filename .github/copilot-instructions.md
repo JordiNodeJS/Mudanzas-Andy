@@ -50,7 +50,7 @@
 - Revisa y actualiza las dependencias regularmente.
 - Sincroniza el progreso en el archivo `src/tasks/progress.md`.
 
-# Reglas de Cursor para Pinwheel Astro
+# Reglas de Cursor para Astro
 
 Estas reglas guían a la AI de Cursor en este repositorio `pinwheel-astro` para producir código consistente, seguro y alineado con las mejores prácticas de Astro 5, Tailwind CSS 4 y el stack moderno de desarrollo web. Mantén estas prácticas en cada cambio.
 
