@@ -252,7 +252,9 @@
   // Backup: Re-inicializar en cambios de página estándar (navegador)
   window.addEventListener("pageshow", function (event) {
     // Solo si no es una navegación View Transition
-    if (!document.querySelector('meta[name="astro-view-transitions-enabled"]')) {
+    if (
+      !document.querySelector('meta[name="astro-view-transitions-enabled"]')
+    ) {
       setTimeout(initializeToggleButton, 100);
     }
   });
