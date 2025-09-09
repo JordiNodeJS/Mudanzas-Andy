@@ -12,8 +12,8 @@
     footerBtn.classList.remove("hidden");
     footerBtn.classList.add("flex");
 
-    // Also hide contact form when footer is visible to allow access to legal links
-    if (contactForm) {
+    // Only hide contact form automatically if user hasn't manually controlled it
+    if (contactForm && !window.contactFormManualControl) {
       contactForm.classList.add("translate-y-full");
       // Update toggle button text if it exists
       const toggleBtn = document.getElementById("toggleForm");
@@ -28,8 +28,8 @@
     footerBtn.classList.remove("flex");
     floating.classList.remove("hidden");
 
-    // Show contact form when scrolling up (away from footer)
-    if (contactForm) {
+    // Only show contact form automatically if user hasn't manually controlled it
+    if (contactForm && !window.contactFormManualControl) {
       contactForm.classList.remove("translate-y-full");
       // Update toggle button text if it exists
       const toggleBtn = document.getElementById("toggleForm");
@@ -42,6 +42,9 @@
   // Additional logic to handle contact form visibility near footer
   function handleContactFormNearFooter() {
     if (!contactForm || !footer) return;
+
+    // Don't interfere if user has manually controlled the form
+    if (window.contactFormManualControl) return;
 
     const footerRect = footer.getBoundingClientRect();
     const contactFormRect = contactForm.getBoundingClientRect();
@@ -60,6 +63,9 @@
   // Initialize contact form state based on current scroll position
   function initializeContactFormState() {
     if (!contactForm || !footer) return;
+
+    // Don't interfere if user has manually controlled the form
+    if (window.contactFormManualControl) return;
 
     const footerRect = footer.getBoundingClientRect();
     const windowHeight = window.innerHeight;

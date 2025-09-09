@@ -210,12 +210,18 @@
     const form = document.getElementById("contactForm");
     const button = this;
 
+    // Marcar que el usuario ha interactuado manualmente usando el objeto global
+    const globalWindow = window as any;
+    globalWindow.contactFormManualControl = true;
+
     if (form?.classList.contains("translate-y-full")) {
       form.classList.remove("translate-y-full");
       button.textContent = "↓";
+      globalWindow.contactFormManualState = "visible";
     } else {
       form?.classList.add("translate-y-full");
       button.textContent = "↑";
+      globalWindow.contactFormManualState = "hidden";
     }
   });
 </script>
