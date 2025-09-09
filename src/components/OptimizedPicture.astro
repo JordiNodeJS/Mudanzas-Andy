@@ -46,14 +46,15 @@ const optimizedBasePath = isInCamionFolder
 const isHeroImage = src.includes("hero-fondo");
 const responsiveEnabled = responsive && isHeroImage;
 
-const avifSrc = `${optimizedBasePath}.avif`;
+// Temporalmente desactivar AVIF hasta restaurar archivos necesarios
+// const avifSrc = `${optimizedBasePath}.avif`;
 const webpSrc = `${optimizedBasePath}.webp`;
 const jpegSrc = isInCamionFolder ? `${optimizedBasePath}.${extension}` : src;
 
 // Versiones mobile para hero
-const avifMobileSrc = responsiveEnabled
-  ? `${optimizedBasePath}-mobile.avif`
-  : avifSrc;
+// const avifMobileSrc = responsiveEnabled
+//   ? `${optimizedBasePath}-mobile.avif`
+//   : avifSrc;
 const webpMobileSrc = responsiveEnabled
   ? `${optimizedBasePath}-mobile.webp`
   : webpSrc;
@@ -63,7 +64,8 @@ const jpegMobileSrc = responsiveEnabled
 ---
 
 <picture>
-  <!-- AVIF: formato más moderno y eficiente -->
+  <!-- AVIF temporalmente desactivado hasta restaurar archivos necesarios -->
+  <!--
   {
     isInCamionFolder && (
       <source
@@ -77,6 +79,7 @@ const jpegMobileSrc = responsiveEnabled
       />
     )
   }
+  -->
 
   <!-- WebP: buen soporte y compresión -->
   {

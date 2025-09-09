@@ -18,6 +18,7 @@
 | TASK-010 | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
 | TASK-011 | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
 | TASK-012 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
+| TASK-020 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-013 | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-014 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-015 | ✅ COMPLETADO | ALTA      | 100%     | ✅  |

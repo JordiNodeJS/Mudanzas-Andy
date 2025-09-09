@@ -1,7 +1,6 @@
 ---
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 import PhoneButton from "../ui/PhoneButton.astro";
-import OptimizedPicture from "../OptimizedPicture.astro";
 ---
 
 <section
@@ -10,18 +9,27 @@ import OptimizedPicture from "../OptimizedPicture.astro";
 >
   <!-- Imagen de fondo optimizada para LCP -->
   <div class="absolute inset-0 z-0">
-    <OptimizedPicture
-      src="/camion/hero-fondo.jpg"
-      alt="Fondo: Camión de mudanzas profesional"
-      class="w-full h-full object-cover opacity-15"
-      loading="eager"
-      decoding="async"
-      priority={true}
-      responsive={true}
-      width={1920}
-      height={1080}
-      sizes="100vw"
-    />
+    <picture>
+      <!-- WebP: buen soporte y compresión -->
+      <source
+        srcset="/camion/optimized/hero-fondo-mobile.webp 768w, /camion/optimized/hero-fondo.webp 1920w"
+        type="image/webp"
+        sizes="(max-width: 768px) 768px, 1920px"
+      />
+      <!-- JPEG: fallback universal -->
+      <img
+        src="/camion/optimized/hero-fondo.jpg"
+        srcset="/camion/optimized/hero-fondo-mobile.jpg 768w, /camion/optimized/hero-fondo.jpg 1920w"
+        sizes="(max-width: 768px) 768px, 1920px"
+        alt="Fondo: Camión de mudanzas profesional"
+        width="1920"
+        height="1080"
+        loading="eager"
+        decoding="async"
+        class="w-full h-full object-cover opacity-15"
+        style="fetchpriority: high;"
+      />
+    </picture>
     <div
       class="absolute inset-0 bg-gradient-to-br from-[#f9b4ab]/70 via-[#fdebd3]/80 to-[#bbd4ce]/70"
     >

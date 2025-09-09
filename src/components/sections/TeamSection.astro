@@ -1,5 +1,4 @@
 ---
-import OptimizedPicture from "../OptimizedPicture.astro";
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 import PhoneButton from "../ui/PhoneButton.astro";
 ---
@@ -13,14 +12,14 @@ import PhoneButton from "../ui/PhoneButton.astro";
 >
   <!-- Imagen de fondo optimizada -->
   <div class="absolute inset-0 z-0">
-    <OptimizedPicture
-      src="/camion/hero-fondo.jpg"
+    <img
+      src="/camion/optimized/hero-fondo.jpg"
       alt="Fondo: Nuestro equipo profesional (variación)"
       class="w-full h-full object-cover opacity-10"
       style="transform: rotate(3deg) scale(1.08); transform-origin:center;"
       loading="lazy"
-      width={1920}
-      height={1080}
+      width="1920"
+      height="1080"
     />
     <div
       class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/60 to-white/80"
@@ -52,13 +51,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
         class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
         <div class="team-card__media overflow-hidden relative">
-          <OptimizedPicture
+          <img
             src="/camion/resized/moving-truck-cutout-02.jpg"
             alt="Camión de mudanzas profesional - Vista frontal"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--primary"
             loading="lazy"
-            width={400}
-            height={300}
+            width="400"
+            height="300"
           />
         </div>
 
@@ -81,13 +80,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
         class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
         <div class="team-card__media overflow-hidden relative">
-          <OptimizedPicture
+          <img
             src="/camion/resized/moving-truck-cutout-01.jpg"
             alt="Equipo profesional cargando mudanza con cuidado"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--secondary"
             loading="lazy"
-            width={400}
-            height={300}
+            width="400"
+            height="300"
           />
         </div>
 
@@ -111,13 +110,13 @@ import PhoneButton from "../ui/PhoneButton.astro";
         class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
         <div class="team-card__media overflow-hidden relative">
-          <OptimizedPicture
+          <img
             src="/camion/resized/moving-truck-01.jpg"
             alt="Interior del camión - Espacio seguro y organizado"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--accent"
             loading="lazy"
-            width={400}
-            height={300}
+            width="400"
+            height="300"
           />
         </div>
 
