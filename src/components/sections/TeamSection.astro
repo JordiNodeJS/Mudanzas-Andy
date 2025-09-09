@@ -51,14 +51,24 @@ import PhoneButton from "../ui/PhoneButton.astro";
         class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
         <div class="team-card__media overflow-hidden relative">
-          <img
-            src="/camion/resized/moving-truck-cutout-02.jpg"
-            alt="Camión de mudanzas profesional - Vista frontal"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--primary"
-            loading="lazy"
-            width="400"
-            height="300"
-          />
+          <picture>
+            <source
+              srcset="/camion/optimized/moving-truck-cutout-02.avif"
+              type="image/avif"
+            />
+            <source
+              srcset="/camion/optimized/moving-truck-cutout-02.webp"
+              type="image/webp"
+            />
+            <img
+              src="/camion/optimized/moving-truck-cutout-02.jpg"
+              alt="Camión de mudanzas profesional - Vista frontal"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--primary"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </picture>
         </div>
 
         <div class="team-card__body p-4 lg:p-6">
@@ -80,14 +90,24 @@ import PhoneButton from "../ui/PhoneButton.astro";
         class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
         <div class="team-card__media overflow-hidden relative">
-          <img
-            src="/camion/resized/moving-truck-cutout-01.jpg"
-            alt="Equipo profesional cargando mudanza con cuidado"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--secondary"
-            loading="lazy"
-            width="400"
-            height="300"
-          />
+          <picture>
+            <source
+              srcset="/camion/optimized/moving-truck-cutout-01.avif"
+              type="image/avif"
+            />
+            <source
+              srcset="/camion/optimized/moving-truck-cutout-01.webp"
+              type="image/webp"
+            />
+            <img
+              src="/camion/optimized/moving-truck-cutout-01.jpg"
+              alt="Equipo profesional cargando mudanza con cuidado"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--secondary"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </picture>
         </div>
 
         <div class="team-card__body p-4 lg:p-6">
@@ -110,14 +130,24 @@ import PhoneButton from "../ui/PhoneButton.astro";
         class="team-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
       >
         <div class="team-card__media overflow-hidden relative">
-          <img
-            src="/camion/resized/moving-truck-01.jpg"
-            alt="Interior del camión - Espacio seguro y organizado"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--accent"
-            loading="lazy"
-            width="400"
-            height="300"
-          />
+          <picture>
+            <source
+              srcset="/camion/optimized/moving-truck-01.avif"
+              type="image/avif"
+            />
+            <source
+              srcset="/camion/optimized/moving-truck-01.webp"
+              type="image/webp"
+            />
+            <img
+              src="/camion/optimized/moving-truck-01.jpg"
+              alt="Interior del camión - Espacio seguro y organizado"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-truck-position team-image-filter team-image-filter--accent"
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </picture>
         </div>
 
         <div class="team-card__body p-4 lg:p-6">

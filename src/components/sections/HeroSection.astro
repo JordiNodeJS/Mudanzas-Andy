@@ -10,6 +10,12 @@ import PhoneButton from "../ui/PhoneButton.astro";
   <!-- Imagen de fondo optimizada para LCP -->
   <div class="absolute inset-0 z-0">
     <picture>
+      <!-- AVIF: máxima compresión -->
+      <source
+        srcset="/camion/optimized/hero-fondo-mobile.avif 768w, /camion/optimized/hero-fondo.avif 1920w"
+        type="image/avif"
+        sizes="(max-width: 768px) 768px, 1920px"
+      />
       <!-- WebP: buen soporte y compresión -->
       <source
         srcset="/camion/optimized/hero-fondo-mobile.webp 768w, /camion/optimized/hero-fondo.webp 1920w"
