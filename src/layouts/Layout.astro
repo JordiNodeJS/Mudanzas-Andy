@@ -1,8 +1,30 @@
 ---
 import "../styles/global.css";
-import analyticsConfig from "../config/analytics.json";
 import CookieBanner from "../components/CookieBanner.astro";
 import { ClientRouter } from "astro:transitions";
+
+// Configuración temporal directo en el Layout para asegurar que funcione en producción
+const analyticsConfig = {
+  google: {
+    analytics: {
+      measurement_id: "G-VK65C53TET",
+    },
+    search_console: {
+      verification_code: "",
+    },
+    tag_manager: {
+      container_id: "GTM-5NH8WKQC",
+    },
+  },
+  bing: {
+    webmaster_tools: {
+      verification_code: "E00F433172C8065A658092822181BD08",
+    },
+  },
+  meta: {
+    domain_verification: "",
+  },
+};
 
 interface Props {
   title?: string;
@@ -26,6 +48,21 @@ const {
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Google Tag Manager (head) -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5NH8WKQC");
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicons generated from the truck logo -->
@@ -576,22 +613,6 @@ const {
       )
     }
 
-    <!-- Google Tag Manager (head) -->
-    {
-      analyticsConfig.google.tag_manager.container_id && (
-        <script
-          is:inline
-          set:html={`
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${analyticsConfig.google.tag_manager.container_id}');
-      `}
-        />
-      )
-    }
-
     <!-- Google Analytics 4 -->
     {
       analyticsConfig.google.analytics.measurement_id && (
@@ -711,18 +732,13 @@ const {
   </head>
   <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
     <!-- Google Tag Manager (noscript) -->
-    {
-      analyticsConfig.google.tag_manager.container_id && (
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${analyticsConfig.google.tag_manager.container_id}`}
-            height="0"
-            width="0"
-            style="display:none;visibility:hidden"
-          />
-        </noscript>
-      )
-    }
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5NH8WKQC"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
     <slot />
 
