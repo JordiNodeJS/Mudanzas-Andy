@@ -236,16 +236,24 @@
     });
   }
 
-  // Inicializar cuando el DOM esté listo
+  // Inicializar cuando el DOM esté listo (primera carga)
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initializeToggleButton);
   } else {
     initializeToggleButton();
   }
 
-  // Re-inicializar en cambios de página (para SPAs o navegación del navegador)
-  window.addEventListener("pageshow", function (event) {
-    // Pequeño delay para asegurar que el DOM esté actualizado
+  // Re-inicializar en navegaciones View Transitions de Astro
+  document.addEventListener("astro:page-load", function () {
+    // Pequeño delay para asegurar que el DOM esté actualizado después de la transición
     setTimeout(initializeToggleButton, 100);
+  });
+
+  // Backup: Re-inicializar en cambios de página estándar (navegador)
+  window.addEventListener("pageshow", function (event) {
+    // Solo si no es una navegación View Transition
+    if (!document.querySelector('meta[name="astro-view-transitions-enabled"]')) {
+      setTimeout(initializeToggleButton, 100);
+    }
   });
 </script>
