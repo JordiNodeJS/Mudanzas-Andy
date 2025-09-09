@@ -206,22 +206,46 @@
     });
 
   // Funcionalidad para minimizar/maximizar formulario
-  document.getElementById("toggleForm")?.addEventListener("click", function () {
+  function initializeToggleButton() {
+    const toggleButton = document.getElementById("toggleForm");
     const form = document.getElementById("contactForm");
-    const button = this;
 
-    // Marcar que el usuario ha interactuado manualmente usando el objeto global
-    const globalWindow = window as any;
-    globalWindow.contactFormManualControl = true;
+    if (!toggleButton || !form) return;
 
-    if (form?.classList.contains("translate-y-full")) {
-      form.classList.remove("translate-y-full");
-      button.textContent = "↓";
-      globalWindow.contactFormManualState = "visible";
-    } else {
-      form?.classList.add("translate-y-full");
-      button.textContent = "↑";
-      globalWindow.contactFormManualState = "hidden";
-    }
+    // Remover event listeners existentes para evitar duplicados
+    const newToggleButton = toggleButton.cloneNode(true);
+    toggleButton.parentNode?.replaceChild(newToggleButton, toggleButton);
+
+    // Añadir nuevo event listener
+    newToggleButton.addEventListener("click", function () {
+      const button = newToggleButton as HTMLButtonElement;
+      const globalWindow = window as any;
+
+      // Marcar que el usuario ha interactuado manualmente
+      globalWindow.contactFormManualControl = true;
+
+      if (form.classList.contains("translate-y-full")) {
+        form.classList.remove("translate-y-full");
+        button.textContent = "↓";
+        globalWindow.contactFormManualState = "visible";
+      } else {
+        form.classList.add("translate-y-full");
+        button.textContent = "↑";
+        globalWindow.contactFormManualState = "hidden";
+      }
+    });
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeToggleButton);
+  } else {
+    initializeToggleButton();
+  }
+
+  // Re-inicializar en cambios de página (para SPAs o navegación del navegador)
+  window.addEventListener("pageshow", function (event) {
+    // Pequeño delay para asegurar que el DOM esté actualizado
+    setTimeout(initializeToggleButton, 100);
   });
 </script>
