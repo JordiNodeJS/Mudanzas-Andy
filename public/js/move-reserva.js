@@ -10,6 +10,7 @@
   function showFooter() {
     floating.classList.add("hidden");
     footerBtn.classList.remove("hidden");
+    footerBtn.classList.add("flex");
 
     // Also hide contact form when footer is visible to allow access to legal links
     if (contactForm) {
@@ -24,6 +25,7 @@
 
   function showFloating() {
     footerBtn.classList.add("hidden");
+    footerBtn.classList.remove("flex");
     floating.classList.remove("hidden");
 
     // Show contact form when scrolling up (away from footer)

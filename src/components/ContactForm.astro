@@ -4,8 +4,9 @@
 
 <!-- Formulario sticky en footer -->
 <div
-  class="fixed bottom-0 left-0 right-0 bg-secondary text-white shadow-lg z-10 transform transition-all duration-500 ease-in-out"
+  class="fixed bottom-0 left-0 right-0 bg-secondary text-white z-10 transform transition-all duration-500 ease-in-out"
   id="contactForm"
+  style="box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.1), 4px 0 6px -4px rgba(0, 0, 0, 0.1), -4px 0 6px -4px rgba(0, 0, 0, 0.1);"
 >
   <div class="container mx-auto px-4 py-3 lg:py-4">
     <div
@@ -70,8 +71,9 @@
 
   <!-- Botón para minimizar/maximizar -->
   <button
-    class="absolute top-0 right-4 transform -translate-y-full bg-[#679186] text-white px-3 py-1 rounded-t-lg text-sm hover:bg-[#5a7a6f] transition-colors duration-300"
+    class="absolute top-0 left-4 transform -translate-y-full bg-secondary text-white px-3 py-1 rounded-t-lg text-sm hover:bg-[#5a7a6f] transition-colors duration-300 border-0"
     id="toggleForm"
+    style="border: none; box-shadow: none; margin-bottom: -1px;"
   >
     ↓
   </button>
@@ -116,11 +118,11 @@
         // Define el tipo extendido para el elemento con la propiedad custom
         type TipElementWithTimeout = HTMLElement & { _removeTimeout?: number };
         const tipWithTimeout = tip as TipElementWithTimeout;
-        
+
         if (tipWithTimeout._removeTimeout) {
           clearTimeout(tipWithTimeout._removeTimeout);
         }
-        
+
         tipWithTimeout._removeTimeout = setTimeout(() => {
           tip.classList.remove("show");
           tip.classList.add("hidden");
