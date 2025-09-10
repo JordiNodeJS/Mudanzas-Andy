@@ -1,9 +1,9 @@
 {
     "publicKey": "4KyOE-93jACxKcJPf",
-    "serviceId": "service_e5kzq5g",
+    "serviceId": "service_9ikkxuf",
     "templates": {
-        "contactForm": "template_45kgqi6",
-        "smartPopup": "template_smart_popup"
+        "contactForm": "template_y5wopm8",
+        "smartPopup": "template_y5wopm8"
     },
     "options": {
         "blockHeadless": true,
