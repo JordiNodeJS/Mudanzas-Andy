@@ -1,29 +1,10 @@
-# Redirects for SEO and canonical URLs
+# Redirects for SEO and canonical URLs - OPTIMIZED GSC
 
-# Redirect old duplicate page to main page
+# Essential redirects only - reduce GSC redirect warnings
 
-/index-new/ / 301
-/index-new / 301
-
-# Force HTTPS redirects (if hosting supports it)
-
-http://mudanzasandy.es/_ https://mudanzasandy.es/:splat 301!
-http://www.mudanzasandy.es/_ https://mudanzasandy.es/:splat 301!
-
-# Force non-www to www (or vice versa - choose one canonical version)
-
+# Force HTTPS and canonical domain (hosting level)
+http://mudanzasandy.es/* https://mudanzasandy.es/:splat 301!
 https://www.mudanzasandy.es/* https://mudanzasandy.es/:splat 301!
 
-# Remove trailing slashes for consistency
-
-/\*/ /:splat 301
-
-# Handle common 404s and redirect to relevant pages
-
-/blog/\* /blog-astro/ 301
-/contacto / 301
-/servicios / 301
-
-# 404 fallback
-
-/\* / 404
+# Critical legacy redirects only
+/blog/* /blog-astro/ 301
