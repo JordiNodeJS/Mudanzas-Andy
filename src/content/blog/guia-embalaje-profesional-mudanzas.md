@@ -29,8 +29,6 @@ El embalaje es el corazón de una mudanza exitosa. Un 85% de los daños durante 
 
 ### Cajas y Contenedores
 
-![Diferentes tipos de cajas de mudanza apiladas](https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 "Variedad de cajas de cartón ondulado de diferentes tamaños organizadas para mudanza profesional")
-
 **Cajas de cartón ondulado (doble pared):**
 
 - Pequeñas (30x20x20cm): Libros, documentos, objetos pesados
