@@ -1,0 +1,367 @@
+---
+// ImageGallery.astro - Componente responsivo de galería de imágenes
+// Sigue las convenciones del proyecto Mudanzas ANDY
+
+export interface Props {
+  title?: string;
+  description?: string;
+  images?: Array<{
+    baseName: string;
+    alt: string;
+    caption: string;
+  }>;
+  columns?: {
+    mobile: number;
+    tablet: number;
+    desktop: number;
+  };
+  lightbox?: boolean;
+}
+
+const {
+  title = "Galería de Imágenes",
+  description = "Nuestra galería de imágenes profesionales",
+  images = [],
+  columns = {
+    mobile: 1,
+    tablet: 2,
+    desktop: 3,
+  },
+  lightbox = true,
+} = Astro.props satisfies Props;
+
+// Si no se pasan imágenes, usar imágenes por defecto
+let galleryImages = images;
+if (images.length === 0) {
+  // Usar las imágenes generadas por el script de optimización
+  galleryImages = [
+    { baseName: "/gallery/optimized/gallery-01", alt: "Imagen de galería 1 - Mudanzas ANDY", caption: "Imagen 1" },
+    { baseName: "/gallery/optimized/gallery-02", alt: "Imagen de galería 2 - Mudanzas ANDY", caption: "Imagen 2" },
+    { baseName: "/gallery/optimized/gallery-03", alt: "Imagen de galería 3 - Mudanzas ANDY", caption: "Imagen 3" },
+    { baseName: "/gallery/optimized/gallery-04", alt: "Imagen de galería 4 - Mudanzas ANDY", caption: "Imagen 4" },
+    { baseName: "/gallery/optimized/gallery-05", alt: "Imagen de galería 5 - Mudanzas ANDY", caption: "Imagen 5" },
+    { baseName: "/gallery/optimized/gallery-06", alt: "Imagen de galería 6 - Mudanzas ANDY", caption: "Imagen 6" },
+    { baseName: "/gallery/optimized/gallery-07", alt: "Imagen de galería 7 - Mudanzas ANDY", caption: "Imagen 7" },
+    { baseName: "/gallery/optimized/gallery-08", alt: "Imagen de galería 8 - Mudanzas ANDY", caption: "Imagen 8" },
+    { baseName: "/gallery/optimized/gallery-09", alt: "Imagen de galería 9 - Mudanzas ANDY", caption: "Imagen 9" },
+  ];
+}
+
+// Configurar clases responsive basadas en los columns
+const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} lg:grid-cols-${columns.desktop}`;
+---
+
+<section 
+  class="py-16 lg:py-20 relative overflow-hidden bg-gradient-to-b from-white to-gray-50"
+  id="gallery"
+>
+  <div class="container mx-auto px-4">
+    <!-- Header de la galería -->
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-[rgb(var(--color-primary))]">
+        📸 {title}
+      </h2>
+      <p class="text-lg lg:text-xl max-w-3xl mx-auto text-[rgb(var(--color-secondary))]">
+        {description}
+      </p>
+    </div>
+
+    <!-- Grid de imágenes -->
+    <div 
+      class={`gallery-grid grid ${gridClasses} gap-6 lg:gap-8 max-w-7xl mx-auto`}
+    >
+      {galleryImages.map((image, index) => (
+        <div 
+          class="gallery-item group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
+          data-gallery-index={index}
+          data-lightbox={lightbox}
+        >
+          <div class="gallery-item__media aspect-square overflow-hidden relative">
+            <picture>
+              <source
+                srcset={`${image.baseName}-320w.avif 320w, ${image.baseName}-640w.avif 640w, ${image.baseName}-768w.avif 768w, ${image.baseName}-1024w.avif 1024w, ${image.baseName}-1280w.avif 1280w`}
+                type="image/avif"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              <source
+                srcset={`${image.baseName}-320w.webp 320w, ${image.baseName}-640w.webp 640w, ${image.baseName}-768w.webp 768w, ${image.baseName}-1024w.webp 1024w, ${image.baseName}-1280w.webp 1280w`}
+                type="image/webp"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              <img
+                src={`${image.baseName}-640w.jpg`}
+                srcset={`${image.baseName}-320w.jpg 320w, ${image.baseName}-640w.jpg 640w, ${image.baseName}-768w.jpg 768w, ${image.baseName}-1024w.jpg 1024w, ${image.baseName}-1280w.jpg 1280w`}
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                class="gallery-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                width="400"
+                height="400"
+              />
+            </picture>
+            
+            <!-- Overlay para hover -->
+            <div class="gallery-overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute bottom-0 left-0 right-0 p-4">
+                <p class="text-white text-sm font-medium">
+                  {image.caption || `Imagen ${index + 1}`}
+                </p>
+              </div>
+            </div>
+
+            <!-- Icono de zoom para lightbox -->
+            {lightbox && (
+              <div class="gallery-zoom-icon absolute top-4 right-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg class="w-5 h-5 text-[rgb(var(--color-primary))]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Lightbox modal (solo si está habilitado) -->
+    {lightbox && (
+      <div 
+        id="lightbox" 
+        class="lightbox fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4"
+        data-lightbox-modal
+      >
+        <!-- Botón cerrar -->
+        <button 
+          class="lightbox-close absolute top-6 right-6 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors z-10"
+          aria-label="Cerrar galería"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Navegación anterior -->
+        <button 
+          class="lightbox-prev absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"
+          aria-label="Imagen anterior"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Navegación siguiente -->
+        <button 
+          class="lightbox-next absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white transition-colors"
+          aria-label="Siguiente imagen"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <!-- Contenedor de la imagen -->
+        <div class="lightbox-image-container max-w-5xl max-h-[80vh] relative">
+          <img 
+            id="lightbox-image"
+            src=""
+            alt=""
+            class="max-w-full max-h-full object-contain rounded-lg"
+          />
+          
+          <!-- Caption en lightbox -->
+          <div class="lightbox-caption absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+            <p id="lightbox-caption-text" class="text-white text-lg font-medium text-center"></p>
+          </div>
+        </div>
+
+        <!-- Indicador de posición -->
+        <div class="lightbox-counter absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/20 rounded-full px-4 py-2">
+          <span id="lightbox-counter" class="text-white text-sm font-medium"></span>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<!-- JavaScript para funcionalidad de lightbox -->
+{lightbox && (
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      let currentIndex = 0;
+      let images = [];
+
+      // Recopilar todas las imágenes de la galería
+      const galleryItems = document.querySelectorAll('.gallery-item[data-lightbox="true"]');
+      
+      images = Array.from(galleryItems).map(function(item, index) {
+        const img = item.querySelector('.gallery-image');
+        const captionElement = item.querySelector('.gallery-overlay p');
+        const caption = captionElement ? captionElement.textContent : 'Imagen ' + (index + 1);
+        
+        if (img) {
+          return {
+            src: img.src.replace('-640w.jpg', '-1280w.jpg'), // Usar imagen de alta resolución
+            alt: img.alt || 'Imagen de galería',
+            caption: caption || 'Imagen ' + (index + 1)
+          };
+        }
+        return null;
+      }).filter(Boolean);
+
+      // Funciones del lightbox
+      function open(index) {
+        currentIndex = index;
+        updateImage();
+        show();
+      }
+
+      function close() {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) {
+          lightbox.classList.add('hidden');
+          lightbox.classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+      }
+
+      function show() {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) {
+          lightbox.classList.remove('hidden');
+          lightbox.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function prev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+      }
+
+      function next() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+      }
+
+      function updateImage() {
+        const image = images[currentIndex];
+        const lightboxImg = document.getElementById('lightbox-image');
+        const captionText = document.getElementById('lightbox-caption-text');
+        const counter = document.getElementById('lightbox-counter');
+
+        if (lightboxImg && image) {
+          lightboxImg.src = image.src;
+          lightboxImg.alt = image.alt;
+        }
+
+        if (captionText && image) {
+          captionText.textContent = image.caption;
+        }
+
+        if (counter) {
+          counter.textContent = (currentIndex + 1) + ' de ' + images.length;
+        }
+      }
+
+      // Event listeners
+      
+      // Abrir lightbox al hacer clic en imagen
+      galleryItems.forEach(function(item, index) {
+        item.addEventListener('click', function() {
+          open(index);
+        });
+      });
+
+      // Cerrar lightbox
+      const closeBtn = document.querySelector('.lightbox-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', close);
+      }
+      
+      // Navegación
+      const prevBtn = document.querySelector('.lightbox-prev');
+      const nextBtn = document.querySelector('.lightbox-next');
+      
+      if (prevBtn) {
+        prevBtn.addEventListener('click', prev);
+      }
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', next);
+      }
+
+      // Cerrar con escape o clic en fondo
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      });
+
+      const lightboxModal = document.getElementById('lightbox');
+      if (lightboxModal) {
+        lightboxModal.addEventListener('click', function(e) {
+          if (e.target === e.currentTarget) close();
+        });
+      }
+    });
+  </script>
+)}
+
+<style>
+  /* Estilos específicos para la galería */
+  .gallery-grid {
+    /* Grid responsivo personalizado si es necesario */
+  }
+
+  .gallery-item {
+    /* Transiciones suaves */
+    transition: all 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .lightbox {
+    backdrop-filter: blur(4px);
+  }
+
+  .lightbox-image-container img {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Animaciones de entrada para lightbox */
+  .lightbox.flex .lightbox-image-container {
+    animation: lightbox-enter 0.3s ease-out;
+  }
+
+  @keyframes lightbox-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .lightbox-prev,
+    .lightbox-next {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .lightbox-close {
+      top: 1rem;
+      right: 1rem;
+    }
+    
+    .lightbox-counter {
+      bottom: 1rem;
+    }
+  }
+</style>

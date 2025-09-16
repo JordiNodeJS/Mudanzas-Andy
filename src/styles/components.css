@@ -287,3 +287,217 @@
   transform: translateX(0);
   opacity: 1;
 }
+
+/* ============================================
+   IMAGE GALLERY COMPONENTS
+   ============================================ */
+
+/* Gallery Grid Variables */
+:root {
+  --gallery-transition-fast: 250ms;
+  --gallery-transition-normal: 400ms;
+  --gallery-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Gallery item dimensions */
+  --gallery-item-aspect: 1; /* Square aspect ratio */
+  --gallery-gap: 1.5rem;
+  --gallery-gap-lg: 2rem;
+
+  /* Lightbox variables */
+  --lightbox-backdrop: rgba(0, 0, 0, 0.9);
+  --lightbox-control-size: 3rem;
+  --lightbox-control-bg: rgba(255, 255, 255, 0.2);
+  --lightbox-control-bg-hover: rgba(255, 255, 255, 0.3);
+}
+
+/* Gallery container */
+.gallery-grid {
+  gap: var(--gallery-gap);
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    gap: var(--gallery-gap-lg);
+  }
+}
+
+/* Gallery item base styles */
+.gallery-item {
+  background-color: white;
+  border-radius: 0.75rem; /* rounded-xl */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--gallery-transition-normal) var(--gallery-easing);
+}
+
+.gallery-item:hover {
+  box-shadow: 0 25px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-0.25rem);
+}
+
+/* Gallery image container */
+.gallery-item__media {
+  aspect-ratio: var(--gallery-item-aspect);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Gallery image */
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--gallery-transition-normal) var(--gallery-easing);
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.05);
+}
+
+/* Gallery overlay */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6),
+    transparent,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity var(--gallery-transition-fast) ease;
+  display: flex;
+  align-items: flex-end;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Gallery zoom icon */
+.gallery-zoom-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--gallery-transition-fast) ease;
+  color: rgb(var(--color-primary));
+}
+
+.gallery-item:hover .gallery-zoom-icon {
+  opacity: 1;
+}
+
+/* Lightbox styles */
+.lightbox {
+  background-color: var(--lightbox-backdrop);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+}
+
+.lightbox-image-container img {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+/* Lightbox controls */
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  width: var(--lightbox-control-size);
+  height: var(--lightbox-control-size);
+  background-color: var(--lightbox-control-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background-color var(--gallery-transition-fast) ease;
+  border: none;
+  cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background-color: var(--lightbox-control-bg-hover);
+}
+
+/* Lightbox counter */
+.lightbox-counter {
+  background-color: var(--lightbox-control-bg);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Lightbox caption */
+.lightbox-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 1.5rem;
+}
+
+#lightbox-caption-text {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Animation for lightbox entrance */
+.lightbox.flex .lightbox-image-container {
+  animation: lightbox-enter 0.3s ease-out;
+}
+
+@keyframes lightbox-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  :root {
+    --gallery-gap: 1rem;
+    --lightbox-control-size: 2.5rem;
+  }
+
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .lightbox-counter {
+    bottom: 1rem;
+  }
+
+  .lightbox-caption {
+    padding: 1rem;
+  }
+
+  #lightbox-caption-text {
+    font-size: 1rem;
+  }
+}

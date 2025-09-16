@@ -9,6 +9,7 @@ import SmartPopup from "../components/SmartPopup.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
 import ServicesSection from "../components/sections/ServicesSection.astro";
 import TeamSection from "../components/sections/TeamSection.astro";
+import ImageGallery from "../components/sections/ImageGallery.astro";
 import PricingSection from "../components/sections/PricingSection.astro";
 import TestimonialsSection from "../components/sections/TestimonialsSection.astro";
 
@@ -38,6 +39,18 @@ const seoData = {
 
     <!-- Sección de Galería de Nuestro Equipo -->
     <TeamSection />
+
+    <!-- Galería de Imágenes -->
+    <ImageGallery
+      title="Galería de Proyectos"
+      description="Descubre algunos de nuestros trabajos más destacados y la calidad de nuestros servicios de mudanzas"
+      columns={{
+        mobile: 1,
+        tablet: 2,
+        desktop: 3,
+      }}
+      lightbox={true}
+    />
 
     <!-- Sección de Precios -->
     <PricingSection />
