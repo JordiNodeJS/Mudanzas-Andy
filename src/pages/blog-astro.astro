@@ -2,8 +2,25 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { Image } from "astro:assets";
-import blogHeroImage from "../assets/images/blog/blog-hero-optimized.webp";
+import { getCollection } from "astro:content";
+
+// Importar componentes del blog
+import LatestPost from "../layouts/components/blog/LatestPost.astro";
+import BlogPostList from "../layouts/components/blog/BlogPostList.astro";
+
+// Obtener todos los posts del blog
+const allPosts = await getCollection("blog");
+
+// Filtrar posts publicados (no draft) y ordenar por fecha
+const publishedPosts = allPosts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Obtener el último post publicado
+const latestPost = publishedPosts[0];
+
+// Obtener el resto de posts (excluyendo el último)
+const remainingPosts = publishedPosts.slice(1);
 
 const pageTitle =
   "Blog Mudanzas Barcelona - Consejos Económicos y Baratos | Mudanzas ANDY";
@@ -21,328 +38,48 @@ const pageDescription =
   <!-- Header fijo -->
   <Header />
 
-  <main
-    class="pt-20 md:pt-24 lg:pt-28 bg-gray-50"
-    data-astro-transition-scope="blog"
-  >
-    <!-- Título de la sección -->
-    <section class="bg-brand text-white pt-16 pb-8 lg:py-16">
-      <div class="container mx-auto px-4">
-        <div class="text-center">
-          <h1 class="text-3xl lg:text-4xl font-bold text-highlight mb-4">
-            📝 Blog de Mudanzas ANDY
-          </h1>
-          <p class="text-lg text-neutral max-w-2xl mx-auto">
-            Consejos, guías y artículos sobre mudanzas profesionales para hacer
-            tu traslado más fácil
-          </p>
-        </div>
-      </div>
-    </section>
+  <main class="pt-20 md:pt-24 lg:pt-28" data-astro-transition-scope="blog">
+    
+    <!-- Mostrar el último post como hero -->
+    {latestPost && (
+      <LatestPost post={latestPost} />
+    )}
 
-    <!-- Contenido principal del blog -->
-    <article class="bg-white">
-      <div class="container mx-auto px-4 py-12">
-        <div class="max-w-4xl mx-auto">
-          <!-- Título principal del artículo -->
-          <header class="text-center mb-12">
-            <h1 class="text-2xl lg:text-3xl font-bold text-brand mb-6">
-              <a
-                href="https://blog.mudanzasandy.es/consejos-guias-y-articulos-para-mudanzas-profesionales-en-barcelona-y-la-peninsula/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-secondary transition-colors duration-300"
-              >
-                Consejos, Guías y Artículos para Mudanzas Profesionales en
-                Barcelona y la Península
-              </a>
-            </h1>
-          </header>
+    <!-- Lista de posts restantes -->
+    {remainingPosts.length > 0 && (
+      <BlogPostList 
+        posts={remainingPosts}
+        title="Más Artículos del Blog"
+        showMore={false}
+      />
+    )}
 
-          <!-- Imagen hero -->
-          <figure class="mb-8 text-center">
-            <Image
-              src={blogHeroImage}
-              alt="Mudanzas económicas y baratas en Barcelona - Guía completa para traslados profesionales y económicos"
-              width={800}
-              height={450}
-              class="rounded-lg shadow-lg mx-auto"
-              loading="eager"
-            />
-          </figure>
-
-          <!-- Introducción -->
-          <div class="prose prose-lg mx-auto">
-            <p class="text-lg leading-relaxed mb-8 text-gray-700">
-              Mudarse a una nueva ciudad como <strong>Barcelona</strong> es el comienzo
-              de una emocionante etapa, pero la logística puede ser abrumadora y
-              costosa. Con una planificación adecuada y el apoyo de expertos en <strong
-                >mudanzas económicas</strong
-              >, tu traslado barato a Barcelona o cualquier punto de la
-              península ibérica puede ser una experiencia fluida y sin
-              contratiempos. Esta guía te ofrece consejos prácticos y
-              estrategias clave para conseguir <strong>mudanzas baratas</strong>
-              y garantizar una transición exitosa y económica.
-            </p>
-
-            <!-- Sección 1 -->
-            <section class="mb-10">
-              <h2 class="text-2xl font-bold text-brand mb-4">
-                La Clave del Éxito: Elegir una Empresa de Mudanzas Confiable
-              </h2>
-              <p class="mb-6">
-                La elección de tu socio de mudanzas es la decisión más
-                importante del proceso. Una empresa profesional no solo
-                transporta tus pertenencias, sino que te brinda tranquilidad.
-              </p>
-
-              <h3 class="text-xl font-semibold text-secondary mb-3">
-                ¿Qué Buscar en una Empresa de Confianza?
-              </h3>
-
-              <div class="mb-6">
-                <h4 class="text-lg font-semibold text-brand mb-2">
-                  Experiencia y Reputación
-                </h4>
-                <p>
-                  Busca empresas con una trayectoria consolidada. Las reseñas de
-                  clientes anteriores en plataformas independientes son un
-                  indicador fiable de la calidad del servicio.
-                </p>
-              </div>
-
-              <div class="mb-6">
-                <h4 class="text-lg font-semibold text-brand mb-2">
-                  Servicios Especializados
-                </h4>
-                <p>
-                  ¿Necesitas embalaje profesional, desmontaje de muebles o
-                  almacenamiento temporal? Elige una empresa que ofrezca
-                  soluciones integrales.
-                </p>
-              </div>
-            </section>
-
-            <!-- Sección 2 -->
-            <section class="mb-10">
-              <h2 class="text-2xl font-bold text-brand mb-4">
-                Estrategias Inteligentes para Mudanzas Económicas y Baratas
-              </h2>
-              <p class="mb-6">
-                Conseguir <strong>mudanzas baratas en Barcelona</strong> es posible
-                sin sacrificar la seguridad de tus pertenencias. Descubre cómo reducir
-                costos y obtener <strong>mudanzas económicas</strong> de calidad.
-              </p>
-
-              <div class="mb-6">
-                <h3 class="text-xl font-semibold text-secondary mb-3">
-                  Planifica con Antelación
-                </h3>
-                <p>
-                  Reservar tu mudanza con meses de antelación, especialmente
-                  fuera de temporada alta, puede suponer un ahorro
-                  significativo.
-                </p>
-              </div>
-
-              <div class="mb-6">
-                <h3 class="text-xl font-semibold text-secondary mb-3">
-                  Haz Limpieza y Vende
-                </h3>
-                <p>
-                  Una mudanza es la oportunidad perfecta para deshacerte de lo
-                  que ya no necesitas. Plataformas como Wallapop o Vinted son
-                  ideales para vender objetos y aligerar la carga.
-                </p>
-              </div>
-
-              <div class="mb-6">
-                <h3 class="text-xl font-semibold text-secondary mb-3">
-                  Flexibilidad en las Fechas
-                </h3>
-                <p>
-                  Si tus fechas de traslado son flexibles, consulta con la
-                  empresa de mudanzas qué días o semanas son más económicos.
-                </p>
-              </div>
-            </section>
-
-            <!-- Sección 3 -->
-            <section class="mb-10">
-              <h2 class="text-2xl font-bold text-brand mb-4">
-                ¿Te Mudas con Mascotas? Guía Esencial para un Viaje Seguro
-              </h2>
-              <p class="mb-4">
-                Barcelona y España tienen requisitos claros para el traslado de
-                animales. Asegúrate de que tu perro o gato cuente con:
-              </p>
-
-              <ul class="list-disc pl-6 mb-6 space-y-2">
-                <li><strong>Microchip electrónico homologado.</strong></li>
-                <li>
-                  <strong
-                    >Pasaporte para Animales de Compañía y vacunación
-                    antirrábica al día.</strong
-                  >
-                </li>
-                <li>
-                  <strong
-                    >Un certificado sanitario emitido por un veterinario
-                    oficial.</strong
-                  >
-                </li>
-              </ul>
-
-              <p>
-                Cumpliendo estos trámites, el proceso es sencillo. Para
-                garantizar su bienestar, considera contratar servicios
-                especializados en transporte de mascotas que aseguren un viaje
-                cómodo y seguro.
-              </p>
-            </section>
-
-            <!-- Sección 4 -->
-            <section class="mb-10">
-              <h2 class="text-2xl font-bold text-brand mb-4">
-                Checklist Final para tu Mudanza Profesional
-              </h2>
-              <p class="mb-6">
-                Antes del gran día, repasa esta lista para no olvidar nada:
-              </p>
-
-              <div class="space-y-6">
-                <div
-                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
-                >
-                  <span class="checklist-icon text-xl">✅</span>
-                  <div>
-                    <h4 class="font-semibold mb-1">Documentación en Orden</h4>
-                    <p>
-                      Ten a mano tu pasaporte, NIE, contrato de mudanza e
-                      inventario de bienes.
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
-                >
-                  <span class="checklist-icon text-xl">✅</span>
-                  <div>
-                    <h4 class="font-semibold mb-1">Seguro Contratado</h4>
-                    <p>
-                      Verifica que la póliza de seguro de transporte esté activa
-                      y cubra el valor de tus pertenencias.
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
-                >
-                  <span class="checklist-icon text-xl">✅</span>
-                  <div>
-                    <h4 class="font-semibold mb-1">Servicios Básicos</h4>
-                    <p>
-                      Notifica a tus proveedores de luz, agua e internet tu
-                      cambio de domicilio y gestiona el alta en tu nuevo hogar.
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
-                >
-                  <span class="checklist-icon text-xl">✅</span>
-                  <div>
-                    <h4 class="font-semibold mb-1">Cuenta Bancaria Local</h4>
-                    <p>
-                      Si te mudas desde el extranjero, tener una cuenta bancaria
-                      en España facilitará tus gestiones diarias.
-                    </p>
-                  </div>
-                </div>
-
-                <div
-                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
-                >
-                  <span class="checklist-icon text-xl">✅</span>
-                  <div>
-                    <h4 class="font-semibold mb-1">Kit de Supervivencia</h4>
-                    <p>
-                      Prepara una caja con objetos esenciales para las primeras
-                      24 horas: artículos de aseo, cargadores, algo de ropa y
-                      documentos importantes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- Conclusión -->
-            <section class="mb-10">
-              <h2 class="text-2xl font-bold text-brand mb-4">
-                Tu Mudanza Económica en Barcelona sin Estrés
-              </h2>
-              <p class="mb-4">
-                Una <strong>mudanza económica Barcelona</strong> bien organizada
-                es una mudanza exitosa. Al delegar la logística en profesionales
-                especializados en <strong>mudanzas baratas</strong>, puedes
-                centrarte en disfrutar de tu nuevo hogar desde el primer día sin
-                gastar de más.
-              </p>
-              <p class="text-lg font-semibold text-secondary">
-                ¿Listo para empezar a planificar tu <strong
-                  >mudanza barata</strong
-                >? Contacta con nosotros para obtener un <strong
-                  >presupuesto económico personalizado</strong
-                > y sin compromiso. ¡Hacemos tu mudanza fácil, segura y económica!
-              </p>
-            </section>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- Sección de CTA con gradiente de marca y colores de la guía de estilos -->
-    <section
-      class="cta-section relative overflow-visible text-white py-16"
-      style="background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-secondary)) 100%);"
-    >
-      <div class="container mx-auto px-4 text-center relative z-[60]">
-        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-white">
-          ¿Necesitas ayuda con tu mudanza económica en Barcelona?
+    <!-- Sección de CTA -->
+    <section class="bg-gradient-to-br from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] text-white py-16">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+          ¿Necesitas una mudanza profesional en Barcelona?
         </h2>
-        <p
-          class="text-base md:text-lg mx-auto mb-8 text-white/95 max-w-2xl leading-relaxed"
-        >
-          Contacta con nuestros expertos para obtener un presupuesto económico y
-          personalizado para tu mudanza en Barcelona.
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+          Nuestro equipo de expertos está listo para hacer de tu mudanza una experiencia fácil y sin estrés.
         </p>
-        <div
-          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <a
-            href="/contact"
-            class="inline-flex items-center justify-center gap-3 bg-[rgb(var(--color-highlight))] text-[rgb(var(--color-primary))] px-8 h-14 min-w-[240px] rounded-xl hover:brightness-110 hover:scale-[1.02] transition-all duration-300 font-bold shadow-lg relative z-[61]"
-            aria-label="Solicitar presupuesto gratuito para mudanza económica"
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href="/contacto"
+            class="btn btn-accent inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold"
           >
-            <span class="text-xl">📞</span>
-            <span>Solicitar Presupuesto Gratis</span>
+            📞 Solicitar Presupuesto Gratis
           </a>
-          <a
-            href="https://blog.mudanzasandy.es/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white px-8 h-14 min-w-[240px] rounded-xl hover:bg-white/20 hover:border-white/60 hover:scale-[1.02] transition-all duration-300 font-bold shadow-lg relative z-[61]"
-            aria-label="Ver blog completo con más consejos para mudanzas baratas"
+          <a 
+            href="tel:+34930000000"
+            class="btn btn-outline-white inline-flex items-center gap-2 px-8 py-4 text-lg font-semibold"
           >
-            <span class="text-xl">📝</span>
-            <span>Más Consejos Económicos</span>
+            ☎️ Llamar Ahora
           </a>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- Footer -->
@@ -352,42 +89,49 @@ const pageDescription =
   <script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Consejos para Mudanzas Económicas en Barcelona - Guía Profesional",
-      "description": "Guía completa para conseguir mudanzas baratas y económicas en Barcelona. Consejos profesionales para ahorrar en tu traslado sin perder calidad.",
-      "author": {
-        "@type": "Organization",
-        "name": "Mudanzas ANDY",
-        "url": "https://mudanzasandy.es"
-      },
+      "@type": "Blog",
+      "name": "Blog de Mudanzas ANDY",
+      "description": "Blog especializado en consejos, guías y artículos sobre mudanzas profesionales en Barcelona y toda la península. Tips para mudanzas económicas y baratas.",
+      "url": "https://mudanzasandy.es/blog-astro/",
       "publisher": {
         "@type": "Organization",
         "name": "Mudanzas ANDY",
         "logo": {
           "@type": "ImageObject",
           "url": "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg"
-        }
+        },
+        "url": "https://mudanzasandy.es"
       },
-      "datePublished": "2025-09-16",
-      "dateModified": "2025-09-16",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://mudanzasandy.es/blog-astro/"
       },
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://mudanzasandy.es/assets/images/blog/blog-hero-optimized.webp",
-        "width": 800,
-        "height": 450
-      },
-      "keywords": "mudanzas barcelona, mudanzas económicas, mudanzas baratas, consejos mudanza, embalaje barato, traslados económicos, mudanza barata barcelona",
+      "blogPost": [
+        {publishedPosts.slice(0, 5).map((post) => `
+        {
+          "@type": "BlogPosting",
+          "headline": "${post.data.title}",
+          "description": "${post.data.description}",
+          "url": "https://mudanzasandy.es/blog/${post.id}",
+          "datePublished": "${post.data.pubDate.toISOString()}",
+          "author": {
+            "@type": "Person",
+            "name": "${post.data.author || 'Equipo Mudanzas ANDY'}"
+          },
+          "publisher": {
+            "@type": "Organization", 
+            "name": "Mudanzas ANDY"
+          }
+        }`).join(',')}
+      ],
+      "keywords": "mudanzas barcelona, mudanzas económicas, mudanzas baratas, consejos mudanza, embalaje barato, traslados económicos, blog mudanzas",
       "about": [
         {
           "@type": "Thing",
           "name": "Mudanzas Barcelona"
         },
         {
-          "@type": "Thing",
+          "@type": "Thing", 
           "name": "Mudanzas Económicas"
         },
         {

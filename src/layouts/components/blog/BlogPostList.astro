@@ -1,0 +1,139 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BlogPostCard from "./BlogPostCard.astro";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  title?: string;
+  showMore?: boolean;
+  maxPosts?: number;
+}
+
+const { 
+  posts, 
+  title = "Artículos del Blog", 
+  showMore = true, 
+  maxPosts = 6 
+} = Astro.props satisfies Props;
+
+// Limitar número de posts si se especifica
+const displayPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
+const hasMorePosts = posts.length > maxPosts;
+---
+
+<section class="blog-post-list py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    
+    <!-- Título de la sección -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        {title}
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Grid de posts -->
+    {displayPosts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {displayPosts.map((post) => (
+          <BlogPostCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <!-- Estado vacío -->
+      <div class="text-center py-16">
+        <div class="max-w-md mx-auto">
+          <div class="text-6xl mb-4">📝</div>
+          <h3 class="text-xl font-semibold text-gray-700 mb-2">
+            No hay artículos disponibles
+          </h3>
+          <p class="text-gray-500">
+            Pronto publicaremos nuevos artículos sobre mudanzas y consejos profesionales.
+          </p>
+        </div>
+      </div>
+    )}
+
+    <!-- Botón ver más posts -->
+    {showMore && hasMorePosts && (
+      <div class="text-center">
+        <a 
+          href="/blog" 
+          class="btn btn-outline-primary inline-flex items-center gap-2 px-6 py-3"
+        >
+          Ver todos los artículos
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    )}
+
+    <!-- Estadísticas del blog si hay posts -->
+    {displayPosts.length > 0 && (
+      <div class="mt-16 bg-white rounded-xl p-8 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          
+          <!-- Total de artículos -->
+          <div class="stat-item">
+            <div class="text-3xl font-bold text-[rgb(var(--color-primary))] mb-2">
+              {posts.length}
+            </div>
+            <div class="text-gray-600">
+              Artículos Publicados
+            </div>
+          </div>
+
+          <!-- Categorías disponibles -->
+          <div class="stat-item">
+            <div class="text-3xl font-bold text-[rgb(var(--color-secondary))] mb-2">
+              {[...new Set(posts.map(post => post.data.category))].length}
+            </div>
+            <div class="text-gray-600">
+              Categorías Disponibles
+            </div>
+          </div>
+
+          <!-- Posts destacados -->
+          <div class="stat-item">
+            <div class="text-3xl font-bold text-[rgb(var(--color-accent))] mb-2">
+              {posts.filter(post => post.data.featured).length}
+            </div>
+            <div class="text-gray-600">
+              Artículos Destacados
+            </div>
+          </div>
+
+        </div>
+      </div>
+    )}
+
+  </div>
+</section>
+
+<style>
+  /* Animaciones para las estadísticas */
+  .stat-item {
+    transition: transform 0.3s ease;
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Efecto para el separador */
+  .blog-post-list h2 + div {
+    animation: expand 0.6s ease-out;
+  }
+
+  @keyframes expand {
+    from {
+      width: 0;
+      opacity: 0;
+    }
+    to {
+      width: 96px;
+      opacity: 1;
+    }
+  }
+</style>

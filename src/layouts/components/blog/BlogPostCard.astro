@@ -1,0 +1,159 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props satisfies Props;
+
+// Función para formatear fecha
+const formatDate = (date: Date): string => {
+  return date.toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+// Función para generar excerpt del contenido
+const generateExcerpt = (description: string, maxLength: number = 150): string => {
+  if (description.length <= maxLength) return description;
+  return description.substring(0, maxLength).trim() + "...";
+};
+
+// URL del slug del post
+const postUrl = `/blog/${post.id}`;
+---
+
+<article 
+  class={`blog-post-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group ${
+    featured ? 'lg:col-span-2' : ''
+  }`}
+>
+  <!-- Imagen hero del post -->
+  {post.data.heroImage && (
+    <div class="relative overflow-hidden">
+      <Image
+        src={post.data.heroImage}
+        alt={post.data.heroImageAlt || post.data.title}
+        width={featured ? 800 : 400}
+        height={featured ? 400 : 250}
+        class="w-full h-48 md:h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+      />
+      
+      <!-- Badge de categoría -->
+      <div class="absolute top-4 left-4">
+        <span class="badge-gradient-primary px-3 py-1 text-xs font-semibold text-white rounded-full">
+          {post.data.category}
+        </span>
+      </div>
+      
+      <!-- Badge de featured si aplica -->
+      {post.data.featured && (
+        <div class="absolute top-4 right-4">
+          <span class="bg-[rgb(var(--color-accent))] text-gray-900 px-3 py-1 text-xs font-bold rounded-full">
+            ⭐ Destacado
+          </span>
+        </div>
+      )}
+    </div>
+  )}
+
+  <!-- Contenido del post -->
+  <div class="p-6">
+    <!-- Meta información -->
+    <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+      <div class="flex items-center gap-4">
+        <time datetime={post.data.pubDate.toISOString()}>
+          📅 {formatDate(post.data.pubDate)}
+        </time>
+        {post.data.readingTime && (
+          <span>⏰ {post.data.readingTime} min lectura</span>
+        )}
+      </div>
+      
+      {post.data.author && (
+        <span class="text-[rgb(var(--color-primary))] font-medium">
+          {post.data.author}
+        </span>
+      )}
+    </div>
+
+    <!-- Título del post -->
+    <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[rgb(var(--color-primary))] transition-colors">
+      <a href={postUrl} class="hover:underline">
+        {post.data.title}
+      </a>
+    </h3>
+
+    <!-- Descripción/excerpt -->
+    <p class="text-gray-600 mb-4 line-clamp-3">
+      {generateExcerpt(post.data.description)}
+    </p>
+
+    <!-- Tags -->
+    {post.data.tags && post.data.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4">
+        {post.data.tags.slice(0, 3).map((tag) => (
+          <span class="bg-gray-100 text-gray-700 px-2 py-1 text-xs rounded-md">
+            #{tag}
+          </span>
+        ))}
+        {post.data.tags.length > 3 && (
+          <span class="text-gray-400 text-xs">+{post.data.tags.length - 3} más</span>
+        )}
+      </div>
+    )}
+
+    <!-- Botón de leer más -->
+    <div class="flex justify-between items-center">
+      <a 
+        href={postUrl}
+        class="inline-flex items-center gap-2 text-[rgb(var(--color-primary))] hover:text-[rgb(var(--color-secondary))] font-semibold text-sm transition-colors"
+      >
+        Leer más
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      <!-- Indicador de fecha actualizada -->
+      {post.data.updatedDate && (
+        <span class="text-xs text-gray-400" title={`Actualizado: ${formatDate(post.data.updatedDate)}`}>
+          ✏️ Actualizado
+        </span>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  /* Limitador de líneas para navegadores que no soporten line-clamp */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Efecto hover en las tarjetas */
+  .blog-post-card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Gradientes para badges */
+  .badge-gradient-primary {
+    background: linear-gradient(135deg, rgb(var(--color-primary)), rgb(var(--color-secondary)));
+  }
+</style>
