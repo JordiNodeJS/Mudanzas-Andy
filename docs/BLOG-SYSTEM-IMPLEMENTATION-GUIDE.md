@@ -19,6 +19,16 @@ Esta guía documenta la implementación completa del sistema de blog nativo desa
 - **URL**: `https://images.unsplash.com/photo-1558618047-3c8c76ca7d13` - Aspect ratio 2070x1380
 - **Mejora**: Mejor integración visual y coherencia con otras imágenes del blog
 
+### ✅ Migración a Assets Locales (Septiembre 16, 2025)
+
+- **Problema resuelto**: Imagen rota en artículo de embalaje + dependencias externas
+- **Solución**: Migración completa a `src/assets/images/blog/` con Astro Image Optimization
+- **Formatos**: WebP optimizado con múltiples resoluciones automáticas
+- **Performance**: Carga local, lazy loading, responsive images nativo
+- **Script**: `scripts/download-blog-images.js` para gestión automatizada
+- **Schema**: Actualizado con `image()` helper para soporte nativo de assets
+- **Build exitoso**: 8 páginas + 3 imágenes optimizadas automáticamente
+
 ## Índice
 
 1. [Arquitectura del Sistema](#arquitectura-del-sistema)

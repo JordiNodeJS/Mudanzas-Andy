@@ -6,7 +6,7 @@ updatedDate: 2025-09-15
 tags: ["embalaje", "mudanzas", "consejos", "protección"]
 category: "tutoriales"
 featured: false
-heroImage: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&h=1380&q=80"
+heroImage: "../../assets/images/blog/embalaje-profesional-hero.webp"
 heroImageAlt: "Mesa con materiales de embalaje profesional: cajas de cartón, papel burbuja, cinta adhesiva, etiquetas y herramientas organizadas para una mudanza eficiente"
 metaTitle: "Embalaje Profesional para Mudanzas - Guía Completa 2025"
 metaDescription: "🎁 Guía completa de embalaje profesional para mudanzas. Técnicas expertas, materiales recomendados y consejos para proteger tus objetos más valiosos."

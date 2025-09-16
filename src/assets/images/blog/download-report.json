@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-09-16T20:29:28.544Z",
+  "backupLocation": "G:\\DEV\\PROJECTS\\mudanzas-astro\\src\\assets\\images\\blog\\backup-1758054563328",
+  "downloadResults": [
+    {
+      "filename": "mudanzas-economicas-hero.webp",
+      "success": true,
+      "size": 136488,
+      "url": "https://images.pexels.com/photos/4569340/pexels-photo-4569340.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&fit=crop&fm=webp&q=85",
+      "alt": "Familia preparando mudanza económica en Barcelona con cajas organizadas y planificación profesional",
+      "description": "Familia con cajas de mudanza organizadas"
+    },
+    {
+      "filename": "embalaje-profesional-hero.webp",
+      "success": false,
+      "error": "HTTP 404: Not Found",
+      "url": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=85&fm=webp",
+      "alt": "Mesa con materiales de embalaje profesional: cajas de cartón, papel burbuja, cinta adhesiva, etiquetas y herramientas organizadas para una mudanza eficiente",
+      "description": "Mesa con materiales de embalaje profesional organizados"
+    },
+    {
+      "filename": "mudanza-ninos-hero.webp",
+      "success": true,
+      "size": 65408,
+      "url": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=85&fm=webp",
+      "alt": "Madre e hija sonrientes etiquetando cajas de mudanza juntas en una habitación luminosa, mostrando la importancia de involucrar a los niños en el proceso de traslado familiar",
+      "description": "Madre e hija etiquetando cajas de mudanza"
+    },
+    {
+      "filename": "mudanzas-internacionales-hero.webp",
+      "success": true,
+      "size": 71554,
+      "url": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=85&fm=webp",
+      "alt": "Persona organizando documentos de mudanza internacional con pasaporte, formularios de aduanas y mapamundi en el fondo, simbolizando la planificación necesaria para traslados al extranjero",
+      "description": "Documentos de mudanza internacional organizados"
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "successful": 3,
+    "failed": 1
+  }
+}

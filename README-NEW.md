@@ -9,26 +9,31 @@ Sitio web corporativo para empresa de mudanzas en Barcelona, desarrollado con **
 ## ✨ Características Principales
 
 ### 🎨 **Sistema de Colores Centralizado**
+
 - Variables CSS unificadas para toda la aplicación
 - Paleta corporativa Mudanzas ANDY optimizada
 - Gradientes automáticos y clases utilitarias
 
 ### 📱💻 **Imágenes Responsive Automáticas**
+
 - **79% menos datos en móvil** vs desktop
 - Carga automática según dispositivo del usuario
 - Compatibilidad total con navegadores legacy
 
 ### 🚀 **Performance Excepcional**
+
 - Core Web Vitals optimizados (LCP, CLS, FCP)
 - Lazy loading inteligente
 - Build time: ~2.4s para 8 páginas
 
 ### 📝 **Blog Optimizado**
+
 - Content Layer API de Astro 5
 - Imágenes únicas por artículo con variaciones responsive
 - SEO automático y structured data
 
 ### ⚛️ **React Islands Architecture**
+
 - Hidratación selectiva solo donde es necesaria
 - Componentes interactivos optimizados
 - Bundle splitting automático
@@ -89,10 +94,10 @@ mudanzas-astro/
 ### Optimizaciones por Dispositivo
 
 | Dispositivo | Resolución | Calidad | Ahorro vs Desktop |
-|-------------|------------|---------|-------------------|
-| 🖥️ Desktop | 1200x800px | 85% | 0% (referencia) |
-| 📱 Tablet  | 768x512px  | 82% | **54%** |
-| 📱 Mobile  | 480x320px  | 78% | **79%** |
+| ----------- | ---------- | ------- | ----------------- |
+| 🖥️ Desktop  | 1200x800px | 85%     | 0% (referencia)   |
+| 📱 Tablet   | 768x512px  | 82%     | **54%**           |
+| 📱 Mobile   | 480x320px  | 78%     | **79%**           |
 
 ### Performance Mejorada
 
@@ -102,14 +107,14 @@ mudanzas-astro/
 
 ## 🧞 Comandos de Desarrollo
 
-| Comando | Acción |
-|---------|---------|
-| `pnpm install` | Instalar dependencias |
-| `pnpm dev` | Servidor desarrollo (`localhost:4322`) |
-| `pnpm build` | Build producción → `./dist/` |
-| `pnpm preview` | Preview del build local |
-| `pnpm check` | Verificar TypeScript |
-| `pnpm format` | Formatear código (Prettier) |
+| Comando        | Acción                                 |
+| -------------- | -------------------------------------- |
+| `pnpm install` | Instalar dependencias                  |
+| `pnpm dev`     | Servidor desarrollo (`localhost:4322`) |
+| `pnpm build`   | Build producción → `./dist/`           |
+| `pnpm preview` | Preview del build local                |
+| `pnpm check`   | Verificar TypeScript                   |
+| `pnpm format`  | Formatear código (Prettier)            |
 
 ### 🛠️ Scripts de Optimización
 
@@ -117,7 +122,7 @@ mudanzas-astro/
 # Generar imágenes responsive automáticamente
 node scripts/optimize-responsive-images.js
 
-# Analizar optimización de imágenes existentes  
+# Analizar optimización de imágenes existentes
 node scripts/analyze-image-optimization.js
 
 # Descargar y optimizar imágenes desde Unsplash/Pexels
@@ -130,11 +135,11 @@ node scripts/download-real-blog-images.js
 
 ```css
 /* src/styles/theme.css */
---color-primary: 38 78 112;    /* #264e70 - Azul corporativo */
+--color-primary: 38 78 112; /* #264e70 - Azul corporativo */
 --color-secondary: 103 145 134; /* #679186 - Verde complementario */
---color-accent: 249 180 171;    /* #f9b4ab - Rosa coral CTA */
---color-highlight: 250 227 96;  /* #fae360 - Amarillo destacados */
---color-neutral: 187 212 206;   /* #bbd4ce - Verde neutro */
+--color-accent: 249 180 171; /* #f9b4ab - Rosa coral CTA */
+--color-highlight: 250 227 96; /* #fae360 - Amarillo destacados */
+--color-neutral: 187 212 206; /* #bbd4ce - Verde neutro */
 ```
 
 ### Uso en Componentes
@@ -170,7 +175,7 @@ node scripts/download-real-blog-images.js
 ### Reglas Técnicas
 
 1. **PNPM obligatorio**: No usar npm o yarn
-2. **Sistema de colores**: Usar variables CSS, no colores hardcodeados  
+2. **Sistema de colores**: Usar variables CSS, no colores hardcodeados
 3. **TypeScript estricto**: No usar `any`, tipos explícitos
 4. **Imágenes responsive**: Usar `ResponsiveHeroImage` para nuevas imágenes
 
@@ -178,7 +183,7 @@ node scripts/download-real-blog-images.js
 
 ```bash
 feat(blog): add responsive images system
-fix(colors): update primary color variable usage  
+fix(colors): update primary color variable usage
 docs(readme): update architecture documentation
 perf(images): optimize mobile image sizes
 ```
@@ -188,7 +193,7 @@ perf(images): optimize mobile image sizes
 ```bash
 # Verificar imágenes responsive funcionan
 # 1. Chrome DevTools → Toggle Device Toolbar
-# 2. Cambiar entre Desktop/Tablet/Mobile  
+# 2. Cambiar entre Desktop/Tablet/Mobile
 # 3. Network tab → Ver qué imagen descarga
 
 # URLs de testing
@@ -207,16 +212,17 @@ http://localhost:4322/blog/guia-embalaje-profesional-mudanzas/
 
 ### Mejoras Implementadas
 
-| Métrica | Antes | Después | Mejora |
-|---------|-------|---------|--------|
-| **Imágenes únicas** | ❌ Copias idénticas | ✅ 4 únicas | +100% |
-| **Variaciones responsive** | 1 tamaño | 3 tamaños | +300% |
-| **Datos móvil** | 133KB desktop | 28KB móvil | -79% |
-| **Build optimizations** | 8 variaciones | 16 variaciones | +100% |
+| Métrica                    | Antes               | Después        | Mejora |
+| -------------------------- | ------------------- | -------------- | ------ |
+| **Imágenes únicas**        | ❌ Copias idénticas | ✅ 4 únicas    | +100%  |
+| **Variaciones responsive** | 1 tamaño            | 3 tamaños      | +300%  |
+| **Datos móvil**            | 133KB desktop       | 28KB móvil     | -79%   |
+| **Build optimizations**    | 8 variaciones       | 16 variaciones | +100%  |
 
 ## 🚀 Deployment
 
 ### Hosting Estático
+
 - **Compatible con**: Netlify, Vercel, GitHub Pages, Hostinger
 - **Output**: `dist/` - Sitio completamente estático
 - **CDN Ready**: Assets optimizados para distribución
@@ -247,4 +253,4 @@ Para comportamientos cliente que deben re-inicializarse tras navegaciones:
 ---
 
 **Desarrollado con ❤️ por el equipo de Mudanzas ANDY**  
-*Optimizado para performance excepcional y experiencia de usuario superior*
+_Optimizado para performance excepcional y experiencia de usuario superior_

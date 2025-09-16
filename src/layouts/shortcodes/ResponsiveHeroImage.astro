@@ -1,0 +1,103 @@
+---
+// ResponsiveHeroImage.astro - Componente responsive para imágenes de blog
+import { Image } from "astro:assets";
+
+interface Props {
+  imageName: string;
+  alt: string;
+  loading?: "lazy" | "eager";
+  class?: string;
+}
+
+const { imageName, alt, loading = "lazy", class: className = "" } = Astro.props;
+
+// Importar todas las variaciones responsive
+const desktopImage = await import(
+  `../../assets/images/blog/${imageName}-desktop.webp`
+);
+const tabletImage = await import(
+  `../../assets/images/blog/${imageName}-tablet.webp`
+);
+const mobileImage = await import(
+  `../../assets/images/blog/${imageName}-mobile.webp`
+);
+---
+
+<picture class={`responsive-hero-image ${className}`}>
+  <!-- Desktop: 1200px+ -->
+  <source
+    media="(min-width: 1200px)"
+    srcset={desktopImage.default.src}
+    width={desktopImage.default.width}
+    height={desktopImage.default.height}
+  />
+
+  <!-- Tablet: 768px - 1199px -->
+  <source
+    media="(min-width: 768px) and (max-width: 1199px)"
+    srcset={tabletImage.default.src}
+    width={tabletImage.default.width}
+    height={tabletImage.default.height}
+  />
+
+  <!-- Mobile: hasta 767px -->
+  <source
+    media="(max-width: 767px)"
+    srcset={mobileImage.default.src}
+    width={mobileImage.default.width}
+    height={mobileImage.default.height}
+  />
+
+  <!-- Fallback para navegadores que no soportan <picture> -->
+  <Image
+    src={desktopImage.default}
+    alt={alt}
+    loading={loading}
+    class="hero-image-fallback"
+    widths={[480, 768, 1200]}
+    sizes="(max-width: 767px) 480px, (max-width: 1199px) 768px, 1200px"
+  />
+</picture>
+
+<style>
+  .responsive-hero-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-image-fallback,
+  .responsive-hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .responsive-hero-image:hover img {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+
+  /* Optimizaciones específicas por dispositivo */
+  @media (max-width: 767px) {
+    .responsive-hero-image {
+      margin: 0 -1rem; /* Sangrado completo en móvil */
+      border-radius: 0;
+    }
+
+    .hero-image-fallback,
+    .responsive-hero-image img {
+      border-radius: 0;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .responsive-hero-image {
+      margin: 0 -0.5rem;
+    }
+  }
+</style>

@@ -5,7 +5,7 @@ pubDate: 2025-09-08
 tags: ["mudanzas", "niños", "familia", "consejos"]
 category: "familia"
 featured: false
-heroImage: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2120&q=80"
+heroImage: "../../assets/images/blog/mudanza-ninos-hero.webp"
 heroImageAlt: "Madre e hija sonrientes etiquetando cajas de mudanza juntas en una habitación luminosa, mostrando la importancia de involucrar a los niños en el proceso de traslado familiar"
 metaTitle: "Mudanza con Niños - Guía Completa para Familias"
 metaDescription: "👨‍👩‍👧‍👦 Guía completa para mudanzas familiares con niños. Consejos profesionales para reducir el estrés y hacer del traslado una experiencia positiva para toda la familia."

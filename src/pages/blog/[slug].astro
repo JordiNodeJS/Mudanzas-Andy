@@ -5,6 +5,7 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { Image } from "astro:assets";
 import { marked } from "marked";
+import ResponsiveHeroImage from "../../layouts/shortcodes/ResponsiveHeroImage.astro";
 
 // Definir interfaz para props
 interface Props {
@@ -22,6 +23,21 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props satisfies Props;
+
+// Determinar imagen responsive basada en el slug del post
+const getResponsiveImageName = (slug: string): string | null => {
+  const imageMapping: Record<string, string> = {
+    'mudanzas-economicas-barcelona-2025': 'mudanzas-economicas-hero',
+    'guia-embalaje-profesional-mudanzas': 'embalaje-profesional-hero',
+    'mudanza-con-ninos-guia-familias': 'mudanza-ninos-hero',
+    'mudanzas-internacionales-barcelona-guia-completa': 'mudanzas-internacionales-hero'
+  };
+  
+  return imageMapping[slug] || null;
+};
+
+const responsiveImageName = getResponsiveImageName(post.id);
+
 // Renderizar el contenido markdown correctamente
 let renderedContent = '';
 if (post.rendered?.html) {
@@ -142,8 +158,22 @@ const relatedPosts = allPosts
         </div>
       </header>
 
-      <!-- Imagen hero si existe -->
-      {post.data.heroImage && (
+      <!-- Imagen hero responsive -->
+      {responsiveImageName && (
+        <div class="container mx-auto px-4 -mt-12 relative z-10">
+          <div class="max-w-4xl mx-auto">
+            <ResponsiveHeroImage
+              imageName={responsiveImageName}
+              alt={post.data.heroImageAlt || post.data.title}
+              loading="eager"
+              class="w-full h-auto rounded-xl shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
+      
+      <!-- Fallback para imagen hero antigua -->
+      {!responsiveImageName && post.data.heroImage && (
         <div class="container mx-auto px-4 -mt-12 relative z-10">
           <div class="max-w-4xl mx-auto">
             <Image
