@@ -11,6 +11,13 @@ export default defineConfig({
       changefreq: "weekly",
       priority: 0.7,
       lastmod: new Date(),
+      filter: (page) => {
+        // Excluir páginas de políticas del sitemap para evitar contenido duplicado en Google
+        return (
+          !page.includes("/politica-privacidad") &&
+          !page.includes("/politica-cookies")
+        );
+      },
       serialize: (item) => {
         // Configurar prioridades específicas por página
         if (item.url === "https://mudanzasandy.es/") {
@@ -21,9 +28,6 @@ export default defineConfig({
         }
         if (item.url.includes("/blog/")) {
           item.priority = 0.7;
-        }
-        if (item.url.includes("/politica")) {
-          item.priority = 0.3;
         }
         return item;
       },
