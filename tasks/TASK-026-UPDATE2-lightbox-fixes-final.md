@@ -174,6 +174,27 @@ pnpm dev
 - Separación clara desktop/móvil
 - Documentación completa de cambios
 
+## Actualización Final: Eliminación de Texto de Navegación
+
+### ✅ Cambio Adicional (17 sept 2024)
+
+**Problema:** El texto "Usa ← → para navegar" interfería visualmente con el contador de imágenes
+**Solución:** Eliminado completamente el indicador de navegación por teclado
+
+**Código removido:**
+
+```html
+<!-- Indicador de navegación por teclado -->
+<div class="hidden lg:flex items-center gap-2 text-white/80 text-sm mt-4">
+  <span>Usa</span>
+  <kbd class="px-2 py-1 bg-white/20 rounded text-xs">←</kbd>
+  <kbd class="px-2 py-1 bg-white/20 rounded text-xs">→</kbd>
+  <span>para navegar</span>
+</div>
+```
+
+**Resultado:** El contador de imágenes (ej: "5 de 5") ahora se muestra limpiamente sin interferencias de texto.
+
 ## Conclusión
 
 **Estado:** ✅ COMPLETADO al 100%
@@ -183,7 +204,10 @@ Todos los problemas identificados han sido resueltos exitosamente:
 1. ✅ **Elementos superpuestos eliminados** - Sistema de clases responsive implementado
 2. ✅ **Click-outside funcional** - Código verificado y funcionando
 3. ✅ **Backups eliminados** - 720KB liberados, directorio completo removido
+4. ✅ **Texto navegación eliminado** - Counter de imágenes ahora se ve limpiamente
 
 El lightbox ahora funciona perfectamente en todos los dispositivos sin conflictos visuales ni de interacción, manteniendo todas las funcionalidades previas (eliminación de títulos, watermarks procesados, counter en footer).
+
+**Funcionalidad de teclado mantiene:** Las teclas ← → siguen funcionando para navegar, solo se removió el texto informativo que causaba interferencia visual.
 
 **El proyecto está listo para producción.**
