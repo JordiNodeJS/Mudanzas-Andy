@@ -5,8 +5,8 @@ pubDate: 2025-09-05
 tags: ["mudanzas", "niños", "familia", "consejos"]
 category: "familia"
 featured: false
-heroImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2126&q=80"
-heroImageAlt: "Familia con niños preparando cajas durante una mudanza organizada"
+heroImage: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2120&q=80"
+heroImageAlt: "Madre e hija sonrientes etiquetando cajas de mudanza juntas en una habitación luminosa, mostrando la importancia de involucrar a los niños en el proceso de traslado familiar"
 metaTitle: "Mudanza con Niños - Guía Completa para Familias"
 metaDescription: "👨‍👩‍👧‍👦 Guía completa para mudanzas familiares con niños. Consejos profesionales para reducir el estrés y hacer del traslado una experiencia positiva para toda la familia."
 author: "Laura Fernández - Especialista en Mudanzas Familiares"
@@ -60,6 +60,8 @@ Una mudanza ya es suficientemente estresante para los adultos, pero cuando hay n
 - Necesitan mayor autonomía en decisiones
 
 ## Preparación Psicológica: Comunicación Efectiva por Edades
+
+![Padre hablando con niña sobre la mudanza](https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 "Padre sentado en el suelo hablando cariñosamente con su hija pequeña, mostrando comunicación efectiva durante el proceso de mudanza familiar")
 
 ### Para Niños Pequeños (3-6 años)
 

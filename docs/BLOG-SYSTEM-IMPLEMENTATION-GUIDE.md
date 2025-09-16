@@ -13,10 +13,11 @@ Esta guía documenta la implementación completa del sistema de blog nativo desa
 5. [Páginas y Rutas](#páginas-y-rutas)
 6. [Contenido y Posts](#contenido-y-posts)
 7. [Optimización de Imágenes](#optimización-de-imágenes)
-8. [SEO y Metadatos](#seo-y-metadatos)
-9. [Renderizado de Markdown](#renderizado-de-markdown)
-10. [Comandos y Scripts](#comandos-y-scripts)
-11. [Troubleshooting](#troubleshooting)
+8. [Estrategia de Imágenes Temáticas](#estrategia-de-imágenes-temáticas)
+9. [SEO y Metadatos](#seo-y-metadatos)
+10. [Renderizado de Markdown](#renderizado-de-markdown)
+11. [Comandos y Scripts](#comandos-y-scripts)
+12. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -291,26 +292,30 @@ keywords: ["palabra1", "palabra2"]
 
 1. **mudanzas-economicas-barcelona-2025.md**
 
-   - **Tema**: Consejos para mudanzas baratas
+   - **Tema**: Consejos para mudanzas baratas en Barcelona
    - **Featured**: true (se muestra como hero)
-   - **Imagen**: Local optimizada (`blog-hero-optimized.webp`) - Recuperada del blog anterior
+   - **Imagen**: Pexels - mudanza familiar con cajas (específica para Barcelona)
+   - **Imágenes inline**: Cajas de mudanza, personas embalando, hogar nuevo
    - **Tiempo lectura**: 8 minutos
 
 2. **guia-embalaje-profesional-mudanzas.md**
 
    - **Tema**: Técnicas de embalaje profesional
-   - **Imagen**: Unsplash - cajas y embalaje
+   - **Imagen**: Unsplash - embalaje profesional con materiales especializados
+   - **Imágenes inline**: Cajas etiquetadas, papel burbuja, técnicas de protección
    - **Tiempo lectura**: 6 minutos
 
 3. **mudanza-con-ninos-guia-familias.md**
 
    - **Tema**: Mudanzas familiares con niños
-   - **Imagen**: Unsplash - familia preparando mudanza
+   - **Imagen**: Pixabay - familia feliz con cajas de mudanza en nuevo hogar
+   - **Imágenes inline**: Actividades para niños, habitación infantil, familia organizando
    - **Tiempo lectura**: 7 minutos
 
 4. **mudanzas-internacionales-barcelona-guia-completa.md**
-   - **Tema**: Mudanzas internacionales
-   - **Imagen**: Unsplash - mudanza internacional
+   - **Tema**: Mudanzas internacionales desde/hacia Barcelona
+   - **Imagen**: Unsplash - mudanza internacional con documentación y planificación global
+   - **Imágenes inline**: Documentación internacional, planificación logística, servicios especializados
    - **Tiempo lectura**: 12 minutos
 
 ---
@@ -350,6 +355,115 @@ keywords: ["palabra1", "palabra2"]
 # Para nuevas imágenes locales
 pnpm dlx sharp-cli -i "./input.png" -o "./src/assets/images/blog/output.webp" --format webp --quality 80 --resize 800
 ```
+
+---
+
+## Estrategia de Imágenes Temáticas
+
+### Servicios de Imágenes Utilizados
+
+Para garantizar la máxima relevancia del contenido visual, se implementó una estrategia multi-servicio con imágenes específicamente seleccionadas para cada tema:
+
+#### 1. **Unsplash** - Imágenes Hero Principales
+
+Usado para las imágenes hero de cada post con búsquedas específicas:
+
+- **Guía de Embalaje**: `photo-1553062407-98eeb64c6a62`
+
+  - Descripción: "Profesional del embalaje envolviendo cuidadosamente objetos frágiles con papel burbuja y materiales de protección especializados para mudanzas seguras"
+  - Relevancia: Muestra técnicas profesionales de embalaje en acción
+
+- **Mudanza con Niños**: `photo-1544367567-0f2fcb009e0b`
+
+  - Descripción: "Madre e hija sonrientes etiquetando cajas de mudanza juntas en una habitación luminosa, mostrando la importancia de involucrar a los niños en el proceso de traslado familiar"
+  - Relevancia: Ilustra perfectamente la participación familiar positiva
+
+- **Mudanzas Internacionales**: `photo-1436491865332-7a61a109cc05`
+  - Descripción: "Persona organizando documentos de mudanza internacional con pasaporte, formularios de aduanas y mapamundi en el fondo, simbolizando la planificación necesaria para traslados al extranjero"
+  - Relevancia: Enfatiza el aspecto documental y organizativo
+
+#### 2. **Pexels** - Imágenes de Contenido Específico
+
+Utilizado para imágenes internas que ilustran secciones específicas:
+
+- **Materiales de Embalaje**: `photos/4246120/pexels-photo-4246120.jpeg`
+
+  - Descripción: "Variedad de cajas de cartón ondulado de diferentes tamaños organizadas para mudanza profesional"
+  - Ubicación: Sección "Cajas y Contenedores"
+
+- **Herramientas de Protección**: `photos/4246032/pexels-photo-4246032.jpeg`
+
+  - Descripción: "Mesa con papel burbuja, cinta adhesiva, y otros materiales de protección para embalaje seguro"
+  - Ubicación: Sección "Materiales de Protección"
+
+- **Comunicación Familiar**: `photos/8613089/pexels-photo-8613089.jpeg`
+
+  - Descripción: "Padre sentado en el suelo hablando cariñosamente con su hija pequeña, mostrando comunicación efectiva durante el proceso de mudanza familiar"
+  - Ubicación: Sección "Preparación Psicológica"
+
+- **Destinos Europeos**: `photos/1336867/pexels-photo-1336867.jpeg`
+  - Descripción: "Mapa de Europa con diferentes banderas de países miembros de la UE, representando las múltiples opciones de destino para mudanzas internacionales desde Barcelona"
+  - Ubicación: Sección "Destinos Más Populares"
+
+#### 3. **Pixabay** - Imágenes de Conceptos
+
+Para ilustrar conceptos más abstractos como planificación y organización:
+
+- **Planificación de Mudanza**: `photo/2021/08/04/13/06/graph-6521543_1280.jpg`
+  - Descripción: "Escritorio con calendario, calculadora y documentos mostrando la planificación detallada necesaria para conseguir una mudanza económica y bien organizada"
+  - Ubicación: Sección "Estrategias Probadas"
+
+#### 4. **Imagen Local Optimizada** - Blog Principal
+
+- **Mudanzas Económicas**: `blog-hero-optimized.webp`
+  - Descripción: Trabajador profesional cargando cajas junto a camión de mudanzas
+  - Origen: Recuperada del blog anterior
+  - Optimización: WebP, 12KB, 800px width
+
+### Criterios de Selección de Imágenes
+
+1. **Relevancia Temática Directa**: Cada imagen debe ilustrar específicamente el contenido de su sección
+2. **Calidad Profesional**: Imágenes de alta resolución y composición profesional
+3. **Diversidad de Servicios**: Uso de múltiples plataformas para evitar dependencias
+4. **Optimización Automática**: URLs con parámetros de compresión y redimensionado
+5. **Descripciones Detalladas**: Alt text descriptivo para SEO y accesibilidad
+
+### Parámetros de Optimización por Servicio
+
+#### Unsplash:
+
+```
+?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80
+```
+
+#### Pexels:
+
+```
+?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+```
+
+#### Pixabay:
+
+```
+Imágenes servidas directamente con resolución optimizada (1280px width)
+```
+
+### Implementación en Markdown
+
+Las imágenes se integran directamente en el contenido markdown usando:
+
+```markdown
+![Alt text descriptivo](URL_optimizada "Descripción extendida para title")
+```
+
+### Beneficios de la Estrategia Multi-Servicio
+
+1. **Relevancia Máxima**: Cada imagen seleccionada específicamente para su contexto
+2. **Diversificación**: Reducción de dependencias en un solo servicio
+3. **Performance**: Parámetros optimizados automáticamente
+4. **SEO Mejorado**: Descripciones ricas y específicas
+5. **Experiencia Visual**: Coherencia temática y profesional
+6. **Accesibilidad**: Alt text detallado para lectores de pantalla
 
 ---
 

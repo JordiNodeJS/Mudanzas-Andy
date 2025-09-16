@@ -40,6 +40,8 @@ La densidad urbana de Barcelona, las restricciones de tráfico y los edificios s
 
 ## 5 Estrategias Probadas para Mudanzas Económicas
 
+![Persona planificando mudanza con calendario y calculadora](https://cdn.pixabay.com/photo/2021/08/04/13/06/graph-6521543_1280.jpg "Escritorio con calendario, calculadora y documentos mostrando la planificación detallada necesaria para conseguir una mudanza económica y bien organizada")
+
 ### 1. Planificación Anticipada = Grandes Ahorros
 
 **Reserva con al menos 4 semanas de antelación** para acceder a las mejores tarifas. Las mudanzas de último momento pueden costar hasta un 40% más debido a la urgencia.

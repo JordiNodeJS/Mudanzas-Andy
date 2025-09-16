@@ -5,8 +5,8 @@ pubDate: 2025-09-16
 tags: ["mudanzas internacionales", "barcelona", "extranjero", "documentación"]
 category: "internacional"
 featured: true
-heroImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-heroImageAlt: "Mudanza internacional desde Barcelona con documentación y embalaje especializado"
+heroImage: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+heroImageAlt: "Persona organizando documentos de mudanza internacional con pasaporte, formularios de aduanas y mapamundi en el fondo, simbolizando la planificación necesaria para traslados al extranjero"
 metaTitle: "Mudanzas Internacionales desde Barcelona - Guía Completa 2025"
 metaDescription: "🌍 Guía completa para mudanzas internacionales desde Barcelona. Documentación, trámites, costos y consejos profesionales para tu mudanza al extranjero."
 author: "Roberto Martín - Especialista en Mudanzas Internacionales"
@@ -52,6 +52,8 @@ Barcelona es puerta de entrada y salida de España hacia el mundo. Miles de pers
 - Aventura y crecimiento personal
 
 ## Destinos Más Populares desde Barcelona
+
+![Mapa de Europa con banderas](https://images.pexels.com/photos/1336867/pexels-photo-1336867.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 "Mapa de Europa con diferentes banderas de países miembros de la UE, representando las múltiples opciones de destino para mudanzas internacionales desde Barcelona")
 
 ### Europa (Dentro de la UE)
 
