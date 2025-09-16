@@ -5,7 +5,7 @@ pubDate: 2025-09-16
 tags: ["mudanzas barcelona", "mudanzas económicas", "consejos", "ahorro"]
 category: "consejos"
 featured: true
-heroImage: "/assets/images/blog/blog-hero-optimized.webp"
+heroImage: "https://images.pexels.com/photos/4569340/pexels-photo-4569340.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
 heroImageAlt: "Mudanza económica en Barcelona con camión y equipo profesional"
 metaTitle: "Mudanzas Económicas Barcelona 2025 - Guía Completa de Ahorro"
 metaDescription: "➤ Guía completa para mudanzas económicas en Barcelona. Consejos profesionales, trucos para ahorrar y las mejores ofertas de mudanza barata."

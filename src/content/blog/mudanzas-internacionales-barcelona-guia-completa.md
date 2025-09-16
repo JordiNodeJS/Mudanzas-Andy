@@ -1,10 +1,10 @@
 ---
 title: "Mudanzas Internacionales desde Barcelona: Tu Guía Completa 2025"
 description: "Todo lo que necesitas saber para mudarte desde Barcelona al extranjero. Documentación, trámites, costos y consejos de expertos para una mudanza internacional exitosa."
-pubDate: 2025-09-16
+pubDate: 2025-08-28
 tags: ["mudanzas internacionales", "barcelona", "extranjero", "documentación"]
 category: "internacional"
-featured: true
+featured: false
 heroImage: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
 heroImageAlt: "Persona organizando documentos de mudanza internacional con pasaporte, formularios de aduanas y mapamundi en el fondo, simbolizando la planificación necesaria para traslados al extranjero"
 metaTitle: "Mudanzas Internacionales desde Barcelona - Guía Completa 2025"

@@ -4,6 +4,21 @@
 
 Esta guía documenta la implementación completa del sistema de blog nativo desarrollado para **Mudanzas ANDY** usando Astro 5 con Content Layer API. El sistema reemplaza completamente el iframe externo anterior y proporciona un blog completamente integrado, optimizado para SEO y performance.
 
+## Actualizaciones Recientes (Septiembre 16, 2025)
+
+### ✅ Reordenación Cronológica de Posts
+
+- **Post más reciente**: "Guía Completa para Mudanzas Económicas en Barcelona 2025" (2025-09-16) - **Featured**
+- **Post más antiguo**: "Mudanzas Internacionales desde Barcelona" (2025-08-28)
+- **Fechas intermedias**: Embalaje (2025-09-12), Niños (2025-09-08)
+
+### ✅ Optimización de Imagen - Artículo de Embalaje
+
+- **Antes**: Imagen vertical con aspect ratio problemático
+- **Después**: Imagen horizontal optimizada (Mesa con materiales de embalaje organizados)
+- **URL**: `https://images.unsplash.com/photo-1558618047-3c8c76ca7d13` - Aspect ratio 2070x1380
+- **Mejora**: Mejor integración visual y coherencia con otras imágenes del blog
+
 ## Índice
 
 1. [Arquitectura del Sistema](#arquitectura-del-sistema)
@@ -288,33 +303,38 @@ keywords: ["palabra1", "palabra2"]
 ---
 ```
 
-### Posts Actuales
+### Posts Actuales (Ordenados por fecha de publicación)
 
-1. **mudanzas-economicas-barcelona-2025.md**
+1. **mudanzas-economicas-barcelona-2025.md** - **ÚLTIMO PUBLICADO**
 
-   - **Tema**: Consejos para mudanzas baratas en Barcelona
+   - **Fecha**: 2025-09-16
+   - **Tema**: Consejos para mudanzas económicas en Barcelona
    - **Featured**: true (se muestra como hero)
-   - **Imagen**: Pexels - mudanza familiar con cajas (específica para Barcelona)
+   - **Imagen**: Pexels - mudanza familiar profesional con cajas (específica para Barcelona)
    - **Imágenes inline**: Cajas de mudanza, personas embalando, hogar nuevo
    - **Tiempo lectura**: 8 minutos
 
 2. **guia-embalaje-profesional-mudanzas.md**
 
+   - **Fecha**: 2025-09-12
    - **Tema**: Técnicas de embalaje profesional
-   - **Imagen**: Unsplash - embalaje profesional con materiales especializados
+   - **Imagen**: Unsplash - mesa con materiales de embalaje organizados (aspect ratio optimizado)
    - **Imágenes inline**: Cajas etiquetadas, papel burbuja, técnicas de protección
    - **Tiempo lectura**: 6 minutos
 
 3. **mudanza-con-ninos-guia-familias.md**
 
+   - **Fecha**: 2025-09-08
    - **Tema**: Mudanzas familiares con niños
-   - **Imagen**: Pixabay - familia feliz con cajas de mudanza en nuevo hogar
+   - **Imagen**: Unsplash - madre e hija etiquetando cajas juntas
    - **Imágenes inline**: Actividades para niños, habitación infantil, familia organizando
    - **Tiempo lectura**: 7 minutos
 
-4. **mudanzas-internacionales-barcelona-guia-completa.md**
+4. **mudanzas-internacionales-barcelona-guia-completa.md** - **PRIMERO PUBLICADO**
+   - **Fecha**: 2025-08-28
    - **Tema**: Mudanzas internacionales desde/hacia Barcelona
-   - **Imagen**: Unsplash - mudanza internacional con documentación y planificación global
+   - **Featured**: false
+   - **Imagen**: Unsplash - documentación internacional y planificación global
    - **Imágenes inline**: Documentación internacional, planificación logística, servicios especializados
    - **Tiempo lectura**: 12 minutos
 

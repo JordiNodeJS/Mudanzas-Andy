@@ -1,7 +1,7 @@
 ---
 title: "Mudanza con Niños: Guía Completa para una Transición Sin Estrés"
 description: "Consejos profesionales para mudarse con niños pequeños y adolescentes. Estrategias para reducir el estrés familiar y hacer de la mudanza una experiencia positiva."
-pubDate: 2025-09-05
+pubDate: 2025-09-08
 tags: ["mudanzas", "niños", "familia", "consejos"]
 category: "familia"
 featured: false
