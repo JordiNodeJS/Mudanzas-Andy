@@ -51,14 +51,20 @@ const {
     <!-- Google Tag Manager (head) -->
     <script>
       (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
+        // Use safe casts to avoid TypeScript DOM typing errors during `astro check`
+        (w as any)[l] = (w as any)[l] || [];
+        (w as any)[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0] as HTMLScriptElement | undefined,
+          j = d.createElement(s) as HTMLScriptElement,
           dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
+        if (f && f.parentNode) {
+          f.parentNode.insertBefore(j, f);
+        }
       })(window, document, "script", "dataLayer", "GTM-5NH8WKQC");
     </script>
     <!-- End Google Tag Manager -->
@@ -737,16 +743,91 @@ const {
       target="_blank"
       rel="noopener noreferrer"
       id="reserva-ya-floating"
-      class="fixed bottom-20 sm:bottom-24 lg:bottom-28 right-4 z-40 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-4 md:px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 md:gap-3 animate-pulse hover:animate-none"
+      class="fixed bottom-20 sm:bottom-24 lg:bottom-28 right-4 z-40 bg-[#FAE360] hover:bg-[#f0d84a] text-[#264e70] font-bold py-3 px-4 md:px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2 md:gap-3 animate-pulse hover:animate-none will-change-transform will-change-opacity"
       aria-label="Contactar por WhatsApp"
     >
       <span class="text-xl md:text-2xl">💬</span>
       <span class="hidden lg:inline">¡Reserva YA!</span>
       <span class="text-xs md:text-sm font-normal">640 50 60 84</span>
     </a>
+    <!-- Hidden helper to force Tailwind to generate dynamic classes used by JS -->
+    <span
+      class="sr-only opacity-10 pointer-events-none translate-y-[6px] scale-[0.98]"
+    ></span>
 
     <!-- External script toggles floating/footer Reserva button visibility -->
     <script src="/js/move-reserva.js" defer is:inline></script>
+    <script is:inline>
+      // Toggle Tailwind utility classes on the floating button when CTA intersects.
+      // Uses IntersectionObserver with a generous rootMargin and a scroll/resize fallback
+      (function () {
+        const floating = document.getElementById("reserva-ya-floating");
+        const cta = document.querySelector(".cta-section");
+        if (!floating || !cta) return;
+
+        const hiddenClasses = [
+          "opacity-10",
+          "pointer-events-none",
+          "translate-y-[6px]",
+          "scale-[0.98]",
+        ];
+
+        function applyHidden() {
+          if (!hiddenClasses.every((c) => floating.classList.contains(c))) {
+            floating.classList.add(...hiddenClasses);
+          }
+        }
+
+        function removeHidden() {
+          hiddenClasses.forEach((c) => floating.classList.remove(c));
+        }
+
+        // Fallback check: is CTA visible within viewport?
+        function isCTAVisible() {
+          const rect = cta.getBoundingClientRect();
+          return rect.top < window.innerHeight && rect.bottom > 0;
+        }
+
+        // IntersectionObserver for modern browsers
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (entry.isIntersecting) applyHidden();
+                else removeHidden();
+              }
+            },
+            // rootMargin to trigger slightly before the CTA fully enters the viewport
+            {
+              root: null,
+              rootMargin: "0px 0px -20% 0px",
+              threshold: [0, 0.05, 0.2],
+            }
+          );
+          io.observe(cta);
+        }
+
+        // Fallback on scroll/resize (double-check)
+        let scheduled = false;
+        function check() {
+          scheduled = false;
+          if (isCTAVisible()) applyHidden();
+          else removeHidden();
+        }
+
+        function scheduleCheck() {
+          if (scheduled) return;
+          scheduled = true;
+          requestAnimationFrame(check);
+        }
+
+        window.addEventListener("scroll", scheduleCheck, { passive: true });
+        window.addEventListener("resize", scheduleCheck);
+
+        // Initial run
+        scheduleCheck();
+      })();
+    </script>
     <!-- Print ASCII credit to dev console when DevTools opens -->
     <script is:inline>
       (function () {

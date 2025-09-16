@@ -2,10 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import blogHeroImage from "../assets/images/blog/blog-hero-optimized.webp";
 
-const pageTitle = "Blog - Mudanzas ANDY";
+const pageTitle =
+  "Blog Mudanzas Barcelona - Consejos Económicos y Baratos | Mudanzas ANDY";
 const pageDescription =
-  "Artículos, consejos y noticias sobre mudanzas profesionales. Todo lo que necesitas saber para tu próxima mudanza con Mudanzas ANDY.";
+  "➤ Blog de mudanzas en Barcelona con consejos económicos y baratos. Guías profesionales para mudanzas económicas, tips para ahorrar, embalaje barato y traslados en toda la península. ¡Mudanzas ANDY - Calidad al mejor precio!";
 ---
 
 <Layout
@@ -13,6 +16,7 @@ const pageDescription =
   description={pageDescription}
   image="/logos/logo-mudanzas-andy.svg"
   canonical="https://mudanzasandy.es/blog-astro/"
+  keywords="mudanzas barcelona, mudanzas económicas, mudanzas baratas, mudanzas peninsula, consejos mudanza, embalaje barato, traslados económicos, mudanza económica barcelona, presupuesto mudanza barato, mudanzas profesionales"
 >
   <!-- Header fijo -->
   <Header />
@@ -22,7 +26,7 @@ const pageDescription =
     data-astro-transition-scope="blog"
   >
     <!-- Título de la sección -->
-    <section class="bg-brand text-white pt-16 pb-3 lg:py-12 lg:pb-2">
+    <section class="bg-brand text-white pt-16 pb-8 lg:py-16">
       <div class="container mx-auto px-4">
         <div class="text-center">
           <h1 class="text-3xl lg:text-4xl font-bold text-highlight mb-4">
@@ -36,454 +40,363 @@ const pageDescription =
       </div>
     </section>
 
-    <!-- Contenedor del iframe del blog -->
-    <section class="bg-white">
-      <div class="w-full" id="blog-container">
-        <!-- Mensaje de fallback si el iframe no carga -->
-        <div
-          id="iframe-fallback"
-          class="hidden text-center p-8 bg-blue-50 border border-blue-200 rounded-lg m-4"
-        >
-          <div class="max-w-2xl mx-auto">
-            <h3 class="text-xl font-semibold text-brand mb-4">
-              📝 Accede a nuestro Blog
-            </h3>
-            <p class="text-gray-700 mb-6">
-              Nuestro blog contiene artículos útiles sobre mudanzas, consejos
-              profesionales y guías prácticas. Por motivos de seguridad, el
-              contenido se debe visualizar en una ventana separada.
-            </p>
-            <div class="space-y-4">
+    <!-- Contenido principal del blog -->
+    <article class="bg-white">
+      <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+          <!-- Título principal del artículo -->
+          <header class="text-center mb-12">
+            <h1 class="text-2xl lg:text-3xl font-bold text-brand mb-6">
               <a
-                href="https://blog.mudanzasandy.es/"
+                href="https://blog.mudanzasandy.es/consejos-guias-y-articulos-para-mudanzas-profesionales-en-barcelona-y-la-peninsula/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="blog-cta-button inline-flex items-center gap-3 bg-brand text-white px-6 py-3 rounded-lg hover:bg-brand/90 transition-all duration-300 font-medium group"
+                class="hover:text-secondary transition-colors duration-300"
               >
-                <span
-                  class="rocket-icon text-xl transition-transform duration-300 group-hover:translate-x-1"
-                  >🚀</span
-                >
-                <span>Visitar nuestro Blog</span>
-                <span class="text-xs opacity-75">(Nueva ventana)</span>
+                Consejos, Guías y Artículos para Mudanzas Profesionales en
+                Barcelona y la Península
               </a>
+            </h1>
+          </header>
 
-              <div class="text-sm text-gray-600">
-                <p class="mb-2">
-                  📚 <strong>En nuestro blog encontrarás:</strong>
+          <!-- Imagen hero -->
+          <figure class="mb-8 text-center">
+            <Image
+              src={blogHeroImage}
+              alt="Mudanzas económicas y baratas en Barcelona - Guía completa para traslados profesionales y económicos"
+              width={800}
+              height={450}
+              class="rounded-lg shadow-lg mx-auto"
+              loading="eager"
+            />
+          </figure>
+
+          <!-- Introducción -->
+          <div class="prose prose-lg mx-auto">
+            <p class="text-lg leading-relaxed mb-8 text-gray-700">
+              Mudarse a una nueva ciudad como <strong>Barcelona</strong> es el comienzo
+              de una emocionante etapa, pero la logística puede ser abrumadora y
+              costosa. Con una planificación adecuada y el apoyo de expertos en <strong
+                >mudanzas económicas</strong
+              >, tu traslado barato a Barcelona o cualquier punto de la
+              península ibérica puede ser una experiencia fluida y sin
+              contratiempos. Esta guía te ofrece consejos prácticos y
+              estrategias clave para conseguir <strong>mudanzas baratas</strong>
+              y garantizar una transición exitosa y económica.
+            </p>
+
+            <!-- Sección 1 -->
+            <section class="mb-10">
+              <h2 class="text-2xl font-bold text-brand mb-4">
+                La Clave del Éxito: Elegir una Empresa de Mudanzas Confiable
+              </h2>
+              <p class="mb-6">
+                La elección de tu socio de mudanzas es la decisión más
+                importante del proceso. Una empresa profesional no solo
+                transporta tus pertenencias, sino que te brinda tranquilidad.
+              </p>
+
+              <h3 class="text-xl font-semibold text-secondary mb-3">
+                ¿Qué Buscar en una Empresa de Confianza?
+              </h3>
+
+              <div class="mb-6">
+                <h4 class="text-lg font-semibold text-brand mb-2">
+                  Experiencia y Reputación
+                </h4>
+                <p>
+                  Busca empresas con una trayectoria consolidada. Las reseñas de
+                  clientes anteriores en plataformas independientes son un
+                  indicador fiable de la calidad del servicio.
                 </p>
-                <ul class="text-left max-w-md mx-auto space-y-1">
-                  <li>• Consejos para organizar tu mudanza</li>
-                  <li>• Guías de embalaje profesional</li>
-                  <li>• Tips para ahorrar en tu mudanza</li>
-                  <li>• Noticias del sector</li>
-                </ul>
               </div>
-            </div>
+
+              <div class="mb-6">
+                <h4 class="text-lg font-semibold text-brand mb-2">
+                  Servicios Especializados
+                </h4>
+                <p>
+                  ¿Necesitas embalaje profesional, desmontaje de muebles o
+                  almacenamiento temporal? Elige una empresa que ofrezca
+                  soluciones integrales.
+                </p>
+              </div>
+            </section>
+
+            <!-- Sección 2 -->
+            <section class="mb-10">
+              <h2 class="text-2xl font-bold text-brand mb-4">
+                Estrategias Inteligentes para Mudanzas Económicas y Baratas
+              </h2>
+              <p class="mb-6">
+                Conseguir <strong>mudanzas baratas en Barcelona</strong> es posible
+                sin sacrificar la seguridad de tus pertenencias. Descubre cómo reducir
+                costos y obtener <strong>mudanzas económicas</strong> de calidad.
+              </p>
+
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold text-secondary mb-3">
+                  Planifica con Antelación
+                </h3>
+                <p>
+                  Reservar tu mudanza con meses de antelación, especialmente
+                  fuera de temporada alta, puede suponer un ahorro
+                  significativo.
+                </p>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold text-secondary mb-3">
+                  Haz Limpieza y Vende
+                </h3>
+                <p>
+                  Una mudanza es la oportunidad perfecta para deshacerte de lo
+                  que ya no necesitas. Plataformas como Wallapop o Vinted son
+                  ideales para vender objetos y aligerar la carga.
+                </p>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold text-secondary mb-3">
+                  Flexibilidad en las Fechas
+                </h3>
+                <p>
+                  Si tus fechas de traslado son flexibles, consulta con la
+                  empresa de mudanzas qué días o semanas son más económicos.
+                </p>
+              </div>
+            </section>
+
+            <!-- Sección 3 -->
+            <section class="mb-10">
+              <h2 class="text-2xl font-bold text-brand mb-4">
+                ¿Te Mudas con Mascotas? Guía Esencial para un Viaje Seguro
+              </h2>
+              <p class="mb-4">
+                Barcelona y España tienen requisitos claros para el traslado de
+                animales. Asegúrate de que tu perro o gato cuente con:
+              </p>
+
+              <ul class="list-disc pl-6 mb-6 space-y-2">
+                <li><strong>Microchip electrónico homologado.</strong></li>
+                <li>
+                  <strong
+                    >Pasaporte para Animales de Compañía y vacunación
+                    antirrábica al día.</strong
+                  >
+                </li>
+                <li>
+                  <strong
+                    >Un certificado sanitario emitido por un veterinario
+                    oficial.</strong
+                  >
+                </li>
+              </ul>
+
+              <p>
+                Cumpliendo estos trámites, el proceso es sencillo. Para
+                garantizar su bienestar, considera contratar servicios
+                especializados en transporte de mascotas que aseguren un viaje
+                cómodo y seguro.
+              </p>
+            </section>
+
+            <!-- Sección 4 -->
+            <section class="mb-10">
+              <h2 class="text-2xl font-bold text-brand mb-4">
+                Checklist Final para tu Mudanza Profesional
+              </h2>
+              <p class="mb-6">
+                Antes del gran día, repasa esta lista para no olvidar nada:
+              </p>
+
+              <div class="space-y-6">
+                <div
+                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
+                >
+                  <span class="checklist-icon text-xl">✅</span>
+                  <div>
+                    <h4 class="font-semibold mb-1">Documentación en Orden</h4>
+                    <p>
+                      Ten a mano tu pasaporte, NIE, contrato de mudanza e
+                      inventario de bienes.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
+                >
+                  <span class="checklist-icon text-xl">✅</span>
+                  <div>
+                    <h4 class="font-semibold mb-1">Seguro Contratado</h4>
+                    <p>
+                      Verifica que la póliza de seguro de transporte esté activa
+                      y cubra el valor de tus pertenencias.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
+                >
+                  <span class="checklist-icon text-xl">✅</span>
+                  <div>
+                    <h4 class="font-semibold mb-1">Servicios Básicos</h4>
+                    <p>
+                      Notifica a tus proveedores de luz, agua e internet tu
+                      cambio de domicilio y gestiona el alta en tu nuevo hogar.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
+                >
+                  <span class="checklist-icon text-xl">✅</span>
+                  <div>
+                    <h4 class="font-semibold mb-1">Cuenta Bancaria Local</h4>
+                    <p>
+                      Si te mudas desde el extranjero, tener una cuenta bancaria
+                      en España facilitará tus gestiones diarias.
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="checklist-item flex items-start gap-3 p-4 rounded-lg"
+                >
+                  <span class="checklist-icon text-xl">✅</span>
+                  <div>
+                    <h4 class="font-semibold mb-1">Kit de Supervivencia</h4>
+                    <p>
+                      Prepara una caja con objetos esenciales para las primeras
+                      24 horas: artículos de aseo, cargadores, algo de ropa y
+                      documentos importantes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Conclusión -->
+            <section class="mb-10">
+              <h2 class="text-2xl font-bold text-brand mb-4">
+                Tu Mudanza Económica en Barcelona sin Estrés
+              </h2>
+              <p class="mb-4">
+                Una <strong>mudanza económica Barcelona</strong> bien organizada
+                es una mudanza exitosa. Al delegar la logística en profesionales
+                especializados en <strong>mudanzas baratas</strong>, puedes
+                centrarte en disfrutar de tu nuevo hogar desde el primer día sin
+                gastar de más.
+              </p>
+              <p class="text-lg font-semibold text-secondary">
+                ¿Listo para empezar a planificar tu <strong
+                  >mudanza barata</strong
+                >? Contacta con nosotros para obtener un <strong
+                  >presupuesto económico personalizado</strong
+                > y sin compromiso. ¡Hacemos tu mudanza fácil, segura y económica!
+              </p>
+            </section>
           </div>
         </div>
-
-        <!-- Iframe del blog (intentará cargar primero) -->
-        <iframe
-          id="blog-iframe"
-          src="https://blog.mudanzasandy.es/"
-          class="w-full border-0"
-          style="height: 800px; min-height: 600px;"
-          title="Blog Mudanzas ANDY"
-          loading="lazy"
-          sandbox="allow-same-origin allow-scripts allow-forms allow-top-navigation allow-popups"
-        ></iframe>
       </div>
-    </section>
+    </article>
 
-    <!-- Enlace directo al blog original -->
-    <section class="bg-white py-6 border-t">
-      <div class="container mx-auto px-4 text-center">
-        <p class="text-gray-600 text-sm mb-2">
-          ¿Prefieres ver el blog en una ventana separada?
-        </p>
-        <a
-          href="https://blog.mudanzasandy.es/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="blog-external-link inline-flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg hover:bg-brand/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg group"
+    <!-- Sección de CTA con gradiente de marca y colores de la guía de estilos -->
+    <section
+      class="cta-section relative overflow-visible text-white py-16"
+      style="background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-secondary)) 100%);"
+    >
+      <div class="container mx-auto px-4 text-center relative z-[60]">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-white">
+          ¿Necesitas ayuda con tu mudanza económica en Barcelona?
+        </h2>
+        <p
+          class="text-base md:text-lg mx-auto mb-8 text-white/95 max-w-2xl leading-relaxed"
         >
-          <span
-            class="rocket-icon text-sm transition-transform duration-300 group-hover:rotate-12"
-            >🚀</span
+          Contacta con nuestros expertos para obtener un presupuesto económico y
+          personalizado para tu mudanza en Barcelona.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center gap-3 bg-[rgb(var(--color-highlight))] text-[rgb(var(--color-primary))] px-8 h-14 min-w-[240px] rounded-xl hover:brightness-110 hover:scale-[1.02] transition-all duration-300 font-bold shadow-lg relative z-[61]"
+            aria-label="Solicitar presupuesto gratuito para mudanza económica"
           >
-          <span>Abrir blog en nueva ventana</span>
-        </a>
+            <span class="text-xl">📞</span>
+            <span>Solicitar Presupuesto Gratis</span>
+          </a>
+          <a
+            href="https://blog.mudanzasandy.es/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm border-2 border-white/40 text-white px-8 h-14 min-w-[240px] rounded-xl hover:bg-white/20 hover:border-white/60 hover:scale-[1.02] transition-all duration-300 font-bold shadow-lg relative z-[61]"
+            aria-label="Ver blog completo con más consejos para mudanzas baratas"
+          >
+            <span class="text-xl">📝</span>
+            <span>Más Consejos Económicos</span>
+          </a>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Consejos para Mudanzas Económicas en Barcelona - Guía Profesional",
+      "description": "Guía completa para conseguir mudanzas baratas y económicas en Barcelona. Consejos profesionales para ahorrar en tu traslado sin perder calidad.",
+      "author": {
+        "@type": "Organization",
+        "name": "Mudanzas ANDY",
+        "url": "https://mudanzasandy.es"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mudanzas ANDY",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg"
+        }
+      },
+      "datePublished": "2025-09-16",
+      "dateModified": "2025-09-16",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://mudanzasandy.es/blog-astro/"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://mudanzasandy.es/assets/images/blog/blog-hero-optimized.webp",
+        "width": 800,
+        "height": 450
+      },
+      "keywords": "mudanzas barcelona, mudanzas económicas, mudanzas baratas, consejos mudanza, embalaje barato, traslados económicos, mudanza barata barcelona",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Mudanzas Barcelona"
+        },
+        {
+          "@type": "Thing",
+          "name": "Mudanzas Económicas"
+        },
+        {
+          "@type": "Thing",
+          "name": "Consejos de Mudanza"
+        }
+      ]
+    }
+  </script>
 </Layout>
 
-<!-- Footer -->
-<Footer />
-
-<style>
-  /* Estilos adicionales para el iframe */
-  iframe {
-    display: block;
-    width: 100%;
-    border: none;
-    overflow: hidden;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    iframe {
-      height: 600px !important;
-      min-height: 500px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    iframe {
-      height: 500px !important;
-      min-height: 400px;
-    }
-  }
-
-  /* Loading state */
-  iframe::before {
-    content: "Cargando blog...";
-    display: block;
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    font-family: system-ui, sans-serif;
-  }
-
-  /* 🎨 Animaciones mejoradas para enlaces del blog */
-  .blog-cta-button {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(
-      135deg,
-      rgb(var(--color-primary)),
-      rgb(var(--color-secondary))
-    );
-    box-shadow: 0 4px 15px rgba(var(--color-primary), 0.3);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-  }
-
-  .blog-cta-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
-    transition: left 0.5s ease;
-  }
-
-  .blog-cta-button:hover::before {
-    left: 100%;
-  }
-
-  .blog-cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(var(--color-primary), 0.4);
-    background: linear-gradient(
-      135deg,
-      rgb(var(--color-secondary)),
-      rgb(var(--color-primary))
-    );
-  }
-
-  .blog-cta-button:active {
-    transform: translateY(0);
-    transition: transform 0.1s ease;
-  }
-
-  /* Animación específica para el enlace externo */
-  .blog-external-link {
-    background: linear-gradient(
-      45deg,
-      rgb(var(--color-primary)),
-      rgb(var(--color-accent))
-    );
-    position: relative;
-    overflow: hidden;
-  }
-
-  .blog-external-link::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition:
-      width 0.6s ease,
-      height 0.6s ease;
-  }
-
-  .blog-external-link:hover::after {
-    width: 300px;
-    height: 300px;
-  }
-
-  .blog-external-link:hover {
-    background: linear-gradient(
-      45deg,
-      rgb(var(--color-accent)),
-      rgb(var(--color-highlight))
-    );
-    color: rgb(var(--color-primary));
-    font-weight: 600;
-  }
-
-  /* Animación de pulso para llamar la atención */
-  @keyframes gentle-pulse {
-    0%,
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-  }
-
-  .blog-cta-button:focus {
-    animation: gentle-pulse 2s infinite;
-    outline: 3px solid rgba(var(--color-highlight), 0.5);
-    outline-offset: 2px;
-  }
-
-  /* Animación de rebote suave para los iconos */
-  @keyframes bounce-soft {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    40% {
-      transform: translateY(-3px) rotate(5deg);
-    }
-    60% {
-      transform: translateY(-1px) rotate(-2deg);
-    }
-  }
-
-  .rocket-icon {
-    display: inline-block;
-  }
-
-  .blog-cta-button:hover .rocket-icon {
-    animation: bounce-soft 0.6s ease;
-  }
-
-  /* Efecto de highlight en la lista del fallback */
-  .text-left li {
-    transition: all 0.3s ease;
-    padding: 0.25rem 0;
-    border-radius: 4px;
-  }
-
-  .text-left li:hover {
-    background: rgba(var(--color-highlight), 0.1);
-    transform: translateX(5px);
-    color: rgb(var(--color-primary));
-    font-weight: 500;
-  }
-
-  /* Transición suave para el contenedor del fallback */
-  #iframe-fallback {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(10px);
-    opacity: 0;
-  }
-
-  #iframe-fallback:not(.hidden) {
-    transform: translateY(0);
-    opacity: 1;
-  }
-</style>
-
-<script>
-  // Script mejorado para detectar errores reales de iframe
-  document.addEventListener("DOMContentLoaded", function () {
-    const iframe = document.getElementById("blog-iframe") as HTMLIFrameElement;
-    const fallbackDiv = document.getElementById("iframe-fallback");
-
-    if (iframe && fallbackDiv) {
-      let fallbackShown = false;
-      let iframeLoaded = false;
-
-      // Función para mostrar el fallback
-      function showFallback() {
-        if (!fallbackShown && fallbackDiv) {
-          fallbackShown = true;
-          iframe.style.display = "none";
-          fallbackDiv.classList.remove("hidden");
-          console.log("Mostrando página de fallback para el blog");
-        }
-      }
-
-      // Detectar cuando el iframe se carga exitosamente
-      iframe.addEventListener("load", function () {
-        console.log("Iframe del blog cargado exitosamente");
-        iframeLoaded = true;
-      });
-
-      // Detectar errores de carga del iframe
-      iframe.addEventListener("error", function () {
-        console.error("Error al cargar el iframe del blog");
-        showFallback();
-      });
-
-      // Interceptar errores de consola relacionados con X-Frame-Options
-      const originalConsoleError = console.error;
-      console.error = function (...args: any[]) {
-        const message = args.join(" ").toLowerCase();
-        if (
-          message.includes("x-frame-options") ||
-          message.includes("refused to display") ||
-          message.includes("frame because it set")
-        ) {
-          console.error("Detectado error X-Frame-Options:", ...args);
-          showFallback();
-        }
-        originalConsoleError.apply(console, args);
-      };
-
-      // Solo usar timeout como último recurso si no hay carga tras bastante tiempo
-      // Y solo si no hemos detectado una carga exitosa
-      setTimeout(() => {
-        if (!iframeLoaded && !fallbackShown) {
-          console.warn(
-            "Iframe no se ha cargado después de 8 segundos - posibles restricciones"
-          );
-          showFallback();
-        }
-      }, 8000); // Timeout más largo y solo si no hay carga
-    }
-
-    // 🎨 Animaciones adicionales para mejorar la experiencia
-    initEnhancedAnimations();
-  });
-
-  // Función para inicializar animaciones mejoradas
-  function initEnhancedAnimations() {
-    // Animación de entrada para elementos del fallback
-    const observerOptions: IntersectionObserverInit = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
-          target.style.animation = "slideInUp 0.6s ease-out forwards";
-        }
-      });
-    }, observerOptions);
-
-    // Observar elementos del fallback cuando aparezcan
-    setTimeout(() => {
-      const fallbackElements = document.querySelectorAll(
-        "#iframe-fallback h3, #iframe-fallback p, #iframe-fallback .blog-cta-button, #iframe-fallback ul"
-      );
-      fallbackElements.forEach((el, index) => {
-        const element = el as HTMLElement;
-        element.style.opacity = "0";
-        element.style.transform = "translateY(20px)";
-        element.style.animationDelay = `${index * 0.1}s`;
-        observer.observe(element);
-      });
-    }, 100);
-
-    // Efecto de partículas sutiles en hover para botones principales
-    const blogButtons = document.querySelectorAll(
-      ".blog-cta-button, .blog-external-link"
-    );
-    blogButtons.forEach((button) => {
-      button.addEventListener("mouseenter", createSparkleEffect);
-      button.addEventListener("mouseleave", removeSparkleEffect);
-    });
-
-    function createSparkleEffect(e: Event) {
-      const button = e.currentTarget as HTMLElement;
-      const rect = button.getBoundingClientRect();
-
-      for (let i = 0; i < 3; i++) {
-        setTimeout(() => {
-          const sparkle = document.createElement("div");
-          sparkle.className = "sparkle";
-          sparkle.style.cssText = `
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(var(--color-highlight), 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10;
-            top: ${Math.random() * rect.height}px;
-            left: ${Math.random() * rect.width}px;
-            animation: sparkleFloat 1s ease-out forwards;
-          `;
-
-          button.style.position = "relative";
-          button.appendChild(sparkle);
-
-          setTimeout(() => sparkle.remove(), 1000);
-        }, i * 100);
-      }
-    }
-
-    function removeSparkleEffect(e: Event) {
-      const button = e.currentTarget as HTMLElement;
-      const sparkles = button.querySelectorAll(".sparkle");
-      sparkles.forEach((sparkle: Element) => sparkle.remove());
-    }
-
-    // Agregar keyframes dinámicos para las animaciones
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes slideInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      
-      @keyframes sparkleFloat {
-        0% {
-          opacity: 0;
-          transform: translateY(0) scale(0);
-        }
-        50% {
-          opacity: 1;
-          transform: translateY(-10px) scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(-20px) scale(0);
-        }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-</script>
+<!-- Page styles removed: replaced by Tailwind utility classes on elements above -->
