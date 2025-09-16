@@ -33,17 +33,13 @@ const {
 // Si no se pasan imágenes, usar imágenes por defecto
 let galleryImages = images;
 if (images.length === 0) {
-  // Usar las imágenes generadas por el script de optimización
+  // Usar las imágenes restantes después de eliminar 1, 3, 4, 6 (quedan: 2, 5, 7, 8, 9)
   galleryImages = [
-    { baseName: "/gallery/optimized/gallery-01", alt: "Imagen de galería 1 - Mudanzas ANDY", caption: "Imagen 1" },
-    { baseName: "/gallery/optimized/gallery-02", alt: "Imagen de galería 2 - Mudanzas ANDY", caption: "Imagen 2" },
-    { baseName: "/gallery/optimized/gallery-03", alt: "Imagen de galería 3 - Mudanzas ANDY", caption: "Imagen 3" },
-    { baseName: "/gallery/optimized/gallery-04", alt: "Imagen de galería 4 - Mudanzas ANDY", caption: "Imagen 4" },
-    { baseName: "/gallery/optimized/gallery-05", alt: "Imagen de galería 5 - Mudanzas ANDY", caption: "Imagen 5" },
-    { baseName: "/gallery/optimized/gallery-06", alt: "Imagen de galería 6 - Mudanzas ANDY", caption: "Imagen 6" },
-    { baseName: "/gallery/optimized/gallery-07", alt: "Imagen de galería 7 - Mudanzas ANDY", caption: "Imagen 7" },
-    { baseName: "/gallery/optimized/gallery-08", alt: "Imagen de galería 8 - Mudanzas ANDY", caption: "Imagen 8" },
-    { baseName: "/gallery/optimized/gallery-09", alt: "Imagen de galería 9 - Mudanzas ANDY", caption: "Imagen 9" },
+    { baseName: "/gallery/optimized/gallery-02", alt: "Imagen de galería 1 - Mudanzas ANDY", caption: "Imagen 1" },
+    { baseName: "/gallery/optimized/gallery-05", alt: "Imagen de galería 2 - Mudanzas ANDY", caption: "Imagen 2" },
+    { baseName: "/gallery/optimized/gallery-07", alt: "Imagen de galería 3 - Mudanzas ANDY", caption: "Imagen 3" },
+    { baseName: "/gallery/optimized/gallery-08", alt: "Imagen de galería 4 - Mudanzas ANDY", caption: "Imagen 4" },
+    { baseName: "/gallery/optimized/gallery-09", alt: "Imagen de galería 5 - Mudanzas ANDY", caption: "Imagen 5" },
   ];
 }
 
@@ -161,23 +157,37 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
         </button>
 
         <!-- Contenedor de la imagen -->
-        <div class="lightbox-image-container max-w-5xl max-h-[80vh] relative">
+        <div class="lightbox-image-container max-w-5xl max-h-[70vh] relative mx-auto">
           <img 
             id="lightbox-image"
             src=""
             alt=""
-            class="max-w-full max-h-full object-contain rounded-lg"
+            class="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
           />
-          
-          <!-- Caption en lightbox -->
-          <div class="lightbox-caption absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-            <p id="lightbox-caption-text" class="text-white text-lg font-medium text-center"></p>
-          </div>
         </div>
 
-        <!-- Indicador de posición -->
-        <div class="lightbox-counter absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/20 rounded-full px-4 py-2">
-          <span id="lightbox-counter" class="text-white text-sm font-medium"></span>
+        <!-- Información y controles en la parte inferior -->
+        <div class="lightbox-info-panel mt-6 mb-8 max-w-5xl mx-auto px-6">
+          <!-- Caption -->
+          <div class="lightbox-caption bg-white/95 backdrop-blur-sm rounded-xl p-4 mb-4 shadow-lg">
+            <p id="lightbox-caption-text" class="text-gray-800 text-lg font-medium text-center"></p>
+          </div>
+
+          <!-- Contador e indicadores -->
+          <div class="flex items-center justify-center gap-4">
+            <!-- Indicador de posición mejorado -->
+            <div class="lightbox-counter bg-[rgb(var(--color-primary))] text-white rounded-full px-6 py-3 shadow-lg">
+              <span id="lightbox-counter" class="font-semibold text-base"></span>
+            </div>
+            
+            <!-- Indicador de navegación por teclado -->
+            <div class="hidden sm:flex items-center gap-2 text-white/70 text-sm">
+              <span>Usa</span>
+              <kbd class="bg-white/20 px-2 py-1 rounded text-xs">←</kbd>
+              <kbd class="bg-white/20 px-2 py-1 rounded text-xs">→</kbd>
+              <span>para navegar</span>
+            </div>
+          </div>
         </div>
       </div>
     )}
