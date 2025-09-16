@@ -140,12 +140,12 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
         </button>
 
         <!-- Contenedor principal del lightbox -->
-        <div class="lightbox-wrapper">
-          <!-- Contenedor de imagen con controles de navegación -->
+        <div class="lightbox-wrapper" id="lightbox-background">
+          <!-- Contenedor de imagen -->
           <div class="lightbox-image-container">
-            <!-- Controles de navegación para desktop -->
+            <!-- Controles de navegación desktop -->
             <button 
-              class="lightbox-prev"
+              class="lightbox-prev lightbox-nav-desktop"
               aria-label="Imagen anterior"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -167,7 +167,7 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
             </div>
 
             <button 
-              class="lightbox-next"
+              class="lightbox-next lightbox-nav-desktop"
               aria-label="Siguiente imagen"
             >
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -176,17 +176,16 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
             </button>
           </div>
 
-          <!-- Controles móviles -->
+          <!-- Controles móviles (solo para móvil) -->
           <div class="lightbox-mobile-controls">
-            <!-- Navegación mobile -->
             <div class="lightbox-navigation">
-              <button class="lightbox-prev" aria-label="Imagen anterior">
+              <button class="lightbox-prev lightbox-nav-mobile" aria-label="Imagen anterior">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
               </button>
               
-              <button class="lightbox-next" aria-label="Siguiente imagen">
+              <button class="lightbox-next lightbox-nav-mobile" aria-label="Siguiente imagen">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
@@ -194,10 +193,10 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
             </div>
             
             <!-- Indicador de navegación por teclado -->
-            <div class="hidden lg:flex items-center gap-2 text-white/80 text-sm">
+            <div class="hidden lg:flex items-center gap-2 text-white/80 text-sm mt-4">
               <span>Usa</span>
-              <kbd>←</kbd>
-              <kbd>→</kbd>
+              <kbd class="px-2 py-1 bg-white/20 rounded text-xs">←</kbd>
+              <kbd class="px-2 py-1 bg-white/20 rounded text-xs">→</kbd>
               <span>para navegar</span>
             </div>
           </div>
@@ -309,29 +308,52 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
         closeBtn.addEventListener('click', close);
       }
       
-      // Navegación
-      const prevBtn = document.querySelector('.lightbox-prev');
-      const nextBtn = document.querySelector('.lightbox-next');
+      // Navegación - manejar todos los botones prev/next
+      const prevBtns = document.querySelectorAll('.lightbox-prev');
+      const nextBtns = document.querySelectorAll('.lightbox-next');
       
-      if (prevBtn) {
-        prevBtn.addEventListener('click', prev);
-      }
+      prevBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          prev();
+        });
+      });
       
-      if (nextBtn) {
-        nextBtn.addEventListener('click', next);
-      }
+      nextBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          next();
+        });
+      });
 
       // Cerrar con escape o clic en fondo
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') close();
-        if (e.key === 'ArrowLeft') prev();
-        if (e.key === 'ArrowRight') next();
+        const lightbox = document.getElementById('lightbox');
+        if (!lightbox.classList.contains('hidden')) {
+          if (e.key === 'Escape') close();
+          if (e.key === 'ArrowLeft') prev();
+          if (e.key === 'ArrowRight') next();
+        }
       });
 
+      // Cerrar al hacer clic fuera de la imagen
       const lightboxModal = document.getElementById('lightbox');
+      const lightboxBackground = document.getElementById('lightbox-background');
+      
       if (lightboxModal) {
         lightboxModal.addEventListener('click', function(e) {
-          if (e.target === e.currentTarget) close();
+          // Cerrar si se hace clic en el fondo del modal
+          if (e.target === lightboxModal || e.target === lightboxBackground) {
+            close();
+          }
+        });
+      }
+      
+      // Prevenir el cierre cuando se hace clic en la imagen o sus controles
+      const imageContainer = document.querySelector('.lightbox-image-container');
+      if (imageContainer) {
+        imageContainer.addEventListener('click', function(e) {
+          e.stopPropagation();
         });
       }
     });
