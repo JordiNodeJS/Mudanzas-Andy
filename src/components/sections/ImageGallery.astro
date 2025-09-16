@@ -62,9 +62,10 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
       </p>
     </div>
 
-    <!-- Grid de imágenes -->
+    <!-- Grid de imágenes con centrado automático para impares -->
     <div 
-      class={`gallery-grid grid ${gridClasses} gap-6 lg:gap-8 max-w-7xl mx-auto`}
+      class="gallery-grid gallery-centered-grid max-w-7xl mx-auto"
+      data-image-count={galleryImages.length}
     >
       {galleryImages.map((image, index) => (
         <div 
