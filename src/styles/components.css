@@ -505,142 +505,338 @@
   opacity: 1;
 }
 
-/* Lightbox styles */
+/* Lightbox styles - Diseño moderno */
 .lightbox {
-  background-color: var(--lightbox-backdrop);
-  backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 9999;
-  padding: 2rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+/* CRITICAL: Hide lightbox when hidden class is applied */
+.lightbox.hidden {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1024px) {
+  .lightbox {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 640px) {
   .lightbox {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+}
+
+/* Contenedor principal del lightbox */
+.lightbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .lightbox-wrapper {
     padding: 1rem;
+    gap: 1rem;
   }
 }
 
 .lightbox-image-container {
-  margin-bottom: 0; /* Eliminar margen inferior automático */
-}
-
-.lightbox-image-container img {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
-    0 10px 10px -5px rgba(0, 0, 0, 0.15);
-  border-radius: 0.75rem;
-  max-height: 70vh;
-}
-
-/* Lightbox controls - Mejorados */
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next {
-  width: 3.5rem;
-  height: 3.5rem;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-radius: 50%;
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(var(--color-primary));
-  transition: all var(--gallery-transition-fast) ease;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover {
-  background-color: rgba(255, 255, 255, 1);
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* Lightbox info panel - Nuevo diseño */
-.lightbox-info-panel {
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .lightbox-info-panel {
-    padding: 0 2rem;
-  }
-}
-
-/* Lightbox caption - Rediseñado */
-.lightbox-caption {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  border-radius: 1rem;
-  padding: 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.lightbox-caption p {
-  color: rgb(var(--color-primary));
-  font-size: 1.125rem;
-  font-weight: 600;
+  max-width: 800px;
   margin: 0;
-  text-align: center;
 }
 
-/* Lightbox counter - Rediseñado */
-.lightbox-counter {
+.lightbox-image-container img {
+  width: auto;
+  height: auto;
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Footer de imagen con contador superpuesto */
+.lightbox-image-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.lightbox-counter-overlay {
   background: linear-gradient(
     135deg,
     rgb(var(--color-primary)),
     rgb(var(--color-secondary))
   );
-  border-radius: 9999px;
-  padding: 0.875rem 1.5rem;
+  border-radius: 1.5rem;
+  padding: 0.75rem 1.5rem;
   color: white;
   font-size: 1rem;
   font-weight: 700;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 1024px) {
+  .lightbox-image-container img {
+    max-height: 70vh;
+    max-width: 95vw;
+  }
+}
+
+@media (max-width: 640px) {
+  .lightbox-image-container img {
+    max-height: 60vh;
+    border-radius: 0.75rem;
+  }
+
+  .lightbox-image-footer {
+    padding: 1.5rem 1rem 0.75rem 1rem;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+  }
+
+  .lightbox-counter-overlay {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 1rem;
+  }
+}
+
+/* Lightbox controls - Diseño premium */
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1) rotate(90deg);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3.5rem;
+  height: 3.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--color-primary));
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+}
+
+.lightbox-prev {
+  left: -4.5rem;
+}
+
+.lightbox-next {
+  right: -4.5rem;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .lightbox-prev,
+  .lightbox-next {
+    position: static;
+    transform: none;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* Controles móviles */
+.lightbox-mobile-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+@media (min-width: 1025px) {
+  .lightbox-mobile-controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+  }
+}
+
+/* Estilos antiguos removidos - contador ahora es overlay en imagen */
+
+/* Controles de navegación mobile */
+.lightbox-navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .lightbox-prev,
+  .lightbox-next {
+    position: static !important;
+    transform: none !important;
+    width: 3rem !important;
+    height: 3rem !important;
+  }
 }
 
 /* Indicadores de teclado */
 .lightbox kbd {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 0.375rem;
-  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.75rem;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
 }
 
-/* Animaciones mejoradas */
+/* Animaciones cinematográficas */
+.lightbox.flex {
+  animation: lightbox-backdrop-enter 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 .lightbox.flex .lightbox-image-container {
-  animation: lightbox-enter 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: lightbox-image-enter 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s
+    both;
 }
 
 .lightbox.flex .lightbox-info-panel {
-  animation: lightbox-info-enter 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s both;
+  animation: lightbox-info-enter 0.7s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s both;
 }
 
-@keyframes lightbox-enter {
+.lightbox.flex .lightbox-close {
+  animation: lightbox-close-enter 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) 0.3s
+    both;
+}
+
+@keyframes lightbox-backdrop-enter {
   from {
     opacity: 0;
-    transform: scale(0.9) translateY(1rem);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes lightbox-image-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotateY(10deg);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    filter: blur(0px);
   }
 }
 
 @keyframes lightbox-info-enter {
   from {
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateX(2rem) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes lightbox-close-enter {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
   }
 }
 
