@@ -203,13 +203,23 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
 <!-- JavaScript para funcionalidad de lightbox -->
 {lightbox && (
   <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
+    // Función de inicialización del lightbox que se puede llamar múltiples veces
+    function initLightbox() {
+      // Evitar múltiples inicializaciones
+      if (window.lightboxInitialized) {
+        return;
+      }
+
       let currentIndex = 0;
       let images = [];
 
       // Recopilar todas las imágenes de la galería
       const galleryItems = document.querySelectorAll('.gallery-item[data-lightbox="true"]');
       
+      if (galleryItems.length === 0) {
+        return; // No hay elementos de galería, salir
+      }
+
       images = Array.from(galleryItems).map(function(item, index) {
         const img = item.querySelector('.gallery-image');
         const captionElement = item.querySelector('.gallery-overlay p');
@@ -285,10 +295,30 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
         }
       }
 
+      // Limpiar event listeners previos para evitar duplicados
+      function cleanupLightboxListeners() {
+        // Remover listeners de elementos de galería
+        const oldGalleryItems = document.querySelectorAll('.gallery-item[data-lightbox="true"]');
+        oldGalleryItems.forEach(function(item) {
+          // Clonar el elemento para remover todos los listeners
+          const newItem = item.cloneNode(true);
+          item.parentNode.replaceChild(newItem, item);
+        });
+
+        // Remover listeners globales de teclado si existen
+        if (window.lightboxKeyHandler) {
+          document.removeEventListener('keydown', window.lightboxKeyHandler);
+        }
+      }
+
+      // Limpiar listeners previos
+      cleanupLightboxListeners();
+
       // Event listeners
       
       // Abrir lightbox al hacer clic en imagen
-      galleryItems.forEach(function(item, index) {
+      const freshGalleryItems = document.querySelectorAll('.gallery-item[data-lightbox="true"]');
+      freshGalleryItems.forEach(function(item, index) {
         item.addEventListener('click', function() {
           open(index);
         });
@@ -318,15 +348,18 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
         });
       });
 
-      // Cerrar con escape o clic en fondo
-      document.addEventListener('keydown', function(e) {
+      // Cerrar con escape o navegación con flechas
+      window.lightboxKeyHandler = function(e) {
         const lightbox = document.getElementById('lightbox');
-        if (!lightbox.classList.contains('hidden')) {
-          if (e.key === 'Escape') close();
-          if (e.key === 'ArrowLeft') prev();
-          if (e.key === 'ArrowRight') next();
+        if (!lightbox || lightbox.classList.contains('hidden')) {
+          return;
         }
-      });
+        
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      };
+      document.addEventListener('keydown', window.lightboxKeyHandler);
 
       // Cerrar al hacer clic fuera de la imagen
       const lightboxModal = document.getElementById('lightbox');
@@ -348,7 +381,33 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
           e.stopPropagation();
         });
       }
-    });
+
+      // Marcar como inicializado
+      window.lightboxInitialized = true;
+    }
+
+    // Función para reinicializar el lightbox (útil para view transitions)
+    function reinitLightbox() {
+      window.lightboxInitialized = false;
+      initLightbox();
+    }
+
+    // Inicialización inicial
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLightbox);
+    } else {
+      initLightbox();
+    }
+
+    // Soporte para Astro View Transitions
+    // Re-inicializar después de cada navegación
+    document.addEventListener('astro:page-load', reinitLightbox);
+    
+    // Fallback para navegación manual del usuario
+    document.addEventListener('astro:after-swap', reinitLightbox);
+    
+    // Exponer función globalmente para debug si es necesario
+    window.reinitLightbox = reinitLightbox;
   </script>
 )}
 
