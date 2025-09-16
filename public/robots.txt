@@ -8,6 +8,10 @@ Disallow: /test-results/
 Disallow: /.playwright-mcp/
 Disallow: /playwright-report/
 
+# Disallow policy pages from crawling (SEO optimization)
+Disallow: /politica-privacidad/
+Disallow: /politica-cookies/
+
 # Allow important resources
 Allow: /images/
 Allow: /js/
