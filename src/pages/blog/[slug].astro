@@ -69,12 +69,15 @@ const allPosts = await getCollection("blog");
 const relatedPosts = allPosts
   .filter(p => p.id !== post.id && p.data.category === post.data.category && !p.data.draft)
   .slice(0, 3);
+
+// Extract image URL from heroImage if it's an object or use as string
+const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroImage.src : post.data.heroImage;
 ---
 
 <Layout
   title={`${pageTitle} | Blog Mudanzas ANDY`}
   description={pageDescription}
-  image={post.data.heroImage || "/logos/logo-mudanzas-andy.svg"}
+  image={heroImageUrl || "/logos/logo-mudanzas-andy.svg"}
   canonical={canonical}
   keywords={post.data.keywords?.join(", ") || "mudanzas barcelona, consejos mudanza"}
 >
