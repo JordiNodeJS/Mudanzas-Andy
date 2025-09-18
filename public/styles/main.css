@@ -1,0 +1,72 @@
+/* Non-critical CSS - Loaded asynchronously */
+
+/* Navigation styles */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: rgb(var(--color-primary));
+  box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
+}
+
+/* Card styles */
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+/* Additional components loaded after critical path */
+.btn-secondary {
+  background-color: rgb(var(--color-secondary));
+  color: white;
+}
+
+.btn-accent {
+  background-color: rgb(var(--color-accent));
+  color: rgb(var(--color-primary));
+}
+
+/* Footer styles */
+.footer {
+  background-color: rgb(var(--color-primary));
+  color: white;
+  padding: 2rem 0;
+}
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+  .md\:hidden {
+    display: none;
+  }
+  .md\:block {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:col-6 {
+    width: 50%;
+  }
+  .lg\:col-12 {
+    width: 100%;
+  }
+}

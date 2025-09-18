@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
+    "jsdom": "^27.0.0",
     "png-to-ico": "^3.0.1",
     "sharp": "^0.34.3"
   }

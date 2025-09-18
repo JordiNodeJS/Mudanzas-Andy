@@ -1,0 +1,84 @@
+<!-- OPTIMIZED CRITICAL CSS - Solo Above The Fold esencial -->
+<style>
+/* Reset básico */
+html { scroll-padding-top: 5rem; }
+body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+
+/* Container crítico */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+
+/* Layout esencial - solo hero */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.inset-0 { inset: 0; }
+.z-40 { z-index: 40; }
+.z-50 { z-index: 50; }
+
+/* Hero section crítico */
+.min-h-screen { min-height: 100vh; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.text-center { text-align: center; }
+
+/* Typography crítico - solo hero */
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.font-bold { font-weight: 700; }
+.leading-tight { line-height: 1.25; }
+
+/* Colors críticos - sistema centralizado */
+:root {
+  --color-primary: 38 78 112;
+  --color-secondary: 103 145 134;
+  --color-accent: 249 180 171;
+  --color-highlight: 250 227 96;
+  --color-neutral: 187 212 206;
+}
+
+.text-white { color: rgb(255 255 255); }
+.text-gray-100 { color: rgb(243 244 246); }
+.text-primary { color: rgb(var(--color-primary)); }
+
+/* Spacing crítico - solo hero */
+.p-6 { padding: 1.5rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mt-6 { margin-top: 1.5rem; }
+
+/* Button crítico - solo CTA principal */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+.btn-primary {
+  background-color: rgb(var(--color-primary));
+  color: white;
+}
+.btn-primary:hover {
+  background-color: rgb(var(--color-primary) / 0.9);
+}
+
+/* Responsive crítico - solo breakpoint principal */
+@media (min-width: 768px) {
+  .container { padding: 0 2rem; }
+  .md\\:text-5xl { font-size: 3rem; line-height: 1; }
+  .md\\:text-6xl { font-size: 3.75rem; line-height: 1; }
+  .md\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+}
+
+/* Loading states */
+.loading { opacity: 0.7; }
+.loaded { opacity: 1; transition: opacity 0.3s; }
+</style>
