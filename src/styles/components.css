@@ -201,6 +201,25 @@
   }
 
   /* ============================================
+     TEAM GRID LAYOUT FIXES
+     ============================================ */
+  /* Centrar la tercera tarjeta cuando esté sola en grid de 2 columnas (768px breakpoint) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .team-grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Si hay exactamente 3 elementos, centrar el tercero */
+    .team-grid-container > :nth-child(3):last-child {
+      grid-column: 1 / -1; /* Ocupa ambas columnas */
+      max-width: 50%; /* Mantiene el ancho de una sola columna */
+      justify-self: center; /* Centra horizontalmente */
+    }
+  }
+
+  /* ============================================
      ACCESSIBILITY & FOCUS STATES
      ============================================ */
   .team-card:focus-within {
