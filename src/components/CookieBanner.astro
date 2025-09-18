@@ -2,51 +2,36 @@
 // Cookie Banner Component - RGPD Compliant
 ---
 
+<!-- Banner ultra-fino de una línea - Aceptación cookies/políticas -->
 <div
   id="cookie-banner"
-  class="fixed bottom-0 left-0 right-0 bg-white border-t-4 border-brand shadow-2xl z-[9999] transform translate-y-full transition-transform duration-300 ease-in-out"
-  style="display: none;"
+  class="fixed top-0 left-0 right-0 bg-[rgb(var(--color-primary))] text-white text-center py-2 shadow-sm z-[9999] transition-transform duration-300 ease-in-out"
+  style="display: none; transform: translateY(-100%);"
 >
-  <div class="container mx-auto px-4 py-6">
-    <div
-      class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4"
-    >
-      <!-- Cookie Info -->
-      <div class="flex-1">
-        <div class="flex items-start gap-3">
-          <span class="text-2xl">🍪</span>
-          <div>
-            <h3 class="font-bold text-brand text-lg mb-2">Uso de Cookies</h3>
-            <p class="text-gray-700 text-sm leading-relaxed">
-              Utilizamos cookies técnicas esenciales para el funcionamiento del
-              sitio web. Si continúa navegando, consideramos que acepta su uso.
-              Puede obtener más información en nuestra
-              <a
-                href="/politica-privacidad"
-                class="text-brand underline hover:text-opacity-80"
-                target="_blank"
-                rel="noopener">Política de Privacidad</a
-              >.
-            </p>
-          </div>
-        </div>
-      </div>
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-center gap-6 text-sm">
+      <!-- Mensaje ultra-compacto -->
+      <span class="text-white">
+        🍪 Utilizamos cookies esenciales. Al continuar navegando, aceptas
+        nuestras
+        <a
+          href="/politica-privacidad"
+          class="underline hover:opacity-80 font-medium"
+          >Políticas de Privacidad</a
+        > y
+        <a
+          href="/politica-cookies"
+          class="underline hover:opacity-80 font-medium">Cookies</a
+        >.
+      </span>
 
-      <!-- Action Buttons -->
-      <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-        <button
-          id="cookie-reject-btn"
-          class="px-4 py-2 border border-brand text-brand rounded-lg hover:bg-brand hover:text-white transition-colors text-sm font-medium whitespace-nowrap"
-        >
-          ❌ Rechazar
-        </button>
-        <button
-          id="cookie-accept-btn"
-          class="px-6 py-2 bg-brand text-white rounded-lg hover:bg-opacity-90 transition-colors text-sm font-medium whitespace-nowrap"
-        >
-          ✅ Aceptar
-        </button>
-      </div>
+      <!-- Botón de aceptar simple -->
+      <button
+        id="cookie-accept-btn"
+        class="bg-white/20 hover:bg-white/30 text-white px-4 py-1 rounded text-xs font-medium transition-colors whitespace-nowrap"
+      >
+        ✅ Entendido
+      </button>
     </div>
   </div>
 </div>
@@ -173,23 +158,26 @@
 
     // No analytics - only technical cookies
 
-    // Banner management
+    // Banner management - Ahora desde arriba
     function showBanner() {
       const banner = document.getElementById("cookie-banner");
       if (banner) {
         banner.style.display = "block";
+        document.body.classList.add("cookie-banner-visible");
+        // Pequeño delay para que la transición se vea bien
         setTimeout(function () {
           banner.style.transform = "translateY(0)";
-        }, 100);
+        }, 50);
       }
     }
 
     function hideBanner() {
       const banner = document.getElementById("cookie-banner");
       if (banner) {
-        banner.style.transform = "translateY(100%)";
+        banner.style.transform = "translateY(-100%)";
         setTimeout(function () {
           banner.style.display = "none";
+          document.body.classList.remove("cookie-banner-visible");
         }, 300);
       }
     }
@@ -224,31 +212,49 @@
       hideModal();
     }
 
-    // Initialize
+    // Initialize - Versión simplificada
     function init() {
       const consent = getCookie(COOKIE_NAME);
 
+      // Mostrar banner simple si no hay consentimiento
       if (!consent) {
-        showBanner();
+        setTimeout(() => {
+          showBanner();
+        }, 300);
       }
 
-      // Event listeners
+      // Event listener simple - solo botón de aceptar del banner
       const acceptBtn = document.getElementById("cookie-accept-btn");
-      const rejectBtn = document.getElementById("cookie-reject-btn");
+      if (acceptBtn) {
+        acceptBtn.addEventListener("click", function () {
+          acceptAllCookies();
+        });
+      }
+
+      // Event listeners para el modal
+      const modalAcceptBtn = document.getElementById("accept-all-cookies");
+      if (modalAcceptBtn) {
+        modalAcceptBtn.addEventListener("click", function () {
+          acceptAllCookies();
+        });
+      }
+
+      const modalRejectBtn = document.getElementById("reject-all-cookies");
+      if (modalRejectBtn) {
+        modalRejectBtn.addEventListener("click", function () {
+          hideModal();
+        });
+      }
+
       const modalCloseBtn = document.getElementById("cookie-modal-close");
-      const acceptAllBtn = document.getElementById("accept-all-cookies");
-      const rejectAllBtn = document.getElementById("reject-all-cookies");
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener("click", function () {
+          hideModal();
+        });
+      }
+
+      // Close modal when clicking outside (si existe)
       const modal = document.getElementById("cookie-settings-modal");
-
-      if (acceptBtn) acceptBtn.addEventListener("click", acceptAllCookies);
-      if (rejectBtn) rejectBtn.addEventListener("click", rejectAllCookies);
-      if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideModal);
-      if (acceptAllBtn)
-        acceptAllBtn.addEventListener("click", acceptAllCookies);
-      if (rejectAllBtn)
-        rejectAllBtn.addEventListener("click", rejectAllCookies);
-
-      // Close modal when clicking outside
       if (modal) {
         modal.addEventListener("click", function (e) {
           if (e.target === modal) {
@@ -260,59 +266,22 @@
       // Global function for cookie settings
       window.showCookieSettings = showModal;
 
-      // When footer is visible we should make the banner go behind it so
-      // legal links (policy) remain visible and clickable.
-      function handleFooterVisibility() {
-        const footer = document.querySelector("footer");
-        const banner = document.getElementById("cookie-banner");
-        if (!footer || !banner) return;
-
-        function setBehind() {
-          banner.classList.add("behind-footer");
-          // disable pointer events so footer links are clickable
-          banner.style.pointerEvents = "none";
-          // also hide sticky contact form (if present) to avoid overlap
-          const contact = document.getElementById("contactForm");
-          if (contact) {
-            contact.classList.add("translate-y-full");
-            contact.style.pointerEvents = "none";
-          }
-        }
-
-        function unsetBehind() {
-          banner.classList.remove("behind-footer");
-          banner.style.pointerEvents = "";
-          const contact = document.getElementById("contactForm");
-          if (contact) {
-            contact.classList.remove("translate-y-full");
-            contact.style.pointerEvents = "";
-          }
-        }
-
-        if ("IntersectionObserver" in window) {
-          const io = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((e) => {
-                if (e.isIntersecting) setBehind();
-                else unsetBehind();
-              });
-            },
-            { threshold: 0.05 }
-          );
-          io.observe(footer);
-        } else {
-          const onScroll = () => {
-            const rect = footer.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) setBehind();
-            else unsetBehind();
-          };
-          window.addEventListener("scroll", onScroll, { passive: true });
-          onScroll();
-        }
+      // Event listener para el botón "Configurar Cookies" del footer
+      const footerCookieBtn = document.getElementById("footer-cookie-settings");
+      if (footerCookieBtn) {
+        footerCookieBtn.addEventListener("click", function () {
+          showModal();
+        });
       }
 
-      // start footer visibility handler after init
-      handleFooterVisibility();
+      // Function para testing/debug - resetear cookies y mostrar banner
+      window.testCookieBanner = function () {
+        deleteCookie(COOKIE_NAME);
+        setTimeout(() => {
+          showBanner();
+        }, 100);
+        console.log("🍪 Banner de cookies reseteado y mostrado para testing");
+      };
     }
 
     // Run initialization when DOM is ready
@@ -325,14 +294,75 @@
 </script>
 
 <style>
-  /* Cookie Banner Animations */
+  /* Banner ultra-fino - Estilos simplificados */
+  #cookie-banner {
+    background: rgb(var(--color-primary));
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    height: auto;
+    min-height: 40px;
+  }
+
   #cookie-banner.show {
     transform: translateY(0) !important;
   }
 
-  /* Toggle Switch Styling */
-  #analytics-toggle:checked + div {
-    background-color: var(--color-primary, #264e70);
+  /* Enlaces dentro del banner */
+  #cookie-banner a {
+    color: white;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+  }
+
+  #cookie-banner a:hover {
+    opacity: 0.8;
+    text-decoration-thickness: 2px;
+  }
+
+  /* Botón simple de aceptar */
+  #cookie-accept-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  #cookie-accept-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Animación de entrada más suave */
+  #cookie-banner {
+    animation: slideInFromTop 0.5s ease-out forwards;
+  }
+
+  @keyframes slideInFromTop {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Animación sutil de atención después de aparecer */
+  @keyframes gentle-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-3px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    75% {
+      transform: translateY(-2px);
+    }
   }
 
   /* Modal Responsive Improvements */
@@ -344,6 +374,22 @@
     #cookie-settings-modal .flex-1 {
       width: 100%;
     }
+
+    /* En móvil, hacer el banner aún más compacto */
+    #cookie-banner {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    #cookie-banner .flex {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+
+    #cookie-banner .shrink-0 {
+      flex-shrink: 1;
+    }
   }
 
   /* Accessibility improvements */
@@ -351,24 +397,39 @@
     #cookie-banner {
       transition: none;
     }
+
+    #cookie-more-info,
+    #cookie-banner button {
+      transition: none;
+    }
   }
 
   /* High contrast mode support */
   @media (prefers-contrast: high) {
     #cookie-banner {
-      border-width: 2px;
-      border-color: #000;
+      border-bottom: 2px solid #fff;
+      background: #000 !important;
     }
 
     #cookie-banner button {
       border-width: 2px;
+      border-color: #fff;
+    }
+
+    #cookie-more-info {
+      color: #fff;
+      text-decoration-color: #fff;
     }
   }
 
-  /* When footer is visible put the banner behind it so footer links are reachable */
-  #cookie-banner.behind-footer {
-    z-index: 20000; /* lower than footer (20001) */
-    transform: translateY(6px) !important; /* small visual offset */
-    opacity: 0.98;
+  /* Compensar el espacio del banner ultra-fino */
+  body.cookie-banner-visible {
+    padding-top: 40px; /* Altura mínima del banner fino */
+  }
+
+  @media (max-width: 640px) {
+    body.cookie-banner-visible {
+      padding-top: 45px; /* Poco más de espacio en móvil */
+    }
   }
 </style>

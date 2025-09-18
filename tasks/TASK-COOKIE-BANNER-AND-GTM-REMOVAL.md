@@ -21,14 +21,28 @@
 - **Archivo principal:** `src/components/CookieBanner.astro`
 - **Integración:** Incluido en `src/layouts/Layout.astro`
 - **Características implementadas:**
-  - Banner discreto en la parte inferior
-  - Diseño responsive y accesible
-  - Funcionalidad de persistencia con cookies técnicas
-  - Modal de configuración (simplificado sin analytics)
-  - Botones de aceptar/rechazar
-  - Cumplimiento RGPD
-  - Z-index inteligente para no interferir con el footer
-  - Animaciones suaves con soporte para `prefers-reduced-motion`
+
+#### ✅ Versión 1.0 - Banner Inferior (Implementado inicialmente)
+
+- Banner discreto en la parte inferior
+- Modal de configuración completo
+- Z-index inteligente para no interferir con el footer
+
+#### ✅ Versión 2.0 - Banner Superior Mejorado (18 Sep 2025)
+
+- **Posicionamiento superior:** Banner fijo en la parte superior (`top-0`)
+- **Diseño compacto:** Altura reducida y diseño horizontal optimizado
+- **Gradiente corporativo:** Usa variables CSS del sistema de colores
+- **UX mejorada:**
+  - Botón "Ver configuración" que hace scroll suave al footer
+  - Enlaces del footer destacados temporalmente para guiar al usuario
+  - Compensación automática del espacio del banner (`body.cookie-banner-visible`)
+- **Responsive:** Layout adaptativo para móviles (vertical en pantallas pequeñas)
+- **Accesibilidad:**
+  - Soporte para `prefers-reduced-motion`
+  - Alto contraste automático
+  - Focus visible en todos los elementos interactivos
+- **Rendimiento:** Animaciones CSS optimizadas y transiciones suaves
 
 ### Eliminación de Google Tag Manager (GTM)
 
@@ -136,6 +150,18 @@ pnpm dev    # ✅ Servidor funcionando en puerto 4322
 
 - ✅ Sin referencias a Google Tag Manager (GTM)
 - ✅ Google Analytics 4 mantenido con implementación directa
+
+### Banner Superior Mejorado (Versión 2.0)
+
+- ✅ **Posicionamiento optimizado:** Cambio de `bottom-0` a `top-0`
+- ✅ **Diseño compacto:** Reducción de altura (~60px desktop, ~80px móvil)
+- ✅ **UX guiada:** Botón "Ver configuración" con scroll suave al footer
+- ✅ **Gradiente corporativo:** Integración con sistema de colores (`--color-primary`, `--color-secondary`)
+- ✅ **Compensación de espacio:** Clase `cookie-banner-visible` añadida al body
+- ✅ **Responsive mejorado:** Layout vertical en móviles
+- ✅ **Accesibilidad:** Soporte completo para reducción de movimiento y alto contraste
+- ✅ **JavaScript optimizado:** Gestión de animaciones desde arriba (`-translate-y-full` → `translateY(0)`)
+- ✅ **Integración con footer:** Destacado temporal de enlaces legales para guiar al usuario
 - ✅ Sin errores de JavaScript en consola
 - ✅ Sin solicitudes de red a googletagmanager.com
 - ✅ Reducción significativa de requests externos
