@@ -1,0 +1,374 @@
+---
+// Meta SEO Component ultra-optimizado para Lighthouse 100%
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  keywords?: string;
+  robots?: string;
+  type?: string;
+  locale?: string;
+  siteName?: string;
+  author?: string;
+  publishedDate?: string;
+  modifiedDate?: string;
+  schema?: object;
+}
+
+const {
+  title = "Mudanzas Profesionales Barcelona ⚡ Presupuesto GRATIS | Mudanzas ANDY",
+  description = "🚛 Mudanzas profesionales en Barcelona y España. ✅ Presupuesto GRATIS en 5 min por WhatsApp ✅ Precio cerrado sin sorpresas ✅ Atención 24/7 ✅ Embalaje incluido",
+  image = "/og-image.jpg",
+  canonical = Astro.url.href,
+  keywords = "mudanzas Barcelona, mudanzas profesionales, empresa mudanzas Barcelona, mudanzas baratas, presupuesto mudanza gratis, mudanzas particulares, mudanzas oficinas",
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  type = "website",
+  locale = "es_ES",
+  siteName = "Mudanzas ANDY",
+  author = "Mudanzas ANDY",
+  publishedDate,
+  modifiedDate,
+  schema
+} = Astro.props satisfies Props;
+
+// Generar URL absoluta para imagen
+const absoluteImageUrl = new URL(image, Astro.site || Astro.url.origin).href;
+
+// Validaciones SEO críticas
+if (!title || title.length < 30 || title.length > 60) {
+  console.warn(`SEO Warning: Title length should be 30-60 characters. Current: ${title.length}`);
+}
+
+if (!description || description.length < 120 || description.length > 160) {
+  console.warn(`SEO Warning: Description length should be 120-160 characters. Current: ${description.length}`);
+}
+
+// Schema por defecto si no se proporciona
+const defaultSchema = {
+  "@context": "https://schema.org",
+  "@type": "MovingCompany",
+  "name": siteName,
+  "description": description,
+  "url": canonical,
+  "logo": {
+    "@type": "ImageObject",
+    "url": new URL("/logo-mudanzas-andy.svg", Astro.site || Astro.url.origin).href
+  },
+  "image": absoluteImageUrl,
+  "telephone": "+34933539792",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Barcelona",
+    "addressRegion": "Cataluña",
+    "addressCountry": "ES"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Barcelona"
+    },
+    {
+      "@type": "Country", 
+      "name": "España"
+    }
+  ],
+  "priceRange": "€€",
+  "openingHours": "Mo-Su 08:00-22:00",
+  "sameAs": [
+    "https://wa.me/34640506084"
+  ],
+  "serviceType": "Mudanzas y Transportes",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Mudanza",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Mudanzas Particulares",
+          "description": "Servicio completo de mudanzas para hogares"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Mudanzas de Oficinas",
+          "description": "Mudanzas profesionales para empresas"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Presupuesto Gratuito",
+          "description": "Presupuesto sin compromiso en 10 minutos"
+        }
+      }
+    ]
+  }
+};
+
+const finalSchema = schema || defaultSchema;
+---
+
+<!-- Meta Tags Básicos Optimizados -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+
+<!-- Meta Tags Avanzados -->
+<meta name="language" content="es" />
+<meta name="geo.region" content="ES-CT" />
+<meta name="geo.placename" content="Barcelona" />
+<meta name="geo.position" content="41.3851;2.1734" />
+<meta name="ICBM" content="41.3851, 2.1734" />
+
+<!-- Open Graph Optimizado -->
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteImageUrl} />
+<meta property="og:image:alt" content={`Imagen de ${title}`} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={locale} />
+{publishedDate && <meta property="article:published_time" content={publishedDate} />}
+{modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+
+<!-- Twitter Cards Optimizado -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteImageUrl} />
+<meta name="twitter:image:alt" content={`Imagen de ${title}`} />
+
+<!-- Meta Tags para Buscadores Específicos -->
+<meta name="google" content="notranslate" />
+<meta name="google-site-verification" content="" />
+<meta name="msvalidate.01" content="E00F433172C8065A658092822181BD08" />
+<meta name="yandex-verification" content="" />
+
+<!-- Meta Tags de Rendimiento -->
+<meta name="format-detection" content="telephone=yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="theme-color" content="#264e70" />
+<meta name="msapplication-TileColor" content="#264e70" />
+
+<!-- Preconnect para recursos externos críticos -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+
+<!-- DNS Prefetch para recursos secundarios -->
+<link rel="dns-prefetch" href="//www.google-analytics.com" />
+<link rel="dns-prefetch" href="//wa.me" />
+<link rel="dns-prefetch" href="//api.whatsapp.com" />
+
+<!-- Manifest de aplicación web -->
+<link rel="manifest" href="/manifest.json" />
+
+<!-- Favicons optimizados -->
+<link rel="icon" href="/favicons/favicon.ico" sizes="any" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+
+<!-- Schema.org JSON-LD Estructurado -->
+<script type="application/ld+json" set:html={JSON.stringify(finalSchema)}></script>
+
+<!-- Breadcrumbs Schema (condicional) -->
+{Astro.url.pathname !== '/' && (
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": new URL("/", Astro.site || Astro.url.origin).href
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": title,
+          "item": canonical
+        }
+      ]
+    })}
+  </script>
+)}
+
+<!-- WebSite Search Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{siteName}",
+  "url": "{new URL('/', Astro.site || Astro.url.origin).href}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{new URL('/', Astro.site || Astro.url.origin).href}?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- FAQ Schema para páginas relevantes -->
+{(title.includes('FAQ') || title.includes('Preguntas')) && (
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta una mudanza en Barcelona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El precio de una mudanza en Barcelona depende de varios factores como la distancia, el volumen de objetos y los servicios adicionales. Ofrecemos presupuestos gratuitos personalizados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Incluyen el embalaje en el servicio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, incluimos el embalaje profesional con materiales de calidad para proteger tus pertenencias durante el transporte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Trabajan los fines de semana?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, trabajamos los 7 días de la semana para adaptarnos a tus necesidades. Nuestro horario es de 8:00 a 22:00."
+          }
+        }
+      ]
+    })}
+  </script>
+)}
+
+<!-- Service Schema para páginas de servicios -->
+{(title.includes('Servicios') || title.includes('Mudanzas')) && (
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Servicios de Mudanzas Profesionales",
+      "description": description,
+      "provider": {
+        "@type": "MovingCompany",
+        "name": siteName,
+        "telephone": "+34933539792"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Barcelona"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios Disponibles",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mudanzas Locales"
+            }
+          },
+          {
+            "@type": "Offer", 
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mudanzas Nacionales"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service", 
+              "name": "Mudanzas de Oficina"
+            }
+          }
+        ]
+      }
+    })}
+  </script>
+)}
+
+<!-- ContactPoint Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{siteName}",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+34933539792",
+      "contactType": "customer service",
+      "areaServed": "ES",
+      "availableLanguage": "Spanish"
+    },
+    {
+      "@type": "ContactPoint", 
+      "telephone": "+34640506084",
+      "contactType": "customer service",
+      "contactOption": "WhatsApp",
+      "areaServed": "ES",
+      "availableLanguage": "Spanish"
+    }
+  ]
+}
+</script>
+
+<!-- Hreflang para SEO internacional (si aplica) -->
+<link rel="alternate" hreflang="es-es" href={canonical} />
+<link rel="alternate" hreflang="es" href={canonical} />
+
+<!-- Preload de recursos críticos -->
+<link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/styles/critical.css" as="style" />
+
+<!-- Critical CSS inline placeholder (se debe completar en el layout) -->
+<!-- El CSS crítico se incluye en el layout principal para evitar FOUC -->
+
+<!-- Meta para Google Analytics Consent Mode V2 -->
+<script>
+  // Declarar tipos para Google Analytics
+  declare global {
+    interface Window {
+      dataLayer: any[];
+      gtag: (...args: any[]) => void;
+    }
+  }
+  
+  window.dataLayer = window.dataLayer || [];
+  function gtag(...args: any[]): void {
+    window.dataLayer.push(args);
+  }
+  
+  // Configurar consentimiento por defecto antes de cargar GA
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied', 
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': 500
+  });
+</script>

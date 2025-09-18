@@ -1,44 +1,63 @@
-// @ts-check
 import { defineConfig } from "astro/config";
-import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://mudanzasandy.es",
+  site: "https://mudanzasandy.com",
+
+  // Optimizaciones de build
+  build: {
+    format: "file", // URLs limpias sin .html
+    inlineStylesheets: "auto",
+    assetsPrefix: "/",
+  },
+
+  // Optimizaciones de output
+  output: "static",
+  adapter: undefined,
+
+  // Compresión y minificación avanzada
+  vite: {
+    build: {
+      minify: "esbuild",
+      target: "es2020",
+      cssMinify: "esbuild",
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ["astro"],
+            utils: ["./src/lib/utils/emailService.js"],
+          },
+        },
+      },
+    },
+    optimizeDeps: {
+      include: ["astro/client"],
+    },
+    ssr: {
+      noExternal: [],
+    },
+  },
+
+  // Integraciones optimizadas para Tailwind 4
   integrations: [
     sitemap({
       changefreq: "weekly",
-      priority: 0.7,
+      priority: 0.8,
       lastmod: new Date(),
-      filter: (page) => {
-        // Excluir páginas de políticas del sitemap para evitar contenido duplicado en Google
-        return (
-          !page.includes("/politica-privacidad") &&
-          !page.includes("/politica-cookies")
-        );
-      },
-      serialize: (item) => {
-        // Configurar prioridades específicas por página
-        if (item.url === "https://mudanzasandy.es/") {
-          item.priority = 1.0;
-        }
-        if (item.url.includes("/blog-astro")) {
-          item.priority = 0.8;
-        }
-        if (item.url.includes("/blog/")) {
-          item.priority = 0.7;
-        }
-        return item;
-      },
     }),
+    mdx(),
   ],
-  vite: {
-    plugins: [tailwindcss()],
-    resolve: {
-      alias: {
-        "@": new URL("./src", import.meta.url).pathname,
-      },
-    },
+
+  // Configuraciones experimentales removidas para Astro 5
+  // experimental: {
+  //   optimizeHoistedScript: true,
+  //   contentCollectionCache: true
+  // },
+
+  // Configuración de servidor para desarrollo
+  server: {
+    port: 4321,
+    host: true,
   },
 });

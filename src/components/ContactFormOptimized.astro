@@ -1,0 +1,367 @@
+---
+// Formulario de contacto optimizado para Core Web Vitals perfectos
+// Con lazy hydration y minimal JavaScript footprint
+---
+
+<!-- Formulario sticky en footer - Critical CSS inline optimizado -->
+<div
+  class="fixed bottom-0 left-0 right-0 bg-secondary text-white z-10 transform transition-all duration-500 ease-in-out"
+  id="contactForm"
+  style="box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.1), 4px 0 6px -4px rgba(0, 0, 0, 0.1), -4px 0 6px -4px rgba(0, 0, 0, 0.1);"
+>
+  <div class="container mx-auto px-4 py-3 lg:py-4">
+    <div
+      class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6"
+    >
+      <!-- Texto del formulario -->
+      <div class="text-center lg:text-left flex-shrink-0">
+        <p class="font-bold text-highlight text-sm lg:text-base">
+          ¡Presupuesto GRATIS en 10 minutos!
+        </p>
+        <p class="text-xs text-neutral">
+          Te contactaremos por WhatsApp inmediatamente
+        </p>
+      </div>
+
+      <!-- Formulario -->
+      <form
+        class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl"
+        id="budgetForm"
+        novalidate
+      >
+        <div
+          class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 flex-1 min-w-0"
+        >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Tu nombre"
+            required
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+            autocomplete="given-name"
+            inputmode="text"
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="tu@email.com"
+            required
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+            autocomplete="email"
+            inputmode="email"
+          />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="640 50 60 84"
+            pattern="^(?=(?:.*\\d){9,})(?:\\+|\\d)[\\d\\s\-()\\+]*$"
+            class="px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+            autocomplete="tel"
+            inputmode="tel"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="btn-primary rounded-lg flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0"
+          aria-label="Enviar solicitud de presupuesto"
+        >
+          <span>✅</span>
+          <span class="hidden sm:inline">¡Recibe presupuesto en 10 min!</span>
+          <span class="sm:hidden">¡Presupuesto!</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Botón para minimizar/maximizar -->
+  <button
+    class="absolute top-0 left-4 transform -translate-y-full bg-secondary text-white px-3 py-1 rounded-t-lg text-sm hover:bg-[#5a7a6f] transition-colors duration-300 border-0"
+    id="toggleForm"
+    style="border: none; box-shadow: none; margin-bottom: -1px;"
+    aria-label="Minimizar o maximizar formulario"
+  >
+    ↓
+  </button>
+</div>
+
+<!-- CSS crítico inline para prevenir layout shifts -->
+<style>
+  /* Tooltip de validación optimizado */
+  .contact-tooltip {
+    position: fixed;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ef4444;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .contact-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #ef4444;
+  }
+
+  .contact-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Optimización para performance */
+  #contactForm {
+    contain: layout style paint;
+  }
+
+  #contactForm input,
+  #contactForm button {
+    contain: layout style;
+  }
+</style>
+
+<!-- JavaScript optimizado con lazy loading y minimal impact -->
+<script type="module">
+  // Lazy import del EmailService para reducir bundle inicial
+  let EmailService;
+
+  // Optimización: Cargar EmailService solo cuando se necesite
+  async function loadEmailService() {
+    if (!EmailService) {
+      const module = await import("@/lib/utils/emailService.js");
+      EmailService = module.EmailService;
+    }
+    return EmailService;
+  }
+
+  // Optimización: Usar passive event listeners
+  const addEventListenerOptimized = (element, event, handler) => {
+    element.addEventListener(event, handler, { passive: true });
+  };
+
+  // Validación y envío del formulario - optimizado para Core Web Vitals
+  const budgetForm = document.getElementById("budgetForm");
+  if (budgetForm) {
+    budgetForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name")?.value?.trim();
+      const email = document.getElementById("email")?.value?.trim();
+      const phone = document.getElementById("phone")?.value?.trim();
+
+      // Validación custom optimizada para evitar tooltips del navegador
+      function showValidationTooltip(msg) {
+        const container = document.getElementById("contactForm");
+        if (!container) return;
+
+        let tip = document.getElementById("contactFormTooltip");
+        if (!tip) {
+          tip = document.createElement("div");
+          tip.id = "contactFormTooltip";
+          tip.className = "contact-tooltip";
+          container.appendChild(tip);
+        }
+
+        tip.textContent = msg;
+        tip.classList.add("show");
+
+        // Limpiar timeout anterior
+        if (tip._removeTimeout) {
+          clearTimeout(tip._removeTimeout);
+        }
+
+        // Auto-remove después de 3s
+        tip._removeTimeout = setTimeout(() => {
+          tip.classList.remove("show");
+        }, 3000);
+      }
+
+      // Validaciones básicas
+      if (!name) {
+        showValidationTooltip("Por favor, introduce tu nombre");
+        document.getElementById("name")?.focus();
+        return;
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showValidationTooltip("Por favor, introduce un email válido");
+        document.getElementById("email")?.focus();
+        return;
+      }
+
+      // Normalizar teléfono (solo dígitos)
+      let phoneDigits = "";
+      if (phone) {
+        phoneDigits = phone.replace(/\D/g, "");
+        if (phoneDigits.length < 9) {
+          showValidationTooltip("El teléfono debe tener al menos 9 dígitos");
+          document.getElementById("phone")?.focus();
+          return;
+        }
+      }
+
+      const submitButton = document.querySelector(
+        "#budgetForm button[type='submit']"
+      );
+      const originalContent = submitButton?.innerHTML;
+
+      // Estado de carga
+      if (submitButton) {
+        submitButton.innerHTML = "<span>⏳</span><span>Enviando...</span>";
+        submitButton.setAttribute("disabled", "true");
+      }
+
+      try {
+        // Cargar EmailService de forma lazy
+        const emailService = await loadEmailService();
+
+        // Intentar envío por EmailJS primero
+        const emailResult = await emailService.sendContactEmail({
+          from_name: name,
+          from_email: email,
+          from_phone: phoneDigits || phone,
+          message: `Solicitud de presupuesto de mudanza desde la web mudanzasandy.com 
+        Nombre: ${name}
+        Email: ${email}
+        ${phone ? `Teléfono: ${phoneDigits || phone}` : ""}
+        
+        Por favor contactar cuanto antes para presupuesto de mudanza.`,
+        });
+
+        // Mensaje personalizado para WhatsApp (backup)
+        const message = `¡Hola! Soy ${name}. Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
+        const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
+
+        // Mostrar resultado optimizado
+        const formContainer = document.getElementById("contactForm");
+        if (formContainer) {
+          if (emailResult.success) {
+            // Éxito con EmailJS
+            formContainer.innerHTML = `
+            <div class="container mx-auto px-4 py-4 text-center">
+              <div class="bg-green-500 text-white p-4 rounded-lg">
+                <p class="font-bold">✅ ${emailResult.message}</p>
+                <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300">
+                  También vía WhatsApp 💬
+                </a>
+              </div>
+            </div>
+          `;
+          } else {
+            // Error EmailJS - usar WhatsApp como backup
+            formContainer.innerHTML = `
+            <div class="container mx-auto px-4 py-4 text-center">
+              <div class="bg-yellow-500 text-white p-4 rounded-lg">
+                <p class="font-bold">Te contactaremos por WhatsApp inmediatamente</p>
+                <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold">Llama ahora al 933 53 97 92</a></p>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300">
+                  Abrir WhatsApp 💬
+                </a>
+              </div>
+            </div>
+          `;
+            // Abrir WhatsApp automáticamente en caso de error
+            window.open(whatsappUrl, "_blank");
+          }
+        }
+      } catch (error) {
+        console.error("Error en envío:", error);
+
+        // Fallback de emergencia
+        const message = `¡Hola! Soy ${name}. Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
+        const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+
+        // Restaurar botón
+        if (submitButton && originalContent) {
+          submitButton.innerHTML = originalContent;
+          submitButton.removeAttribute("disabled");
+        }
+      }
+    });
+  }
+
+  // Funcionalidad para minimizar/maximizar formulario - optimizada
+  function initializeToggleButton() {
+    const toggleButton = document.getElementById("toggleForm");
+    const form = document.getElementById("contactForm");
+
+    if (!toggleButton || !form) return;
+
+    // Remover event listeners existentes para evitar duplicados
+    const newToggleButton = toggleButton.cloneNode(true);
+    toggleButton.parentNode?.replaceChild(newToggleButton, toggleButton);
+
+    // Usar optimización con passive listener
+    addEventListenerOptimized(newToggleButton, "click", function () {
+      const button = newToggleButton;
+
+      // Marcar que el usuario ha interactuado manualmente
+      window.contactFormManualControl = true;
+
+      if (form.classList.contains("translate-y-full")) {
+        form.classList.remove("translate-y-full");
+        button.textContent = "↓";
+        window.contactFormManualState = "visible";
+      } else {
+        form.classList.add("translate-y-full");
+        button.textContent = "↑";
+        window.contactFormManualState = "hidden";
+      }
+    });
+  }
+
+  // Inicialización optimizada con requestIdleCallback cuando esté disponible
+  function safeInit(callback) {
+    if (window.requestIdleCallback) {
+      requestIdleCallback(callback, { timeout: 100 });
+    } else {
+      setTimeout(callback, 0);
+    }
+  }
+
+  // Inicializar cuando el DOM esté listo (primera carga)
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () =>
+      safeInit(initializeToggleButton)
+    );
+  } else {
+    safeInit(initializeToggleButton);
+  }
+
+  // Re-inicializar en navegaciones View Transitions de Astro
+  document.addEventListener("astro:page-load", function () {
+    // Optimización: Usar requestAnimationFrame para mejor timing
+    requestAnimationFrame(() => safeInit(initializeToggleButton));
+  });
+
+  // Backup: Re-inicializar en cambios de página estándar (navegador)
+  window.addEventListener("pageshow", function (event) {
+    // Solo si no es una navegación View Transition
+    if (
+      !document.querySelector('meta[name="astro-view-transitions-enabled"]')
+    ) {
+      safeInit(initializeToggleButton);
+    }
+  });
+</script>

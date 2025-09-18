@@ -35,11 +35,14 @@ const extension = src.match(/\.(jpg|jpeg|png)$/i)?.[1] || "jpg";
 // También manejar imágenes de /camion/resized/ que ahora están en optimized
 const isInCamionFolder = src.includes("/camion/");
 const isFromResizedFolder = src.includes("/camion/resized/");
+const isAlreadyOptimized = src.includes("/camion/optimized/");
 
 const optimizedBasePath = isInCamionFolder
-  ? isFromResizedFolder
-    ? basePath.replace("/camion/resized/", "/camion/optimized/")
-    : basePath.replace("/camion/", "/camion/optimized/")
+  ? isAlreadyOptimized
+    ? basePath // Ya está en optimized, no hacer nada
+    : isFromResizedFolder
+      ? basePath.replace("/camion/resized/", "/camion/optimized/")
+      : basePath.replace("/camion/", "/camion/optimized/")
   : basePath;
 
 // Generar versiones responsive para hero

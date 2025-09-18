@@ -108,17 +108,18 @@ const {
     <link
       rel="preload"
       as="image"
-      href="/camion/optimized/hero-fondo-mobile.webp"
-      type="image/webp"
-      media="(max-width: 768px) and (not (prefers-reduced-motion: reduce))"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
       href="/camion/optimized/hero-fondo.avif"
       type="image/avif"
       media="(min-width: 769px)"
+      fetchpriority="high"
+    />
+    <!-- Preload WebP como fallback solo si AVIF no es soportado -->
+    <link
+      rel="preload"
+      as="image"
+      href="/camion/optimized/hero-fondo-mobile.webp"
+      type="image/webp"
+      media="(max-width: 768px)"
       fetchpriority="high"
     />
     <link

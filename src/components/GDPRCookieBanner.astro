@@ -1,0 +1,833 @@
+---
+// Cookie Banner ultra-optimizado para mejores prácticas y cumplimiento GDPR
+---
+
+<!-- Cookie Banner conforme a GDPR y mejores prácticas -->
+<div
+  id="cookieBanner"
+  class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 transform translate-y-full transition-transform duration-500 ease-in-out"
+  role="dialog"
+  aria-labelledby="cookie-title"
+  aria-describedby="cookie-description"
+  aria-live="polite"
+  style="display: none;"
+>
+  <div class="container mx-auto px-4 py-4">
+    <div
+      class="flex flex-col lg:flex-row items-start lg:items-center justify-between space-y-4 lg:space-y-0 lg:space-x-4"
+    >
+      <!-- Contenido del banner -->
+      <div class="flex-1">
+        <h3 id="cookie-title" class="text-lg font-semibold text-gray-900 mb-2">
+          🍪 Política de Cookies
+        </h3>
+        <p
+          id="cookie-description"
+          class="text-sm text-gray-600 leading-relaxed"
+        >
+          Utilizamos cookies esenciales para el funcionamiento del sitio web y
+          cookies de análisis para mejorar tu experiencia.
+          <a
+            href="/politica-privacidad"
+            class="text-primary underline hover:text-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="Leer política de privacidad completa"
+          >
+            Leer más sobre nuestra política de privacidad
+          </a>
+        </p>
+      </div>
+
+      <!-- Controles de cookies -->
+      <div
+        class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 flex-shrink-0"
+      >
+        <!-- Botón de configuración avanzada -->
+        <button
+          type="button"
+          id="cookieSettings"
+          class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg border border-gray-300 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200 text-sm font-medium"
+          aria-label="Configurar preferencias de cookies"
+          aria-describedby="settings-help"
+        >
+          ⚙️ Configurar
+        </button>
+        <div id="settings-help" class="sr-only">
+          Abre panel para seleccionar qué tipos de cookies permitir
+        </div>
+
+        <!-- Botón rechazar opcional -->
+        <button
+          type="button"
+          id="rejectCookies"
+          class="px-4 py-2 bg-red-100 text-red-700 rounded-lg border border-red-300 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors duration-200 text-sm font-medium"
+          aria-label="Rechazar cookies opcionales"
+        >
+          ❌ Solo esenciales
+        </button>
+
+        <!-- Botón aceptar todo -->
+        <button
+          type="button"
+          id="acceptCookies"
+          class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200 text-sm font-medium"
+          aria-label="Aceptar todas las cookies"
+        >
+          ✅ Aceptar todas
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Panel de configuración avanzada -->
+<div
+  id="cookieSettingsPanel"
+  class="fixed inset-0 bg-black bg-opacity-50 z-60 hidden items-center justify-center p-4"
+  role="dialog"
+  aria-labelledby="settings-title"
+  aria-modal="true"
+>
+  <div
+    class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+  >
+    <div class="p-6">
+      <!-- Encabezado del panel -->
+      <header class="flex justify-between items-center mb-6">
+        <h2 id="settings-title" class="text-xl font-bold text-gray-900">
+          Configuración de Cookies
+        </h2>
+        <button
+          type="button"
+          id="closeSettings"
+          class="text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full p-1"
+          aria-label="Cerrar configuración"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </header>
+
+      <!-- Tipos de cookies -->
+      <div class="space-y-6">
+        <!-- Cookies esenciales -->
+        <div class="cookie-category">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-semibold text-gray-900">
+              🔒 Cookies Esenciales
+            </h3>
+            <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded"
+              >Siempre activas</span
+            >
+          </div>
+          <p class="text-sm text-gray-600 mb-3">
+            Necesarias para el funcionamiento básico del sitio web, incluyendo
+            navegación y acceso a áreas seguras.
+          </p>
+          <div class="toggle-container">
+            <input
+              type="checkbox"
+              id="essential-cookies"
+              checked
+              disabled
+              class="sr-only"
+              aria-describedby="essential-help"
+            />
+            <div class="toggle toggle-disabled" aria-hidden="true"></div>
+            <label for="essential-cookies" class="ml-3 text-sm text-gray-700">
+              Cookies técnicas y de sesión (requeridas)
+            </label>
+          </div>
+          <div id="essential-help" class="sr-only">
+            Las cookies esenciales no se pueden desactivar ya que son necesarias
+            para el funcionamiento del sitio
+          </div>
+        </div>
+
+        <!-- Cookies de análisis -->
+        <div class="cookie-category">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-semibold text-gray-900">
+              📊 Cookies de Análisis
+            </h3>
+            <span class="text-sm text-green-600 bg-green-100 px-2 py-1 rounded"
+              >Recomendadas</span
+            >
+          </div>
+          <p class="text-sm text-gray-600 mb-3">
+            Nos ayudan a entender cómo interactúas con el sitio web para
+            mejorarlo. Incluye Google Analytics.
+          </p>
+          <div class="toggle-container">
+            <input
+              type="checkbox"
+              id="analytics-cookies"
+              class="sr-only"
+              aria-describedby="analytics-help"
+            />
+            <div
+              class="toggle"
+              role="switch"
+              tabindex="0"
+              aria-labelledby="analytics-cookies"
+              aria-describedby="analytics-help"
+            >
+              <div class="toggle-thumb"></div>
+            </div>
+            <label for="analytics-cookies" class="ml-3 text-sm text-gray-700">
+              Google Analytics y métricas de rendimiento
+            </label>
+          </div>
+          <div id="analytics-help" class="sr-only">
+            Permite recopilar datos anónimos sobre el uso del sitio para
+            mejorarlo
+          </div>
+        </div>
+
+        <!-- Cookies de marketing -->
+        <div class="cookie-category">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-lg font-semibold text-gray-900">
+              🎯 Cookies de Marketing
+            </h3>
+            <span class="text-sm text-blue-600 bg-blue-100 px-2 py-1 rounded"
+              >Opcional</span
+            >
+          </div>
+          <p class="text-sm text-gray-600 mb-3">
+            Utilizadas para mostrar anuncios más relevantes y medir la
+            efectividad de nuestras campañas publicitarias.
+          </p>
+          <div class="toggle-container">
+            <input
+              type="checkbox"
+              id="marketing-cookies"
+              class="sr-only"
+              aria-describedby="marketing-help"
+            />
+            <div
+              class="toggle"
+              role="switch"
+              tabindex="0"
+              aria-labelledby="marketing-cookies"
+              aria-describedby="marketing-help"
+            >
+              <div class="toggle-thumb"></div>
+            </div>
+            <label for="marketing-cookies" class="ml-3 text-sm text-gray-700">
+              Google Ads y Facebook Pixel
+            </label>
+          </div>
+          <div id="marketing-help" class="sr-only">
+            Permite mostrar anuncios personalizados y medir campañas
+            publicitarias
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div
+        class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 mt-8 pt-6 border-t border-gray-200"
+      >
+        <button
+          type="button"
+          id="saveSettings"
+          class="flex-1 px-4 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200 font-medium"
+        >
+          💾 Guardar Preferencias
+        </button>
+        <button
+          type="button"
+          id="acceptAllSettings"
+          class="flex-1 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors duration-200 font-medium"
+        >
+          ✅ Aceptar Todas
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS para componentes de cookies -->
+<style>
+  /* Utilidad screen reader only */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  /* Toggle switches accesibles */
+  .toggle-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .toggle {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background-color: #d1d5db;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    outline: none;
+  }
+
+  .toggle:focus {
+    outline: 2px solid rgb(var(--color-primary, 38 78 112));
+    outline-offset: 2px;
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .toggle.active {
+    background-color: rgb(var(--color-primary, 38 78 112));
+  }
+
+  .toggle.active .toggle-thumb {
+    transform: translateX(24px);
+  }
+
+  .toggle-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #9ca3af;
+  }
+
+  /* Categorías de cookies */
+  .cookie-category {
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #f9fafb;
+  }
+
+  /* Banner de cookies responsivo */
+  #cookieBanner {
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  #cookieBanner.show {
+    display: block;
+    transform: translateY(0);
+  }
+
+  /* Panel modal responsivo */
+  #cookieSettingsPanel.show {
+    display: flex;
+  }
+
+  /* Variables de colores */
+  :root {
+    --color-primary: 38 78 112;
+  }
+
+  .bg-primary {
+    background-color: rgb(var(--color-primary));
+  }
+
+  .text-primary {
+    color: rgb(var(--color-primary));
+  }
+
+  .bg-primary-dark {
+    background-color: rgba(var(--color-primary), 0.9);
+  }
+
+  .text-primary-dark {
+    color: rgba(var(--color-primary), 0.9);
+  }
+
+  .focus\\:ring-primary:focus {
+    --tw-ring-color: rgb(var(--color-primary));
+  }
+
+  /* Animaciones suaves */
+  @media (prefers-reduced-motion: reduce) {
+    .toggle,
+    .toggle-thumb,
+    #cookieBanner {
+      transition: none;
+    }
+  }
+
+  /* Alto contraste */
+  @media (prefers-contrast: high) {
+    .toggle:focus {
+      outline-width: 3px;
+    }
+
+    .cookie-category {
+      border-width: 2px;
+    }
+  }
+</style>
+
+<!-- JavaScript para gestión de cookies GDPR-compliant -->
+<script type="module">
+  class CookieManager {
+    constructor() {
+      this.cookieName = "cookie-consent";
+      this.cookieExpiry = 365; // días
+      this.currentConsent = this.getConsent();
+
+      this.init();
+    }
+
+    init() {
+      // Mostrar banner si no hay consentimiento previo
+      if (!this.currentConsent) {
+        this.showBanner();
+      } else {
+        // Aplicar consentimiento existente
+        this.applyConsent(this.currentConsent);
+      }
+
+      // Configurar event listeners
+      this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+      // Botones del banner principal
+      document
+        .getElementById("acceptCookies")
+        ?.addEventListener("click", () => {
+          this.acceptAll();
+        });
+
+      document
+        .getElementById("rejectCookies")
+        ?.addEventListener("click", () => {
+          this.rejectOptional();
+        });
+
+      document
+        .getElementById("cookieSettings")
+        ?.addEventListener("click", () => {
+          this.openSettings();
+        });
+
+      // Panel de configuración
+      document
+        .getElementById("closeSettings")
+        ?.addEventListener("click", () => {
+          this.closeSettings();
+        });
+
+      document.getElementById("saveSettings")?.addEventListener("click", () => {
+        this.saveCustomSettings();
+      });
+
+      document
+        .getElementById("acceptAllSettings")
+        ?.addEventListener("click", () => {
+          this.acceptAllFromSettings();
+        });
+
+      // Toggles accesibles
+      this.setupToggleListeners();
+
+      // Cerrar modal con Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          this.closeSettings();
+        }
+      });
+
+      // Cerrar modal haciendo click fuera
+      document
+        .getElementById("cookieSettingsPanel")
+        ?.addEventListener("click", (e) => {
+          if (e.target.id === "cookieSettingsPanel") {
+            this.closeSettings();
+          }
+        });
+    }
+
+    setupToggleListeners() {
+      const toggles = document.querySelectorAll(
+        ".toggle:not(.toggle-disabled)"
+      );
+
+      toggles.forEach((toggle) => {
+        const checkbox = toggle.parentElement?.querySelector(
+          'input[type="checkbox"]'
+        );
+        if (!checkbox) return;
+
+        // Click en toggle
+        toggle.addEventListener("click", () => {
+          const isChecked = checkbox.checked;
+          checkbox.checked = !isChecked;
+          this.updateToggleVisual(toggle, !isChecked);
+          this.announceToggleChange(checkbox, !isChecked);
+        });
+
+        // Navegación por teclado
+        toggle.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle.click();
+          }
+        });
+
+        // Sincronizar visual inicial
+        this.updateToggleVisual(toggle, checkbox.checked);
+      });
+    }
+
+    updateToggleVisual(toggle, checked) {
+      if (checked) {
+        toggle.classList.add("active");
+        toggle.setAttribute("aria-checked", "true");
+      } else {
+        toggle.classList.remove("active");
+        toggle.setAttribute("aria-checked", "false");
+      }
+    }
+
+    announceToggleChange(checkbox, newState) {
+      const label =
+        checkbox.parentElement?.querySelector("label")?.textContent || "Cookie";
+      const message = `${label} ${newState ? "activado" : "desactivado"}`;
+
+      // Crear anuncio temporal para lectores de pantalla
+      const announcement = document.createElement("div");
+      announcement.setAttribute("aria-live", "polite");
+      announcement.setAttribute("aria-atomic", "true");
+      announcement.className = "sr-only";
+      announcement.textContent = message;
+
+      document.body.appendChild(announcement);
+
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    }
+
+    showBanner() {
+      const banner = document.getElementById("cookieBanner");
+      if (banner) {
+        banner.style.display = "block";
+        // Pequeño delay para activar la animación
+        setTimeout(() => {
+          banner.classList.add("show");
+        }, 100);
+
+        // Anunciar a lectores de pantalla
+        this.announceToScreenReader(
+          "Banner de cookies mostrado. Configura tus preferencias de cookies."
+        );
+      }
+    }
+
+    hideBanner() {
+      const banner = document.getElementById("cookieBanner");
+      if (banner) {
+        banner.classList.remove("show");
+        setTimeout(() => {
+          banner.style.display = "none";
+        }, 500);
+      }
+    }
+
+    openSettings() {
+      const panel = document.getElementById("cookieSettingsPanel");
+      if (panel) {
+        panel.classList.add("show");
+
+        // Focus management
+        const firstFocusable = panel.querySelector(
+          'button, [tabindex]:not([tabindex="-1"])'
+        );
+        if (firstFocusable) {
+          firstFocusable.focus();
+        }
+
+        // Configurar toggles según consentimiento actual
+        this.loadCurrentSettings();
+
+        this.announceToScreenReader(
+          "Panel de configuración de cookies abierto"
+        );
+      }
+    }
+
+    closeSettings() {
+      const panel = document.getElementById("cookieSettingsPanel");
+      if (panel) {
+        panel.classList.remove("show");
+
+        // Devolver focus al botón que abrió el panel
+        const settingsButton = document.getElementById("cookieSettings");
+        if (settingsButton) {
+          settingsButton.focus();
+        }
+
+        this.announceToScreenReader("Panel de configuración cerrado");
+      }
+    }
+
+    loadCurrentSettings() {
+      const consent = this.currentConsent || {
+        essential: true,
+        analytics: false,
+        marketing: false,
+      };
+
+      // Configurar toggles
+      document.getElementById("analytics-cookies").checked = consent.analytics;
+      document.getElementById("marketing-cookies").checked = consent.marketing;
+
+      // Actualizar visuales
+      const analyticsToggle = document.querySelector(
+        '[aria-labelledby="analytics-cookies"]'
+      );
+      const marketingToggle = document.querySelector(
+        '[aria-labelledby="marketing-cookies"]'
+      );
+
+      if (analyticsToggle)
+        this.updateToggleVisual(analyticsToggle, consent.analytics);
+      if (marketingToggle)
+        this.updateToggleVisual(marketingToggle, consent.marketing);
+    }
+
+    acceptAll() {
+      const consent = {
+        essential: true,
+        analytics: true,
+        marketing: true,
+        timestamp: Date.now(),
+      };
+
+      this.saveConsent(consent);
+      this.applyConsent(consent);
+      this.hideBanner();
+
+      this.announceToScreenReader(
+        "Todas las cookies aceptadas. Configuración guardada."
+      );
+    }
+
+    rejectOptional() {
+      const consent = {
+        essential: true,
+        analytics: false,
+        marketing: false,
+        timestamp: Date.now(),
+      };
+
+      this.saveConsent(consent);
+      this.applyConsent(consent);
+      this.hideBanner();
+
+      this.announceToScreenReader(
+        "Solo cookies esenciales aceptadas. Configuración guardada."
+      );
+    }
+
+    saveCustomSettings() {
+      const consent = {
+        essential: true,
+        analytics:
+          document.getElementById("analytics-cookies")?.checked || false,
+        marketing:
+          document.getElementById("marketing-cookies")?.checked || false,
+        timestamp: Date.now(),
+      };
+
+      this.saveConsent(consent);
+      this.applyConsent(consent);
+      this.closeSettings();
+      this.hideBanner();
+
+      this.announceToScreenReader(
+        "Preferencias personalizadas guardadas correctamente."
+      );
+    }
+
+    acceptAllFromSettings() {
+      // Activar todos los toggles
+      document.getElementById("analytics-cookies").checked = true;
+      document.getElementById("marketing-cookies").checked = true;
+
+      // Actualizar visuales
+      const analyticsToggle = document.querySelector(
+        '[aria-labelledby="analytics-cookies"]'
+      );
+      const marketingToggle = document.querySelector(
+        '[aria-labelledby="marketing-cookies"]'
+      );
+
+      if (analyticsToggle) this.updateToggleVisual(analyticsToggle, true);
+      if (marketingToggle) this.updateToggleVisual(marketingToggle, true);
+
+      // Guardar
+      this.saveCustomSettings();
+    }
+
+    saveConsent(consent) {
+      const consentString = JSON.stringify(consent);
+      const expiryDate = new Date();
+      expiryDate.setDate(expiryDate.getDate() + this.cookieExpiry);
+
+      document.cookie = `${this.cookieName}=${consentString}; expires=${expiryDate.toUTCString()}; path=/; secure; samesite=strict`;
+      this.currentConsent = consent;
+    }
+
+    getConsent() {
+      const cookies = document.cookie.split(";");
+      const consentCookie = cookies.find((cookie) =>
+        cookie.trim().startsWith(`${this.cookieName}=`)
+      );
+
+      if (consentCookie) {
+        try {
+          const consentString = consentCookie.split("=")[1];
+          return JSON.parse(decodeURIComponent(consentString));
+        } catch (e) {
+          console.warn("Error parsing cookie consent:", e);
+          return null;
+        }
+      }
+
+      return null;
+    }
+
+    applyConsent(consent) {
+      // Gestionar Google Analytics
+      if (consent.analytics) {
+        this.enableGoogleAnalytics();
+      } else {
+        this.disableGoogleAnalytics();
+      }
+
+      // Gestionar cookies de marketing
+      if (consent.marketing) {
+        this.enableMarketing();
+      } else {
+        this.disableMarketing();
+      }
+
+      // Comunicar consentimiento a otras partes de la aplicación
+      window.cookieConsent = consent;
+
+      // Disparar evento personalizado
+      window.dispatchEvent(
+        new CustomEvent("cookieConsentUpdated", { detail: consent })
+      );
+    }
+
+    enableGoogleAnalytics() {
+      // Activar Google Analytics si está disponible
+      if (typeof gtag !== "undefined") {
+        gtag("consent", "update", {
+          analytics_storage: "granted",
+        });
+      }
+    }
+
+    disableGoogleAnalytics() {
+      // Desactivar Google Analytics
+      if (typeof gtag !== "undefined") {
+        gtag("consent", "update", {
+          analytics_storage: "denied",
+        });
+      }
+    }
+
+    enableMarketing() {
+      // Activar cookies de marketing
+      if (typeof gtag !== "undefined") {
+        gtag("consent", "update", {
+          ad_storage: "granted",
+          ad_user_data: "granted",
+          ad_personalization: "granted",
+        });
+      }
+    }
+
+    disableMarketing() {
+      // Desactivar cookies de marketing
+      if (typeof gtag !== "undefined") {
+        gtag("consent", "update", {
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+        });
+      }
+    }
+
+    announceToScreenReader(message) {
+      const announcement = document.createElement("div");
+      announcement.setAttribute("aria-live", "polite");
+      announcement.setAttribute("aria-atomic", "true");
+      announcement.className = "sr-only";
+      announcement.textContent = message;
+
+      document.body.appendChild(announcement);
+
+      setTimeout(() => {
+        if (document.body.contains(announcement)) {
+          document.body.removeChild(announcement);
+        }
+      }, 3000);
+    }
+
+    // Método público para mostrar configuración desde otras partes
+    showSettings() {
+      this.openSettings();
+    }
+
+    // Método público para obtener consentimiento actual
+    getCurrentConsent() {
+      return this.currentConsent;
+    }
+  }
+
+  // Inicializar gestor de cookies cuando el DOM esté listo
+  function initCookieManager() {
+    window.cookieManager = new CookieManager();
+  }
+
+  // Inicialización
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCookieManager);
+  } else {
+    initCookieManager();
+  }
+
+  // Re-inicializar en navegaciones View Transitions
+  document.addEventListener("astro:page-load", function () {
+    if (!window.cookieManager) {
+      initCookieManager();
+    }
+  });
+</script>

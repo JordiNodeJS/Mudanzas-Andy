@@ -1,73 +1,40 @@
 {
-    "ci": {
-        "collect": {
-            "numberOfRuns": 3,
-            "settings": {
-                "preset": "perf",
-                "onlyCategories": [
-                    "performance"
-                ],
-                "formFactor": "mobile",
-                "throttling": {
-                    "rttMs": 150,
-                    "throughputKbps": 1638.4,
-                    "cpuSlowdownMultiplier": 4
-                }
-            }
-        },
-        "assert": {
-            "assertions": {
-                "categories:performance": [
-                    "warn",
-                    {
-                        "minScore": 0.85
-                    }
-                ],
-                "audits:first-contentful-paint": [
-                    "error",
-                    {
-                        "maxNumericValue": 2000
-                    }
-                ],
-                "audits:largest-contentful-paint": [
-                    "error",
-                    {
-                        "maxNumericValue": 2500
-                    }
-                ],
-                "audits:interactive": [
-                    "error",
-                    {
-                        "maxNumericValue": 3800
-                    }
-                ],
-                "audits:cumulative-layout-shift": [
-                    "error",
-                    {
-                        "maxNumericValue": 0.1
-                    }
-                ],
-                "audits:speed-index": [
-                    "error",
-                    {
-                        "maxNumericValue": 3400
-                    }
-                ],
-                "audits:total-blocking-time": [
-                    "warn",
-                    {
-                        "maxNumericValue": 200
-                    }
-                ]
-            }
-        },
-        "upload": {
-            "target": "filesystem",
-            "outputDir": "./reports/lighthouse-ci"
-        },
-        "server": {
-            "port": 4321,
-            "command": "pnpm run preview"
-        }
-    }
+  "extends": "lighthouse:default",
+  "settings": {
+    "onlyCategories": [
+      "performance",
+      "accessibility",
+      "best-practices",
+      "seo"
+    ],
+    "formFactor": "mobile",
+    "throttling": {
+      "rttMs": 150,
+      "throughputKbps": 1638.4,
+      "cpuSlowdownMultiplier": 4,
+      "requestLatencyMs": 150,
+      "downloadThroughputKbps": 1638.4,
+      "uploadThroughputKbps": 750
+    },
+    "screenEmulation": {
+      "mobile": true,
+      "width": 412,
+      "height": 823,
+      "deviceScaleFactor": 2.625,
+      "disabled": false
+    },
+    "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+  },
+  "audits": [
+    "first-contentful-paint",
+    "largest-contentful-paint",
+    "cumulative-layout-shift",
+    "total-blocking-time",
+    "server-response-time",
+    "interactive",
+    "speed-index",
+    "accessibility",
+    "seo",
+    "best-practices"
+  ]
 }

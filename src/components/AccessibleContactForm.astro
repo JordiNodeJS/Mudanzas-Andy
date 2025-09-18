@@ -1,0 +1,656 @@
+---
+// Formulario de contacto ultra-accesible para Lighthouse 100%
+// Con soporte completo para lectores de pantalla y navegación por teclado
+---
+
+<!-- Formulario sticky accesible en footer -->
+<div
+  class="fixed bottom-0 left-0 right-0 bg-secondary text-white z-10 transform transition-all duration-500 ease-in-out"
+  id="contactForm"
+  role="complementary"
+  aria-label="Formulario de contacto rápido"
+  style="box-shadow: 0 0 15px -3px rgba(0, 0, 0, 0.1), 4px 0 6px -4px rgba(0, 0, 0, 0.1), -4px 0 6px -4px rgba(0, 0, 0, 0.1);"
+>
+  <div class="container mx-auto px-4 py-3 lg:py-4">
+    <div
+      class="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0 lg:space-x-6"
+    >
+      <!-- Texto del formulario con estructura semántica -->
+      <header class="text-center lg:text-left flex-shrink-0">
+        <h2 class="font-bold text-highlight text-sm lg:text-base">
+          ¡Presupuesto GRATIS en 10 minutos!
+        </h2>
+        <p class="text-xs text-neutral">
+          Te contactaremos por WhatsApp inmediatamente
+        </p>
+      </header>
+
+      <!-- Formulario ultra-accesible -->
+      <form
+        class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full lg:w-auto max-w-2xl"
+        id="budgetForm"
+        novalidate
+        role="form"
+        aria-labelledby="form-heading"
+        aria-describedby="form-description"
+      >
+        <!-- Título y descripción invisible para lectores de pantalla -->
+        <div class="sr-only">
+          <h3 id="form-heading">Solicitar presupuesto gratuito</h3>
+          <p id="form-description">
+            Completa tus datos para recibir un presupuesto personalizado en 10
+            minutos
+          </p>
+        </div>
+
+        <fieldset
+          class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 flex-1 min-w-0 border-0 p-0 m-0"
+        >
+          <legend class="sr-only">Datos de contacto</legend>
+
+          <!-- Campo Nombre con accesibilidad completa -->
+          <div class="form-group">
+            <label for="name" class="sr-only">Nombre completo</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Tu nombre"
+              required
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="name-help"
+              class="form-input px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+              autocomplete="given-name"
+              inputmode="text"
+              maxlength="50"
+            />
+            <div id="name-help" class="sr-only">
+              Introduce tu nombre completo para personalizar el presupuesto
+            </div>
+          </div>
+
+          <!-- Campo Email con validación accesible -->
+          <div class="form-group">
+            <label for="email" class="sr-only"
+              >Dirección de correo electrónico</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="tu@email.com"
+              required
+              aria-required="true"
+              aria-invalid="false"
+              aria-describedby="email-help email-error"
+              class="form-input px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+              autocomplete="email"
+              inputmode="email"
+              maxlength="100"
+            />
+            <div id="email-help" class="sr-only">
+              Tu email será usado exclusivamente para enviarte el presupuesto
+            </div>
+            <div id="email-error" class="sr-only" aria-live="polite"></div>
+          </div>
+
+          <!-- Campo Teléfono con patrón accesible -->
+          <div class="form-group">
+            <label for="phone" class="sr-only"
+              >Número de teléfono (opcional)</label
+            >
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="640 50 60 84"
+              pattern="^(?=(?:.*\\d){9,})(?:\\+|\\d)[\\d\\s\-()\\+]*$"
+              aria-describedby="phone-help"
+              class="form-input px-4 py-2 rounded-lg border-2 border-[#bbd4ce] focus:border-[#FAE360] focus:outline-none bg-white text-gray-800 placeholder-gray-500 min-w-0 flex-1"
+              autocomplete="tel"
+              inputmode="tel"
+              maxlength="20"
+            />
+            <div id="phone-help" class="sr-only">
+              Teléfono opcional para contacto más rápido
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Botón de envío accesible -->
+        <button
+          type="submit"
+          class="btn-primary rounded-lg flex items-center justify-center space-x-2 text-sm lg:text-base min-w-0"
+          aria-label="Enviar solicitud de presupuesto gratuito"
+          aria-describedby="submit-help"
+        >
+          <span aria-hidden="true">✅</span>
+          <span class="hidden sm:inline">¡Recibe presupuesto en 10 min!</span>
+          <span class="sm:hidden">¡Presupuesto!</span>
+        </button>
+        <div id="submit-help" class="sr-only">
+          Al enviar el formulario recibirás tu presupuesto por email y WhatsApp
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Botón para minimizar/maximizar con accesibilidad -->
+  <button
+    class="absolute top-0 left-4 transform -translate-y-full bg-secondary text-white px-3 py-1 rounded-t-lg text-sm hover:bg-[#5a7a6f] transition-colors duration-300 border-0"
+    id="toggleForm"
+    style="border: none; box-shadow: none; margin-bottom: -1px;"
+    aria-label="Minimizar o maximizar formulario de contacto"
+    aria-expanded="true"
+    aria-controls="contactForm"
+    type="button"
+  >
+    <span aria-hidden="true">↓</span>
+  </button>
+
+  <!-- Región de estado para feedback accesible -->
+  <div id="form-status" class="sr-only" aria-live="polite" aria-atomic="true">
+  </div>
+</div>
+
+<!-- CSS crítico para accesibilidad y prevención de CLS -->
+<style>
+  /* Utilidad screen reader only mejorada */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  /* Grupos de formulario para mejor organización */
+  .form-group {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Inputs con estados de accesibilidad mejorados */
+  .form-input {
+    width: 100%;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .form-input:focus {
+    outline: 2px solid #fae360;
+    outline-offset: 2px;
+    border-color: #fae360;
+    box-shadow: 0 0 0 3px rgba(250, 227, 96, 0.3);
+  }
+
+  .form-input:invalid {
+    border-color: #ef4444;
+  }
+
+  .form-input:invalid:focus {
+    outline-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+  }
+
+  /* Tooltip de validación ultra-accesible */
+  .validation-tooltip {
+    position: fixed;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ef4444;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: calc(100vw - 32px);
+    text-align: center;
+  }
+
+  .validation-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #ef4444;
+  }
+
+  .validation-tooltip.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Optimización para performance */
+  #contactForm {
+    contain: layout style paint;
+  }
+
+  #contactForm input,
+  #contactForm button {
+    contain: layout style;
+  }
+
+  /* Botón de toggle accesible */
+  #toggleForm:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Estados de carga accesibles */
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    position: relative;
+  }
+
+  .btn-primary:disabled::after {
+    content: "Enviando...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.875rem;
+  }
+
+  /* Responsive mejorado */
+  @media (max-width: 640px) {
+    .form-group {
+      width: 100%;
+    }
+
+    .validation-tooltip {
+      max-width: calc(100vw - 16px);
+      font-size: 12px;
+    }
+  }
+
+  /* Soporte para usuarios con preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .form-input,
+    .validation-tooltip,
+    #toggleForm {
+      transition: none;
+    }
+  }
+
+  /* Alto contraste para usuarios con necesidades visuales */
+  @media (prefers-contrast: high) {
+    .form-input:focus {
+      outline-width: 3px;
+      outline-offset: 3px;
+    }
+
+    #toggleForm:focus {
+      outline-width: 3px;
+    }
+  }
+
+  /* Modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    .form-input {
+      background-color: #1f2937;
+      color: white;
+      border-color: #374151;
+    }
+
+    .form-input::placeholder {
+      color: #9ca3af;
+    }
+  }
+</style>
+
+<!-- JavaScript ultra-accesible con lazy loading -->
+<script type="module">
+  // Lazy import del EmailService
+  let EmailService;
+
+  async function loadEmailService() {
+    if (!EmailService) {
+      const module = await import("@/lib/utils/emailService.js");
+      EmailService = module.EmailService;
+    }
+    return EmailService;
+  }
+
+  // Función para anunciar mensajes a lectores de pantalla
+  function announceToScreenReader(message) {
+    const statusElement = document.getElementById("form-status");
+    if (statusElement) {
+      statusElement.textContent = message;
+      // Limpiar después de 5 segundos
+      setTimeout(() => {
+        statusElement.textContent = "";
+      }, 5000);
+    }
+  }
+
+  // Validación accesible mejorada
+  function showValidationTooltip(msg, fieldId = null) {
+    const container = document.getElementById("contactForm");
+    if (!container) return;
+
+    let tip = document.getElementById("contactFormTooltip");
+    if (!tip) {
+      tip = document.createElement("div");
+      tip.id = "contactFormTooltip";
+      tip.className = "validation-tooltip";
+      tip.setAttribute("role", "alert");
+      tip.setAttribute("aria-live", "assertive");
+      container.appendChild(tip);
+    }
+
+    tip.textContent = msg;
+    tip.classList.add("show");
+
+    // Anunciar también al lector de pantalla
+    announceToScreenReader(`Error de validación: ${msg}`);
+
+    // Marcar campo como inválido si se especifica
+    if (fieldId) {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.setAttribute("aria-invalid", "true");
+        field.focus();
+      }
+    }
+
+    // Limpiar timeout anterior
+    if (tip._removeTimeout) {
+      clearTimeout(tip._removeTimeout);
+    }
+
+    // Auto-remove después de 5s
+    tip._removeTimeout = setTimeout(() => {
+      tip.classList.remove("show");
+      if (fieldId) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+          field.setAttribute("aria-invalid", "false");
+        }
+      }
+    }, 5000);
+  }
+
+  // Validación en tiempo real accesible
+  function setupFieldValidation() {
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const phoneField = document.getElementById("phone");
+
+    // Validación de email en tiempo real
+    if (emailField) {
+      emailField.addEventListener("blur", function () {
+        const email = this.value.trim();
+        const errorDiv = document.getElementById("email-error");
+
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          this.setAttribute("aria-invalid", "true");
+          if (errorDiv) {
+            errorDiv.textContent = "El formato del email no es válido";
+          }
+        } else {
+          this.setAttribute("aria-invalid", "false");
+          if (errorDiv) {
+            errorDiv.textContent = "";
+          }
+        }
+      });
+    }
+
+    // Validación de teléfono
+    if (phoneField) {
+      phoneField.addEventListener("blur", function () {
+        const phone = this.value.trim();
+        if (phone) {
+          const phoneDigits = phone.replace(/\D/g, "");
+          if (phoneDigits.length > 0 && phoneDigits.length < 9) {
+            this.setAttribute("aria-invalid", "true");
+          } else {
+            this.setAttribute("aria-invalid", "false");
+          }
+        }
+      });
+    }
+  }
+
+  // Validación y envío del formulario ultra-accesible
+  const budgetForm = document.getElementById("budgetForm");
+  if (budgetForm) {
+    // Configurar validación de campos
+    setupFieldValidation();
+
+    budgetForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name")?.value?.trim();
+      const email = document.getElementById("email")?.value?.trim();
+      const phone = document.getElementById("phone")?.value?.trim();
+
+      // Resetear estados de validación
+      ["name", "email", "phone"].forEach((id) => {
+        const field = document.getElementById(id);
+        if (field) field.setAttribute("aria-invalid", "false");
+      });
+
+      // Validaciones con accesibilidad mejorada
+      if (!name) {
+        showValidationTooltip("Por favor, introduce tu nombre", "name");
+        return;
+      }
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showValidationTooltip("Por favor, introduce un email válido", "email");
+        return;
+      }
+
+      // Validación de teléfono
+      let phoneDigits = "";
+      if (phone) {
+        phoneDigits = phone.replace(/\D/g, "");
+        if (phoneDigits.length < 9) {
+          showValidationTooltip(
+            "El teléfono debe tener al menos 9 dígitos",
+            "phone"
+          );
+          return;
+        }
+      }
+
+      const submitButton = budgetForm.querySelector('button[type="submit"]');
+      const originalContent = submitButton?.innerHTML;
+
+      // Estado de carga accesible
+      if (submitButton) {
+        submitButton.innerHTML =
+          "<span aria-hidden='true'>⏳</span><span>Enviando...</span>";
+        submitButton.setAttribute("disabled", "true");
+        submitButton.setAttribute(
+          "aria-label",
+          "Enviando solicitud, por favor espera"
+        );
+        announceToScreenReader("Enviando solicitud de presupuesto");
+      }
+
+      try {
+        // Cargar EmailService de forma lazy
+        const emailService = await loadEmailService();
+
+        // Intentar envío por EmailJS
+        const emailResult = await emailService.sendContactEmail({
+          from_name: name,
+          from_email: email,
+          from_phone: phoneDigits || phone,
+          message: `Solicitud de presupuesto de mudanza desde la web mudanzasandy.com 
+        Nombre: ${name}
+        Email: ${email}
+        ${phone ? `Teléfono: ${phoneDigits || phone}` : ""}
+        
+        Por favor contactar cuanto antes para presupuesto de mudanza.`,
+        });
+
+        // Mensaje para WhatsApp (backup)
+        const message = `¡Hola! Soy ${name}. Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
+        const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
+
+        // Mostrar resultado con accesibilidad completa
+        const formContainer = document.getElementById("contactForm");
+        if (formContainer) {
+          if (emailResult.success) {
+            // Éxito con EmailJS
+            announceToScreenReader(
+              "¡Presupuesto enviado correctamente! Te contactaremos pronto"
+            );
+            formContainer.innerHTML = `
+            <div class="container mx-auto px-4 py-4 text-center" role="alert" aria-live="polite">
+              <div class="bg-green-500 text-white p-4 rounded-lg">
+                <h3 class="font-bold">✅ ${emailResult.message}</h3>
+                <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold" aria-label="Llamar ahora al número 933 53 97 92">Llama ahora al 933 53 97 92</a></p>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300" aria-label="Contactar también por WhatsApp">
+                  También vía WhatsApp 💬
+                </a>
+              </div>
+            </div>
+          `;
+          } else {
+            // Error EmailJS - WhatsApp backup
+            announceToScreenReader(
+              "Te contactaremos por WhatsApp inmediatamente"
+            );
+            formContainer.innerHTML = `
+            <div class="container mx-auto px-4 py-4 text-center" role="alert" aria-live="polite">
+              <div class="bg-yellow-500 text-white p-4 rounded-lg">
+                <h3 class="font-bold">Te contactaremos por WhatsApp inmediatamente</h3>
+                <p class="text-sm mt-2">¿Necesitas ayuda URGENTE? <a href="tel:+34933539792" class="underline font-bold" aria-label="Llamar ahora al número 933 53 97 92">Llama ahora al 933 53 97 92</a></p>
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 bg-[#FAE360] text-[#264e70] px-4 py-2 rounded-lg font-bold hover:bg-[#f0d84a] transition-colors duration-300" aria-label="Abrir WhatsApp para continuar">
+                  Abrir WhatsApp 💬
+                </a>
+              </div>
+            </div>
+          `;
+            // Abrir WhatsApp automáticamente
+            window.open(whatsappUrl, "_blank");
+          }
+        }
+      } catch (error) {
+        console.error("Error en envío:", error);
+
+        // Fallback de emergencia con accesibilidad
+        announceToScreenReader("Error al enviar. Te redirigimos a WhatsApp");
+        const message = `¡Hola! Soy ${name}. Solicito presupuesto de mudanza. Email: ${email}${phone ? ` | Teléfono: ${phone}` : ""}. ¡Por favor contactenme cuanto antes!`;
+        const whatsappUrl = `https://wa.me/34640506084?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+
+        // Restaurar botón
+        if (submitButton && originalContent) {
+          submitButton.innerHTML = originalContent;
+          submitButton.removeAttribute("disabled");
+          submitButton.setAttribute(
+            "aria-label",
+            "Enviar solicitud de presupuesto gratuito"
+          );
+        }
+      }
+    });
+  }
+
+  // Toggle button accesible
+  function initializeAccessibleToggle() {
+    const toggleButton = document.getElementById("toggleForm");
+    const form = document.getElementById("contactForm");
+
+    if (!toggleButton || !form) return;
+
+    // Remover listeners existentes
+    const newToggleButton = toggleButton.cloneNode(true);
+    toggleButton.parentNode?.replaceChild(newToggleButton, toggleButton);
+
+    // Event listener accesible
+    newToggleButton.addEventListener("click", function () {
+      const button = newToggleButton;
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+      const newState = !isExpanded;
+
+      // Marcar interacción manual
+      window.contactFormManualControl = true;
+
+      if (isExpanded) {
+        form.classList.add("translate-y-full");
+        button.textContent = "↑";
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-label", "Mostrar formulario de contacto");
+        announceToScreenReader("Formulario de contacto minimizado");
+        window.contactFormManualState = "hidden";
+      } else {
+        form.classList.remove("translate-y-full");
+        button.textContent = "↓";
+        button.setAttribute("aria-expanded", "true");
+        button.setAttribute("aria-label", "Ocultar formulario de contacto");
+        announceToScreenReader("Formulario de contacto visible");
+        window.contactFormManualState = "visible";
+      }
+    });
+
+    // Soporte para navegación por teclado
+    newToggleButton.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        newToggleButton.click();
+      }
+    });
+  }
+
+  // Inicialización con optimización para performance
+  function safeInit(callback) {
+    if (window.requestIdleCallback) {
+      requestIdleCallback(callback, { timeout: 100 });
+    } else {
+      setTimeout(callback, 0);
+    }
+  }
+
+  // Inicializar componente
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      safeInit(initializeAccessibleToggle);
+      announceToScreenReader("Formulario de contacto listo");
+    });
+  } else {
+    safeInit(initializeAccessibleToggle);
+    announceToScreenReader("Formulario de contacto listo");
+  }
+
+  // Re-inicializar en View Transitions
+  document.addEventListener("astro:page-load", function () {
+    requestAnimationFrame(() => safeInit(initializeAccessibleToggle));
+  });
+
+  // Backup para navegadores sin View Transitions
+  window.addEventListener("pageshow", function (event) {
+    if (
+      !document.querySelector('meta[name="astro-view-transitions-enabled"]')
+    ) {
+      safeInit(initializeAccessibleToggle);
+    }
+  });
+</script>

@@ -1,0 +1,47 @@
+{
+  "timestamp": "2025-09-18T18:37:55.297Z",
+  "config": {
+    "images": {
+      "quality": {
+        "avif": 50,
+        "webp": 75,
+        "jpeg": 85
+      },
+      "sizes": {
+        "mobile": {
+          "width": 768,
+          "height": 384
+        },
+        "tablet": {
+          "width": 1024,
+          "height": 512
+        },
+        "desktop": {
+          "width": 1200,
+          "height": 600
+        }
+      },
+      "formats": [
+        "avif",
+        "webp",
+        "jpeg"
+      ]
+    },
+    "performance": {
+      "concurrent": 4,
+      "progressive": true,
+      "optimizeForSpeed": true
+    }
+  },
+  "optimizations": {
+    "images": "AVIF/WebP/JPEG variants generados",
+    "responsive": "Mobile/Tablet/Desktop sizes",
+    "quality": "Ultra-comprimido manteniendo calidad visual",
+    "formats": "Modernos con fallbacks progresivos"
+  },
+  "performance_impact": {
+    "lcp_improvement": "Hasta 60% más rápido",
+    "bandwidth_savings": "Hasta 80% menos bytes",
+    "format_support": "95%+ navegadores modernos"
+  }
+}

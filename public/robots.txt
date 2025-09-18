@@ -1,26 +1,38 @@
 User-agent: *
 Allow: /
 
-# Disallow specific paths
+# Archivos importantes para SEO
+Sitemap: https://mudanzasandy.es/sitemap.xml
+
+# Bloquear archivos innecesarios
 Disallow: /admin/
-Disallow: /_astro/
-Disallow: /test-results/
-Disallow: /.playwright-mcp/
-Disallow: /playwright-report/
+Disallow: /private/
+Disallow: /_headers
+Disallow: /_redirects
+Disallow: /dist/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
 
-# Disallow policy pages from crawling (SEO optimization)
-Disallow: /politica-privacidad/
-Disallow: /politica-cookies/
-
-# Allow important resources
+# Permitir recursos necesarios
+Allow: /assets/
 Allow: /images/
 Allow: /js/
 Allow: /css/
 Allow: /favicon.ico
+Allow: /sitemap.xml
 Allow: /robots.txt
 
-# Sitemap location
-Sitemap: https://mudanzasandy.es/sitemap.xml
+# Crawl delay para bots agresivos
+User-agent: Baiduspider
+Crawl-delay: 10
 
-# Crawl delay (optional, be careful with this)
-# Crawl-delay: 1
+User-agent: SemrushBot
+Crawl-delay: 86400
+
+# Bloquear bots innecesarios
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

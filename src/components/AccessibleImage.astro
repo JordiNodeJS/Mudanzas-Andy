@@ -1,0 +1,194 @@
+---
+// Componente de imagen ultra-accesible para Lighthouse 100%
+interface Props {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  sizes?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  role?: "img" | "button" | "presentation";
+  className?: string;
+}
+
+const {
+  src,
+  alt,
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, 80vw",
+  ariaLabel,
+  ariaDescribedBy,
+  role,
+  className = "",
+} = Astro.props satisfies Props;
+
+// Validación de accesibilidad
+if (!alt || alt.trim().length === 0) {
+  throw new Error(`AccessibleImage: alt text is required for image ${src}`);
+}
+
+// Optimización: Generar variantes de formato ultra-accesibles
+const variants = {
+  mobile: {
+    avif: `/camion/optimized/${src}-mobile.avif`,
+    webp: `/camion/optimized/${src}-mobile.webp`,
+    jpg: `/camion/optimized/${src}-mobile.jpg`,
+  },
+  tablet: {
+    avif: `/camion/optimized/${src}-tablet.avif`,
+    webp: `/camion/optimized/${src}-tablet.webp`,
+    jpg: `/camion/optimized/${src}-tablet.jpg`,
+  },
+  desktop: {
+    avif: `/camion/optimized/${src}.avif`,
+    webp: `/camion/optimized/${src}.webp`,
+    jpg: `/camion/optimized/${src}.jpg`,
+  }
+};
+---
+
+<!-- Picture element ultra-accesible con soporte completo para lectores de pantalla -->
+<picture class={`accessible-image ${className}`.trim()}>
+  <!-- AVIF móvil (formato más eficiente) -->
+  <source
+    media="(max-width: 768px)"
+    srcset={variants.mobile.avif}
+    type="image/avif"
+  />
+  
+  <!-- WebP móvil (fallback moderno) -->
+  <source
+    media="(max-width: 768px)"
+    srcset={variants.mobile.webp}
+    type="image/webp"
+  />
+
+  <!-- AVIF tablet -->
+  <source
+    media="(min-width: 769px) and (max-width: 1024px)"
+    srcset={variants.tablet.avif}
+    type="image/avif"
+  />
+  
+  <!-- WebP tablet -->
+  <source
+    media="(min-width: 769px) and (max-width: 1024px)"
+    srcset={variants.tablet.webp}
+    type="image/webp"
+  />
+
+  <!-- AVIF desktop -->
+  <source
+    media="(min-width: 1025px)"
+    srcset={variants.desktop.avif}
+    type="image/avif"
+  />
+  
+  <!-- WebP desktop -->
+  <source
+    media="(min-width: 1025px)"
+    srcset={variants.desktop.webp}
+    type="image/webp"
+  />
+
+  <!-- Imagen base con máxima accesibilidad -->
+  <img
+    src={variants.desktop.jpg}
+    alt={alt}
+    width="1200"
+    height="600"
+    sizes={sizes}
+    loading={priority ? "eager" : "lazy"}
+    decoding={priority ? "sync" : "async"}
+    fetchpriority={priority ? "high" : "auto"}
+    style="aspect-ratio: 2/1; object-fit: cover; width: 100%; height: auto; max-width: 100%;"
+    class="w-full h-auto accessible-img"
+    aria-label={ariaLabel}
+    aria-describedby={ariaDescribedBy}
+    role={role}
+    tabindex={role === "button" ? 0 : undefined}
+  />
+</picture>
+
+<!-- CSS crítico para accesibilidad y performance -->
+<style>
+  .accessible-image {
+    display: block;
+    width: 100%;
+    contain: layout style paint;
+    position: relative;
+  }
+  
+  .accessible-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    
+    /* Aspect ratio crítico para prevenir CLS */
+    aspect-ratio: 2/1;
+    object-fit: cover;
+    
+    /* Optimización para rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    
+    /* Accesibilidad: Focus visible mejorado */
+    outline: none;
+    transition: all 0.2s ease;
+  }
+  
+  .accessible-img:focus {
+    outline: 3px solid #0066cc;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px rgba(0, 102, 204, 0.3);
+  }
+  
+  /* Soporte para usuarios con preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .accessible-img {
+      transition: none;
+      animation: none;
+    }
+  }
+  
+  /* Alto contraste para usuarios con necesidades visuales */
+  @media (prefers-contrast: high) {
+    .accessible-img:focus {
+      outline: 4px solid #ffffff;
+      box-shadow: 0 0 0 8px #000000;
+    }
+  }
+  
+  /* Optimización para diferentes densidades de pixel */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .accessible-img {
+      image-rendering: -webkit-optimize-contrast;
+    }
+  }
+  
+  /* Soporte para modo oscuro */
+  @media (prefers-color-scheme: dark) {
+    .accessible-img {
+      filter: brightness(0.9);
+    }
+  }
+</style>
+
+<!-- Schema.org JSON-LD para mejorar accesibilidad y SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "contentUrl": `${variants.desktop.jpg}`,
+  "description": `${alt}`,
+  "width": "1200",
+  "height": "600",
+  "encodingFormat": ["image/avif", "image/webp", "image/jpeg"],
+  "caption": `${alt}`,
+  "accessibilityFeature": [
+    "alternativeText",
+    "longDescription", 
+    "highContrast"
+  ]
+}
+</script>

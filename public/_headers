@@ -1,44 +1,53 @@
-# Cache control headers for performance optimization
-
-# Images - Long cache for optimized images
-/camion/optimized/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# Static assets - Long cache
-/favicons/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/js/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/css/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# Fonts - Long cache
-/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
-
-# Original images - Medium cache
-/camion/*.jpg
-  Cache-Control: public, max-age=604800
-
-/camion/*.png
-  Cache-Control: public, max-age=604800
-
-# HTML files - Short cache
 /*
-  Cache-Control: public, max-age=3600
+  # Security Headers para Lighthouse Best Practices 100%
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: http:; connect-src 'self' https://api.emailjs.com https://www.google-analytics.com https://wa.me; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.emailjs.com; frame-ancestors 'none'
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Opener-Policy: cross-origin
+  Cross-Origin-Resource-Policy: cross-origin
 
-# Special files - Medium cache
+# Cache headers para performance
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Special headers para archivos críticos
+/service-worker.js
+  Cache-Control: no-cache
+  
 /sitemap.xml
   Cache-Control: public, max-age=86400
+  Content-Type: application/xml
 
 /robots.txt
   Cache-Control: public, max-age=86400
+  Content-Type: text/plain
 
-# Security headers
-/*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
-  Referrer-Policy: strict-origin-when-cross-origin
+/manifest.json
+  Cache-Control: public, max-age=86400
+  Content-Type: application/json
