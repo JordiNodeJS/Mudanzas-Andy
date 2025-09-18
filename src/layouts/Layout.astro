@@ -1632,26 +1632,97 @@ const {
           printed = true;
         }
 
-        // Heuristic detection of DevTools
-        const CHECK_INTERVAL_MS = 800;
-        const THRESHOLD = 160;
+        // Método 1: Detección por console.log override (muy efectivo)
+        let devtools = { open: false, orientation: null };
 
-        function checkDevTools() {
+        // Crear un objeto que detecta cuando se accede a él
+        let detector = {};
+        Object.defineProperty(detector, "id", {
+          get: function () {
+            devtools.open = true;
+            printOnce();
+            return true;
+          },
+        });
+
+        // Método 2: Usar console.debug con el detector
+        function detectDevTools() {
+          console.debug(detector);
+        }
+
+        // Método 3: Heurística mejorada de tamaño (fallback)
+        function checkDevToolsBySize() {
           try {
             const widthDiff = window.outerWidth - window.innerWidth;
             const heightDiff = window.outerHeight - window.innerHeight;
-            const open = widthDiff > THRESHOLD || heightDiff > THRESHOLD;
-            if (open) printOnce();
+
+            // Umbrales más dinámicos basados en el tamaño de pantalla
+            const minThreshold = Math.min(window.screen.width * 0.1, 100);
+            const maxThreshold = Math.max(window.screen.width * 0.15, 200);
+
+            if (widthDiff > minThreshold || heightDiff > minThreshold) {
+              printOnce();
+            }
           } catch (e) {
-            // ignore
+            // Silently fail
           }
         }
 
-        setTimeout(checkDevTools, 200);
-        const id = setInterval(function () {
-          if (printed) return clearInterval(id);
-          checkDevTools();
-        }, CHECK_INTERVAL_MS);
+        // Método 4: Detección por timing de console (Chrome/Edge)
+        function detectByTiming() {
+          let start = performance.now();
+          console.log("");
+          let end = performance.now();
+
+          // Si el console.log toma más tiempo, probablemente DevTools está abierto
+          if (end - start > 10) {
+            printOnce();
+          }
+        }
+
+        // Método 5: Fallback simple - imprimir después de un delay si no se ha impreso
+        setTimeout(() => {
+          if (!printed) {
+            // Si después de 3 segundos no se ha detectado, imprimir de todos modos
+            // pero solo si hay indicios de que se está inspeccionando
+            if (document.hasFocus && document.hasFocus()) {
+              printOnce();
+            }
+          }
+        }, 3000);
+
+        // Ejecutar detecciones
+        detectDevTools(); // Método principal
+
+        // Chequeos periódicos con múltiples métodos
+        const interval = setInterval(() => {
+          if (printed) {
+            clearInterval(interval);
+            return;
+          }
+
+          detectDevTools();
+          checkDevToolsBySize();
+
+          // Cada 3 intentos, usar el método de timing
+          if (Math.random() > 0.7) {
+            detectByTiming();
+          }
+        }, 500);
+
+        // Limpiar después de 30 segundos para evitar overhead
+        setTimeout(() => {
+          clearInterval(interval);
+        }, 30000);
+
+        // Event listeners para interacciones que podrían indicar uso de DevTools
+        ["keydown", "resize"].forEach((event) => {
+          window.addEventListener(event, (e) => {
+            if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I")) {
+              setTimeout(detectDevTools, 100);
+            }
+          });
+        });
       })();
     </script>
   </body>
