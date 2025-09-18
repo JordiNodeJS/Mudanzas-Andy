@@ -9,7 +9,12 @@
     "preview": "astro preview",
     "astro": "astro",
     "test:emailjs": "playwright test src/tests/emailjs-test.spec.js --reporter=line",
-    "check": "astro check"
+    "check": "astro check",
+    "perf:optimize-images": "node scripts/optimize-core-web-vitals-images.js",
+    "perf:monitor": "node scripts/monitor-core-web-vitals.js",
+    "perf:audit": "pnpm run build && pnpm run preview & sleep 3 && pnpm run perf:monitor && kill %1",
+    "perf:lighthouse-mobile": "pnpm dlx lighthouse http://localhost:4321 --form-factor=mobile --only-categories=performance --output=html --output-path=./reports/lighthouse-mobile.html",
+    "perf:lighthouse-desktop": "pnpm dlx lighthouse http://localhost:4321 --form-factor=desktop --only-categories=performance --output=html --output-path=./reports/lighthouse-desktop.html"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
