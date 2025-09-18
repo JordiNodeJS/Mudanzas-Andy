@@ -34,6 +34,7 @@
 | TASK-026         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-026-UPDATE2 | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-029         | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
+| TASK-COOKIE-GTM  | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 
 ### **Tareas Históricas (Trabajo Previo Documentado)**
 

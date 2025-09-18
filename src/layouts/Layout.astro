@@ -3,26 +3,12 @@ import "../styles/global.css";
 import CookieBanner from "../components/CookieBanner.astro";
 import { ClientRouter } from "astro:transitions";
 
-// Configuración temporal directo en el Layout para asegurar que funcione en producción
-const analyticsConfig = {
-  google: {
-    analytics: {
-      measurement_id: "G-VK65C53TET",
-    },
-    search_console: {
-      verification_code: "",
-    },
-    tag_manager: {
-      container_id: "GTM-5NH8WKQC",
-    },
-  },
+// Configuración básica sin analytics
+const siteConfig = {
   bing: {
     webmaster_tools: {
       verification_code: "E00F433172C8065A658092822181BD08",
     },
-  },
-  meta: {
-    domain_verification: "",
   },
 };
 
@@ -48,27 +34,6 @@ const {
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Google Tag Manager (head) -->
-    <script>
-      (function (w, d, s, l, i) {
-        // Use safe casts to avoid TypeScript DOM typing errors during `astro check`
-        (w as any)[l] = (w as any)[l] || [];
-        (w as any)[l].push({
-          "gtm.start": new Date().getTime(),
-          event: "gtm.js",
-        });
-        var f = d.getElementsByTagName(s)[0] as HTMLScriptElement | undefined,
-          j = d.createElement(s) as HTMLScriptElement,
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        if (f && f.parentNode) {
-          f.parentNode.insertBefore(j, f);
-        }
-      })(window, document, "script", "dataLayer", "GTM-5NH8WKQC");
-    </script>
-    <!-- End Google Tag Manager -->
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicons generated from the truck logo -->
@@ -109,15 +74,12 @@ const {
     <!-- CRITICAL: DNS prefetch para recursos externos críticos -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="dns-prefetch" href="//wa.me" />
     <link rel="dns-prefetch" href="//api.whatsapp.com" />
 
     <!-- CRITICAL: Preconnect para recursos críticos above-the-fold -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
 
     <!-- MOBILE OPTIMIZATION: Critical CSS inline only - external CSS removed to prevent conflicts -->
 
@@ -1184,26 +1146,10 @@ const {
 
     <!-- Search Engine Verification Tags -->
     {
-      analyticsConfig.google.search_console.verification_code && (
-        <meta
-          name="google-site-verification"
-          content={analyticsConfig.google.search_console.verification_code}
-        />
-      )
-    }
-    {
-      analyticsConfig.bing.webmaster_tools.verification_code && (
+      siteConfig.bing.webmaster_tools.verification_code && (
         <meta
           name="msvalidate.01"
-          content={analyticsConfig.bing.webmaster_tools.verification_code}
-        />
-      )
-    }
-    {
-      analyticsConfig.meta.domain_verification && (
-        <meta
-          name="facebook-domain-verification"
-          content={analyticsConfig.meta.domain_verification}
+          content={siteConfig.bing.webmaster_tools.verification_code}
         />
       )
     }
@@ -1458,33 +1404,6 @@ const {
       )
     }
 
-    <!-- Google Analytics 4 -->
-    {
-      analyticsConfig.google.analytics.measurement_id && (
-        <>
-          <script
-            async
-            is:inline
-            src={`https://www.googletagmanager.com/gtag/js?id=${analyticsConfig.google.analytics.measurement_id}`}
-          />
-          <script
-            is:inline
-            set:html={`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${analyticsConfig.google.analytics.measurement_id}', {
-            page_title: '${title}',
-            page_location: '${canonical}',
-            anonymize_ip: true,
-            cookie_flags: 'secure;samesite=lax'
-          });
-        `}
-          />
-        </>
-      )
-    }
-
     <!-- Client Router para navegación suave -->
     <ClientRouter />
 
@@ -1576,15 +1495,6 @@ const {
     </style>
   </head>
   <body class="font-sans bg-[#fdebd3] text-gray-800 antialiased">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-5NH8WKQC"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe>
-    </noscript>
-
     <slot />
 
     <!-- Cookie Banner -->
