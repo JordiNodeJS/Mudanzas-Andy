@@ -24,7 +24,7 @@ interface Props {
 const {
   title = "Mudanzas Profesionales Barcelona ⚡ Presupuesto GRATIS | Mudanzas ANDY",
   description = "🚛 Mudanzas profesionales en Barcelona y España. ✅ Presupuesto GRATIS en 5 min por WhatsApp ✅ Precio cerrado sin sorpresas ✅ Atención 24/7 ✅ Embalaje incluido",
-  image = "/og-image.jpg",
+  image = "/camion/optimized/og-image.webp",
   canonical = Astro.url.href,
   keywords = "mudanzas Barcelona, mudanzas profesionales, empresa mudanzas Barcelona, mudanzas baratas, presupuesto mudanza gratis, mudanzas particulares, mudanzas oficinas",
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
@@ -1162,7 +1162,7 @@ const {
     <meta property="og:image" content={new URL(image, Astro.url)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:type" content="image/webp" />
     <meta property="og:site_name" content="Mudanzas ANDY" />
     <meta property="og:locale" content="es_ES" />
 
@@ -1604,7 +1604,7 @@ WW   WW  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
 `.trim();
 
         const footer =
-          "    WEBCODE  jordi.nodejs@gmail.com | webcode.es | info@webcode.es";
+          "    JordiNodeJS  jordi.nodejs@gmail.com | https://github.com/JordiNodeJS";
 
         // Styles for console (works in browser DevTools). Node console doesn't support CSS styling.
         // Colored styles for console output (DevTools supports CSS styling)
@@ -1626,7 +1626,7 @@ WW   WW  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
 
           // Prepare footer parts for styled output
           const parts = footer.split("|").map((p) => p.trim());
-          // parts => ['JORGE  jordi.nodejs@gmail.com', 'webcode.es', 'info@webcode.es']
+          // parts => ['JordiNodeJS  jordi.nodejs@gmail.com', 'https://github.com/JordiNodeJS']
           const nameAndEmail = parts[0] || "";
           // Try to split name (WORD) and email if present
           let name = nameAndEmail;
