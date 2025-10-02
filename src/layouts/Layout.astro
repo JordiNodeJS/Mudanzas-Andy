@@ -1620,15 +1620,39 @@ const {
         for (let k = 0; k < j.length; k++) {
           lines.push(j[k] + gap + O[k] + gap + r[k] + gap + G[k] + gap + e[k]);
         }
-        const art = lines.join("\n") + "\n\n    jOrGe  jordi.nodejs@gmail.com";
+        const ascii = lines.join("\n");
+        const footer =
+          "    jOrGe  jordi.nodejs@gmail.com | webcode.es | info@webcode.es";
 
-        const style =
+        // Styles for console (works in browser DevTools). Node console doesn't support CSS styling.
+        const baseStyle =
           "color:#264e70; font-weight:700; font-family:monospace; font-style:italic; font-size:12px;";
+        const nameStyle =
+          "color:#264e70; font-weight:700; font-family:monospace; font-style:italic; font-size:12px;";
+        const emailStyle =
+          "color:#1a73e8; font-weight:600; font-family:monospace; font-style:italic; font-size:12px;";
+        const webStyle =
+          "color:#2b9348; font-weight:600; font-family:monospace; font-style:italic; font-size:12px;";
+        const contactStyle =
+          "color:#d97706; font-weight:600; font-family:monospace; font-style:italic; font-size:12px;";
 
         let printed = false;
         function printOnce() {
           if (printed) return;
-          console.log("%c" + art, style);
+
+          // Print the ASCII art (baseStyle) and then style parts of the footer separately.
+          // Each %c consumes the next style argument.
+          console.log(
+            "%c" +
+              ascii +
+              "\n\n%c    jOrGe  %c jordi.nodejs@gmail.com %c | webcode.es %c | info@webcode.es",
+            baseStyle,
+            nameStyle,
+            emailStyle,
+            webStyle,
+            contactStyle
+          );
+
           printed = true;
         }
 
