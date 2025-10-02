@@ -52,9 +52,11 @@ Se ha implementado exitosamente un carrusel de imágenes para mostrar las nuevas
 - **Navegación**: Botones anterior/siguiente
 - **Indicadores**: Puntos clicables para navegación directa
 - **Contador**: Muestra "X de Y" imágenes
-- **Responsive**: Adaptado para mobile, tablet y desktop
+- **Responsive**: Adaptado para mobile, tablet y desktop con diferentes aspect ratios
 - **Accesibilidad**: Navegación por teclado, labels ARIA
 - **Touch**: Soporte para gestos de swipe en móviles
+- **Zoom de Imagen**: Las imágenes tienen zoom de 1.1x para ocultar bordes imperfectos
+- **Efecto Hover**: Zoom adicional a 1.15x en desktop al pasar el ratón
 
 ### Optimización de Imágenes
 
@@ -134,8 +136,8 @@ index.astro
 │   ├── HeroSection
 │   ├── ServicesSection
 │   ├── TeamSection
-│   ├── ImageCarousel        ← NUEVO (imágenes carrusel)
 │   ├── ImageGallery         ← EXISTENTE (imágenes antiguas)
+│   ├── ImageCarousel        ← NUEVO (imágenes carrusel)
 │   ├── PricingSection
 │   └── TestimonialsSection
 ├── Footer
@@ -181,9 +183,15 @@ index.astro
 
 ## 📝 Notas Técnicas
 
-### Aspect Ratio
-- Desktop: 3:2
-- Mobile: 4:3
+### Aspect Ratio Responsivo
+- Mobile (≤640px): 4:3
+- Tablet (641-1024px): 16:9
+- Desktop (≥1025px): 21:9
+
+### Zoom de Imagen
+- Zoom base: 1.1x (oculta bordes imperfectos)
+- Zoom hover (desktop): 1.15x
+- Mobile: Zoom fijo 1.08x sin hover
 
 ### Transiciones
 - Duración: 0.6s
