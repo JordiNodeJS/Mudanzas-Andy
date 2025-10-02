@@ -19,7 +19,8 @@
     "lighthouse:mobile": "pnpm dlx lighthouse http://localhost:4321 --preset=mobile --only-categories=performance,accessibility,best-practices,seo --output=html --output-path=./reports/lighthouse-mobile.html",
     "optimize:images": "node ./scripts/ultra-optimize-images.js",
     "optimize:all": "pnpm optimize:images && pnpm build",
-    "perf:dev": "pnpm dev & sleep 5 && pnpm lighthouse:test"
+    "perf:dev": "pnpm dev & sleep 5 && pnpm lighthouse:test",
+    "check:og-image": "node scripts/check-og-image.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

@@ -24,7 +24,7 @@ interface Props {
 const {
   title = "Mudanzas Profesionales Barcelona ⚡ Presupuesto GRATIS | Mudanzas ANDY",
   description = "🚛 Mudanzas profesionales en Barcelona y España. ✅ Presupuesto GRATIS en 5 min por WhatsApp ✅ Precio cerrado sin sorpresas ✅ Atención 24/7 ✅ Embalaje incluido",
-  image = "/og-image.jpg",
+  image = "/camion/optimized/hero-fondo.webp",
   canonical = Astro.url.href,
   keywords = "mudanzas Barcelona, mudanzas profesionales, empresa mudanzas Barcelona, mudanzas baratas, presupuesto mudanza gratis, mudanzas particulares, mudanzas oficinas",
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
@@ -1162,7 +1162,7 @@ const {
     <meta property="og:image" content={new URL(image, Astro.url)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:site_name" content="Mudanzas ANDY" />
     <meta property="og:locale" content="es_ES" />
 
@@ -1594,42 +1594,85 @@ const {
     <!-- Print ASCII credit to dev console when DevTools opens -->
     <script is:inline>
       (function () {
-        // Build block letters for 'jOrGe' with mixed case
-        const j = ["    _ ", "   (_)", "    | ", " _  | ", "(_)_/ ", "      "];
-        const O = [
-          " _____ ",
-          "|  _  |",
-          "| | | |",
-          "| |_| |",
-          "|_____|",
-          "       ",
-        ];
-        const r = ["      ", " _ __ ", "| '__|", "| |   ", "|_|   ", "      "];
-        const G = [
-          " _____ ",
-          "|  ___|",
-          "| |  _ ",
-          "| |_| |",
-          "|_____|",
-          "       ",
-        ];
-        const e = ["      ", " ___  ", "|  _| ", "| |__ ", "|____|", "      "];
+        // ASCII block for 'WEBCODE' (simple, clear block letters)
+        const ascii = `
+W     W  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
+W     W  E      B    B  C      O   O  D    D E
+W  W  W  EEEE   BBBBB   C      O   O  D    D EEEE
+W W W W  E      B    B  C      O   O  D    D E
+WW   WW  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
+`.trim();
 
-        const gap = " ";
-        const lines = [];
-        for (let k = 0; k < j.length; k++) {
-          lines.push(j[k] + gap + O[k] + gap + r[k] + gap + G[k] + gap + e[k]);
-        }
-        const art = lines.join("\n") + "\n\n    jOrGe  jordi.nodejs@gmail.com";
+        const footer =
+          "    JordiNodeJS  jordi.nodejs@gmail.com | https://github.com/JordiNodeJS";
 
-        const style =
-          "color:#264e70; font-weight:700; font-family:monospace; font-style:italic; font-size:12px;";
+        // Styles for console (works in browser DevTools). Node console doesn't support CSS styling.
+        // Colored styles for console output (DevTools supports CSS styling)
+        const baseStyle =
+          "color:#8b5cf6; font-weight:800; font-family:monospace; font-size:13px;"; // purple for the ASCII art
+        const nameStyle =
+          "color:#06b6d4; font-weight:800; font-family:monospace; font-size:13px;"; // cyan for name
+        const emailStyle =
+          "color:#1a73e8; font-weight:700; font-family:monospace; font-size:13px;"; // blue for email
+        const webStyle =
+          "color:#10b981; font-weight:700; font-family:monospace; font-size:13px;"; // green for web
+        const contactStyle =
+          "color:#f59e0b; font-weight:700; font-family:monospace; font-size:13px;"; // amber for additional contact
 
+        // Use a global window flag to prevent duplicates across multiple detection paths
         let printed = false;
         function printOnce() {
-          if (printed) return;
-          console.log("%c" + art, style);
+          if (typeof window !== "undefined" && window.__ascii_printed) return;
+
+          // Prepare footer parts for styled output
+          const parts = footer.split("|").map((p) => p.trim());
+          // parts => ['JordiNodeJS  jordi.nodejs@gmail.com', 'https://github.com/JordiNodeJS']
+          const nameAndEmail = parts[0] || "";
+          // Try to split name (WORD) and email if present
+          let name = nameAndEmail;
+          let email = "";
+          const m = nameAndEmail.match(/^(\S+)\s+(\S+@\S+)$/);
+          if (m) {
+            name = m[1];
+            email = m[2];
+          }
+
+          const web = parts[1] ? ` | ${parts[1]} ` : "";
+          const info = parts[2] ? ` | ${parts[2]}` : "";
+
+          // Mark as printed early to avoid race conditions that could log twice
           printed = true;
+          if (typeof window !== "undefined") window.__ascii_printed = true;
+
+          // Print the ASCII art and style the footer pieces separately
+          // Order of %c corresponds to style args after the format string
+          if (email) {
+            console.log(
+              "%c" +
+                ascii +
+                "\n\n%c" +
+                name +
+                " %c" +
+                email +
+                "%c" +
+                web +
+                "%c" +
+                info,
+              baseStyle,
+              nameStyle,
+              emailStyle,
+              webStyle,
+              contactStyle
+            );
+          } else {
+            console.log(
+              "%c" + ascii + "\n\n%c" + name + "%c" + web + "%c" + info,
+              baseStyle,
+              nameStyle,
+              webStyle,
+              contactStyle
+            );
+          }
         }
 
         // Método 1: Detección por console.log override (muy efectivo)
@@ -1658,9 +1701,15 @@ const {
 
             // Umbrales más dinámicos basados en el tamaño de pantalla
             const minThreshold = Math.min(window.screen.width * 0.1, 100);
-            const maxThreshold = Math.max(window.screen.width * 0.15, 200);
+            const _maxThreshold = Math.max(window.screen.width * 0.15, 200);
+
+            // mark as intentionally unused to avoid ts(6133) hint - reserved for future heuristics
+            void _maxThreshold;
 
             if (widthDiff > minThreshold || heightDiff > minThreshold) {
+              // Using minThreshold for the check; maxThreshold is kept for
+              // informational purposes and reserved for future heuristics.
+              // Rename to _maxThreshold to avoid unused-variable diagnostics.
               printOnce();
             }
           } catch (e) {
