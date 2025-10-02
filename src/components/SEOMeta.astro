@@ -183,11 +183,11 @@ const finalSchema = schema || defaultSchema;
 <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
 
 <!-- Schema.org JSON-LD Estructurado -->
-<script type="application/ld+json" is:inline set:html={JSON.stringify(finalSchema)}></script>
+<script type="application/ld+json" set:html={JSON.stringify(finalSchema)}></script>
 
 <!-- Breadcrumbs Schema (condicional) -->
 {Astro.url.pathname !== '/' && (
-  <script type="application/ld+json" is:inline>
+  <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -210,7 +210,7 @@ const finalSchema = schema || defaultSchema;
 )}
 
 <!-- WebSite Search Schema -->
-<script type="application/ld+json" is:inline>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -229,7 +229,7 @@ const finalSchema = schema || defaultSchema;
 
 <!-- FAQ Schema para páginas relevantes -->
 {(title.includes('FAQ') || title.includes('Preguntas')) && (
-  <script type="application/ld+json" is:inline>
+  <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -265,7 +265,7 @@ const finalSchema = schema || defaultSchema;
 
 <!-- Service Schema para páginas de servicios -->
 {(title.includes('Servicios') || title.includes('Mudanzas')) && (
-  <script type="application/ld+json" is:inline>
+  <script type="application/ld+json">
     {JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
@@ -312,7 +312,7 @@ const finalSchema = schema || defaultSchema;
 )}
 
 <!-- ContactPoint Schema -->
-<script type="application/ld+json" is:inline>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",

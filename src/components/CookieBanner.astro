@@ -206,16 +206,11 @@
       hideModal();
     }
 
-    function _rejectAllCookies() {
-      // kept for backward compatibility; intentionally unused in current flow
+    function rejectAllCookies() {
       setCookie(COOKIE_NAME, "rejected", COOKIE_DURATION);
       hideBanner();
       hideModal();
     }
-
-    // Expose for backward compatibility and to avoid unused-variable diagnostics
-    // Consumers / legacy scripts can call `window._rejectAllCookies()` if needed.
-    window._rejectAllCookies = _rejectAllCookies;
 
     // Initialize - Versión simplificada
     function init() {

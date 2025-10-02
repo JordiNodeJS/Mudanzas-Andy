@@ -5,8 +5,7 @@
     "**/*"
   ],
   "exclude": [
-    "dist",
-    "scripts"
+    "dist"
   ],
   "compilerOptions": {
     "baseUrl": ".",

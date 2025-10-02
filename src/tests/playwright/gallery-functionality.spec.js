@@ -1,5 +1,5 @@
 // @ts-check
-import { test, expect, devices } from "@playwright/test";
+const { test, expect, devices } = require("@playwright/test");
 
 /**
  * Test para la galería de imágenes implementada debajo de TeamSection
