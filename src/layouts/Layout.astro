@@ -1594,66 +1594,85 @@ const {
     <!-- Print ASCII credit to dev console when DevTools opens -->
     <script is:inline>
       (function () {
-        // Build block letters for 'jOrGe' with mixed case
-        const j = ["    _ ", "   (_)", "    | ", " _  | ", "(_)_/ ", "      "];
-        const O = [
-          " _____ ",
-          "|  _  |",
-          "| | | |",
-          "| |_| |",
-          "|_____|",
-          "       ",
-        ];
-        const r = ["      ", " _ __ ", "| '__|", "| |   ", "|_|   ", "      "];
-        const G = [
-          " _____ ",
-          "|  ___|",
-          "| |  _ ",
-          "| |_| |",
-          "|_____|",
-          "       ",
-        ];
-        const e = ["      ", " ___  ", "|  _| ", "| |__ ", "|____|", "      "];
+        // ASCII block for 'WEBCODE' (simple, clear block letters)
+        const ascii = `
+W     W  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
+W     W  E      B    B  C      O   O  D    D E
+W  W  W  EEEE   BBBBB   C      O   O  D    D EEEE
+W W W W  E      B    B  C      O   O  D    D E
+WW   WW  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
+`.trim();
 
-        const gap = " ";
-        const lines = [];
-        for (let k = 0; k < j.length; k++) {
-          lines.push(j[k] + gap + O[k] + gap + r[k] + gap + G[k] + gap + e[k]);
-        }
-        const ascii = lines.join("\n");
         const footer =
-          "    jOrGe  jordi.nodejs@gmail.com | webcode.es | info@webcode.es";
+          "    WEBCODE  jordi.nodejs@gmail.com | webcode.es | info@webcode.es";
 
         // Styles for console (works in browser DevTools). Node console doesn't support CSS styling.
+        // Colored styles for console output (DevTools supports CSS styling)
         const baseStyle =
-          "color:#264e70; font-weight:700; font-family:monospace; font-style:italic; font-size:12px;";
+          "color:#8b5cf6; font-weight:800; font-family:monospace; font-size:13px;"; // purple for the ASCII art
         const nameStyle =
-          "color:#264e70; font-weight:700; font-family:monospace; font-style:italic; font-size:12px;";
+          "color:#06b6d4; font-weight:800; font-family:monospace; font-size:13px;"; // cyan for name
         const emailStyle =
-          "color:#1a73e8; font-weight:600; font-family:monospace; font-style:italic; font-size:12px;";
+          "color:#1a73e8; font-weight:700; font-family:monospace; font-size:13px;"; // blue for email
         const webStyle =
-          "color:#2b9348; font-weight:600; font-family:monospace; font-style:italic; font-size:12px;";
+          "color:#10b981; font-weight:700; font-family:monospace; font-size:13px;"; // green for web
         const contactStyle =
-          "color:#d97706; font-weight:600; font-family:monospace; font-style:italic; font-size:12px;";
+          "color:#f59e0b; font-weight:700; font-family:monospace; font-size:13px;"; // amber for additional contact
 
+        // Use a global window flag to prevent duplicates across multiple detection paths
         let printed = false;
         function printOnce() {
-          if (printed) return;
+          if (typeof window !== "undefined" && window.__ascii_printed) return;
 
-          // Print the ASCII art (baseStyle) and then style parts of the footer separately.
-          // Each %c consumes the next style argument.
-          console.log(
-            "%c" +
-              ascii +
-              "\n\n%c    jOrGe  %c jordi.nodejs@gmail.com %c | webcode.es %c | info@webcode.es",
-            baseStyle,
-            nameStyle,
-            emailStyle,
-            webStyle,
-            contactStyle
-          );
+          // Prepare footer parts for styled output
+          const parts = footer.split("|").map((p) => p.trim());
+          // parts => ['JORGE  jordi.nodejs@gmail.com', 'webcode.es', 'info@webcode.es']
+          const nameAndEmail = parts[0] || "";
+          // Try to split name (WORD) and email if present
+          let name = nameAndEmail;
+          let email = "";
+          const m = nameAndEmail.match(/^(\S+)\s+(\S+@\S+)$/);
+          if (m) {
+            name = m[1];
+            email = m[2];
+          }
 
+          const web = parts[1] ? ` | ${parts[1]} ` : "";
+          const info = parts[2] ? ` | ${parts[2]}` : "";
+
+          // Mark as printed early to avoid race conditions that could log twice
           printed = true;
+          if (typeof window !== "undefined") window.__ascii_printed = true;
+
+          // Print the ASCII art and style the footer pieces separately
+          // Order of %c corresponds to style args after the format string
+          if (email) {
+            console.log(
+              "%c" +
+                ascii +
+                "\n\n%c" +
+                name +
+                " %c" +
+                email +
+                "%c" +
+                web +
+                "%c" +
+                info,
+              baseStyle,
+              nameStyle,
+              emailStyle,
+              webStyle,
+              contactStyle
+            );
+          } else {
+            console.log(
+              "%c" + ascii + "\n\n%c" + name + "%c" + web + "%c" + info,
+              baseStyle,
+              nameStyle,
+              webStyle,
+              contactStyle
+            );
+          }
         }
 
         // Método 1: Detección por console.log override (muy efectivo)
