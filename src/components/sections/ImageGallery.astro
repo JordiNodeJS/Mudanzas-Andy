@@ -64,13 +64,13 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
 
     <!-- Grid de imágenes con centrado automático para impares -->
     <div 
-      class={`gallery-grid gallery-centered-grid max-w-7xl mx-auto ${gridClasses}`}
+      class="gallery-grid gallery-centered-grid max-w-7xl mx-auto"
       data-image-count={galleryImages.length}
     >
-      {galleryImages.map((image, _index) => (
+      {galleryImages.map((image, index) => (
         <div 
           class="gallery-item group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
-          data-gallery-index={_index}
+          data-gallery-index={index}
           data-lightbox={lightbox}
         >
           <div class="gallery-item__media aspect-square overflow-hidden relative">
@@ -220,7 +220,7 @@ const gridClasses = `grid-cols-${columns.mobile} md:grid-cols-${columns.tablet} 
         return; // No hay elementos de galería, salir
       }
 
-      images = Array.from(galleryItems).map(function(item, _idx) {
+      images = Array.from(galleryItems).map(function(item, index) {
         const img = item.querySelector('.gallery-image');
         const captionElement = item.querySelector('.gallery-overlay p');
         const caption = captionElement ? captionElement.textContent.trim() : '';
