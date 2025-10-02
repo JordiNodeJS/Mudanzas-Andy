@@ -1,18 +1,22 @@
-const { test, expect } = require("@playwright/test");
-const fs = require("fs");
-const path = require("path");
+import { test, expect } from "@playwright/test";
+import fs from "fs";
+import path from "path";
 
 test("check broken images on site root", async ({ page }) => {
   const url = process.env.PREVIEW_URL || "http://localhost:4321/";
   await page.goto(url, { waitUntil: "networkidle" });
 
-  // Recolectar todas las imágenes en la página
-  const images = await page.$$eval("img", (imgs) =>
+  // Recolectar todas las imágenes en la página (variable renombrada a _images
+  // para indicar que no se usa directamente en este test)
+  const _images = await page.$$eval("img", (imgs) =>
     imgs.map((img) => ({
       src: img.getAttribute("src") || img.src,
       alt: img.getAttribute("alt"),
     }))
   );
+
+  // reference _images to acknowledge intentional non-direct usage and avoid ts6133
+  void _images;
 
   // Evaluar estado de carga de cada imagen en el cliente
   const checks = await page.evaluate(() => {

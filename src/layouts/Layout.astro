@@ -1701,9 +1701,15 @@ WW   WW  EEEEE  BBBBB   CCCCC  OOOOO  DDDDD  EEEEE
 
             // Umbrales más dinámicos basados en el tamaño de pantalla
             const minThreshold = Math.min(window.screen.width * 0.1, 100);
-            const maxThreshold = Math.max(window.screen.width * 0.15, 200);
+            const _maxThreshold = Math.max(window.screen.width * 0.15, 200);
+
+            // mark as intentionally unused to avoid ts(6133) hint - reserved for future heuristics
+            void _maxThreshold;
 
             if (widthDiff > minThreshold || heightDiff > minThreshold) {
+              // Using minThreshold for the check; maxThreshold is kept for
+              // informational purposes and reserved for future heuristics.
+              // Rename to _maxThreshold to avoid unused-variable diagnostics.
               printOnce();
             }
           } catch (e) {
