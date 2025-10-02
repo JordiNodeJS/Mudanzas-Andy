@@ -1,59 +1,130 @@
 {
     "primary_keywords": [
         "mudanzas Barcelona",
-        "mudanzas profesionales",
+        "mudanzas profesionales Barcelona",
         "empresa mudanzas Barcelona",
         "mudanzas baratas Barcelona",
-        "mudanzas España"
+        "mudanzas económicas Barcelona",
+        "mudanzas España",
+        "mudanzas Cataluña",
+        "precio mudanza Barcelona"
     ],
     "secondary_keywords": [
-        "mudanzas particulares",
-        "mudanzas oficinas",
-        "mudanzas nacionales",
-        "embalaje profesional",
+        "mudanzas particulares Barcelona",
+        "mudanzas de pisos Barcelona",
+        "mudanzas oficinas Barcelona",
+        "mudanzas nacionales España",
+        "embalaje profesional mudanzas",
         "guardamuebles Barcelona",
-        "mudanzas express",
-        "presupuesto mudanza gratis"
+        "trasteros Barcelona",
+        "mudanzas express Barcelona",
+        "presupuesto mudanza gratis",
+        "mudanzas urgentes Barcelona",
+        "mudanzas barrio Barcelona"
     ],
     "long_tail_keywords": [
-        "mudanzas profesionales Barcelona precio",
-        "empresa mudanzas económicas Barcelona",
-        "mudanzas particulares Barcelona baratas",
-        "mudanzas oficinas fin de semana",
-        "guardamuebles Barcelona seguro",
-        "mudanzas nacionales España presupuesto",
-        "embalaje profesional mudanzas Barcelona",
-        "mudanzas express mismo día Barcelona"
+        "cuanto cuesta una mudanza en Barcelona",
+        "precio mudanza piso 3 habitaciones Barcelona",
+        "empresa mudanzas económicas Barcelona opiniones",
+        "mudanzas particulares Barcelona precio ajustado",
+        "mudanzas oficinas fin de semana Barcelona",
+        "guardamuebles Barcelona precios",
+        "mudanzas nacionales España presupuesto online",
+        "embalaje profesional mudanzas Barcelona incluido",
+        "mudanzas express mismo día Barcelona urgente",
+        "mejor empresa mudanzas Barcelona 2025",
+        "mudanzas entre provincias España",
+        "mudanzas locales Barcelona baratas",
+        "mudanzas con montaje desmontaje muebles",
+        "mudanzas Barcelona sin sorpresas precio cerrado"
     ],
     "local_keywords": [
         "mudanzas Nou Barris",
         "mudanzas Casals i Cuberó",
         "mudanzas Barcelona centro",
         "mudanzas Barcelona norte",
-        "mudanzas Cataluña"
+        "mudanzas Eixample Barcelona",
+        "mudanzas Gracia Barcelona",
+        "mudanzas Sants Barcelona",
+        "mudanzas Sant Andreu Barcelona",
+        "mudanzas Les Corts Barcelona",
+        "mudanzas Horta Barcelona",
+        "mudanzas Sarrià Barcelona",
+        "mudanzas Sant Martí Barcelona",
+        "mudanzas Cataluña",
+        "mudanzas área metropolitana Barcelona"
     ],
     "intent_based": {
         "informational": [
-            "como organizar una mudanza",
-            "consejos mudanza",
-            "que incluye una mudanza profesional",
-            "cuanto cuesta una mudanza en Barcelona",
-            "blog mudanzas barcelona",
-            "guia embalaje profesional",
-            "mudanzas con niños consejos",
-            "mudanzas internacionales guia"
+            "como organizar una mudanza paso a paso",
+            "consejos para mudanza sin estrés",
+            "que incluye una mudanza profesional completa",
+            "cuanto cuesta una mudanza en Barcelona 2025",
+            "cuanto tiempo tarda una mudanza",
+            "blog mudanzas barcelona consejos",
+            "guia completa embalaje profesional",
+            "mudanzas con niños consejos prácticos",
+            "checklist mudanza completo",
+            "como embalar objetos frágiles mudanza",
+            "que hacer antes de una mudanza",
+            "como calcular volumen mudanza",
+            "diferencia mudanza local nacional",
+            "cuanto cuesta guardamuebles Barcelona"
         ],
         "commercial": [
-            "mejores empresas mudanzas Barcelona",
-            "comparar precios mudanzas",
-            "opiniones mudanzas Barcelona",
-            "mudanzas Barcelona recomendadas"
+            "mejores empresas mudanzas Barcelona 2025",
+            "comparar precios mudanzas Barcelona",
+            "opiniones mudanzas Barcelona reales",
+            "mudanzas Barcelona mejor valoradas",
+            "empresas mudanzas Barcelona económicas",
+            "mudanzas Barcelona relación calidad precio",
+            "reseñas empresas mudanzas Barcelona"
         ],
         "transactional": [
-            "contratar mudanza Barcelona",
-            "presupuesto mudanza urgente",
-            "reservar mudanza online",
-            "mudanza Barcelona mismo día"
+            "contratar mudanza Barcelona ahora",
+            "presupuesto mudanza urgente Barcelona",
+            "reservar mudanza online Barcelona",
+            "mudanza Barcelona mismo día disponible",
+            "pedir presupuesto mudanza gratis",
+            "llamar empresa mudanzas Barcelona",
+            "WhatsApp mudanzas Barcelona",
+            "contratar mudanza fin de semana"
+        ]
+    },
+    "semantic_clusters": {
+        "precio_costo": [
+            "precio mudanza Barcelona",
+            "cuanto cuesta mudanza",
+            "tarifa mudanza",
+            "presupuesto mudanza",
+            "coste mudanza Barcelona",
+            "mudanzas baratas",
+            "mudanzas económicas",
+            "precio cerrado mudanza"
+        ],
+        "servicios": [
+            "mudanzas completas",
+            "embalaje incluido",
+            "montaje desmontaje muebles",
+            "transporte muebles",
+            "almacenamiento guardamuebles",
+            "mudanzas con seguro",
+            "mudanzas profesionales"
+        ],
+        "ubicacion": [
+            "mudanzas Barcelona",
+            "mudanzas Cataluña",
+            "mudanzas España",
+            "mudanzas nacionales",
+            "mudanzas locales",
+            "mudanzas entre ciudades"
+        ],
+        "tipo_cliente": [
+            "mudanzas particulares",
+            "mudanzas pisos",
+            "mudanzas oficinas",
+            "mudanzas empresas",
+            "mudanzas comerciales"
         ]
     }
 }
