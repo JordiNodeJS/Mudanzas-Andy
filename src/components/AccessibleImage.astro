@@ -178,20 +178,15 @@ const variants = {
 </style>
 
 <!-- Schema.org JSON-LD para mejorar accesibilidad y SEO -->
-<script type="application/ld+json" is:inline>
-{
+<script type="application/ld+json" is:inline set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "ImageObject",
-  "contentUrl": `${SITE_CANONICAL}${variants.desktop.jpg}`,
-  "description": `${alt}`,
-  "width": "1200",
-  "height": "600",
-  "encodingFormat": ["image/avif", "image/webp", "image/jpeg"],
-  "caption": `${alt}`,
-  "accessibilityFeature": [
-    "alternativeText",
-    "longDescription", 
-    "highContrast"
-  ]
-}
+  contentUrl: `${SITE_CANONICAL}${variants.desktop.jpg}`,
+  description: alt,
+  width: "1200",
+  height: "600",
+  encodingFormat: ["image/avif", "image/webp", "image/jpeg"],
+  caption: alt,
+  accessibilityFeature: ["alternativeText", "longDescription", "highContrast"],
+})}>
 </script>
