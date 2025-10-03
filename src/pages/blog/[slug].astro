@@ -72,7 +72,9 @@ const relatedPosts = allPosts
 
 // Extract image URL from heroImage if it's an object or use as string
 const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroImage.src : post.data.heroImage;
----
+
+// Canonical site URL for JSON-LD
+const SITE_CANONICAL = "https://mudanzasandy.es";
 
 <Layout
   title={`${pageTitle} | Blog Mudanzas ANDY`}
@@ -312,48 +314,40 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
   <Footer />
 
   <!-- Structured Data específico del artículo -->
-  <script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": post.data.title,
-      "description": post.data.description,
-      "image": post.data.heroImage ? `https://mudanzasandy.es${post.data.heroImage}` : "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg",
-      "author": {
-        "@type": "Person",
-        "name": post.data.author || "Equipo Mudanzas ANDY"
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "image": post.data.heroImage ? `${SITE_CANONICAL}${post.data.heroImage}` : `${SITE_CANONICAL}/logos/logo-mudanzas-andy.svg`,
+    "author": {
+      "@type": "Person",
+      "name": post.data.author || "Equipo Mudanzas ANDY"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Mudanzas ANDY",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${SITE_CANONICAL}/logos/logo-mudanzas-andy.svg`
       },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Mudanzas ANDY",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg"
-        },
-        "url": "https://mudanzasandy.es"
-      },
-      "datePublished": post.data.pubDate.toISOString(),
-      "dateModified": post.data.updatedDate ? post.data.updatedDate.toISOString() : post.data.pubDate.toISOString(),
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `https://mudanzasandy.es/blog/${post.id}`
-      },
-      "keywords": post.data.keywords ? post.data.keywords.join(", ") : post.data.tags?.join(", "),
-      "wordCount": post.body.length,
-      "timeRequired": `PT${estimatedReadingTime}M`,
-      "articleSection": post.data.category,
-      "about": [
-        {
-          "@type": "Thing",
-          "name": "Mudanzas Barcelona"
-        },
-        {
-          "@type": "Thing",
-          "name": post.data.category
-        }
-      ]
-    }
-  </script>
+      "url": SITE_CANONICAL
+    },
+    "datePublished": post.data.pubDate.toISOString(),
+    "dateModified": post.data.updatedDate ? post.data.updatedDate.toISOString() : post.data.pubDate.toISOString(),
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${SITE_CANONICAL}/blog/${post.id}`
+    },
+    "keywords": post.data.keywords ? post.data.keywords.join(", ") : post.data.tags?.join(", "),
+    "wordCount": post.body.length,
+    "timeRequired": `PT${estimatedReadingTime}M`,
+    "articleSection": post.data.category,
+    "about": [
+      { "@type": "Thing", "name": "Mudanzas Barcelona" },
+      { "@type": "Thing", "name": post.data.category }
+    ]
+  })} />
 
 </Layout>
 

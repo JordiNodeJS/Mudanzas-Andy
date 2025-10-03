@@ -29,6 +29,9 @@ const {
   keywords = "mudanzas Barcelona, mudanzas Barcelona baratas, empresa mudanzas Barcelona, precio mudanza Barcelona, cuanto cuesta mudanza Barcelona, mudanzas económicas Barcelona, mudanzas profesionales Barcelona, presupuesto mudanza gratis, mudanzas particulares Barcelona, mudanzas pisos Barcelona, mudanzas oficinas Barcelona, embalaje profesional mudanzas, guardamuebles Barcelona, mudanzas nacionales España, mudanzas express Barcelona",
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
 } = Astro.props satisfies Props;
+
+// Canonical site URL used across all JSON-LD blocks to avoid mixed domains
+const SITE_CANONICAL = "https://mudanzasandy.es/";
 ---
 
 <!doctype html>
@@ -1190,9 +1193,10 @@ const {
         alternateName: "ANDY Mudanzas Barcelona",
         description:
           "Empresa de mudanzas profesionales en Barcelona y España. Servicios de mudanzas particulares, oficinas, embalaje profesional y traslado a guardamuebles/trasteros.",
-        url: canonical,
-        logo: new URL("/logo-mudanzas-andy.svg", Astro.url),
-        image: new URL(image, Astro.url),
+        // Use fixed canonical domain for structured data
+        url: SITE_CANONICAL,
+        logo: new URL("/logo-mudanzas-andy.svg", SITE_CANONICAL).href,
+        image: new URL(image, SITE_CANONICAL).href,
         telephone: "+34933539792",
         email: ["mundanzas.andy@gmail.com", "info@mudanzasandy.es"],
         foundingDate: "2010",
@@ -1367,10 +1371,10 @@ const {
         "@context": "https://schema.org",
         "@type": "WebSite",
         name: "Mudanzas ANDY",
-        url: canonical,
+        url: SITE_CANONICAL,
         potentialAction: {
           "@type": "SearchAction",
-          target: canonical + "?q={search_term_string}",
+          target: SITE_CANONICAL + "?q={search_term_string}",
           "query-input": "required name=search_term_string",
         },
       })}

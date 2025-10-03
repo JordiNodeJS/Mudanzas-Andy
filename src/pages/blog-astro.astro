@@ -26,6 +26,8 @@ const pageTitle =
   "Blog Mudanzas Barcelona - Consejos Económicos y Baratos | Mudanzas ANDY";
 const pageDescription =
   "➤ Blog de mudanzas en Barcelona con consejos económicos y baratos. Guías profesionales para mudanzas económicas, tips para ahorrar, embalaje barato y traslados en toda la península. ¡Mudanzas ANDY - Calidad al mejor precio!";
+// Canonical used in JSON-LD
+const SITE_CANONICAL = "https://mudanzasandy.es";
 ---
 
 <Layout
@@ -98,13 +100,13 @@ const pageDescription =
         "name": "Mudanzas ANDY",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg"
+          "url": `${SITE_CANONICAL}/logos/logo-mudanzas-andy.svg`
         },
-        "url": "https://mudanzasandy.es"
+        "url": SITE_CANONICAL
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://mudanzasandy.es/blog-astro/"
+        "@id": `${SITE_CANONICAL}/blog-astro/`
       },
       "blogPost": [
         {publishedPosts.slice(0, 5).map((post) => `

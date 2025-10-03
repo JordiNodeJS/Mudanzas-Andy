@@ -22,6 +22,9 @@ const {
   className = "",
 } = Astro.props satisfies Props;
 
+// Canonical site URL for absolute JSON-LD resource links
+const SITE_CANONICAL = "https://mudanzasandy.es";
+
 // Validación de accesibilidad
 if (!alt || alt.trim().length === 0) {
   throw new Error(`AccessibleImage: alt text is required for image ${src}`);
@@ -179,7 +182,7 @@ const variants = {
 {
   "@context": "https://schema.org",
   "@type": "ImageObject",
-  "contentUrl": `${variants.desktop.jpg}`,
+  "contentUrl": `${SITE_CANONICAL}${variants.desktop.jpg}`,
   "description": `${alt}`,
   "width": "1200",
   "height": "600",
