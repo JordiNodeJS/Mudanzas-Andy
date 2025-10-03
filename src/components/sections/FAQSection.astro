@@ -42,25 +42,28 @@ const faqs: FAQItem[] = [
     answer:
       "Pedir presupuesto es muy fácil y rápido. Contáctanos por WhatsApp al 640 50 60 84 o al 600 24 81 52. En solo 5 minutos te daremos un presupuesto personalizado y gratuito. Necesitaremos saber: dirección de origen y destino, número de habitaciones o m² aproximados, y si hay ascensor. También puedes llamarnos al 933 53 97 92.",
   },
-  {
-    question: "¿Tienen seguro para la mudanza?",
-    answer:
-      "Sí, todas nuestras mudanzas incluyen seguro de responsabilidad civil. Contamos con más de 14 años de experiencia y utilizamos materiales de embalaje profesionales para proteger tus pertenencias al máximo. Tratamos cada mudanza con el máximo cuidado y profesionalidad.",
-  },
 ];
 
 // Generate FAQ Schema for Google Rich Snippets
+// Filtrar posibles entradas vacías y añadir metadatos de publicador para mayor contexto
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
+  mainEntity: faqs
+    .filter((faq) => faq && faq.question && faq.answer)
+    .map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  publisher: {
+    "@type": "Organization",
+    name: "Mudanzas ANDY",
+    url: typeof Astro !== "undefined" && Astro.site ? Astro.site : undefined,
+  },
 };
 ---
 
@@ -178,4 +181,3 @@ const faqSchema = {
     }
   }
 </style>
-
