@@ -369,8 +369,9 @@ const SITE_CANONICAL = "https://mudanzasandy.es";
       "@type": "BlogPosting",
       headline: post.data.title,
       description: post.data.description,
-      image: post.data.heroImage
-        ? `${SITE_CANONICAL}${post.data.heroImage}`
+      // Use the normalized heroImageUrl (handles object or string) to avoid [object Object]
+      image: heroImageUrl
+        ? `${SITE_CANONICAL}${heroImageUrl}`
         : `${SITE_CANONICAL}/logos/logo-mudanzas-andy.svg`,
       author: {
         "@type": "Person",
@@ -396,7 +397,7 @@ const SITE_CANONICAL = "https://mudanzasandy.es";
       keywords: post.data.keywords
         ? post.data.keywords.join(", ")
         : post.data.tags?.join(", "),
-      wordCount: post.body.length,
+      wordCount: (post.body || "").length,
       timeRequired: `PT${estimatedReadingTime}M`,
       articleSection: post.data.category,
       about: [

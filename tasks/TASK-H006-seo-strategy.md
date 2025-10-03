@@ -164,9 +164,9 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
   "@context": "https://schema.org",
   "@type": "MovingCompany",
   "name": "Mudanzas ANDY",
-  "image": "https://mudanzasandy.com/logo.jpg",
+  "image": "https://mudanzasandy.es/logo.jpg",
   "telephone": "+34-XXX-XXX-XXX",
-  "email": "info@mudanzasandy.com",
+  "email": "info@mudanzasandy.es",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Calle Ejemplo 123",
@@ -246,7 +246,7 @@ Desarrollar e implementar un plan de optimización SEO completo y específico pa
 ### **Estructura de URLs Optimizada**
 
 ```
-https://mudanzasandy.com/
+https://mudanzasandy.es/
 ├── /servicios/
 │   ├── /mudanzas-viviendas/
 │   ├── /mudanzas-oficinas/
@@ -274,7 +274,7 @@ User-agent: *
 Allow: /
 
 # Páginas importantes
-Sitemap: https://mudanzasandy.com/sitemap.xml
+Sitemap: https://mudanzasandy.es/sitemap.xml
 
 # Evitar indexación de archivos técnicos
 Disallow: /admin/
@@ -293,13 +293,13 @@ Allow: /blog/
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mudanzasandy.com/</loc>
+    <loc>https://mudanzasandy.es/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mudanzasandy.com/servicios/mudanzas-oficinas/</loc>
+    <loc>https://mudanzasandy.es/servicios/mudanzas-oficinas/</loc>
     <lastmod>2025-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -329,7 +329,7 @@ gtag("event", "llamada_telefonica", {
 
 ### **Google Search Console**
 
-- ✅ **Property verificada**: Mudanzasandy.com
+- ✅ **Property verificada**: mudanzasandy.es
 - ✅ **Sitemap enviado**: URLs indexadas correctamente
 - ✅ **Core Web Vitals**: Monitorizados semanalmente
 - ✅ **Keywords tracking**: Top 20 keywords seguidas
@@ -391,7 +391,7 @@ gtag("event", "llamada_telefonica", {
 ## 🔗 **Referencias**
 
 - [SEO.md](../.github/docs/SEO.md)
-- Google Search Console: Mudanzasandy.com
+- Google Search Console: mudanzasandy.es
 - Google Analytics 4: Tracking implementado
 - Schema.org MovingCompany: Markup validado
 
