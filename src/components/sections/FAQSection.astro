@@ -62,7 +62,8 @@ const faqSchema = {
   publisher: {
     "@type": "Organization",
     name: "Mudanzas ANDY",
-    url: typeof Astro !== "undefined" && Astro.site ? Astro.site : undefined,
+    // Use canonical site URL explicitly to avoid .com/.es mismatches
+    url: "https://mudanzasandy.es/",
   },
 };
 ---
