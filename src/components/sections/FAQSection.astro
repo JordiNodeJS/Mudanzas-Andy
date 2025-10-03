@@ -1,0 +1,184 @@
+---
+// FAQ Section con Schema.org para SEO
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: "¿Cuánto cuesta una mudanza en Barcelona?",
+    answer:
+      "El precio de una mudanza en Barcelona depende de varios factores: tamaño del piso (m²), volumen de muebles, distancia, piso con o sin ascensor, y servicios adicionales. En Mudanzas ANDY ofrecemos presupuesto gratuito personalizado en 5 minutos por WhatsApp. Nuestros precios son cerrados sin sorpresas, incluyendo embalaje profesional, montaje y desmontaje de muebles.",
+  },
+  {
+    question: "¿Qué incluye el servicio de mudanza completa?",
+    answer:
+      "Nuestro servicio de mudanza completa incluye: embalaje profesional con materiales de alta calidad, desmontaje y montaje de muebles, protección especial para objetos frágiles, transporte en vehículos propios, carga y descarga, montaje y conexión de electrodomésticos, y seguro de responsabilidad civil. Todo con precio cerrado sin costes ocultos.",
+  },
+  {
+    question: "¿Hacen mudanzas urgentes el mismo día?",
+    answer:
+      "Sí, ofrecemos servicio de mudanzas express y mudanzas urgentes el mismo día en Barcelona y área metropolitana. Disponemos de disponibilidad 24/7 para emergencias. Contáctanos por WhatsApp al 640 50 60 84 para consultar disponibilidad inmediata.",
+  },
+  {
+    question: "¿Trabajan los fines de semana y festivos?",
+    answer:
+      "Sí, trabajamos los 7 días de la semana, incluidos fines de semana y festivos. Somos especialmente flexibles con mudanzas de oficinas que necesitan realizarse fuera del horario laboral para no interrumpir la actividad empresarial. Nuestro horario de atención es de 8:00 a 22:00 todos los días.",
+  },
+  {
+    question: "¿Realizan mudanzas nacionales fuera de Barcelona?",
+    answer:
+      "Sí, realizamos mudanzas nacionales por toda España. Tenemos experiencia en traslados entre provincias y ciudades, con cobertura nacional completa. Ofrecemos seguimiento GPS en tiempo real de tu mudanza y entrega en fecha confirmada. Precio cerrado sin sorpresas para mudanzas entre Barcelona y cualquier ciudad de España.",
+  },
+  {
+    question: "¿Ofrecen servicio de guardamuebles en Barcelona?",
+    answer:
+      "Sí, ofrecemos traslado a guardamuebles y trasteros en Barcelona. Tú eliges el trastero o guardamuebles donde quieres almacenar tus pertenencias. Trabajamos con instalaciones vigiladas 24 horas para garantizar la seguridad de tus muebles. Servicio flexible con acceso cuando lo necesites.",
+  },
+  {
+    question: "¿Cómo pido un presupuesto de mudanza gratis?",
+    answer:
+      "Pedir presupuesto es muy fácil y rápido. Contáctanos por WhatsApp al 640 50 60 84 o al 600 24 81 52. En solo 5 minutos te daremos un presupuesto personalizado y gratuito. Necesitaremos saber: dirección de origen y destino, número de habitaciones o m² aproximados, y si hay ascensor. También puedes llamarnos al 933 53 97 92.",
+  },
+];
+
+// Generate FAQ Schema for Google Rich Snippets
+// Filtrar posibles entradas vacías y añadir metadatos de publicador para mayor contexto
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs
+    .filter((faq) => faq && faq.question && faq.answer)
+    .map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  publisher: {
+    "@type": "Organization",
+    name: "Mudanzas ANDY",
+    // Use canonical site URL explicitly to avoid .com/.es mismatches
+    url: "https://mudanzasandy.es/",
+  },
+};
+---
+
+<section id="preguntas-frecuentes" class="py-16 lg:py-20 bg-[#fdebd3]/30">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12 lg:mb-16">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-brand mb-4">
+        Preguntas Frecuentes sobre Mudanzas en Barcelona
+      </h2>
+      <p class="text-lg lg:text-xl text-secondary max-w-2xl mx-auto">
+        Resolvemos tus dudas sobre presupuestos, precios, servicios y cómo
+        contratar una mudanza profesional
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto space-y-4">
+      {
+        faqs.map((faq, index) => (
+          <details
+            class="bg-white rounded-xl shadow-md overflow-hidden group"
+            id={`faq-${index}`}
+          >
+            <summary class="cursor-pointer p-6 font-semibold text-lg text-brand hover:bg-[#fdebd3]/20 transition-colors duration-200 flex justify-between items-center">
+              <span>{faq.question}</span>
+              <svg
+                class="w-5 h-5 transform transition-transform duration-200 group-open:rotate-180 flex-shrink-0 ml-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 text-secondary leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <!-- CTA after FAQ -->
+    <div class="text-center mt-12 lg:mt-16">
+      <p class="text-lg text-secondary mb-6">
+        ¿Tienes más preguntas? Contáctanos y te ayudaremos
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href="https://wa.me/34640506084"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-lg font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+        >
+          <span class="text-2xl">💬</span>
+          <span>WhatsApp: 640 50 60 84</span>
+        </a>
+        <a
+          href="tel:+34933539792"
+          class="btn-outline-primary inline-flex items-center gap-2 px-8 py-4 text-lg font-bold rounded-lg border-2 transition-all duration-300 hover:bg-brand hover:text-white"
+        >
+          <span class="text-2xl">📞</span>
+          <span>Llamar: 933 53 97 92</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Schema.org JSON-LD -->
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(faqSchema)}
+/>
+
+<style>
+  /* Smooth animation for details element */
+  details {
+    transition: all 0.2s ease-in-out;
+  }
+
+  details[open] {
+    box-shadow:
+      0 10px 15px -3px rgb(0 0 0 / 0.1),
+      0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  /* Hide default marker */
+  details > summary {
+    list-style: none;
+  }
+
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Animation for content reveal */
+  details[open] > div {
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

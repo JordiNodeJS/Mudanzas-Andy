@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
-  site: "https://mudanzasandy.com",
+  site: "https://mudanzasandy.es",
 
   // Optimizaciones de build
   build: {

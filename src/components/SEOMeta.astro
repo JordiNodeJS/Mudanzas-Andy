@@ -32,6 +32,9 @@ const {
   schema
 } = Astro.props satisfies Props;
 
+// Use a fixed canonical URL for JSON-LD to ensure consistency across schemas
+const SITE_CANONICAL = "https://mudanzasandy.es/";
+
 // Generar URL absoluta para imagen
 const absoluteImageUrl = new URL(image, Astro.site || Astro.url.origin).href;
 
@@ -50,7 +53,8 @@ const defaultSchema = {
   "@type": "MovingCompany",
   "name": siteName,
   "description": description,
-  "url": canonical,
+  // Use the project canonical domain for the MovingCompany schema
+  "url": SITE_CANONICAL,
   "logo": {
     "@type": "ImageObject",
     "url": new URL("/logo-mudanzas-andy.svg", Astro.site || Astro.url.origin).href
@@ -196,7 +200,7 @@ const finalSchema = schema || defaultSchema;
           "@type": "ListItem",
           "position": 1,
           "name": "Inicio",
-          "item": new URL("/", Astro.site || Astro.url.origin).href
+          "item": SITE_CANONICAL
         },
         {
           "@type": "ListItem",
@@ -214,13 +218,13 @@ const finalSchema = schema || defaultSchema;
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "{siteName}",
-  "url": "{new URL('/', Astro.site || Astro.url.origin).href}",
+  "name": "Mudanzas ANDY",
+  "url": "https://mudanzasandy.es/",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": "{new URL('/', Astro.site || Astro.url.origin).href}?q={search_term_string}"
+      "urlTemplate": "https://mudanzasandy.es/?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }

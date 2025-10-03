@@ -15,7 +15,7 @@ interface Props {
 // Generar rutas estáticas para todos los posts
 export async function getStaticPaths() {
   const blogPosts = await getCollection("blog");
-  
+
   return blogPosts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -27,24 +27,25 @@ const { post } = Astro.props satisfies Props;
 // Determinar imagen responsive basada en el slug del post
 const getResponsiveImageName = (slug: string): string | null => {
   const imageMapping: Record<string, string> = {
-    'mudanzas-economicas-barcelona-2025': 'mudanzas-economicas-hero',
-    'guia-embalaje-profesional-mudanzas': 'embalaje-profesional-hero',
-    'mudanza-con-ninos-guia-familias': 'mudanza-ninos-hero',
-    'mudanzas-internacionales-barcelona-guia-completa': 'mudanzas-internacionales-hero'
+    "mudanzas-economicas-barcelona-2025": "mudanzas-economicas-hero",
+    "guia-embalaje-profesional-mudanzas": "embalaje-profesional-hero",
+    "mudanza-con-ninos-guia-familias": "mudanza-ninos-hero",
+    "mudanzas-internacionales-barcelona-guia-completa":
+      "mudanzas-internacionales-hero",
   };
-  
+
   return imageMapping[slug] || null;
 };
 
 const responsiveImageName = getResponsiveImageName(post.id);
 
 // Renderizar el contenido markdown correctamente
-let renderedContent = '';
+let renderedContent = "";
 if (post.rendered?.html) {
   renderedContent = post.rendered.html;
 } else {
   // Renderizar markdown manualmente usando marked
-  renderedContent = await marked(post.body || '');
+  renderedContent = await marked(post.body || "");
 }
 
 // Función para formatear fecha
@@ -57,21 +58,34 @@ const formatDate = (date: Date): string => {
 };
 
 // Función para calcular tiempo de lectura estimado si no está definido
-const estimatedReadingTime = post.data.readingTime || Math.ceil((post.body || "").length / 1000);
+const estimatedReadingTime =
+  post.data.readingTime || Math.ceil((post.body || "").length / 1000);
 
 // SEO metatags
 const pageTitle = post.data.metaTitle || post.data.title;
 const pageDescription = post.data.metaDescription || post.data.description;
-const canonical = post.data.canonical || `https://mudanzasandy.es/blog/${post.id}`;
+const canonical =
+  post.data.canonical || `https://mudanzasandy.es/blog/${post.id}`;
 
 // Obtener posts relacionados (misma categoría)
 const allPosts = await getCollection("blog");
 const relatedPosts = allPosts
-  .filter(p => p.id !== post.id && p.data.category === post.data.category && !p.data.draft)
+  .filter(
+    (p) =>
+      p.id !== post.id &&
+      p.data.category === post.data.category &&
+      !p.data.draft
+  )
   .slice(0, 3);
 
 // Extract image URL from heroImage if it's an object or use as string
-const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroImage.src : post.data.heroImage;
+const heroImageUrl =
+  typeof post.data.heroImage === "object"
+    ? post.data.heroImage.src
+    : post.data.heroImage;
+
+// Canonical site URL for JSON-LD
+const SITE_CANONICAL = "https://mudanzasandy.es";
 ---
 
 <Layout
@@ -79,22 +93,25 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
   description={pageDescription}
   image={heroImageUrl || "/logos/logo-mudanzas-andy.svg"}
   canonical={canonical}
-  keywords={post.data.keywords?.join(", ") || "mudanzas barcelona, consejos mudanza"}
+  keywords={post.data.keywords?.join(", ") ||
+    "mudanzas barcelona, consejos mudanza"}
 >
   <!-- Header -->
   <Header />
 
   <main class="pt-20 md:pt-24 lg:pt-28">
-    
     <!-- Hero del artículo -->
     <article class="bg-white">
-      <header class="bg-gradient-to-br from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] text-white py-16 lg:py-20">
+      <header
+        class="bg-gradient-to-br from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] text-white py-16 lg:py-20"
+      >
         <div class="container mx-auto px-4">
           <div class="max-w-4xl mx-auto text-center">
-            
             <!-- Breadcrumb -->
             <nav class="mb-8">
-              <ol class="flex items-center justify-center gap-2 text-sm text-white/80">
+              <ol
+                class="flex items-center justify-center gap-2 text-sm text-white/80"
+              >
                 <li><a href="/" class="hover:text-white">Inicio</a></li>
                 <li>/</li>
                 <li><a href="/blog-astro" class="hover:text-white">Blog</a></li>
@@ -104,12 +121,15 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
             </nav>
 
             <!-- Meta información -->
-            <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-white/80 mb-6">
-              
+            <div
+              class="flex flex-wrap items-center justify-center gap-6 text-sm text-white/80 mb-6"
+            >
               <!-- Fecha de publicación -->
               <div class="flex items-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                  <path
+                    d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"
+                  ></path>
                 </svg>
                 <time datetime={post.data.pubDate.toISOString()}>
                   {formatDate(post.data.pubDate)}
@@ -119,21 +139,28 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
               <!-- Tiempo de lectura -->
               <div class="flex items-center gap-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.7L16.2,16.2Z"/>
+                  <path
+                    d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.7L16.2,16.2Z"
+                  ></path>
                 </svg>
                 <span>{estimatedReadingTime} min de lectura</span>
               </div>
 
               <!-- Autor -->
-              {post.data.author && (
-                <div class="flex items-center gap-2">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                  </svg>
-                  <span>{post.data.author}</span>
-                </div>
-              )}
-              
+              {
+                post.data.author && (
+                  <div class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </svg>
+                    <span>{post.data.author}</span>
+                  </div>
+                )
+              }
             </div>
 
             <!-- Título del artículo -->
@@ -142,61 +169,68 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
             </h1>
 
             <!-- Descripción -->
-            <p class="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p
+              class="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+            >
               {post.data.description}
             </p>
 
             <!-- Tags -->
-            {post.data.tags && post.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2 justify-center mt-8">
-                {post.data.tags.map((tag) => (
-                  <span class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
+            {
+              post.data.tags && post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 justify-center mt-8">
+                  {post.data.tags.map((tag) => (
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              )
+            }
           </div>
         </div>
       </header>
 
       <!-- Imagen hero responsive -->
-      {responsiveImageName && (
-        <div class="container mx-auto px-4 -mt-12 relative z-10">
-          <div class="max-w-4xl mx-auto">
-            <ResponsiveHeroImage
-              imageName={responsiveImageName}
-              alt={post.data.heroImageAlt || post.data.title}
-              loading="eager"
-              class="w-full h-auto rounded-xl shadow-2xl"
-            />
+      {
+        responsiveImageName && (
+          <div class="container mx-auto px-4 -mt-12 relative z-10">
+            <div class="max-w-4xl mx-auto">
+              <ResponsiveHeroImage
+                imageName={responsiveImageName}
+                alt={post.data.heroImageAlt || post.data.title}
+                loading="eager"
+                class="w-full h-auto rounded-xl shadow-2xl"
+              />
+            </div>
           </div>
-        </div>
-      )}
-      
+        )
+      }
+
       <!-- Fallback para imagen hero antigua -->
-      {!responsiveImageName && post.data.heroImage && (
-        <div class="container mx-auto px-4 -mt-12 relative z-10">
-          <div class="max-w-4xl mx-auto">
-            <Image
-              src={post.data.heroImage}
-              alt={post.data.heroImageAlt || post.data.title}
-              width={800}
-              height={450}
-              class="w-full h-auto rounded-xl shadow-2xl"
-              loading="eager"
-            />
+      {
+        !responsiveImageName && post.data.heroImage && (
+          <div class="container mx-auto px-4 -mt-12 relative z-10">
+            <div class="max-w-4xl mx-auto">
+              <Image
+                src={post.data.heroImage}
+                alt={post.data.heroImageAlt || post.data.title}
+                width={800}
+                height={450}
+                class="w-full h-auto rounded-xl shadow-2xl"
+                loading="eager"
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <!-- Contenido del artículo -->
       <div class="container mx-auto px-4 py-16">
         <div class="max-w-4xl mx-auto">
-          
           <!-- Contenido Markdown renderizado -->
-          <div class="prose prose-lg max-w-none
+          <div
+            class="prose prose-lg max-w-none
                       prose-headings:text-[rgb(var(--color-primary))]
                       prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-6 prose-h1:mt-8
                       prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4 prose-h2:mt-8
@@ -205,96 +239,113 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
                       prose-a:text-[rgb(var(--color-primary))] prose-a:no-underline hover:prose-a:underline
                       prose-strong:text-[rgb(var(--color-secondary))] prose-strong:font-semibold
                       prose-ul:my-6 prose-li:my-2
-                      prose-blockquote:border-l-4 prose-blockquote:border-[rgb(var(--color-accent))] 
+                      prose-blockquote:border-l-4 prose-blockquote:border-[rgb(var(--color-accent))]
                       prose-blockquote:bg-gray-50 prose-blockquote:p-4 prose-blockquote:italic
                       prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                      prose-pre:bg-gray-900 prose-pre:text-white">
-            <div set:html={renderedContent}></div>
+                      prose-pre:bg-gray-900 prose-pre:text-white"
+          >
+            <div set:html={renderedContent} />
           </div>
-
         </div>
       </div>
 
       <!-- Sección de posts relacionados -->
-      {relatedPosts.length > 0 && (
-        <section class="bg-gray-50 py-16">
-          <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto">
-              
-              <h2 class="text-2xl lg:text-3xl font-bold text-center mb-12 text-gray-900">
-                Artículos Relacionados
-              </h2>
+      {
+        relatedPosts.length > 0 && (
+          <section class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+              <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl lg:text-3xl font-bold text-center mb-12 text-gray-900">
+                  Artículos Relacionados
+                </h2>
 
-              <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedPosts.map((relatedPost) => (
-                  <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
-                    
-                    {/* Imagen del post relacionado */}
-                    {relatedPost.data.heroImage && (
-                      <div class="h-48 overflow-hidden">
-                        <Image
-                          src={relatedPost.data.heroImage}
-                          alt={relatedPost.data.heroImageAlt || relatedPost.data.title}
-                          width={400}
-                          height={250}
-                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {relatedPosts.map((relatedPost) => (
+                    <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                      {/* Imagen del post relacionado */}
+                      {relatedPost.data.heroImage && (
+                        <div class="h-48 overflow-hidden">
+                          <Image
+                            src={relatedPost.data.heroImage}
+                            alt={
+                              relatedPost.data.heroImageAlt ||
+                              relatedPost.data.title
+                            }
+                            width={400}
+                            height={250}
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
 
-                    <div class="p-6">
-                      <div class="text-sm text-gray-500 mb-2">
-                        {formatDate(relatedPost.data.pubDate)}
-                      </div>
-                      
-                      <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
-                        <a href={`/blog/${relatedPost.id}`} class="hover:text-[rgb(var(--color-primary))] transition-colors">
-                          {relatedPost.data.title}
+                      <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">
+                          {formatDate(relatedPost.data.pubDate)}
+                        </div>
+
+                        <h3 class="text-lg font-bold text-gray-900 mb-3 line-clamp-2">
+                          <a
+                            href={`/blog/${relatedPost.id}`}
+                            class="hover:text-[rgb(var(--color-primary))] transition-colors"
+                          >
+                            {relatedPost.data.title}
+                          </a>
+                        </h3>
+
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                          {relatedPost.data.description}
+                        </p>
+
+                        <a
+                          href={`/blog/${relatedPost.id}`}
+                          class="inline-flex items-center gap-2 text-[rgb(var(--color-primary))] font-semibold text-sm hover:gap-3 transition-all"
+                        >
+                          Leer más
+                          <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
                         </a>
-                      </h3>
-                      
-                      <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-                        {relatedPost.data.description}
-                      </p>
-                      
-                      <a 
-                        href={`/blog/${relatedPost.id}`}
-                        class="inline-flex items-center gap-2 text-[rgb(var(--color-primary))] font-semibold text-sm hover:gap-3 transition-all"
-                      >
-                        Leer más
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                      </a>
-                    </div>
-
-                  </article>
-                ))}
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
-
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )
+      }
 
       <!-- CTA final -->
-      <section class="bg-gradient-to-r from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] text-white py-16">
+      <section
+        class="bg-gradient-to-r from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] text-white py-16"
+      >
         <div class="container mx-auto px-4 text-center">
           <h2 class="text-2xl lg:text-3xl font-bold mb-4">
             ¿Te ha resultado útil este artículo?
           </h2>
           <p class="text-lg mb-8 max-w-2xl mx-auto">
-            Si necesitas ayuda profesional con tu mudanza, nuestro equipo está listo para ofrecerte el mejor servicio.
+            Si necesitas ayuda profesional con tu mudanza, nuestro equipo está
+            listo para ofrecerte el mejor servicio.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <a
               href="/contacto"
               class="btn btn-accent inline-flex items-center gap-2 px-8 py-3 text-lg font-semibold"
             >
               📞 Solicitar Presupuesto
             </a>
-            <a 
+            <a
               href="/blog-astro"
               class="btn btn-outline-white inline-flex items-center gap-2 px-8 py-3 text-lg font-semibold"
             >
@@ -303,58 +354,58 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
           </div>
         </div>
       </section>
-
     </article>
-
   </main>
 
   <!-- Footer -->
   <Footer />
 
   <!-- Structured Data específico del artículo -->
-  <script type="application/ld+json" is:inline>
-    {
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": post.data.title,
-      "description": post.data.description,
-      "image": post.data.heroImage ? `https://mudanzasandy.es${post.data.heroImage}` : "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg",
-      "author": {
+      headline: post.data.title,
+      description: post.data.description,
+      // Use the normalized heroImageUrl (handles object or string) to avoid [object Object]
+      image: heroImageUrl
+        ? `${SITE_CANONICAL}${heroImageUrl}`
+        : `${SITE_CANONICAL}/logos/logo-mudanzas-andy.svg`,
+      author: {
         "@type": "Person",
-        "name": post.data.author || "Equipo Mudanzas ANDY"
+        name: post.data.author || "Equipo Mudanzas ANDY",
       },
-      "publisher": {
+      publisher: {
         "@type": "Organization",
-        "name": "Mudanzas ANDY",
-        "logo": {
+        name: "Mudanzas ANDY",
+        logo: {
           "@type": "ImageObject",
-          "url": "https://mudanzasandy.es/logos/logo-mudanzas-andy.svg"
+          url: `${SITE_CANONICAL}/logos/logo-mudanzas-andy.svg`,
         },
-        "url": "https://mudanzasandy.es"
+        url: SITE_CANONICAL,
       },
-      "datePublished": post.data.pubDate.toISOString(),
-      "dateModified": post.data.updatedDate ? post.data.updatedDate.toISOString() : post.data.pubDate.toISOString(),
-      "mainEntityOfPage": {
+      datePublished: post.data.pubDate.toISOString(),
+      dateModified: post.data.updatedDate
+        ? post.data.updatedDate.toISOString()
+        : post.data.pubDate.toISOString(),
+      mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `https://mudanzasandy.es/blog/${post.id}`
+        "@id": `${SITE_CANONICAL}/blog/${post.id}`,
       },
-      "keywords": post.data.keywords ? post.data.keywords.join(", ") : post.data.tags?.join(", "),
-      "wordCount": post.body.length,
-      "timeRequired": `PT${estimatedReadingTime}M`,
-      "articleSection": post.data.category,
-      "about": [
-        {
-          "@type": "Thing",
-          "name": "Mudanzas Barcelona"
-        },
-        {
-          "@type": "Thing",
-          "name": post.data.category
-        }
-      ]
-    }
-  </script>
-
+      keywords: post.data.keywords
+        ? post.data.keywords.join(", ")
+        : post.data.tags?.join(", "),
+      wordCount: (post.body || "").length,
+      timeRequired: `PT${estimatedReadingTime}M`,
+      articleSection: post.data.category,
+      about: [
+        { "@type": "Thing", name: "Mudanzas Barcelona" },
+        { "@type": "Thing", name: post.data.category },
+      ],
+    })}
+  />
 </Layout>
 
 <style>
@@ -365,7 +416,7 @@ const heroImageUrl = typeof post.data.heroImage === 'object' ? post.data.heroIma
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
