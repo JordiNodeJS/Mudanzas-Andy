@@ -1,20 +1,17 @@
+# robots.txt para mudanzasandy.es
+# Última actualización: 6 octubre 2025
+
 User-agent: *
 Allow: /
 
-# Archivos importantes para SEO
-Sitemap: https://mudanzasandy.es/sitemap.xml
+# Sitemap (generado automáticamente por Astro)
+Sitemap: https://mudanzasandy.es/sitemap-index.xml
 
-# Bloquear archivos innecesarios
+# Bloquear directorios privados
 Disallow: /admin/
 Disallow: /private/
-Disallow: /_headers
-Disallow: /_redirects
-Disallow: /dist/
-Disallow: /.git/
-Disallow: /node_modules/
-Disallow: /src/
 
-# Permitir recursos necesarios
+# Permitir recursos públicos
 Allow: /assets/
 Allow: /images/
 Allow: /js/
@@ -23,14 +20,14 @@ Allow: /favicon.ico
 Allow: /sitemap.xml
 Allow: /robots.txt
 
-# Crawl delay para bots agresivos
+# Crawl-delay para bots específicos
 User-agent: Baiduspider
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 86400
 
-# Bloquear bots innecesarios
+# Bloquear bots no deseados
 User-agent: AhrefsBot
 Disallow: /
 

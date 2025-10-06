@@ -30,7 +30,9 @@
 | TASK-021         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-022         | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-023         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
-| TASK-025         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
+| TASK-024         | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
+| TASK-025         | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
+| TASK-026         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-026         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-026-UPDATE2 | ✅ COMPLETADO | MEDIA     | 100%     | ✅  |
 | TASK-029         | ✅ COMPLETADO | CRÍTICA   | 100%     | ✅  |
@@ -269,7 +271,35 @@ Semana 1 (Agosto 23-30):
 - ⌨️ **Funcionalidad preservada**: Las teclas de flecha siguen funcionando para navegación
 - 🎯 **Visual clean**: Interfaz más minimalista y enfocada en las imágenes
 
+### **06/10/2025 - 16:20**
+
+- ✅ **TASK-024 COMPLETADO**: Corrección error crítico JSON-LD en Google Search Console
+- 🔍 **Error resuelto**: "Missing '}' or object member name" en página del blog
+- 📝 **Causa**: Coma trailing en objeto publisher dentro del array blogPost
+- ✅ **Solución**: Eliminada coma problemática en línea 129 de `blog-astro.astro`
+- 🧪 **Validación**: 4 bloques JSON-LD completamente válidos (MovingCompany, WebSite, BreadcrumbList, Blog)
+- 🛠️ **Script creado**: `validate-blog-jsonld.cjs` para testing automatizado
+- 🔗 **SEO recovery**: Página lista para aparecer en rich snippets de Google
+- ⏳ **Pendiente**: Validación en Search Console (2-7 días)
+
+### **06/10/2025 - 16:45**
+
+- ✅ **TASK-025 COMPLETADO**: Corrección error grave en robots.txt
+- 🤖 **Error resuelto**: "1 archivo tiene un error grave" en sección de rastreo
+- 📝 **Problemas identificados**:
+  - Referencias a sitemaps inexistentes (sitemap-index.xml, sitemap-0.xml)
+  - Directivas de bloqueo innecesarias (node_modules, src, dist, .git)
+  - Sitemap XML mal formateado (todo en una línea)
+- ✅ **Solución**:
+  - robots.txt simplificado con solo directivas necesarias
+  - Referencia correcta a sitemap.xml existente
+  - sitemap.xml reformateado con formato legible
+  - Fechas actualizadas (2025-10-06)
+  - Páginas legales añadidas al sitemap
+- 🔍 **Mejoras**: Control de bots agresivos y bloqueo de scrapers
+- ⏳ **Pendiente**: Verificación en Search Console (24-48 horas)
+
 ---
 
-**Última actualización**: 17 de Septiembre, 2025 - 00:47
+**Última actualización**: 6 de Octubre, 2025 - 16:45
 **Próxima revisión**: Según necesidades del proyecto
