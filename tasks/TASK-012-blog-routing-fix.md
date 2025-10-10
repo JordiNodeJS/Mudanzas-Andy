@@ -42,15 +42,29 @@
 
 ## Solución Implementada
 
-### Cambio en `public/_redirects`:
+### Cambio 1: Corregir redirect comodín en `public/_redirects`:
 ```bash
 # ✅ CORRECTO - Solo redirige la ruta raíz del blog
 /blog /blog-astro/ 301
+# URL rewrite para compatibilidad con estructura de directorios
+/blog/:slug /blog/:slug/ 200
 ```
 
-**Diferencia crítica:**
+### Cambio 2: Formato de build compatible en `astro.config.mjs`:
+```javascript
+// ✅ CORRECTO - Formato directory para mejor compatibilidad con hosting
+build: {
+  format: "directory", // URLs limpias compatibles con hosting estático
+  inlineStylesheets: "auto",
+  assetsPrefix: "/",
+},
+```
+
+**Diferencias críticas:**
 - `❌ /blog/*` = Intercepta TODO bajo /blog/ (incluyendo entradas)  
 - `✅ /blog` = Solo intercepta la ruta exacta /blog
+- `❌ format: "file"` = Genera archivos .html que requieren configuración especial del servidor
+- `✅ format: "directory"` = Genera estructura de carpetas con index.html (compatible con cualquier hosting)
 
 ## Verificación
 
@@ -75,7 +89,8 @@ $ pnpm build --force
 
 ## Archivos Modificados
 
-- ✅ `public/_redirects` - Cambio de comodín por redirect específico
+- ✅ `public/_redirects` - Cambio de comodín por redirect específico + reglas de reescritura
+- ✅ `astro.config.mjs` - Cambio de format "file" a "directory" para compatibilidad
 
 ## Testing Recomendado Post-Deploy
 

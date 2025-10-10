@@ -7,7 +7,7 @@ export default defineConfig({
 
   // Optimizaciones de build
   build: {
-    format: "file", // URLs limpias sin .html
+    format: "directory", // URLs limpias compatibles con hosting estático
     inlineStylesheets: "auto",
     assetsPrefix: "/",
   },

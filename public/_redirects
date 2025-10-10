@@ -8,3 +8,6 @@ https://www.mudanzasandy.es/* https://mudanzasandy.es/:splat 301!
 
 # Critical legacy redirects only - FIXED: Only redirect blog root, not all blog routes
 /blog /blog-astro/ 301
+
+# URL rewrite rules for blog entries (directory format compatibility)
+/blog/:slug /blog/:slug/ 200
