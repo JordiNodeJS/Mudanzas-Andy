@@ -6,5 +6,5 @@
 http://mudanzasandy.es/* https://mudanzasandy.es/:splat 301!
 https://www.mudanzasandy.es/* https://mudanzasandy.es/:splat 301!
 
-# Critical legacy redirects only
-/blog/* /blog-astro/ 301
+# Critical legacy redirects only - FIXED: Only redirect blog root, not all blog routes
+/blog /blog-astro/ 301
