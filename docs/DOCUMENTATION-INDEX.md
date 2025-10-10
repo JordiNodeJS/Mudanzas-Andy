@@ -212,5 +212,23 @@ ls -la dist/_astro/*.webp
 
 ---
 
-**Última actualización**: Septiembre 2025  
+## 📚 Nuevas Guías (Octubre 2025)
+
+### 🔍 **[SEARCH-CONSOLE-VALIDATION-GUIDE.md](./SEARCH-CONSOLE-VALIDATION-GUIDE.md)**
+
+**Descripción**: Guía completa de validación de JSON-LD en Google Search Console  
+**Contenido**:
+
+- Proceso de validación paso a paso
+- Troubleshooting de errores JSON-LD
+- Rich Results Test y Schema Validator
+- Timeline de indexación y rich snippets
+- Pre-deploy y post-deploy checklist
+
+**Creado**: 6 octubre 2025  
+**Relacionado con**: TASK-024 (Fix JSON-LD error en página del blog)
+
+---
+
+**Última actualización**: 6 de Octubre, 2025  
 **Mantenido por**: Equipo de Desarrollo Mudanzas ANDY
