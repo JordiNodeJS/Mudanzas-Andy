@@ -107,14 +107,7 @@ const SITE_CANONICAL = "https://mudanzasandy.es";
         <div class="max-w-3xl mx-auto">
           <!-- Contenido HTML desde WordPress -->
           <div 
-            class="prose prose-lg max-w-none
-                   prose-headings:font-bold prose-headings:text-gray-900
-                   prose-p:text-gray-700 prose-p:leading-relaxed
-                   prose-a:text-[rgb(var(--color-primary))] prose-a:no-underline hover:prose-a:underline
-                   prose-img:rounded-xl prose-img:shadow-lg
-                   prose-strong:text-gray-900
-                   prose-ul:list-disc prose-ul:pl-6
-                   prose-ol:list-decimal prose-ol:pl-6"
+            class="wp-content prose prose-lg max-w-none"
             set:html={content}
           />
 
@@ -203,24 +196,153 @@ const SITE_CANONICAL = "https://mudanzasandy.es";
 </Layout>
 
 <style>
-  /* Estilos adicionales para el contenido de WordPress */
-  article :global(img) {
-    max-width: 100%;
-    height: auto;
+  /* Estilos para el contenido de WordPress */
+  .wp-content {
+    color: #374151;
+    line-height: 1.75;
   }
 
-  article :global(pre) {
+  /* Headings */
+  .wp-content :global(h1),
+  .wp-content :global(h2),
+  .wp-content :global(h3),
+  .wp-content :global(h4),
+  .wp-content :global(h5),
+  .wp-content :global(h6) {
+    font-weight: 700;
+    color: #111827;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .wp-content :global(h1) {
+    font-size: 2.25rem;
+  }
+
+  .wp-content :global(h2) {
+    font-size: 1.875rem;
+  }
+
+  .wp-content :global(h3) {
+    font-size: 1.5rem;
+  }
+
+  .wp-content :global(h4) {
+    font-size: 1.25rem;
+  }
+
+  /* Párrafos */
+  .wp-content :global(p) {
+    margin-bottom: 1.25rem;
+    color: #4b5563;
+  }
+
+  /* Listas */
+  .wp-content :global(ul),
+  .wp-content :global(ol) {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .wp-content :global(ul) {
+    list-style-type: disc;
+  }
+
+  .wp-content :global(ol) {
+    list-style-type: decimal;
+  }
+
+  .wp-content :global(li) {
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+  }
+
+  /* Enlaces */
+  .wp-content :global(a) {
+    color: rgb(var(--color-primary));
+    text-decoration: none;
+  }
+
+  .wp-content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  /* Strong/Bold */
+  .wp-content :global(strong) {
+    font-weight: 700;
+    color: #111827;
+  }
+
+  /* Énfasis */
+  .wp-content :global(em) {
+    font-style: italic;
+  }
+
+  /* Imágenes */
+  .wp-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+  }
+
+  /* Código */
+  .wp-content :global(code) {
+    background-color: #f3f4f6;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: monospace;
+  }
+
+  .wp-content :global(pre) {
     background-color: #f3f4f6;
     padding: 1rem;
     border-radius: 0.5rem;
     overflow-x: auto;
+    margin-bottom: 1.25rem;
   }
 
-  article :global(blockquote) {
+  .wp-content :global(pre code) {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  /* Blockquotes */
+  .wp-content :global(blockquote) {
     border-left: 4px solid rgb(var(--color-primary));
     padding-left: 1rem;
     font-style: italic;
     color: #4b5563;
+    margin: 1.5rem 0;
+  }
+
+  /* Tablas */
+  .wp-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+  }
+
+  .wp-content :global(th),
+  .wp-content :global(td) {
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+  }
+
+  .wp-content :global(th) {
+    background-color: #f9fafb;
+    font-weight: 700;
+  }
+
+  /* Separadores */
+  .wp-content :global(hr) {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 2rem 0;
   }
 </style>
 
