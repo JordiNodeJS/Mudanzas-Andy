@@ -301,7 +301,18 @@ Semana 1 (Agosto 23-30):
 - 🔍 **Mejoras**: Control de bots agresivos y bloqueo de scrapers
 - ⏳ **Pendiente**: Verificación en Search Console (24-48 horas)
 
+### **11/10/2025 - 16:22**
+
+- ✅ **TASK-020 COMPLETADO**: Fix de header overlap en páginas de blog de WordPress
+- 📱 **Problema resuelto**: Contenido superior oculto tras header fijo en móvil y desktop
+- 🎯 **Causa**: Falta de padding-top en elemento `<main>` de `/blog/wp/[slug]`
+- ✅ **Solución**: Aplicado patrón responsivo `pt-20 md:pt-24 lg:pt-28`
+- 📐 **Valores**: 80px móvil, 96px tablet, 112px desktop para compensar header fijo
+- 🔄 **Consistencia**: Patrón alineado con páginas de blog normales (`/blog/[slug]`)
+- 🎨 **UX mejorada**: Breadcrumb y título completamente visibles en todas las resoluciones
+- ✅ **Verificación**: Type-check exitoso (0 errores), servidor de desarrollo funcionando
+
 ---
 
-**Última actualización**: 6 de Octubre, 2025 - 16:45
+**Última actualización**: 11 de Octubre, 2025 - 16:22
 **Próxima revisión**: Según necesidades del proyecto
