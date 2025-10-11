@@ -16,7 +16,7 @@ const isWordPressPost = !isAstroPost && "source" in post && post.source === "wor
 // Extraer datos del post de forma unificada
 const postData = isAstroPost ? post.data : post;
 const postId = isAstroPost ? post.id : (post as UnifiedBlogPost).slug;
-const postUrl = isWordPressPost ? (post as UnifiedBlogPost).externalLink || (post as UnifiedBlogPost).postUrl : `/blog/${postId}`;
+const postUrl = isWordPressPost ? (post as UnifiedBlogPost).postUrl : `/blog/${postId}`;
 
 // Función para formatear fecha
 const formatDate = (date: Date): string => {
@@ -40,7 +40,7 @@ const readingTime = "readingTime" in postData ? postData.readingTime : undefined
 const featured = postData.featured;
 ---
 
-<section class="latest-post-hero py-20 bg-gradient-to-br from-[rgb(var(--color-primary))] via-[rgb(var(--color-secondary))] to-[rgb(var(--color-neutral))]">
+<section class="latest-post-hero py-12 lg:py-16 bg-gradient-to-br from-[rgb(var(--color-primary))] via-[rgb(var(--color-secondary))] to-[rgb(var(--color-neutral))]">
   <div class="container mx-auto px-4">
     
     <!-- Etiqueta de "Último artículo" -->
@@ -111,8 +111,6 @@ const featured = postData.featured;
         <div class="pt-4">
           <a 
             href={postUrl}
-            target={isWordPressPost ? "_blank" : undefined}
-            rel={isWordPressPost ? "noopener noreferrer" : undefined}
             class="inline-flex items-center gap-3 bg-white text-[rgb(var(--color-primary))] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl group"
           >
             Leer artículo completo

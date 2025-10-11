@@ -82,7 +82,7 @@ const canonicalUrl =
   <!-- Header fijo -->
   <Header />
 
-  <main class="pt-20 md:pt-24 lg:pt-28" data-astro-transition-scope="blog">
+  <main data-astro-transition-scope="blog" class="pt-20 lg:pt-24">
     <!-- Mostrar el último post como hero solo en la primera página -->
     {currentPage === 1 && latestPost && <LatestPost post={latestPost} />}
 

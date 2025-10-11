@@ -144,8 +144,8 @@ export function transformWordPressPost(wpPost: WordPressPost): UnifiedBlogPost {
     tags: tags.map((tag) => tag.name),
     draft: wpPost.status !== "publish",
     featured: wpPost.sticky,
-    postUrl: wpPost.link,
-    externalLink: wpPost.link,
+    postUrl: `/blog/wp/${wpPost.slug}`, // URL local de Astro
+    externalLink: wpPost.link, // URL original de WordPress
     wordpressId: wpPost.id,
   };
 }
