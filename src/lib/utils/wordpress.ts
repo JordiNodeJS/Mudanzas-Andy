@@ -180,3 +180,96 @@ export function clearWordPressCache(): void {
   cache.clear();
   console.log("[WordPress] Cache cleared");
 }
+
+/**
+ * Obtiene posts de WordPress desde el cliente (navegador)
+ * Esta función NO usa el cache del servidor y está diseñada para
+ * ser llamada desde componentes React o JavaScript del navegador.
+ *
+ * @param options - Opciones de consulta
+ * @returns Promise con posts transformados y metadatos
+ */
+export async function getWordPressPostsClient(
+  options: WordPressPostsOptions = {}
+): Promise<{
+  posts: UnifiedBlogPost[];
+  totalPages: number;
+  totalPosts: number;
+}> {
+  const {
+    page = 1,
+    perPage = DEFAULT_PER_PAGE,
+    categories = [],
+    tags = [],
+    search = "",
+    orderBy = "date",
+    order = "desc",
+  } = options;
+
+  // Construir URL con parámetros
+  const params = new URLSearchParams({
+    page: page.toString(),
+    per_page: perPage.toString(),
+    orderby: orderBy,
+    order: order,
+    _embed: "true",
+  });
+
+  if (categories.length > 0) {
+    params.append("categories", categories.join(","));
+  }
+
+  if (tags.length > 0) {
+    params.append("tags", tags.join(","));
+  }
+
+  if (search) {
+    params.append("search", search);
+  }
+
+  const url = `${WORDPRESS_API_URL}/posts?${params.toString()}`;
+
+  try {
+    console.log("[WordPress Client] Fetching posts from:", url);
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+      // No usar cache del navegador para obtener datos frescos
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `WordPress API error: ${response.status} ${response.statusText}`
+      );
+    }
+
+    const posts: WordPressPost[] = await response.json();
+
+    // Obtener metadatos de paginación
+    const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1");
+    const totalPosts = parseInt(response.headers.get("X-WP-Total") || "0");
+
+    // Transformar posts al formato unificado
+    const unifiedPosts = posts.map(transformWordPressPost);
+
+    console.log(
+      `[WordPress Client] Successfully loaded ${unifiedPosts.length} posts`
+    );
+
+    return {
+      posts: unifiedPosts,
+      totalPages,
+      totalPosts,
+    };
+  } catch (error) {
+    console.error("[WordPress Client] Error fetching posts:", error);
+    return {
+      posts: [],
+      totalPages: 0,
+      totalPosts: 0,
+    };
+  }
+}

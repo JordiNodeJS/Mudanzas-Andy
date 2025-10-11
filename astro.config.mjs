@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
+import react from "@astrojs/react";
 
 export default defineConfig({
   site: "https://mudanzasandy.es",
@@ -47,6 +48,7 @@ export default defineConfig({
       lastmod: new Date(),
     }),
     mdx(),
+    react(), // Integración de React para componentes interactivos
   ],
 
   // Configuraciones experimentales removidas para Astro 5

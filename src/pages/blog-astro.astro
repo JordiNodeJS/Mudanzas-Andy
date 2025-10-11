@@ -4,23 +4,24 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { getCollection } from "astro:content";
 
-// Importar componentes del blog
-import LatestPost from "../layouts/components/blog/LatestPost.astro";
-import BlogPostList from "../layouts/components/blog/BlogPostList.astro";
+// Importar componente híbrido de blog en tiempo real
+import LiveBlogGrid from "../components/LiveBlogGrid";
+
+// Importar componentes del blog (para paginación)
 import Pagination from "../layouts/components/blog/Pagination.astro";
 
 // Importar utilidades de WordPress
-import { getUnifiedWordPressPosts } from "@/lib/utils/wordpress";
-import type { UnifiedBlogPost } from "@/lib/types/wordpress";
+import { getUnifiedWordPressPosts } from "@/lib/utils/wordpress.js";
+import type { UnifiedBlogPost } from "@/lib/types/wordpress.js";
 import type { CollectionEntry } from "astro:content";
 
 // Configuración de paginación
 const POSTS_PER_PAGE = 9;
 const currentPage = parseInt(Astro.url.searchParams.get("page") || "1");
 
-// Obtener posts de WordPress
+// Obtener posts de WordPress en build time (para SEO y fallback)
 const wpResponse = await getUnifiedWordPressPosts({
-  perPage: 100, // Obtener muchos posts para tener suficientes
+  perPage: 100,
   orderBy: "date",
   order: "desc",
 });
@@ -33,28 +34,22 @@ const publishedAstroPosts = allAstroPosts
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Combinar posts de WordPress y Astro
+// Combinar posts para calcular totalPages (necesario para paginación)
 const allUnifiedPosts: (CollectionEntry<"blog"> | UnifiedBlogPost)[] = [
   ...wpResponse.posts,
   ...publishedAstroPosts,
 ];
 
-// Ordenar todos los posts por fecha (más recientes primero)
+// Ordenar todos los posts por fecha
 const sortedPosts = allUnifiedPosts.sort((a, b) => {
   const dateA = "data" in a ? a.data.pubDate : a.pubDate;
   const dateB = "data" in b ? b.data.pubDate : b.pubDate;
   return dateB.valueOf() - dateA.valueOf();
 });
 
-// Obtener el post más reciente como hero (puede ser de cualquier fuente)
-const latestPost = sortedPosts[0];
-
-// Calcular paginación para el resto de posts
+// Calcular total de páginas (excluyendo el primer post que va como hero en página 1)
 const remainingPosts = sortedPosts.slice(1);
 const totalPages = Math.ceil(remainingPosts.length / POSTS_PER_PAGE);
-const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-const endIndex = startIndex + POSTS_PER_PAGE;
-const paginatedPosts = remainingPosts.slice(startIndex, endIndex);
 
 const pageTitle =
   currentPage === 1
@@ -83,19 +78,15 @@ const canonicalUrl =
   <Header />
 
   <main data-astro-transition-scope="blog" class="pt-20 lg:pt-24">
-    <!-- Mostrar el último post como hero solo en la primera página -->
-    {currentPage === 1 && latestPost && <LatestPost post={latestPost} />}
-
-    <!-- Lista de posts paginados -->
-    {
-      paginatedPosts.length > 0 && (
-        <BlogPostList
-          posts={paginatedPosts}
-          title={currentPage === 1 ? "Más Artículos del Blog" : `Artículos del Blog - Página ${currentPage}`}
-          showMore={false}
-        />
-      )
-    }
+    <!-- Componente híbrido con actualización en tiempo real -->
+    <LiveBlogGrid
+      client:load
+      astroPosts={publishedAstroPosts}
+      initialWordPressPosts={wpResponse.posts}
+      currentPage={currentPage}
+      postsPerPage={POSTS_PER_PAGE}
+      showHero={true}
+    />
 
     <!-- Componente de paginación -->
     {totalPages > 1 && (
@@ -199,4 +190,16 @@ const canonicalUrl =
   />
 </Layout>
 
-<!-- Page styles removed: replaced by Tailwind utility classes on elements above -->
+    })}
+  />
+</Layout>
+
+<style is:global>
+  /* Utility para limitar líneas de texto */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

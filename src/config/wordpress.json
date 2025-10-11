@@ -1,0 +1,20 @@
+{
+    "apiUrl": "https://barcelona.mudanzasandy.es/wp-json/wp/v2",
+    "siteUrl": "https://barcelona.mudanzasandy.es",
+    "cache": {
+        "enabled": true,
+        "ttl": 300000,
+        "comment": "TTL en milisegundos (300000 = 5 minutos) - Solo para cache del servidor en build time"
+    },
+    "clientSide": {
+        "enabled": true,
+        "autoRefresh": false,
+        "refreshInterval": 60000,
+        "comment": "autoRefresh: false = Solo actualiza cuando el usuario entra/recarga la página. No hay actualización automática periódica."
+    },
+    "fallback": {
+        "enabled": true,
+        "useStaticContent": true,
+        "comment": "Usar contenido estático si WordPress no está disponible"
+    }
+}
