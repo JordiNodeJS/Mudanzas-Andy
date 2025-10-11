@@ -79,10 +79,12 @@ const canonicalUrl =
 
   <main data-astro-transition-scope="blog" class="pt-20 lg:pt-24">
     <!-- Componente híbrido con actualización en tiempo real -->
+    <!-- NOTA: Ya NO pasamos initialWordPressPosts para evitar el efecto de "parpadeo"
+         cuando hay posts en borrador. El componente siempre inicia con loading y 
+         obtiene datos frescos directamente desde WordPress. -->
     <LiveBlogGrid
       client:load
       astroPosts={publishedAstroPosts}
-      initialWordPressPosts={wpResponse.posts}
       currentPage={currentPage}
       postsPerPage={POSTS_PER_PAGE}
       showHero={true}
