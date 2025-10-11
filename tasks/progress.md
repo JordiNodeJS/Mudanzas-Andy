@@ -39,6 +39,7 @@
 | TASK-COOKIE-GTM  | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | COOKIE-UX-v2.0   | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 | TASK-030         | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
+| TASK-WORDPRESS   | ✅ COMPLETADO | ALTA      | 100%     | ✅  |
 
 ### **Tareas Históricas (Trabajo Previo Documentado)**
 
