@@ -1,6 +1,7 @@
 {
-    "apiUrl": "https://barcelona.mudanzasandy.es/wp-json/wp/v2",
-    "siteUrl": "https://barcelona.mudanzasandy.es",
+    "apiUrl": "",
+    "siteUrl": "",
+    "comment": "NOTA: Las URLs se cargan desde variables de entorno (PUBLIC_WORDPRESS_API_URL y PUBLIC_WORDPRESS_SITE_URL). Los valores aquí son fallback si las variables no están definidas.",
     "cache": {
         "enabled": true,
         "ttl": 300000,

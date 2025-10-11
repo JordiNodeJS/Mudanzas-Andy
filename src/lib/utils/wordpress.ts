@@ -10,7 +10,11 @@ import type {
   WordPressPostsOptions,
 } from "@/lib/types/wordpress.js";
 
-const WORDPRESS_API_URL = "https://barcelona.mudanzasandy.es/wp-json/wp/v2";
+// URL de la API de WordPress desde variable de entorno
+const WORDPRESS_API_URL =
+  import.meta.env.PUBLIC_WORDPRESS_API_URL ||
+  "https://barcelona.mudanzasandy.es/wp-json/wp/v2";
+
 const DEFAULT_PER_PAGE = 20;
 
 // Cache simple en memoria para desarrollo (en producción usar Redis o similar)

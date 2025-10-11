@@ -98,7 +98,10 @@ export default function LiveBlogGrid({
         _embed: "true",
       });
 
-      const url = `${wordpressConfig.apiUrl}/posts?${params.toString()}`;
+      // Obtener URL desde variable de entorno o usar fallback del config
+      const apiUrl =
+        import.meta.env.PUBLIC_WORDPRESS_API_URL || wordpressConfig.apiUrl;
+      const url = `${apiUrl}/posts?${params.toString()}`;
 
       console.log("[LiveBlogGrid] Fetching WordPress posts from:", url);
 
@@ -305,11 +308,6 @@ export default function LiveBlogGrid({
                       <span className="inline-block bg-[rgb(var(--color-accent))] text-gray-900 text-sm font-semibold px-4 py-2 rounded-full">
                         ⭐ Artículo Destacado
                       </span>
-                      {isWordPressPost(heroPost) && (
-                        <span className="inline-block ml-2 bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
-                          Actualizado en vivo
-                        </span>
-                      )}
                     </div>
 
                     <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -405,21 +403,6 @@ export default function LiveBlogGrid({
                         <span>{formatDate(getPostDate(post))}</span>
                         <span>{getPostAuthor(post)}</span>
                       </div>
-
-                      {isWP && (
-                        <div className="pt-4 border-t border-gray-200">
-                          <span className="inline-flex items-center text-xs text-blue-600">
-                            <svg
-                              className="w-4 h-4 mr-1"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
-                            </svg>
-                            Actualizado en vivo desde WordPress
-                          </span>
-                        </div>
-                      )}
                     </div>
                   </article>
                 );
