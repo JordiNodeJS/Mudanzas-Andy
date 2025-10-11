@@ -7,53 +7,104 @@ import { getCollection } from "astro:content";
 // Importar componentes del blog
 import LatestPost from "../layouts/components/blog/LatestPost.astro";
 import BlogPostList from "../layouts/components/blog/BlogPostList.astro";
+import Pagination from "../layouts/components/blog/Pagination.astro";
 
-// Obtener todos los posts del blog
-const allPosts = await getCollection("blog");
+// Importar utilidades de WordPress
+import { getUnifiedWordPressPosts } from "@/lib/utils/wordpress";
+import type { UnifiedBlogPost } from "@/lib/types/wordpress";
+import type { CollectionEntry } from "astro:content";
 
-// Filtrar posts publicados (no draft) y ordenar por fecha
-const publishedPosts = allPosts
+// Configuración de paginación
+const POSTS_PER_PAGE = 9;
+const currentPage = parseInt(Astro.url.searchParams.get("page") || "1");
+
+// Obtener posts de WordPress
+const wpResponse = await getUnifiedWordPressPosts({
+  perPage: 100, // Obtener muchos posts para tener suficientes
+  orderBy: "date",
+  order: "desc",
+});
+
+// Obtener todos los posts de Astro
+const allAstroPosts = await getCollection("blog");
+
+// Filtrar posts de Astro publicados (no draft) y ordenar por fecha
+const publishedAstroPosts = allAstroPosts
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Obtener el último post publicado
-const latestPost = publishedPosts[0];
+// Combinar posts de WordPress y Astro
+const allUnifiedPosts: (CollectionEntry<"blog"> | UnifiedBlogPost)[] = [
+  ...wpResponse.posts,
+  ...publishedAstroPosts,
+];
 
-// Obtener el resto de posts (excluyendo el último)
-const remainingPosts = publishedPosts.slice(1);
+// Ordenar todos los posts por fecha (más recientes primero)
+const sortedPosts = allUnifiedPosts.sort((a, b) => {
+  const dateA = "data" in a ? a.data.pubDate : a.pubDate;
+  const dateB = "data" in b ? b.data.pubDate : b.pubDate;
+  return dateB.valueOf() - dateA.valueOf();
+});
+
+// Obtener el post más reciente como hero (puede ser de cualquier fuente)
+const latestPost = sortedPosts[0];
+
+// Calcular paginación para el resto de posts
+const remainingPosts = sortedPosts.slice(1);
+const totalPages = Math.ceil(remainingPosts.length / POSTS_PER_PAGE);
+const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+const endIndex = startIndex + POSTS_PER_PAGE;
+const paginatedPosts = remainingPosts.slice(startIndex, endIndex);
 
 const pageTitle =
-  "Blog Mudanzas Barcelona - Consejos Económicos y Baratos | Mudanzas ANDY";
+  currentPage === 1
+    ? "Blog Mudanzas Barcelona - Consejos Económicos y Baratos | Mudanzas ANDY"
+    : `Blog Mudanzas Barcelona - Página ${currentPage} | Mudanzas ANDY`;
 const pageDescription =
   "➤ Blog de mudanzas en Barcelona con consejos económicos y baratos. Guías profesionales para mudanzas económicas, tips para ahorrar, embalaje barato y traslados en toda la península. ¡Mudanzas ANDY - Calidad al mejor precio!";
 // Canonical used in JSON-LD
 const SITE_CANONICAL = "https://mudanzasandy.es";
+
+// Construir canonical URL con paginación
+const canonicalUrl =
+  currentPage === 1
+    ? `${SITE_CANONICAL}/blog-astro/`
+    : `${SITE_CANONICAL}/blog-astro/?page=${currentPage}`;
 ---
 
 <Layout
   title={pageTitle}
   description={pageDescription}
   image="/logos/logo-mudanzas-andy.svg"
-  canonical="https://mudanzasandy.es/blog-astro/"
+  canonical={canonicalUrl}
   keywords="mudanzas barcelona, mudanzas económicas, mudanzas baratas, mudanzas peninsula, consejos mudanza, embalaje barato, traslados económicos, mudanza económica barcelona, presupuesto mudanza barato, mudanzas profesionales"
 >
   <!-- Header fijo -->
   <Header />
 
-  <main class="pt-20 md:pt-24 lg:pt-28" data-astro-transition-scope="blog">
-    <!-- Mostrar el último post como hero -->
-    {latestPost && <LatestPost post={latestPost} />}
+  <main data-astro-transition-scope="blog" class="pt-20 lg:pt-24">
+    <!-- Mostrar el último post como hero solo en la primera página -->
+    {currentPage === 1 && latestPost && <LatestPost post={latestPost} />}
 
-    <!-- Lista de posts restantes -->
+    <!-- Lista de posts paginados -->
     {
-      remainingPosts.length > 0 && (
+      paginatedPosts.length > 0 && (
         <BlogPostList
-          posts={remainingPosts}
-          title="Más Artículos del Blog"
+          posts={paginatedPosts}
+          title={currentPage === 1 ? "Más Artículos del Blog" : `Artículos del Blog - Página ${currentPage}`}
           showMore={false}
         />
       )
     }
+
+    <!-- Componente de paginación -->
+    {totalPages > 1 && (
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        baseUrl="/blog-astro"
+      />
+    )}
 
     <!-- Sección de CTA -->
     <section
@@ -112,23 +163,31 @@ const SITE_CANONICAL = "https://mudanzasandy.es";
       },
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `${SITE_CANONICAL}/blog-astro/`,
+        "@id": canonicalUrl,
       },
-      blogPost: publishedPosts.slice(0, 5).map((post) => ({
-        "@type": "BlogPosting",
-        headline: post.data.title,
-        description: post.data.description,
-        url: `${SITE_CANONICAL}/blog/${post.id}`,
-        datePublished: post.data.pubDate.toISOString(),
-        author: {
-          "@type": "Person",
-          name: post.data.author || "Equipo Mudanzas ANDY",
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "Mudanzas ANDY",
-        },
-      })),
+      blogPost: sortedPosts.slice(0, 5).map((post) => {
+        const isAstroPost = "collection" in post;
+        const postData = isAstroPost ? post.data : post;
+        const postUrl = isAstroPost 
+          ? `${SITE_CANONICAL}/blog/${post.id}` 
+          : (post as UnifiedBlogPost).externalLink || (post as UnifiedBlogPost).postUrl;
+        
+        return {
+          "@type": "BlogPosting",
+          headline: postData.title,
+          description: postData.description,
+          url: postUrl,
+          datePublished: postData.pubDate.toISOString(),
+          author: {
+            "@type": "Person",
+            name: postData.author || "Equipo Mudanzas ANDY",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "Mudanzas ANDY",
+          },
+        };
+      }),
       keywords:
         "mudanzas barcelona, mudanzas económicas, mudanzas baratas, consejos mudanza, embalaje barato, traslados económicos, blog mudanzas",
       about: [

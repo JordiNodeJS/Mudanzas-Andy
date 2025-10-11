@@ -1,12 +1,22 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { UnifiedBlogPost } from "@/lib/types/wordpress";
 import { Image } from "astro:assets";
 
 interface Props {
-  post: CollectionEntry<"blog">;
+  post: CollectionEntry<"blog"> | UnifiedBlogPost;
 }
 
 const { post } = Astro.props satisfies Props;
+
+// Detectar si es un post de Astro o WordPress
+const isAstroPost = "collection" in post;
+const isWordPressPost = !isAstroPost && "source" in post && post.source === "wordpress";
+
+// Extraer datos del post de forma unificada
+const postData = isAstroPost ? post.data : post;
+const postId = isAstroPost ? post.id : (post as UnifiedBlogPost).slug;
+const postUrl = isWordPressPost ? (post as UnifiedBlogPost).postUrl : `/blog/${postId}`;
 
 // Función para formatear fecha
 const formatDate = (date: Date): string => {
@@ -17,11 +27,20 @@ const formatDate = (date: Date): string => {
   });
 };
 
-// URL del post completo
-const postUrl = `/blog/${post.id}`;
+// Obtener valores de los datos del post
+const title = postData.title;
+const description = postData.description;
+const pubDate = postData.pubDate;
+const heroImage = postData.heroImage;
+const heroImageAlt = postData.heroImageAlt;
+const category = postData.category;
+const tags = postData.tags;
+const author = postData.author;
+const readingTime = "readingTime" in postData ? postData.readingTime : undefined;
+const featured = postData.featured;
 ---
 
-<section class="latest-post-hero py-20 bg-gradient-to-br from-[rgb(var(--color-primary))] via-[rgb(var(--color-secondary))] to-[rgb(var(--color-neutral))]">
+<section class="latest-post-hero py-12 lg:py-16 bg-gradient-to-br from-[rgb(var(--color-primary))] via-[rgb(var(--color-secondary))] to-[rgb(var(--color-neutral))]">
   <div class="container mx-auto px-4">
     
     <!-- Etiqueta de "Último artículo" -->
@@ -38,37 +57,37 @@ const postUrl = `/blog/${post.id}`;
         
         <!-- Meta información -->
         <div class="flex items-center gap-6 text-sm text-white/80">
-          <time datetime={post.data.pubDate.toISOString()} class="flex items-center gap-2">
+          <time datetime={pubDate.toISOString()} class="flex items-center gap-2">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
             </svg>
-            {formatDate(post.data.pubDate)}
+            {formatDate(pubDate)}
           </time>
           
-          {post.data.readingTime && (
+          {readingTime && (
             <span class="flex items-center gap-2">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M16.2,16.2L11,13V7H12.5V12.2L17,14.7L16.2,16.2Z"/>
               </svg>
-              {post.data.readingTime} min de lectura
+              {readingTime} min de lectura
             </span>
           )}
         </div>
 
         <!-- Título del post -->
         <h1 class="text-3xl lg:text-5xl font-bold leading-tight">
-          {post.data.title}
+          {title}
         </h1>
 
         <!-- Descripción -->
         <p class="text-lg lg:text-xl text-white/90 leading-relaxed">
-          {post.data.description}
+          {description}
         </p>
 
         <!-- Tags principales -->
-        {post.data.tags && post.data.tags.length > 0 && (
+        {tags && tags.length > 0 && (
           <div class="flex flex-wrap gap-3">
-            {post.data.tags.slice(0, 3).map((tag) => (
+            {tags.slice(0, 3).map((tag: string) => (
               <span class="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
                 #{tag}
               </span>
@@ -77,14 +96,14 @@ const postUrl = `/blog/${post.id}`;
         )}
 
         <!-- Autor -->
-        {post.data.author && (
+        {author && (
           <div class="flex items-center gap-3 text-white/80">
             <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
               </svg>
             </div>
-            <span class="font-medium">{post.data.author}</span>
+            <span class="font-medium">{author}</span>
           </div>
         )}
 
@@ -105,26 +124,39 @@ const postUrl = `/blog/${post.id}`;
 
       <!-- Imagen del post -->
       <div class="order-1 lg:order-2">
-        {post.data.heroImage ? (
+        {heroImage ? (
           <div class="relative">
-            <Image
-              src={post.data.heroImage}
-              alt={post.data.heroImageAlt || post.data.title}
-              width={600}
-              height={400}
-              class="w-full h-auto rounded-2xl shadow-2xl"
-              loading="eager"
-            />
+            {isAstroPost ? (
+              <Image
+                src={heroImage as any}
+                alt={heroImageAlt || title}
+                width={600}
+                height={400}
+                class="w-full h-auto rounded-2xl shadow-2xl"
+                loading="eager"
+              />
+            ) : (
+              <img
+                src={heroImage as string}
+                alt={heroImageAlt || title}
+                width={600}
+                height={400}
+                class="w-full h-auto rounded-2xl shadow-2xl object-cover"
+                loading="eager"
+              />
+            )}
             
             <!-- Badge de categoría -->
-            <div class="absolute top-6 left-6">
-              <span class="bg-[rgb(var(--color-accent))] text-gray-900 px-4 py-2 rounded-full text-sm font-bold">
-                {post.data.category}
-              </span>
-            </div>
+            {category && (
+              <div class="absolute top-6 left-6">
+                <span class="bg-[rgb(var(--color-accent))] text-gray-900 px-4 py-2 rounded-full text-sm font-bold">
+                  {category}
+                </span>
+              </div>
+            )}
             
             <!-- Badge destacado si aplica -->
-            {post.data.featured && (
+            {featured && (
               <div class="absolute top-6 right-6">
                 <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">
                   ⭐ Destacado

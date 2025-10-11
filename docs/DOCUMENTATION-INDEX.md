@@ -10,7 +10,21 @@ Documentación principal del proyecto con arquitectura, comandos y guías de des
 
 ## 🔧 Guías Técnicas Detalladas
 
-### 📱💻 **[RESPONSIVE-IMAGES-GUIDE.md](./RESPONSIVE-IMAGES-GUIDE.md)**
+### � **[BLOG-CONTENT-GUIDE.md](./BLOG-CONTENT-GUIDE.md)** 🆕
+
+**Descripción**: Guía completa para añadir nuevo contenido al blog (para humanos y AI)  
+**Contenido**:
+
+- Estructura y anatomía de un post de blog
+- Schema y validación de Content Collections
+- Paso a paso para crear nuevos artículos
+- Sistema de imágenes responsive integrado
+- Optimización SEO y metadatos
+- Categorías, tags y mejores prácticas
+- Verificación, testing y troubleshooting
+- Instrucciones específicas para AI assistants
+
+### �📱💻 **[RESPONSIVE-IMAGES-GUIDE.md](./RESPONSIVE-IMAGES-GUIDE.md)**
 
 **Descripción**: Guía completa del sistema de imágenes responsive implementado en Astro 5  
 **Contenido**:

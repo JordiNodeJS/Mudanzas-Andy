@@ -1,9 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { UnifiedBlogPost } from "@/lib/types/wordpress";
 import BlogPostCard from "./BlogPostCard.astro";
+import WordPressBlogCard from "./WordPressBlogCard.astro";
 
 interface Props {
-  posts: CollectionEntry<"blog">[];
+  posts: (CollectionEntry<"blog"> | UnifiedBlogPost)[];
   title?: string;
   showMore?: boolean;
   maxPosts?: number;
@@ -19,6 +21,16 @@ const {
 // Limitar número de posts si se especifica
 const displayPosts = maxPosts ? posts.slice(0, maxPosts) : posts;
 const hasMorePosts = posts.length > maxPosts;
+
+// Función helper para determinar si es post de Astro
+const isAstroPost = (post: CollectionEntry<"blog"> | UnifiedBlogPost): post is CollectionEntry<"blog"> => {
+  return "collection" in post;
+};
+
+// Función helper para obtener datos del post
+const getPostData = (post: CollectionEntry<"blog"> | UnifiedBlogPost) => {
+  return isAstroPost(post) ? post.data : post;
+};
 ---
 
 <section class="blog-post-list py-16 bg-gray-50">
@@ -35,9 +47,13 @@ const hasMorePosts = posts.length > maxPosts;
     <!-- Grid de posts -->
     {displayPosts.length > 0 ? (
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        {displayPosts.map((post) => (
-          <BlogPostCard post={post} />
-        ))}
+        {displayPosts.map((post) => {
+          if (isAstroPost(post)) {
+            return <BlogPostCard post={post} />;
+          } else {
+            return <WordPressBlogCard post={post} />;
+          }
+        })}
       </div>
     ) : (
       <!-- Estado vacío -->
@@ -87,7 +103,7 @@ const hasMorePosts = posts.length > maxPosts;
           <!-- Categorías disponibles -->
           <div class="stat-item">
             <div class="text-3xl font-bold text-[rgb(var(--color-secondary))] mb-2">
-              {[...new Set(posts.map(post => post.data.category))].length}
+              {[...new Set(posts.map(post => getPostData(post).category).filter(Boolean))].length}
             </div>
             <div class="text-gray-600">
               Categorías Disponibles
@@ -97,7 +113,7 @@ const hasMorePosts = posts.length > maxPosts;
           <!-- Posts destacados -->
           <div class="stat-item">
             <div class="text-3xl font-bold text-[rgb(var(--color-accent))] mb-2">
-              {posts.filter(post => post.data.featured).length}
+              {posts.filter(post => getPostData(post).featured).length}
             </div>
             <div class="text-gray-600">
               Artículos Destacados

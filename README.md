@@ -156,7 +156,8 @@ node scripts/download-real-blog-images.js
 
 ### Guías Completas
 
-- 📱 **[RESPONSIVE-IMAGES-GUIDE.md](./docs/RESPONSIVE-IMAGES-GUIDE.md)**: Documentación completa del sistema de imágenes responsive
+- � **[BLOG-CONTENT-GUIDE.md](./docs/BLOG-CONTENT-GUIDE.md)**: 🆕 Guía completa para añadir contenido al blog (para humanos y AI)
+- �📱 **[RESPONSIVE-IMAGES-GUIDE.md](./docs/RESPONSIVE-IMAGES-GUIDE.md)**: Documentación completa del sistema de imágenes responsive
 - 🎨 **[COLOR-SYSTEM-RULES.md](./.github/docs/COLOR-SYSTEM-RULES.md)**: Sistema de colores centralizado
 - 🚀 **[IMAGE-OPTIMIZATION.md](./docs/IMAGE-OPTIMIZATION.md)**: Optimización de performance
 
