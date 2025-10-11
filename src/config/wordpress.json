@@ -1,0 +1,21 @@
+{
+    "apiUrl": "",
+    "siteUrl": "",
+    "comment": "NOTA: Las URLs se cargan desde variables de entorno (PUBLIC_WORDPRESS_API_URL y PUBLIC_WORDPRESS_SITE_URL). Los valores aquí son fallback si las variables no están definidas.",
+    "cache": {
+        "enabled": true,
+        "ttl": 300000,
+        "comment": "TTL en milisegundos (300000 = 5 minutos) - Solo para cache del servidor en build time"
+    },
+    "clientSide": {
+        "enabled": true,
+        "autoRefresh": false,
+        "refreshInterval": 60000,
+        "comment": "autoRefresh: false = Solo actualiza cuando el usuario entra/recarga la página. No hay actualización automática periódica."
+    },
+    "fallback": {
+        "enabled": true,
+        "useStaticContent": true,
+        "comment": "Usar contenido estático si WordPress no está disponible"
+    }
+}
