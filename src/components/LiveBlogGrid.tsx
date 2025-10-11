@@ -282,159 +282,224 @@ export default function LiveBlogGrid({
             </div>
           )}
 
-          {/* Hero Post (solo página 1) */}
+          {/* Hero Post (solo página 1) - Diseño Original */}
           {heroPost && (
-            <section className="container mx-auto px-4 py-12">
-              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div className="grid lg:grid-cols-2 gap-0">
-                  {/* Imagen del hero */}
-                  {getPostImage(heroPost) && (
-                    <a
-                      href={getPostUrl(heroPost)}
-                      className="block h-full min-h-[300px] lg:min-h-[400px]"
-                    >
-                      <img
-                        src={getPostImage(heroPost)!}
-                        alt={getPostTitle(heroPost)}
-                        className="w-full h-full object-cover"
-                        loading="eager"
-                      />
-                    </a>
-                  )}
+            <section className="py-12 lg:py-16 bg-gradient-to-br from-[rgb(var(--color-primary))] via-[rgb(var(--color-secondary))] to-[rgb(var(--color-neutral))]">
+              <div className="container mx-auto px-4">
+                {/* Etiqueta de "Último artículo" */}
+                <div className="text-center mb-8">
+                  <span className="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold">
+                    ✨ Último Artículo Publicado
+                  </span>
+                </div>
 
-                  {/* Contenido del hero */}
-                  <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="mb-4">
-                      <span className="inline-block bg-[rgb(var(--color-accent))] text-gray-900 text-sm font-semibold px-4 py-2 rounded-full">
-                        ⭐ Artículo Destacado
-                      </span>
+                <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+                  {/* Contenido del post */}
+                  <div className="text-white space-y-6 order-2 lg:order-1">
+                    {/* Meta información */}
+                    <div className="flex items-center gap-6 text-sm text-white/80">
+                      <time className="flex items-center gap-2">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z" />
+                        </svg>
+                        {formatDate(getPostDate(heroPost))}
+                      </time>
                     </div>
 
-                    <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                      <a
-                        href={getPostUrl(heroPost)}
-                        className="hover:text-[rgb(var(--color-primary))] transition-colors"
-                      >
-                        {getPostTitle(heroPost)}
-                      </a>
-                    </h2>
+                    {/* Título del post */}
+                    <h1 className="text-3xl lg:text-5xl font-bold leading-tight">
+                      {getPostTitle(heroPost)}
+                    </h1>
 
-                    <p className="text-lg text-gray-600 mb-6">
+                    {/* Descripción */}
+                    <p className="text-lg lg:text-xl text-white/90 leading-relaxed">
                       {getPostDescription(heroPost)}
                     </p>
 
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
-                      <span>{formatDate(getPostDate(heroPost))}</span>
-                      <span>•</span>
-                      <span>{getPostAuthor(heroPost)}</span>
+                    {/* Autor */}
+                    <div className="flex items-center gap-3 text-white/80">
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                        </svg>
+                      </div>
+                      <span className="font-medium">
+                        {getPostAuthor(heroPost)}
+                      </span>
                     </div>
 
-                    <a
-                      href={getPostUrl(heroPost)}
-                      className="inline-flex items-center gap-2 text-[rgb(var(--color-primary))] font-semibold hover:gap-3 transition-all"
-                    >
-                      Leer artículo completo
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                    {/* Call to action */}
+                    <div className="pt-4">
+                      <a
+                        href={getPostUrl(heroPost)}
+                        className="inline-flex items-center gap-3 bg-white text-[rgb(var(--color-primary))] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl group"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
+                        Leer artículo completo
+                        <svg
+                          className="w-6 h-6 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          ></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Imagen del post */}
+                  <div className="order-1 lg:order-2">
+                    {getPostImage(heroPost) ? (
+                      <div className="relative">
+                        <img
+                          src={getPostImage(heroPost)!}
+                          alt={getPostTitle(heroPost)}
+                          className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+                          loading="eager"
                         />
-                      </svg>
-                    </a>
+                      </div>
+                    ) : (
+                      <div className="w-full h-96 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <div className="text-center text-white/60">
+                          <svg
+                            className="w-24 h-24 mx-auto mb-4"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19M19,19H5V5H19M13.96,12.29L11.21,15.83L9.25,13.47L6.5,17H17.5L13.96,12.29Z" />
+                          </svg>
+                          <p className="text-lg font-medium">
+                            Artículo sin imagen
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Indicador de scroll hacia abajo */}
+                <div className="text-center mt-16">
+                  <div className="inline-flex flex-col items-center text-white/60">
+                    <span className="text-sm mb-2">Continúa leyendo</span>
+                    <svg
+                      className="w-6 h-6 animate-bounce"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                      ></path>
+                    </svg>
                   </div>
                 </div>
               </div>
             </section>
           )}
 
-          {/* Grid de Posts */}
-          <section className="container mx-auto px-4 py-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8">
-              {currentPage === 1
-                ? "Más Artículos del Blog"
-                : `Artículos del Blog - Página ${currentPage}`}
-            </h2>
+          {/* Grid de Posts - Diseño Original */}
+          <section className="py-16 bg-gray-50">
+            <div className="container mx-auto px-4">
+              {/* Título de la sección */}
+              <div className="text-center mb-12">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                  {currentPage === 1
+                    ? "Más Artículos del Blog"
+                    : `Artículos del Blog - Página ${currentPage}`}
+                </h2>
+                <div className="w-24 h-1 bg-gradient-to-r from-[rgb(var(--color-primary))] to-[rgb(var(--color-secondary))] mx-auto rounded-full"></div>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {paginatedPosts.map((post) => {
-                const postUrl = getPostUrl(post);
-                const postImage = getPostImage(post);
-                const isWP = isWordPressPost(post);
-                const postKey = isWP ? `wp-${post.slug}` : `astro-${post.id}`;
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {paginatedPosts.map((post) => {
+                  const postUrl = getPostUrl(post);
+                  const postImage = getPostImage(post);
+                  const isWP = isWordPressPost(post);
+                  const postKey = isWP ? `wp-${post.slug}` : `astro-${post.id}`;
 
-                return (
-                  <article
-                    key={postKey}
-                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                  >
-                    {postImage && (
-                      <a href={postUrl} className="block">
-                        <img
-                          src={postImage}
-                          alt={getPostTitle(post)}
-                          className="w-full h-48 object-cover"
-                          loading="lazy"
-                        />
-                      </a>
-                    )}
-
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-3">
-                        <a
-                          href={postUrl}
-                          className="text-gray-900 hover:text-[rgb(var(--color-primary))] transition-colors"
-                        >
-                          {getPostTitle(post)}
-                        </a>
-                      </h3>
-
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {getPostDescription(post)}
-                      </p>
-
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                        <span>{formatDate(getPostDate(post))}</span>
-                        <span>{getPostAuthor(post)}</span>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-
-            {/* Mensaje de error si hay problemas con WordPress */}
-            {error && (
-              <div className="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg
-                      className="h-5 w-5 text-yellow-400"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                  return (
+                    <article
+                      key={postKey}
+                      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm text-yellow-700">
-                      Mostrando posts en caché. No se pudieron obtener las
-                      últimas actualizaciones de WordPress.
-                    </p>
+                      {postImage && (
+                        <a href={postUrl} className="block">
+                          <img
+                            src={postImage}
+                            alt={getPostTitle(post)}
+                            className="w-full h-48 object-cover"
+                            loading="lazy"
+                          />
+                        </a>
+                      )}
+
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold mb-3">
+                          <a
+                            href={postUrl}
+                            className="text-gray-900 hover:text-[rgb(var(--color-primary))] transition-colors"
+                          >
+                            {getPostTitle(post)}
+                          </a>
+                        </h3>
+
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {getPostDescription(post)}
+                        </p>
+
+                        <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                          <span>{formatDate(getPostDate(post))}</span>
+                          <span>{getPostAuthor(post)}</span>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              {/* Mensaje de error si hay problemas con WordPress */}
+              {error && (
+                <div className="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <svg
+                        className="h-5 w-5 text-yellow-400"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm text-yellow-700">
+                        Mostrando posts en caché. No se pudieron obtener las
+                        últimas actualizaciones de WordPress.
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </section>
         </>
       ) : null}
